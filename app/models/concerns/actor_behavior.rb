@@ -8,7 +8,7 @@ module ActorBehavior
 
   def init
     super
-    at_click{switch} unless events.assigned? :at_click
+    at_click{switch!} unless events.assigned? :at_click
   end
   
 end
