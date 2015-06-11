@@ -1,0 +1,118 @@
+<% form_url = if @entity.new_record? then entities_path else entity_path(@entity) end %>
+<%= form_for(@entity, as: :entity, url: form_url ) do |f| %>
+
+<%= render '/layouts/entity_errors', entity: @entity %>
+
+<div style="vertical-align: top">
+
+	<div style="display:inline-block">
+
+		<div class="field">
+			<%= f.label :name %>
+			<br>
+			<%= f.text_field :name %>
+		</div>
+
+		<div class="field">
+			<%= f.label :driver %>
+			<br>
+			<%= f.select :driver, @entity_drivers, {include_blank: "None"} %>
+		</div>
+
+		<div class="field">
+			<%= f.label :type %>
+			<br>
+			<%= f.select :type, types_options{|klass,depth| "#{'&nbsp;'*2 * depth}#{klass.name}".html_safe } %>
+		</div>
+
+		<div class="field">
+			<%= f.label :caption %>
+			<br>
+			<%= f.text_field :caption %>
+		</div>
+
+		<div class="field">
+			<%= f.label :parent_id %>
+			<br>
+			<%= f.select :parent_id, nested_set_options(@parents, @entity) {|i| "#{'&nbsp;'*2 * i.depth}#{i.caption}".html_safe } , {include_blank: "None"} %>
+		</div>
+
+		<div class="field">
+			<%= f.label :address %>
+			<br>
+			<%= f.text_field :address %>
+		</div>
+
+		<% if false %>
+
+		<div class="field">
+			<%= f.label :location %>
+			<br>
+			<%= f.number_field :location_x, step: :any, style: 'width: 50px' %>
+			<%= f.number_field :location_y, step: :any %>
+		</div>
+
+		<% end %>
+
+		<div class="field">
+			<%= f.label :power %>
+			<br>
+			<%= f.text_field :power %>
+		</div>
+
+		<div class="field">
+			<%= f.label :value %>
+			<br>
+			<%= f.text_field :value %>
+		</div>
+	</div>
+
+	<div style="display:inline-block; vertical-align: top; padding-left: 50px">
+		<div class="field">
+			<%= f.label :behavior_script %>
+			<br>
+
+			<%= f.hidden_field :behavior_script %>
+			
+			<div id="editor" style="width:600px; height: 300px;"><%= @entity.behavior_script %></div>
+
+			<script>
+				var editor = ace.edit("editor");
+				editor.getSession().setMode("ace/mode/ruby");
+				editor.setOptions({
+				     maxLines: 80
+				    ,minLines: 15
+				    ,tabSize: 2
+				    ,useSoftTabs: true
+				});
+				
+				// editor.session.setNewLineMode("unixs")
+				
+				editor.commands.addCommand({
+				    name: "submit",
+				    exec: function() {
+				      $('#new_entity,#edit_entity').submit();
+				    },
+				    bindKey: "Ctrl-Enter"
+				  })				
+
+				
+				$('#new_entity,#edit_entity').submit(function(e){
+/*					e.preventDefault()
+					s = editor.getValue()
+					alert( s.charCodeAt(1));
+					alert( s.charCodeAt(2) );
+*/
+					$('#entity_behavior_script').val( editor.getValue() );
+				});
+			</script>
+		</div>
+	</div>
+
+</div>
+
+<div class="actions">
+	<%= f.submit %>
+</div>
+<% end %>
+

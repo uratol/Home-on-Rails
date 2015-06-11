@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @entity.name %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @entity.type %>
+</p>
+
+<p>
+  <strong>Caption:</strong>
+  <%= @entity.caption %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @entity.address %>
+</p>
+
+<p>
+  <strong>Location x:</strong>
+  <%= @entity.left %>
+</p>
+
+<p>
+  <strong>Location y:</strong>
+  <%= @entity.top %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @entity.value %>
+</p>
+
+<%= link_to 'Edit', edit_entity_path(@entity) %> |
+<%= link_to 'Back', entities_path %>

@@ -1,0 +1,16 @@
+<div>
+	<div>
+		<%= form_tag '/butler/command', remote: true, id: 'commandForm' do %>
+		<div>
+			<%= hidden_field_tag :id, e.id %>
+			<%= text_field_tag 'commandText', nil, placeholder: 'Input command' %>
+			<button type="button" id="mic">
+				Mic
+			</button>
+			<%= submit_tag 'Go', id: e.id %>
+		</div>
+		<% end %>
+		<div id="dialog"></div>
+	</div>
+</div>
+

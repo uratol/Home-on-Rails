@@ -1,0 +1,2 @@
+class Flat < Placement
+end

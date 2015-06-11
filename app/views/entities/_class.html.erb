@@ -1,0 +1,21 @@
+<%= content_tag :li do %>
+	<%= content_tag :span , c.name %>
+
+	<%= content_tag :span, class: :class_count do %>
+	
+	<%=
+		entity_count = @entities.count{|e| e.class==c}
+		entity_count if entity_count>0 
+	%>
+	
+	<% end %>
+	<% if c.subclasses.any? %>
+	<%= content_tag :ul do %>
+		<% c.subclasses.each do |s| %>
+		<%= render 'entities/class', c: s %>
+		<% end %>
+		<% end %>
+    <% end %>
+
+<% end %>
+

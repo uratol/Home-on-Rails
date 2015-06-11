@@ -1,0 +1,59 @@
+.layout_container {
+  position: relative;
+  
+  .entity_container{
+    position: relative;
+  }
+  
+  .entity {
+    position: absolute;
+
+
+
+  .caption{
+      text-shadow: 1px 1px 0px #000;
+    }
+
+  .caption-left-top-inner{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+  }
+  .caption-center{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+  }
+
+  .caption-bottom-center{
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+  }
+
+  .caption-top-center{
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -100%)
+  }
+
+};
+
+}
+
+.hover{
+  cursor: pointer;
+  -webkit-filter: brightness(200%);
+  filter: brightness(200%);
+}
+
+button{
+  cursor: pointer;
+}
+

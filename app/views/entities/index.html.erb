@@ -1,0 +1,48 @@
+<%= provide(:title, "Entities") %>
+<%= render '/layouts/entities_errors', entities: @entities %>
+<table class="entities">
+  <thead>
+    <tr>
+      <th>Caption</th>
+      <th>Type</th>
+   	  <th>Name</th>
+   	  <th>Driver</th>
+      <th>Address</th>
+      <th>Value</th>
+      <th>Power</th>
+      <th>Events</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @entities.each do |entity| %>
+      <tr>
+      	<td style="padding-left:<%= entity.depth*30 %>px">
+      		<% ic = entity.image %>
+      		<%= image_tag ic, width: 16, height: 16 if ic %>
+      		<%= entity.caption %>
+      	</td>
+        <td><%= entity.type %></td>
+        <td><%= entity.name %></td>
+        <td><%= entity.driver %></td>
+        <td><%= entity.address %></td>
+        <td><%= entity.human_value %></td>
+        <td><%= entity.power %></td>
+        <td> <%= link_to image_tag('script-icon.png'), edit_entity_path(entity) if entity.behavior_script %>
+        	<% entity.events.each do |event| %>
+        		<%= content_tag :span, event.name, {title: (event.options if event.options.any?)}.compact %>
+        		<%#= content_tag :span, event.options if event.options.any? %>
+        	<% end %>
+        </td>
+        <td><%= link_to 'Edit', edit_entity_path(entity) %></td>
+        <td><%= link_to 'Copy', new_entity_path(entity) %></td>
+        <td><%= link_to 'Destroy', entity_path(entity), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Entity', new_entity_path %>

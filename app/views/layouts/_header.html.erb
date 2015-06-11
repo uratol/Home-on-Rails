@@ -1,0 +1,21 @@
+<nav class="nav-wrap">
+	<ul class="nav">
+		<% Entity.menu_entities.each_with_index do |e,i| %>
+		<%= render 'layouts/header_menu_item', title: e.caption, id: e.id, klass: 'menu_entity', url: (if i==0 then root_path else "/show/#{e.name}" end) %>
+		<% end %>
+		
+		<%#= render 'layouts/header_menu_item', title: "Sign out", url: destroy_user_session_path, method: :delete if user_signed_in? %>
+		
+		<%= content_tag :li do %>
+
+			<%= content_tag :a, 'Admin', ({class: 'active'} if %w(Entities Classes Users).include?(yield(:title)) ) %>
+			<ul>
+				<%= render 'layouts/header_menu_item', title: "Entities", url: entities_path %>
+				<%= render 'layouts/header_menu_item', title: "Classes", url: '/entities/classes' %>
+				<%= render 'layouts/header_menu_item', title: "Users", url: users_path  %>
+				<%= (render 'layouts/header_menu_item', title: "Design mode", url: '#', klass: 'design_menu_item') if params[:controller]=='main' && params[:action]=='show' %>
+			</ul>
+		<% end %>
+	</ul>
+</nav>
+

@@ -1,0 +1,21 @@
+li.design_menu_item.checked a:after{
+	content: " \2713 ";
+}
+
+.ui-draggable, .ui-sortable-handle{
+	outline: 1px dotted yellow;
+}
+
+.ui-draggable-handle *{
+	cursor: pointer;
+}
+
+.ui-draggable-dragging *{
+	cursor: move;
+}
+
+#design_container {
+	form {
+		margin-top: 10px;
+	}
+}

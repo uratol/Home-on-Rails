@@ -1,0 +1,14 @@
+<% if entity.errors.any? %>
+<div id="error_explanation">
+	<h2><%= "#{ entity.name }: #{ pluralize(entity.errors.count, "error") } found" %> </h2>
+
+	<ul>
+		<% entity.errors.messages.each do |fld, msg| %>
+		<li>
+			<%= "#{fld}: #{ msg.join('; ') }" %>
+		</li>
+		<% end %>
+	</ul>
+	<%= link_to 'Edit', edit_entity_path(entity) unless params[:controller]=='entities' && params[:action].in?(['update','edit','create']) %>
+</div>
+<% end %>

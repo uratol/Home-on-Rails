@@ -1,0 +1,28 @@
+<%
+ style = "z-index: #{ e.depth };"
+ style += "left: #{ e.location_x.to_int }px;" if e.location_x 
+ style += "top: #{ e.location_y.to_int }px;" if e.location_y 
+ style += "width:#{e.width}px;" if e.width
+ style += "height:#{e.height}px;" if e.height
+ 
+ klass = e.types + (e.events.map{|ev| ev.name} & [:at_click,:at_dbl_click]) 
+ 
+ twin_id = e.twin_id
+ data = if e.twin_id then {twin: e.twin_id} end
+%>
+<%= content_tag :div, id: e.id, name: e.name, class: klass, style: style, data: data do %>
+	<div class="entity_container">
+		<% e.types.reverse.each do |t| 
+			begin 
+				%><%= render "main/#{ t }", e: e %><%	 
+			rescue ActionView::MissingTemplate
+				next 
+			else 
+				break 
+			end  
+		end 
+	%></div>
+<% end %>
+
+
+

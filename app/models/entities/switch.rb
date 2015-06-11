@@ -1,0 +1,3 @@
+class Switch < Sensor
+
+end

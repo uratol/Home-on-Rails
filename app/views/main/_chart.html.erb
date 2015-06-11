@@ -1,0 +1,61 @@
+<script type="text/javascript">
+
+var googleLibLoaded = false;
+var	googleScriptLoaded = false;
+
+
+$.getScript("https://www.google.com/jsapi", function(){
+	googleScriptLoaded = true;
+	ready();
+});
+	
+
+function libLoaded() {
+	googleLibLoaded = true;
+	drawChart();
+};
+
+
+function drawChart() {
+	var data = new google.visualization.DataTable();
+	data.addColumn({ type: 'string', id: 'Device' });
+    data.addColumn({ type: 'date', id: 'Start' });
+    data.addColumn({ type: 'date', id: 'End' });
+    
+    data.addRows(<%= e.timeline_data_js %>);
+
+	// Set chart options
+	var options = {
+		title : '<%= e.caption %>'
+		,width : <%= e.width || 670 %>
+		,height : <%= e.height || 450 %>
+	};
+
+	// Instantiate and draw our chart, passing in some options.
+	var chart = new google.visualization.Timeline($('.chart_div')[0]);
+	chart.draw(data, options);
+}
+
+function ready(){
+	// google.setOnLoadCallback( libLoaded );
+	
+	if (!googleScriptLoaded)
+		return;
+	
+	google.load('visualization', '1.0', {
+		packages: ['corechart','timeline']
+		, callback: libLoaded
+	});
+
+	if (googleLibLoaded) 
+		drawChart();
+};
+	
+	
+//$(document).on('page:change', ready() );
+$(document.body).on('page:load', ready() );
+	
+</script>
+
+
+<div class="chart_div" height="10"></div>

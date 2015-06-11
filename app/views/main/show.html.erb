@@ -1,0 +1,23 @@
+<%= provide(:title, @root_entity.caption) if @root_entity %>
+
+<%= render '/layouts/entities_errors', entities: @entities %>
+
+<%= content_tag :div, class: "layout_container", id: (@root_entity.try(:id)) do %>
+
+<% @entities.each do |e| %>
+	<%= render 'main/each', e: e %>
+<% end %>
+
+
+<% end %>
+
+<div id="design_container">
+	<div>
+		<%= form_tag '/main/design_apply', id: 'design_form' do %>
+			<%= hidden_field_tag 'data' %>
+			<%= button_tag 'Cancel', type: :reset %>
+			<%= submit_tag 'Apply', disabled: true %>
+		<% end %>
+		<%= button_to 'New', new_entity_path, method: :get  %>
+	</div>
+</div>

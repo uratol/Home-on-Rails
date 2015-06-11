@@ -1,0 +1,24 @@
+// Place all the styles related to the speech controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.command {
+  color: white;
+}
+.response {
+  color: yellow;
+  white-space: pre;
+}
+.error {
+  color: red;
+}
+
+#dialog{
+  height: 450px;
+  width: 350px;
+  display: block;
+  overflow: auto;
+  margin-top: 25px;
+  border: 1px solid white;
+  font-size: 12px;
+}
