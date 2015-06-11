@@ -28,7 +28,7 @@ module EntityBehavior
   end
 
   def behavior_file_name nm = name 
-    Home.custom_behavior_path.join(nm+'.rb') if name
+    Home.custom_behavior_path.join(nm+'.rb') if nm
   end  
 
 
@@ -49,7 +49,7 @@ module EntityBehavior
     old_file_name = behavior_file_name(@old_name)
     new_file_name = behavior_file_name
     
-    File.delete old_file_name if old_file_name!=new_file_name && File.exist?(old_file_name)
+    File.delete old_file_name if old_file_name && old_file_name!=new_file_name && File.exist?(old_file_name)
     
     if @old_behavior_script != behavior_script
       if @behavior_script.to_s.strip.blank?
