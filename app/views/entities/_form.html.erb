@@ -78,9 +78,9 @@
 			<div class="events">
 				
 				<ul>
-					Events
+					Insert event stub at cursor:
 					<% for e in @entity.behavior_methods %>
-					<li>
+					<li class="method" data-pattern="<%= "#{e} do\n\nend" %>">
 						<%= e %>
 					</li>
 					<% end %>
@@ -96,6 +96,7 @@
 				    ,tabSize: 2
 				    ,useSoftTabs: true
 				});
+				editor.$blockScrolling = Infinity;
 				
 				// editor.session.setNewLineMode("unixs")
 				
@@ -110,6 +111,16 @@
 				
 				$('#new_entity,#edit_entity').submit(function(e){
 					$('#entity_behavior_script').val( editor.getValue() );
+				});
+				
+				$('.method').click(function(e){
+					var pos = editor.getCursorPosition();
+					var pattern = $(this).data('pattern')+'\n\n';
+					editor.insert(pattern);
+					editor.gotoLine(pos.row+2);
+					editor.insert('  ');
+//					editor.getSession().getSelection().selectionLead.setPosition(pos);
+					editor.focus(); 
 				});
 			</script>
 		</div>

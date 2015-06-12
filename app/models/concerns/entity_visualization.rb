@@ -3,6 +3,7 @@ module EntityVisualization
   
   included do
     # relations, callbacks, validations, scopes and others...
+    register_attributes :caption_class
   end
 
   # instance methods
@@ -35,12 +36,6 @@ module EntityVisualization
   def img
     ActionController::Base.helpers.asset_path image
   end
-  
-
-  def caption_style
-    return nil
-  end
-  
 
   module ClassMethods
     # class methods
