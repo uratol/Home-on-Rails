@@ -6,10 +6,6 @@ class Butler < Widget
   require 'parse_time'
   require 'alarm_clock'
   
-  def ttt
-    File.open("foo.txt", "w") {}
-  end
-
   class Command
     
     @match_params = {}

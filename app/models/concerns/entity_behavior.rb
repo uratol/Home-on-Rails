@@ -9,8 +9,8 @@ module EntityBehavior
     after_initialize :behavior_script_read
     after_initialize :behavior_script_eval
   
-    include BinaryBehavior
-    include EntityBehaviorHelpers
+    include ::BinaryBehavior
+    include ::EntityBehaviorHelpers
   end
 
   private

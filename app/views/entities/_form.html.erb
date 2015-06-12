@@ -75,6 +75,17 @@
 			<%= f.hidden_field :behavior_script %>
 			
 			<div id="editor" style="width:600px; height: 300px;"><%= @entity.behavior_script %></div>
+			<div class="events">
+				
+				<ul>
+					Events
+					<% for e in @entity.behavior_methods %>
+					<li>
+						<%= e %>
+					</li>
+					<% end %>
+				</ul>
+			</div>	
 
 			<script>
 				var editor = ace.edit("editor");
@@ -94,15 +105,10 @@
 				      $('#new_entity,#edit_entity').submit();
 				    },
 				    bindKey: "Ctrl-Enter"
-				  })				
+				  });				
 
 				
 				$('#new_entity,#edit_entity').submit(function(e){
-/*					e.preventDefault()
-					s = editor.getValue()
-					alert( s.charCodeAt(1));
-					alert( s.charCodeAt(2) );
-*/
 					$('#entity_behavior_script').val( editor.getValue() );
 				});
 			</script>

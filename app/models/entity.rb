@@ -18,8 +18,8 @@ class Entity < ActiveRecord::Base
   
   after_initialize :init
   
-  include EntityVisualization
-  include EntityBehavior
+  include ::EntityVisualization
+  include ::EntityBehavior
   
   register_events :at_click
   
@@ -33,6 +33,10 @@ class Entity < ActiveRecord::Base
   
   def types
     self.class.types
+  end
+  
+  def behavior_methods
+    self.class.instance_methods.grep(/^at_/)
   end
   
   def twins
