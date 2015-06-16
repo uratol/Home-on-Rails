@@ -11,7 +11,7 @@ module BinaryBehavior
     1-(value||0)
   end
 
-  def switch!
+  def switch! options = {}
     write_value opposite_value
   end
 
@@ -38,4 +38,21 @@ module BinaryBehavior
   def off= v
     if v && v!=0 then off! else on! end
   end
+  
+  def self.blink args = {}, &block_after
+    Thread.new do
+      (args[:blink_count]||1).times do
+        devices = args[:devices]
+        [*devices].each do |e|
+          v = e.on?
+          e.set_driver_value !v
+          sleep(0.2)
+          e.set_driver_value v
+          sleep(0.2)
+        end
+      end
+      block_after.call if block_after
+    end
+  end
+
 end
