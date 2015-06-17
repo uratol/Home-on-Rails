@@ -40,15 +40,14 @@ module BinaryBehavior
   end
   
   def self.blink args = {}, &block_after
+    delay = args[:delay] || 0.2
+    devices = args[:devices]
+    
     Thread.new do
-      (args[:blink_count]||1).times do
-        devices = args[:devices]
-        [*devices].each do |e|
-          v = e.on?
-          e.set_driver_value !v
-          sleep(0.2)
-          e.set_driver_value v
-          sleep(0.2)
+      (args[:times]||1).times do |i|
+        2.times do |j|
+          [*devices].each{|e| e.set_driver_value(if j==0 then e.off? else e.on? end)}
+          sleep(delay)
         end
       end
       block_after.call if block_after
