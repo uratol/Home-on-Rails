@@ -89,7 +89,8 @@ class Entity < ActiveRecord::Base
     end
 
     value = v
-    update_attribute(:value, v)
+    Entity.where(id: id).update_all(value: v)
+#    update_attribute(:value, v) 
     
     if old_value != v
       do_event(if on? then :at_on else :at_off end)
