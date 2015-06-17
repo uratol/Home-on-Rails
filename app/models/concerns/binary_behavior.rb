@@ -50,7 +50,13 @@ module BinaryBehavior
           sleep(delay)
         end
       end
-      block_after.call if block_after
+      if block_after
+        if args[:sender]
+          args[:sender].instance_eval &block_after 
+        else
+          block_after.call  
+        end
+      end
     end
   end
 

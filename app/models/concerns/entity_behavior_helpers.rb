@@ -25,11 +25,9 @@ module EntityBehaviorHelpers
   end
   
   def cancel job_name = nil
-    if job_name
-      EntityJob.delete_all entity_id: self.id, queue: job_name
-    else
-      EntityJob.delete_all entity_id: self.id
-    end
+    cond = {entity_id: self.id}
+    cond[:queue] = job_name if job_name
+    EntityJob.delete_all cond
   end
   
   def sunrise_time
@@ -50,6 +48,7 @@ module EntityBehaviorHelpers
   
   def blink args = {}, &block_after
     args[:devices] ||= self
+    args[:sender] ||= self
     BinaryBehavior.blink args, &block_after
   end
   
