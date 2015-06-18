@@ -52,7 +52,7 @@ module BinaryBehavior
       end
       if block_after
         if args[:sender]
-          args[:sender].instance_eval &block_after 
+          args[:sender].instance_eval(&block_after) 
         else
           block_after.call  
         end
