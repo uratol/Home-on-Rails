@@ -88,7 +88,7 @@ class Entity < ActiveRecord::Base
       dbl_change_assigned = ((Time.now - last_indication_time) < 1.second)
     end
 
-    value = v
+    self.value = v
     Entity.where(id: id).update_all(value: v)
 #    update_attribute(:value, v) 
     
