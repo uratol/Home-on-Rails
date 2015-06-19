@@ -48,15 +48,16 @@ class EntityJobHandler
   end
 
   def max_run_time
-    60 # seconds
+    300 # seconds
   end
   
   private
   
   ################ shedule!
   def shedule! current_job = nil
-puts "!shedule! current_job=#{ current_job }, options=#{options}, next_run_time=#{ next_run_time }, entity=#{ @entity}"      
     return unless run_time = next_run_time
+
+puts "!shedule! current_job=#{ current_job }, options=#{options}, next_run_time=#{ next_run_time }, entity=#{ @entity}"      
       
     query = @entity.jobs.where(queue: queue_name)
 #puts 'query1', query    
@@ -79,7 +80,7 @@ puts "!shedule! current_job=#{ current_job }, options=#{options}, next_run_time=
   
 
   def run_once?
-    !options[:run_interval]
+    !(options[:run_interval] || ([*options[:at]].length>1))
   end  
 
   def queue_name
@@ -87,9 +88,10 @@ puts "!shedule! current_job=#{ current_job }, options=#{options}, next_run_time=
   end
   
   def next_run_time
-    interval = @options[:run_interval]
 
-    return unless interval || @options[:at]
+    return if run_once?
+    
+    interval = @options[:run_interval]
 
     times = @options[:at] || Time.now
     times = [times] unless times.is_a? Array
@@ -97,7 +99,7 @@ puts "!shedule! current_job=#{ current_job }, options=#{options}, next_run_time=
     times = times.map{|time| time.in_time_zone @options[:timezone]} if @options[:timezone]
   
   
-    until next_time = next_future_time(times)  || !interval
+    until (next_time = next_future_time(times))  || !interval
       times.map!{ |time| time + interval }
     end
   

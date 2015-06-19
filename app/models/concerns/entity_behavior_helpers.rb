@@ -31,11 +31,11 @@ module EntityBehaviorHelpers
   end
   
   def sunrise_time
-    Clock.sunrise_time
+    Clock.sunrise_time.in_time_zone
   end
 
   def sunset_time
-    Clock.sunset_time
+    Clock.sunset_time.in_time_zone
   end
   
   def day
