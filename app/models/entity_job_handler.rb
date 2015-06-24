@@ -57,25 +57,19 @@ class EntityJobHandler
   def shedule! current_job = nil
     return unless run_time = next_run_time
 
-puts "!shedule! current_job=#{ current_job }, options=#{options}, next_run_time=#{ next_run_time }, entity=#{ @entity}"      
+#puts "!shedule! current_job=#{ current_job }, options=#{options}, next_run_time=#{ next_run_time }, entity=#{ @entity}"      
       
-    query = @entity.jobs.where(queue: queue_name)
-#puts 'query1', query    
-    query = query.where.not(current_job.id) if current_job
-#puts 'query2', query
-    
-    if !query.exists?
-#puts '!not exists'      
+#    query = @entity.jobs.where(queue: queue_name)
+#    query = query.where.not(current_job.id) if current_job
       
-      self.entity_id = @entity.id
-      tmp_obj = remove_instance_variable :@entity # for avoiding serialization
-      begin
-        EntityJob.enqueue(self, run_at: run_time) 
-      ensure  
-        @entity = tmp_obj #return
-      end
-      return true
+    self.entity_id = @entity.id
+    tmp_obj = remove_instance_variable :@entity # for avoiding serialization
+    begin
+      EntityJob.enqueue(self, run_at: run_time) 
+    ensure  
+      @entity = tmp_obj #return
     end
+    return true
   end
   
 
