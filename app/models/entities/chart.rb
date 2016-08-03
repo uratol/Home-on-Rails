@@ -4,7 +4,7 @@ class Chart < Widget
 
   def timeline_data_js dt_from = period_default.ago, dt_to = Time.now
     
-    devices ||= Device.all 
+    this.devices ||= Device.all 
 
     result, previous = [], {}
 
