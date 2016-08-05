@@ -57,8 +57,6 @@ module EntityBehavior
         return
       end
       File.write behavior_file_name, @behavior_script.gsub("\r\n","\n") #fix windows linebreaks
-
-      jobs.delete_all 
       behavior_script_eval
     end  
   end

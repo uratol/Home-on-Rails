@@ -16,10 +16,8 @@ module BinaryBehavior
   end
 
   def on! options = {}
-    if off? 
-      switch! 
-      wait_for(options[:delay]).off! if options[:delay]  
-    end
+    switch! if off? 
+    wait_for(options[:delay]).off! if options[:delay]  
     return value  
   end
 
@@ -28,10 +26,8 @@ module BinaryBehavior
   end
 
   def off! options = {}
-    if on? 
-      switch!
-      wait_for(options[:delay]).off! if options[:delay]
-    end  
+    switch! if on? 
+    wait_for(options[:delay]).on! if options[:delay]
     return value  
   end
 

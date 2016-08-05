@@ -2,7 +2,6 @@ class Room < Placement
 
   alias_attribute :daylight, :power
   register_attributes caption_class: 'left-top-inner' 
-
 =begin  
   def presense
     value!=0

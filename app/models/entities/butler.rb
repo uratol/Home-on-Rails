@@ -6,6 +6,13 @@ class Butler < Widget
   require 'parse_time'
   require 'alarm_clock'
   
+  register_events :at_command
+  
+  def at_command phrases, &block
+    @@commands.delete_if{|c| c.phrases.equal?([phrases].flatten)}
+    @@commands += [CommandCustom.new(phrases, &block)]
+  end 
+  
   class Command
     
     @match_params = {}
@@ -139,6 +146,21 @@ class Butler < Widget
     
   end
   
+  class CommandCustom < Command
+    def initialize phrases, &block
+      @phrases = phrases
+      @block = block
+    end
+    
+    def phrases
+      @phrases
+    end
+    
+    def run_command(command, options = {})
+      @block.call
+    end
+  end
+  
   @@commands = [CommandTime.new,CommandWeather.new,CommandAlarmClock.new,CommandNotFound.new]
   
   def run_command(command_string, options = {})
@@ -151,12 +173,10 @@ class Butler < Widget
     options = {} if options[:timestamp].nil? || (Time.now - options[:timestamp].to_time).seconds>30.seconds 
     
     if options.any?
-
       command = CommandCancel.new
       if !command.detect_command(command_string)
         command = @@commands.find{|cmd| cmd.class.name.demodulize==options[:commandClassName]}
       end
-      
     else
       command = @@commands.find{|cmd| cmd.detect_command(command_string)};
     end
