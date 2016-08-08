@@ -92,6 +92,10 @@ class Entity < ActiveRecord::Base
     return false
   end
   
+  def transform_driver_value(v)
+    invert_driver_value? ? 1-v : v
+  end
+  
   def store_value v, dt = Time.now
     old_value = self.value
 

@@ -13,12 +13,11 @@ module GpioDriver
   end
   
   def set_driver_value v
-    pin(:out).update_value(invert_driver_value? ? 1-v : v)
+    pin(:out).update_value(transform_driver_value(v))
   end
 
   def get_driver_value
-    v = pin(:in).read
-    return invert_driver_value? ? 1-v : v
+    return transform_driver_value(pin(:in).read)
   end
 
   def pin_no
@@ -45,7 +44,7 @@ module GpioDriver
       PiPiper.watch(pin: entity.pin_no) do |pin|
         Thread.new(pin) do |p|
           Thread.exclusive do
-            Entity.where(driver: :gpio, address: p.pin).each{|e| e.write_value p.value}
+            Entity.where(driver: :gpio, address: p.pin).each{|e| e.write_value transform_driver_value(p.value)}
           end
         end    
       end if direction==:in
