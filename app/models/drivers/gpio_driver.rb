@@ -44,7 +44,7 @@ module GpioDriver
       PiPiper.watch(pin: entity.pin_no) do |pin|
         Thread.new(pin) do |p|
           Thread.exclusive do
-            Entity.where(driver: :gpio, address: p.pin).each{|e| e.write_value transform_driver_value(p.value)}
+            Entity.where(driver: :gpio, address: p.pin).each{|e| e.write_value e.transform_driver_value(p.value)}
           end
         end    
       end if direction==:in

@@ -6,10 +6,9 @@ class Motion < Sensor
   def last_motion_interval
     Time.now - last_motion_time
   end
-  
-  def init
-    super
-    invert_value = true if self.is_a? GpioDriver 
+
+  def invert_driver_value?
+    is_a? GpioDriver
   end
   
 end

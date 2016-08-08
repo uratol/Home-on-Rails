@@ -75,6 +75,14 @@ class Entity < ActiveRecord::Base
     return v
   end
 
+  def invert_driver_value?
+    return false
+  end
+
+  def transform_driver_value(v)
+    invert_driver_value? ? 1-v : v
+  end
+
   protected
   
   def last_indication value = nil
@@ -87,14 +95,6 @@ class Entity < ActiveRecord::Base
     indication = last_indication(value)
     return indication.created_at if indication
   end  
-    
-  def invert_driver_value?
-    return false
-  end
-  
-  def transform_driver_value(v)
-    invert_driver_value? ? 1-v : v
-  end
   
   def store_value v, dt = Time.now
     old_value = self.value
