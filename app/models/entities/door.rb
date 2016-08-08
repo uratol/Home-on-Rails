@@ -4,7 +4,7 @@ class Door < Sensor
   
   def init
     super
-    invert_value = true if driver.equal?(:gpio) 
+    invert_value = true if self.is_a? GpioDriver 
   end
   
 end
