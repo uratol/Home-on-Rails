@@ -88,7 +88,10 @@ class Entity < ActiveRecord::Base
     return indication.created_at if indication
   end  
     
-
+  def invert_driver_value?
+    return false
+  end
+  
   def store_value v, dt = Time.now
     old_value = self.value
 
