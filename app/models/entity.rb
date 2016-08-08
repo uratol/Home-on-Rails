@@ -76,16 +76,27 @@ class Entity < ActiveRecord::Base
   end
 
   protected
+  
+  def last_indication value = nil
+    query = indications.limit(1).order('created_at DESC')
+    query = query.where(value: value) if value
+    return query.first
+  end
+
+  def last_indication_time value = nil
+    indication = last_indication(value)
+    return indication.created_at if indication
+  end  
+    
 
   def store_value v, dt = Time.now
     old_value = self.value
 
     set_driver_value v if is_a?(Actor) && !driver.blank?
 
-    if (dbl_change_assigned = events.assigned?(:at_dbl_change) ) 
-      last_indication = indications.limit(1).order('created_at DESC').first
-      last_indication_time = if last_indication then last_indication.created_at else Time.now - 1.hour end         
-      dbl_change_assigned = ((Time.now - last_indication_time) < 1.second)
+    if (dbl_change_assigned = events.assigned?(:at_dbl_change) )
+      last_time = last_indication_time
+      dbl_change_assigned = last_time && ((Time.now - last_time) < 1.second)
     end
 
     self.value = v

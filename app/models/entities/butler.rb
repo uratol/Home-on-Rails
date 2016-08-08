@@ -6,11 +6,13 @@ class Butler < Widget
   require 'parse_time'
   require 'alarm_clock'
   
-  register_events :at_command
+  #register_events :at_command
   
-  def at_command phrases, &block
-    @@commands.delete_if{|c| c.phrases.equal?([phrases].flatten)}
-    @@commands += [CommandCustom.new(phrases, &block)]
+  @simple_comands = {}
+  
+  def at_command *phrases, &block
+    @simple_comands ||= {} 
+    phrases.each{|phrase| @simple_comands[phrase] = block}
   end 
   
   class Command
@@ -146,43 +148,37 @@ class Butler < Widget
     
   end
   
-  class CommandCustom < Command
-    def initialize phrases, &block
-      @phrases = phrases
-      @block = block
-    end
-    
-    def phrases
-      @phrases
-    end
-    
-    def run_command(command, options = {})
-      @block.call
-    end
-  end
-  
   @@commands = [CommandTime.new,CommandWeather.new,CommandAlarmClock.new,CommandNotFound.new]
   
   def run_command(command_string, options = {})
     command_string = clean_command_string command_string
-
-    options = {} if options.nil? 
-    options = options.with_indifferent_access
-
-    # timeout    
-    options = {} if options[:timestamp].nil? || (Time.now - options[:timestamp].to_time).seconds>30.seconds 
+    result = nil
     
-    if options.any?
-      command = CommandCancel.new
-      if !command.detect_command(command_string)
-        command = @@commands.find{|cmd| cmd.class.name.demodulize==options[:commandClassName]}
+    @simple_comands.find do |pattern, code| 
+      if (pattern.is_a?(String) ? pattern == command_string : pattern =~ command_string) 
+        result = code.call
+      end   
+    end if @simple_comands
+
+    if result.nil? 
+      options = {} if options.nil? 
+      options = options.with_indifferent_access
+  
+      # timeout    
+      options = {} if options[:timestamp].nil? || (Time.now - options[:timestamp].to_time).seconds>30.seconds 
+      
+      if options.any?
+        command = CommandCancel.new
+        if !command.detect_command(command_string)
+          command = @@commands.find{|cmd| cmd.class.name.demodulize==options[:commandClassName]}
+        end
+      else
+        command = @@commands.find{|cmd| cmd.detect_command(command_string)};
       end
-    else
-      command = @@commands.find{|cmd| cmd.detect_command(command_string)};
-    end
-    result = command.run_command(command_string, options)
+      result = command.run_command(command_string, options)
+    end  
     if !result.is_a?(Hash)
-      result = {message: result}.with_indifferent_access
+      result = {message: result.to_s}.with_indifferent_access
     end
     result.merge!({commandClassName: command.class.name.demodulize, timestamp: Time.now})
     

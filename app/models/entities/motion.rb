@@ -6,4 +6,10 @@ class Motion < Sensor
   def last_motion_interval
     Time.now - last_motion_time
   end
+  
+  def init
+    super
+    invert_value = true if driver.equal?(:gpio) 
+  end
+  
 end

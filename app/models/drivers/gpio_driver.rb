@@ -6,18 +6,22 @@ module GpioDriver
   
   @@pins = {}
   
+  attr_accessor :invert_value
+  alias :invert_value? :invert_value
+  
   def pin direction
     result = @@pins[pin_no] 
     result = @@pins[pin_no] = PiPiper::Pin.new(pin: pin_no, direction: direction) if !result || result.direction!=direction
     return result
   end
-
+  
   def set_driver_value v
-    pin(:out).update_value v
+    pin(:out).update_value(invert_value? ? 1-v : v)
   end
 
   def get_driver_value
-    pin(:in).read
+    v = pin(:in).read
+    return invert_value? ? 1-v : v
   end
 
   def pin_no

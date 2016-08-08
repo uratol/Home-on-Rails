@@ -11,26 +11,26 @@ function createContextMenu(selector) {
 							,edit : {
 								 name : "Edit..."
 								,callback : function(key, opt) {
-									document.location = "entities/"+$trigger.attr("id")+"/edit";
+									document.location = "/entities/"+$trigger.attr("id")+"/edit";
 								}
 							}
 							,insert : {
 								 name : "Insert..."
 								,callback : function(key, opt) {
-									document.location = "entities/insert/"+$trigger.attr("id");
+									document.location = "/entities/insert/"+$trigger.attr("id");
 								}
 							}
 							,copy : {
 								 name : "Copy..."
 								,callback : function(key, opt) {
-									document.location = "entities/new."+$trigger.attr("id");
+									document.location = "/entities/new."+$trigger.attr("id");
 								}
 							}
 							,delete : {
 								 name : "Delete"
 								,callback : function(key, opt) {
 									if (confirm("Are you sure?"))
-										document.location = "entities/"+$trigger.attr("id")+"/destroy";
+										document.location = "/entities/"+$trigger.attr("id")+"/destroy";
 								}
 							}
 					}
