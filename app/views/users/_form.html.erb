@@ -1,0 +1,53 @@
+<% form_url = if @user.new_record? then users_path else user_path(@user) end %>
+<%= form_for(@user, as: :user, url: form_url, html: {autocomplete: 'off'} ) do |f| %>
+
+<% if @user.errors.any? %>
+<div id="error_explanation">
+	<h2><%= "#{ @user.name }: #{ pluralize(user.errors.count, "error") } found" %> </h2>
+
+	<ul>
+		<% @user.errors.messages.each do |fld, msg| %>
+		<li>
+			<%= "#{fld}: #{ msg.join('; ') }" %>
+		</li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
+
+
+<div style="vertical-align: top">
+
+	<div style="display:inline-block">
+
+		<div class="field">
+			<%= f.label :name %>
+			<br>
+			<%= f.text_field :name, autofocus: true %>
+		</div>
+
+		<div class="field">
+			<%= f.label :email %>
+			<br>
+			<%= f.text_field :email, autocomplete: 'off' %>
+		</div>
+		
+		<div class="field">
+			<%= f.label :password %>
+			<br>
+			<%= f.password_field :password, value: nil, autocomplete: 'new-password' %>
+		</div>		
+
+		<div class="field">
+			<%= f.label :isadmin %>
+			<br>
+			<%= f.check_box :isadmin %>
+		</div>
+	</div>
+</div>
+
+<div class="actions">
+	<%= f.submit %>
+</div>
+<% end %>
+

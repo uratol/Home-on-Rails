@@ -18,6 +18,10 @@ module ApplicationHelper
     result    
   end
   
+  def isadmin?
+    current_user.try :isadmin
+  end
+  
   private
   
   

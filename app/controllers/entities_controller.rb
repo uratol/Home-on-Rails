@@ -1,6 +1,7 @@
 class EntitiesController < ApplicationController
 
   before_action :set_entity, only: [:show, :edit, :update, :destroy]
+  before_action :admin_user!
   
   def classes
     @root_class = Entity

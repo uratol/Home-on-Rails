@@ -36,6 +36,6 @@ Gem::Specification.new do |s|
   
   
   # drivers
-  s.add_dependency 'pi_piper'if RUBY_PLATFORM.match(/linux/)
+  s.add_dependency 'pi_piper' if RUBY_PLATFORM.match(/linux/)
   
 end

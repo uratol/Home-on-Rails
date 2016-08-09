@@ -35,8 +35,8 @@ def uniRoutes
     get "/command/:command/" => "speech#speak"
   end
 
-  #devise_for :users
-  resources :users, only: [:index,:edit,:update]
+  devise_for :users
+  resources :users
 end
 
 public

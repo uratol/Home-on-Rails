@@ -1,6 +1,6 @@
 class Chart < Widget
 
-  register_attributes width: 900,  height: 850, devices: nil, period_default: 1.month
+  register_attributes width: 900,  height: 850, devices: nil, period_default: 1.day
 
   def timeline_data_js dt_from = period_default.ago, dt_to = Time.now
     
