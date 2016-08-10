@@ -43,7 +43,6 @@ class Entity < ActiveRecord::Base
     Entity.where(driver: driver, address: address) unless address.to_s.blank? || driver.to_s.blank?
   end
   
-  
   def twin_id
     tw = twins
     tw.minimum(:id) if tw
@@ -81,6 +80,10 @@ class Entity < ActiveRecord::Base
 
   def transform_driver_value(v)
     invert_driver_value? ? 1-v : v
+  end
+  
+  def send_mail options = {}
+    HomeMailer.send_mail options
   end
 
   protected
