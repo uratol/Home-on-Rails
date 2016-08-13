@@ -5,7 +5,7 @@
 	
 	<%=
 		entity_count = @entities.count{|e| e.class==c}
-		entity_count if entity_count>0 
+		link_to entity_count, entities_path(type: c.name) if entity_count>0
 	%>
 	
 	<% end %>

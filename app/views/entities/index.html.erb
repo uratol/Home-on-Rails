@@ -1,5 +1,11 @@
 <%= provide(:title, "Entities") %>
 <%= render '/layouts/entities_errors', entities: @entities %>
+
+<% @filter.each do |filter_name, filter_value| %>
+	<p>
+	<%= filter_name %> : <%= filter_value %> 
+	</p>
+<% end %>
 <table class="entities">
   <thead>
     <tr>

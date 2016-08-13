@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
     redirect_to root_path if !isadmin?
   end
 
+  def isadmin?
+    current_user.try :isadmin
+  end
+
 end

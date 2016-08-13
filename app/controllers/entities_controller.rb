@@ -10,7 +10,8 @@ class EntitiesController < ApplicationController
   
   # GET /entities
   def index
-    @entities = Entity.all.order(:lft)
+    @filter = params.permit(:driver, :type)
+    @entities = Entity.all.where(@filter).order(:lft)
   end
 
   # GET /entities/1

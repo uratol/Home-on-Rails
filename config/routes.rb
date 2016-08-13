@@ -37,6 +37,7 @@ def uniRoutes
 
   devise_for :users
   resources :users
+  resources :drivers
 end
 
 public

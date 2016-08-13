@@ -1,6 +1,4 @@
-LINUX_PLATFORM = RUBY_PLATFORM.match(/linux/)
-
-require 'pi_piper' if LINUX_PLATFORM
+require 'pi_piper' if Home::LINUX_PLATFORM
 
 module GpioDriver
   
@@ -22,6 +20,10 @@ module GpioDriver
 
   def pin_no
      address.to_i
+  end
+  
+  def self.scan
+    return {n1: 5666, n2: 6456454}
   end
   
   private
@@ -57,7 +59,7 @@ module GpioDriver
       end if direction==:in
 =end
     end  
-  end if LINUX_PLATFORM
+  end if Home::LINUX_PLATFORM
   
   puts "GPIO: initialize watching - complete"  
 end
