@@ -1,5 +1,5 @@
 class HomeMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "uratol@gmail.com"
   
   def send_mail(options = {})
     mail(options).deliver_now

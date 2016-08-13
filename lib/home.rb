@@ -1,6 +1,7 @@
 require "home/engine"
 
 module Home
+  LINUX_PLATFORM = RUBY_PLATFORM.match(/linux/)
   
   mattr_writer :title
   mattr_accessor :latitude, :longitude

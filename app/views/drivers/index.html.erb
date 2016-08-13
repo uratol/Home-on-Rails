@@ -1,0 +1,14 @@
+<%= provide(:title, "Drivers") %>
+
+<table>
+  <tr>
+  	<th>Name</th>	
+  	<th>Entity count</th>
+  </tr>		
+  <% @drivers.each do |driver| %>
+    <tr>
+  	<td><%= link_to driver, "/drivers/"+driver %></td>
+  	<td><%= link_to @entity_counter[driver].to_s, entities_path(driver: driver) %> </td>	
+  </tr>
+  <% end %>
+</table>
