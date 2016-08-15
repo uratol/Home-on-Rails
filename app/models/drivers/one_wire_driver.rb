@@ -14,21 +14,7 @@ module OneWireDriver
   rescue Errno::ENOENT
   end
 
-  def pin_no
-     address.to_i
-  end
-  
   def self.scan
-    result = []
-    Dir[ DEVICE_ROOT + '*-*' ].each do | path |
-      basename = Pathname(path).basename.to_s
-      e = Entity.where(driver: 'one_wire', address: basename).limit(1).first
-      unless e 
-        e = Entity.new unless e
-        e.address = basename
-      end
-      result << e
-    end  
-    return result
+    Dir[ DEVICE_ROOT + '*-*' ].each.map{|path| Pathname(path).basename.to_s}
   end
 end

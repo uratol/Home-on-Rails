@@ -13,5 +13,12 @@ module Home
   def self.custom_behavior_path
     Rails.root.join('app','behavior')
   end
+  
+ # this function maps the vars from your app into your engine
+  def self.setup
+     yield self
+     Entity.all.each(&:startup)
+  end  
+  
 end
 

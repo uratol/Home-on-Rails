@@ -1,4 +1,4 @@
-<% if user_signed_in? || true %>
+<% if user_signed_in? %>
 	<nav class="nav-wrap">
 		<ul class="nav">
 			<% Entity.menu_entities.each_with_index do |e,i| %>

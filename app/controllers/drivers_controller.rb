@@ -5,6 +5,21 @@ class DriversController < ApplicationController
   end
   
   def show
-    @driver = (params[:id].camelize + 'Driver').constantize
+    @driver_name = params[:id]
+    @driver = (@driver_name.camelize + 'Driver').constantize
+    @entities = Entity.where(driver: @driver_name).where.not(address: nil).to_a
+    if @driver.respond_to? :scan
+      @driver.scan.each do |driver_address|
+        if driver_address.is_a? Hash
+          driver_address = driver_address[:address]
+        end
+        entity = @entities.detect{|e| e.address == driver_address}
+        unless entity
+          entity = Device.new
+          @entities << entity
+        end
+        entity.driver_address = driver_address
+      end
+    end
   end
 end

@@ -1,18 +1,80 @@
 class Chart < Widget
 
-  register_attributes width: 900,  height: 850, devices: nil, period_default: 1.day
+  register_attributes width: 900,  height: 850, period_default: 1.day
+
+  @chart_type = nil
+  def devices
+    Device.all
+  end
+  
+  def chart_type
+    return @chart_type if @chart_type
+    if devs.detect{|d| !d.binary?}
+      @chart_type = :LineChart
+    else
+      @chart_type = :Timeline  
+    end
+  end
+
+  def data_js dt_from = period_default.ago, dt_to = Time.now
+    if chart_type == :Timeline 
+      timeline_data_js
+    else
+      line_data_js
+    end     
+  end
+
+  def devs 
+    @devs ||= [devices].flatten
+  end
+
+  private
+  
+  
+  def line_data_js dt_from = period_default.ago, dt_to = Time.now
+    round_seconds = 5 #* 60
+    datetime_int_field = "cast(strftime('%s',created_at) as integer)"
+    datetime_group_field = "#{ datetime_int_field } - (#{ datetime_int_field } % #{ round_seconds })"
+    rounded_indications_query = "
+    SELECT #{ datetime_group_field } as dt, entity_id, value
+    FROM indications
+    WHERE entity_id in (?) AND created_at BETWEEN ? AND ?
+LIMIT 10000 
+    "
+    
+    sql_query = "
+      SELECT 
+        #{ devs.inject('dt'){|command, device| "#{ command } , AVG(case when entity_id=#{ device.id } then value end) as [#{ device.id }]"} }
+      FROM (#{ rounded_indications_query })
+      GROUP BY dt
+      ORDER BY dt
+      "
+    
+    puts sql_query  
+    
+    sql_result = Entity.execute_sql(sql_query, devs.to_a, dt_from, dt_to)
+    '[' + sql_result.map do |row|
+        '[' + row.inject("") do |s, (k,v)|
+          s + if k == 0
+            "new Date(#{ v * 1000 })"
+          elsif k.is_a? Numeric
+            ',' + (v || 'null').to_s
+          else 
+            ""
+          end
+        end  + ']'
+        #row #[row[0], row[1], row[2]]
+    end.join(',') + ']'
+  end
 
   def timeline_data_js dt_from = period_default.ago, dt_to = Time.now
-    
-    self.devices ||= Device.all 
-
     result, previous = [], {}
 
-    devs_hash = devices.inject({}){|s,e| s.merge!({e.id => e.caption}) }
+    devs_hash = devs.inject({}){|s,e| s.merge!({e.id => e.caption}) }
     
-#    return Indication.select(:entity_id,:dt,:value).where(entity: devices).where(created_at: dt_from..dt_to).order(:entity_id, :dt)
+#    return Indication.select(:entity_id,:dt,:value).where(entity: devs).where(created_at: dt_from..dt_to).order(:entity_id, :dt)
 
-    indications_array = Indication.select(:entity_id,:dt,:value).where(entity: devices, created_at: dt_from..dt_to).order(:entity_id, :dt)
+    indications_array = Indication.select(:entity_id,:dt,:value).where(entity: devs, created_at: dt_from..dt_to).order(:entity_id, :dt)
     
     indications_array.each do |r|
 
@@ -23,8 +85,6 @@ class Chart < Widget
       end
       
       if p.nil? || p.value != r.value
-        
-        
         if r.value==0 && p
           result += [[ devs_hash[r.entity_id], "new Date(#{ p.dt.to_f*1000 })", "new Date(#{ r.dt.to_f*1000 })"]]
 #          previous[r.entity_id] = nil
@@ -36,10 +96,8 @@ class Chart < Widget
         end
         previous[r.entity_id] = r
       end  
-
     end
     result.to_s.gsub('"new Date(','new Date(').gsub(')"',')').html_safe
-#    result.to_s.gsub('"new Date(','new Date(').gsub(')"',')').html_safe
   end 
 end
 
