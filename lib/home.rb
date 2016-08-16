@@ -24,7 +24,10 @@ module Home
   
   def self.startup
     Indication.where('created_at < ?', DateTime.now - 1.week).delete_all
-    Entity.all.each(&:startup)
+    Entity.all.each do |e| 
+      e.startup
+      e.watch
+    end  
   end
   
 end
