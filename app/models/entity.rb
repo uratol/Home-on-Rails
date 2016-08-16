@@ -90,7 +90,9 @@ class Entity < ActiveRecord::Base
   
   def startup
     cancel :do_shedule
+    log {"Startup #{ self }"}
     if shedule
+      log {"Shedule #{ self } : #{ shedule }"}
       every(shedule).do_shedule 
     end
     do_event :at_startup

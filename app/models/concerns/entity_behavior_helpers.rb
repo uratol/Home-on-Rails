@@ -52,4 +52,8 @@ module EntityBehaviorHelpers
     BinaryBehavior.blink args, &block_after
   end
   
+  def log &block
+    Rails.logger.debug yield 
+  end
+  
 end

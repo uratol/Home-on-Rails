@@ -17,8 +17,15 @@ module Home
  # this function maps the vars from your app into your engine
   def self.setup
      yield self
-     Entity.all.each(&:startup)
+     startup
   end  
+  
+  private
+  
+  def self.startup
+    Indication.where('created_at < ?', DateTime.now - 1.week).delete_all
+    Entity.all.each(&:startup)
+  end
   
 end
 
