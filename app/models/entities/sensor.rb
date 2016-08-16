@@ -9,7 +9,8 @@ class Sensor < Device
   end
   
   def poll
-    store_value get_driver_value
+    v = get_driver_value
+    store_value v if v
   end
 
   def do_shedule
