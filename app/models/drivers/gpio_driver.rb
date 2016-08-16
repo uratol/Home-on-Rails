@@ -42,7 +42,8 @@ module GpioDriver
           end
         end
       end if direction==:in
-    end  
+    end
+    true  
   end
   
   private

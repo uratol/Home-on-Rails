@@ -26,7 +26,8 @@ module Home
     Indication.where('created_at < ?', DateTime.now - 1.week).delete_all
     Entity.all.each do |e| 
       e.startup
-      e.watch
+      
+      e.watch if e.respond_to? :watch
     end  
   end
   

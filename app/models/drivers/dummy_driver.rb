@@ -8,7 +8,7 @@ module DummyDriver
   end
   
   def watch
-    
+    true
   end
     
   
