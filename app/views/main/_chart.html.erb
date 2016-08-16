@@ -6,23 +6,33 @@ var	googleScriptLoaded = false;
 
 $.getScript("https://www.google.com/jsapi", function(){
 	googleScriptLoaded = true;
-	ready();
+	ready<%= e.name %>();
 });
 	
 
-function libLoaded() {
+function libLoaded<%= e.name %>() {
 	googleLibLoaded = true;
-	drawChart();
+	drawChart<%= e.name %> ();
 };
 
 
-function drawChart() {
+function drawChart<%= e.name %>() {
 	var data = new google.visualization.DataTable();
+	
+	<% if e.chart_type==:Timeline %>
 	data.addColumn({ type: 'string', id: 'Device' });
     data.addColumn({ type: 'date', id: 'Start' });
     data.addColumn({ type: 'date', id: 'End' });
     
-    data.addRows(<%= e.timeline_data_js %>);
+    <% else %>
+	data.addColumn({ type: 'datetime' });
+		<% e.devs.each do |d| %>
+			data.addColumn({ type: 'number', label: '<%= d.caption %>' });
+		<% end %>
+    <% end %>
+    
+    
+    data.addRows(<%= e.data_js %>);
 
 	// Set chart options
 	var options = {
@@ -32,11 +42,11 @@ function drawChart() {
 	};
 
 	// Instantiate and draw our chart, passing in some options.
-	var chart = new google.visualization.Timeline($('.chart_div')[0]);
+	var chart = new google.visualization.<%= e.chart_type %>($('#chart_div_<%= e.name %>')[0]);
 	chart.draw(data, options);
 }
 
-function ready(){
+function ready<%= e.name %>(){
 	// google.setOnLoadCallback( libLoaded );
 	
 	if (!googleScriptLoaded)
@@ -44,18 +54,18 @@ function ready(){
 	
 	google.load('visualization', '1.0', {
 		packages: ['corechart','timeline']
-		, callback: libLoaded
+		, callback: libLoaded<%= e.name %>
 	});
 
 	if (googleLibLoaded) 
-		drawChart();
+		drawChart<%= e.name %>();
 };
 	
 	
 //$(document).on('page:change', ready() );
-$(document.body).on('page:load', ready() );
+$(document.body).on('page:load', ready<%= e.name %>() );
 	
 </script>
 
 
-<div class="chart_div" height="10"></div>
+<div id="chart_div_<%= e.name %>" height="10"></div>

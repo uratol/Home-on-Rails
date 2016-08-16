@@ -47,6 +47,9 @@ module EntityClassMethods
     end
   end
 
+  def execute_sql(*sql_array)     
+    connection.execute(send(:sanitize_sql_array, sql_array))
+  end
   protected
 
   def register_attributes *args

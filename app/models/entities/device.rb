@@ -4,6 +4,11 @@ class Device < Entity
   validate :driver_valid?
   before_save :default_values
 
+  def init
+    super
+    @binary = true
+  end  
+
   private
 
   def driver_valid?

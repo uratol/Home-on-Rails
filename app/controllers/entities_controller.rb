@@ -22,11 +22,12 @@ class EntitiesController < ApplicationController
   # GET /entities/new
   def new
     source_id = params[:format]
-    source_attribs, source_entity = nil
     if source_id
       source_entity = Entity.find source_id
       source_attribs = source_entity.attributes.reject{|k,v| %w(lft rgt depth).include? k.to_s }
-    end
+    else
+      source_attribs = params.permit(:driver, :address) if params
+    end  
     @entity = Entity.new(source_attribs)
     
     set_form_variables

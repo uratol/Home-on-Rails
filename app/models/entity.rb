@@ -12,16 +12,18 @@ class Entity < ActiveRecord::Base
   # has_closure_tree
   acts_as_nested_set dependent: :restrict, counter_cache: :children_count, depth_column: :depth
   has_many :children, class: Entity, foreign_key: :parent_id, dependent: :restrict_with_error
-  attr_accessor :state
-  attr_accessor :image_name, :width, :height
+  attr_accessor :state, :image_name, :width, :height, :driver_address, :binary
+  alias_method :binary?, :binary
   attr_reader :events
   
   after_initialize :init
+  after_save :startup
   
   include ::EntityVisualization
   include ::EntityBehavior
   
-  register_events :at_click
+  register_events :at_click, :at_startup, :at_shedule
+  register_attributes shedule: nil
   
   def value_at dt
     (indication_at(dt) || self).value
@@ -85,6 +87,20 @@ class Entity < ActiveRecord::Base
   def send_mail options = {}
     HomeMailer.send_mail options
   end
+  
+  def startup
+    cancel :do_shedule
+    log {"Startup #{ self }"}
+    if shedule
+      log {"Shedule #{ self } : #{ shedule }"}
+      every(shedule).do_shedule 
+    end
+    do_event :at_startup
+  end
+  
+  def do_shedule
+    do_event :at_shedule
+  end
 
   protected
   
@@ -100,6 +116,11 @@ class Entity < ActiveRecord::Base
   end  
   
   def store_value v, dt = Time.now
+    
+    if binary? && !(v==0 || v==1)
+      raise ArgumentError, "Value #{ v } is not binary"
+    end
+    
     old_value = self.value
 
     set_driver_value v if is_a?(Actor) && !driver.blank?

@@ -33,9 +33,11 @@ module EntityBehavior
 
 
   def behavior_script_eval
+    return if !@behavior_script || state.include?(:behavior_script_eval)
+    #byebug
     state.push :behavior_script_eval
     begin
-      instance_eval @behavior_script, behavior_file_name.to_s, 1 if @behavior_script
+      instance_eval @behavior_script, behavior_file_name.to_s, 1
     rescue Exception => e 
       msg = e.to_s
       line = backtrace_error_line e

@@ -22,13 +22,33 @@ module GpioDriver
      address.to_i
   end
   
-  def self.scan
-    return {n1: 5666, n2: 6456454}
+  def watch
+    return if !Home::LINUX_PLATFORM
+    direction = case self
+                when Sensor
+                  :in 
+                when Actor 
+                  :out
+              end
+    puts "direction= #{direction}; #{ self.inspect }"              
+    
+    if direction          
+      @@pins[pin_no] = PiPiper::Pin.new(pin: pin_no, direction: direction)
+      
+      PiPiper.watch(pin: pin_no) do |pin|
+        Thread.new(pin) do |p|
+          Thread.exclusive do
+            Entity.where(driver: :gpio, address: p.pin).each{|e| e.write_value e.transform_driver_value(p.value)}
+          end
+        end
+      end if direction==:in
+    end  
   end
   
   private
 
   #initialize watching  
+=begin      
   puts "GPIO: initialize watching..."  
   
   for entity in Entity.where(driver: :gpio).where.not(address: nil)
@@ -50,16 +70,9 @@ module GpioDriver
           end
         end    
       end if direction==:in
-
-=begin      
-      Thread.new(@@pins[entity.pin_no]) do |pin|
-        pin.wait_for_change do
-        end
-        PiPiper.wait
-      end if direction==:in
-=end
     end  
   end if Home::LINUX_PLATFORM
   
-  puts "GPIO: initialize watching - complete"  
+  puts "GPIO: initialize watching - complete"
+=end    
 end

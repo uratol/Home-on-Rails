@@ -7,4 +7,9 @@ module DummyDriver
     value
   end
   
+  def watch
+    
+  end
+    
+  
 end

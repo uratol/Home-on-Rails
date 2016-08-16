@@ -4,20 +4,30 @@
 
 <p>
 	<strong>Name:</strong>
-	<%= @driver %>
+	<%= @driver_name %>
 </p>
 
-<% if @driver.respond_to? :scan %>
 <table>
 	<tr>
-		<th> Physical address </th>
+		<% if @driver.respond_to? :scan %>
+		<th> Scanned address </th>
+		<% end %>
 		<th> Entity </th>
+		<th> Address </th>
 	</tr>
-	<% @driver.scan.each do |e| %>
+	<% @entities.each do |e| %>
 	<tr>
+		<% if @driver.respond_to? :scan %>
+		<td> <%= e.driver_address %> </td>
+		<% end %>
+		<td> <%=
+ if e.new_record?
+        link_to '[create new]', new_entity_path(driver: @driver_name, address: e.driver_address)
+      else
+        link_to e.name, edit_entity_path(e)
+      end
+%> </td>
 		<td> <%= e.address %> </td>
-		<td> <%= link_to e.name, edit_entity_path(e) if e.id %> </td>
 	</tr>
 	<% end %>
 </table>
-<% end %>

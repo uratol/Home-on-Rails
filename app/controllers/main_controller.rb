@@ -39,7 +39,6 @@ class MainController < ApplicationController
   end
   
   def design_apply
-    
     JSON.parse(params[:data]).each do |p|
       Entity[ p['id'].to_i ].tap do |e|
          e.location_x = p['left'] || p['index']
