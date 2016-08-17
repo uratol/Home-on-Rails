@@ -102,8 +102,6 @@ class Entity < ActiveRecord::Base
     do_event :at_shedule
   end
 
-  protected
-  
   def last_indication value = nil
     query = indications.limit(1).order('created_at DESC')
     query = query.where(value: value) if value
@@ -114,6 +112,13 @@ class Entity < ActiveRecord::Base
     indication = last_indication(value)
     return indication.created_at if indication
   end  
+  
+  def last_indication_interval value = nil
+    v = last_indication_time(value)
+    DateTime.now - v if v
+  end
+  
+  protected
   
   def store_value v, dt = Time.now
     

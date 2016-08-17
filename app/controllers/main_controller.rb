@@ -33,7 +33,7 @@ class MainController < ApplicationController
     
     respond_to do |format|
       format.json do 
-        render json: entities, only:[:id] , methods: [:img, :brightness]
+        render json: entities, only:[:id] , methods: [:img, :brightness, :text]
       end
     end
   end

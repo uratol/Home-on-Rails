@@ -32,7 +32,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'win32-sound' if RUBY_PLATFORM.match(/mingw|mswin|x64_mingw/)
   s.add_dependency 'ace-rails-ap' 
   
-  s.add_dependency 'devise'
+  s.add_dependency 'devise', '3.5.1'
   
   
   # drivers

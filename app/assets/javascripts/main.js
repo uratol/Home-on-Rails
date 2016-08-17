@@ -19,6 +19,10 @@ function refreshEntityes(entities) {
 		if (elem.attr("src") != entity.img) {
 			elem.attr("src", entity.img);
 		};
+		capt = $('#caption' + entity.id);
+		if (capt != null && entity.text != undefined){
+			capt.text(entity.text);
+		}
 		setBrightness(elem, entity.brightness);
 	});
 	
