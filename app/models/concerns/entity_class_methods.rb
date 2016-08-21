@@ -50,6 +50,7 @@ module EntityClassMethods
   def execute_sql(*sql_array)     
     connection.execute(send(:sanitize_sql_array, sql_array))
   end
+  
   protected
 
   def register_attributes *args
@@ -60,7 +61,6 @@ module EntityClassMethods
     end    
     iterator.each {|key,value| register_attribute key, value}
   end  
-
 
   private
   

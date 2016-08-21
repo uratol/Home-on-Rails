@@ -4,8 +4,8 @@ module EntityBehavior
   included do
     # relations, callbacks, validations, scopes and others...
     attr_accessor :behavior_script
-    validate :behavior_script_valid?
-    after_save :behavior_script_write
+    validate :behavior_script_valid?, :required_method_defined?
+    before_save :behavior_script_write
     after_initialize :behavior_script_read
     after_initialize :behavior_script_eval
   
@@ -14,6 +14,13 @@ module EntityBehavior
   end
 
   private
+
+  def required_method_defined?
+    required_methods.each do |required_method|
+      errors.add :behavior_script, "Method \"#{ required_method }\" is not defined" if !methods.include? required_method
+    end
+  end
+  
 
   # instance methods
   def behavior_script_read
@@ -34,7 +41,6 @@ module EntityBehavior
 
   def behavior_script_eval
     return if !@behavior_script || state.include?(:behavior_script_eval)
-    #byebug
     state.push :behavior_script_eval
     begin
       instance_eval @behavior_script, behavior_file_name.to_s, 1

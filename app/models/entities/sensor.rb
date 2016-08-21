@@ -1,5 +1,5 @@
 class Sensor < Device
-  
+
   def shedule
     @shedule || (5.minutes unless respond_to? :watch)
   end  

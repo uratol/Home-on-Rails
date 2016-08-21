@@ -42,7 +42,7 @@
         		<%#= content_tag :span, event.options if event.options.any? %>
         	<% end %>
         </td>
-        <td><% entity.jobs.order(:run_at).each do |j| %>
+        <td><% entity.jobs.each do |j| %>
 	        	<%= content_tag :span, j.queue, {title: "at #{j.run_at}\n#{j.last_error}", class: "job#{' error' if j.last_error}"}.compact %>
         	<% end %>
         </td>

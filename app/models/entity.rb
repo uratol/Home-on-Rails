@@ -21,6 +21,7 @@ class Entity < ActiveRecord::Base
   
   include ::EntityVisualization
   include ::EntityBehavior
+  include ::EntityData
   
   register_events :at_click, :at_startup, :at_shedule
   register_attributes shedule: nil
@@ -117,6 +118,14 @@ class Entity < ActiveRecord::Base
     v = last_indication_time(value)
     DateTime.now - v if v
   end
+
+  def self.required_methods
+    @required_methods ||= []
+  end
+
+  def required_methods
+    self.class.required_methods
+  end
   
   protected
   
@@ -147,13 +156,19 @@ class Entity < ActiveRecord::Base
     indications.create! value: v, dt: dt
 
   end
-  
+
   def self.method_missing method_sym, *arguments, &block
     Entity[method_sym] || super
   end
 
   def method_missing method_sym, *arguments, &block
-    Entity[method_sym] || super
+    Entity[method_sym] || data_method(method_sym, *arguments)  || super
+  end
+  
+  def self.register_required_methods *args
+    #required_methods |= args.flatten
+    @required_methods = [] unless @required_methods
+    @required_methods |= args.flatten
   end
   
   private
@@ -167,9 +182,9 @@ class Entity < ActiveRecord::Base
   
 
   def name_valid?
-    errors.add :name, "\"#{name}\" is reserved" if Entity.instance_methods.include? name.to_sym
+    errors.add :name, "\"#{name}\" is reserved" if Entity.instance_methods.include? name.to_sym if name?
   end
-  
+
   self.require_entity_classes
 end
 

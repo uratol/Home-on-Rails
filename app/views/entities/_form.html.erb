@@ -76,15 +76,25 @@
 			
 			<div id="editor" style="width:600px; height: 300px;"><%= @entity.behavior_script %></div>
 			<div class="events">
-				
+				Insert stab at cursor:
 				<ul>
-					Insert event stub at cursor:
-					<% for e in @entity.behavior_methods %>
-					<li class="method" data-pattern="<%= "#{e} do\n\nend" %>">
-						<%= e %>
+					Events:
+					<% for m in @entity.behavior_methods %>
+					<li class="method" data-pattern="<%= "#{m} do\n\nend" %>">
+						<%= m %>
 					</li>
 					<% end %>
 				</ul>
+				<% if @entity.required_methods.any? %>
+					<ul>
+						Required methods:
+						<% for m in @entity.required_methods %>
+						<li class="method" data-pattern="<%= "def #{m} do\n\nend" %>">
+							<%= m %>
+						</li>
+						<% end %>
+					</ul>
+				<% end %>	
 			</div>	
 
 			<script>

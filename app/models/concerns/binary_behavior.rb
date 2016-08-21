@@ -55,5 +55,28 @@ module BinaryBehavior
       end
     end
   end
+  
+  def average_value(interval)
+    to = Time.now
+    from = to - interval
+    first_indication = indication_at(from)
+    if first_indication
+      first_indication.created_at = from
+    else
+      first_indication = Indication.new(created_at: from, value: 0)
+    end
+    
+    arr = [first_indication] 
+    arr += indications.where('created_at between ? and ?', from, to).order(:created_at).to_a 
+    arr << Indication.new(created_at: to, value: value)
+    
+    prev_indication = nil
+    sum  = 0
+    arr.each_with_index do |ind, i|
+      sum += prev_indication.value * (ind.created_at - prev_indication.created_at) if prev_indication
+      prev_indication = ind
+    end
+    return sum / (to - from)  
+  end
 
 end

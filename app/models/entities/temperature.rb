@@ -5,13 +5,13 @@ class Temperature < Sensor
   def init
     super
     @binary = false
+    @shedule = 30.seconds
   end  
 
   def text
     "#{ value.round(1) } \u00B0 C"
   end
 
-  
   private
   
   def on?

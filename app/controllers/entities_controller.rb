@@ -11,7 +11,7 @@ class EntitiesController < ApplicationController
   # GET /entities
   def index
     @filter = params.permit(:driver, :type)
-    @entities = Entity.all.where(@filter).order(:lft)
+    @entities = Entity.eager_load(:jobs).all.where(@filter).order(:lft, 'delayed_jobs.run_at')
   end
 
   # GET /entities/1
@@ -49,7 +49,10 @@ class EntitiesController < ApplicationController
   # POST /entities
   # POST /entities.json
   def create
-    @entity = Entity.new(entity_params)
+#    byebug
+    params = entity_params
+    @entity = Entity.new(params)
+    @entity.behavior_script = params[:behavior_script]
     if @entity.save
       redirect_to entities_path, notice: 'Entity was successfully created.'
     else
