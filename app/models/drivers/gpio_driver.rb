@@ -48,6 +48,11 @@ module GpioDriver
   
   private
 
+  Entity.where(driver: :gpio).where.not(address: nil).each do |e|
+    puts "GPIO: unexport #{ e.pin_no } pin"
+    File.open("/sys/class/gpio/unexport", "w") { |f| f.write("#{e.pin_no}") }
+  end
+
   #initialize watching  
 =begin      
   puts "GPIO: initialize watching..."  
