@@ -49,8 +49,9 @@ module GpioDriver
   private
 
   Entity.where(driver: :gpio).where.not(address: nil).each do |e|
-    puts "GPIO: unexport #{ e.pin_no } pin"
-    File.open("/sys/class/gpio/unexport", "w") { |f| f.write("#{e.pin_no}") }
+    pin = e.address
+    puts "GPIO: unexport #{ pin } pin"
+    File.open("/sys/class/gpio/unexport", "w") { |f| f.write("#{pin}") } if File.exist? "/sys/class/gpio/gpio#{ pin }"
   end
 
   #initialize watching  
