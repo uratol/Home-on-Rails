@@ -30,12 +30,12 @@ module GpioDriver
                 when Actor 
                   :out
               end
-    puts "direction= #{direction}; #{ self.inspect }"              
+    puts "GPIO: watch direction=#{ direction }; pin=#{ address } #{ self.inspect }"              
     
     if direction          
-      @@pins[pin_no] = PiPiper::Pin.new(pin: pin_no, direction: direction)
+      pin = pin(direction)
       
-      PiPiper.watch(pin: pin_no) do |pin|
+      pin.wait_for_change do
         Thread.new(pin) do |p|
           Thread.exclusive do
             Entity.where(driver: :gpio, address: p.pin).each{|e| e.write_value e.transform_driver_value(p.value)}
