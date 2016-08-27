@@ -24,7 +24,7 @@ class Entity < ActiveRecord::Base
   include ::EntityData
   
   register_events :at_click, :at_startup, :at_shedule
-  register_attributes shedule: nil
+  register_attributes shedule: nil, invert_driver_value: false
   
   def value_at dt
     (indication_at(dt) || self).value
@@ -78,7 +78,7 @@ class Entity < ActiveRecord::Base
   end
 
   def invert_driver_value?
-    return false
+    return invert_driver_value
   end
 
   def transform_driver_value(v)

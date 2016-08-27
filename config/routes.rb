@@ -10,6 +10,8 @@ def uniRoutes
   get '/main/refresh'
   get '/main/reseed'
   
+  post '/admin/reboot'
+  
   get '/show/:name' => 'main#show'
   get '/show/:id' => 'main#show'
   post '/show/:id' => 'main#show'

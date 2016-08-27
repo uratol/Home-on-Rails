@@ -15,10 +15,6 @@ class Motion < Sensor
     Time.now - last_motion_time
   end
 
-  def invert_driver_value?
-    is_a? GpioDriver
-  end
-  
   def text
     distance_of_time_in_words_to_now(last_motion_time)
   end

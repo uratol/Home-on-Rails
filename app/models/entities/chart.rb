@@ -25,7 +25,7 @@ class Chart < Widget
   end
 
   def devs 
-    @devs ||= [devices].flatten
+    @devs ||= [*devices]
   end
 
   private

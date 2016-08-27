@@ -21,7 +21,7 @@ class Pid < Widget
   end  
   
   def do_shedule
-    byebug
+    #byebug
     prev_indication = last_indication
     #prev_time = prev_indication.created_at
     prev_value = prev_indication.try(:value) || 0

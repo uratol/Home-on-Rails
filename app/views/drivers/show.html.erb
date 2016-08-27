@@ -14,6 +14,7 @@
 		<% end %>
 		<th> Entity </th>
 		<th> Address </th>
+		<th> Value </th>
 	</tr>
 	<% @entities.each do |e| %>
 	<tr>
@@ -28,6 +29,13 @@
       end
 %> </td>
 		<td> <%= e.address %> </td>
+		<td> <%= e.human_value %> </td>
 	</tr>
 	<% end %>
 </table>
+
+<%= content_tag(:p, @driver.description) if @driver.respond_to? :description%>
+
+<%= content_tag(:div, @driver.description_data, class: :preformatted) if @driver.respond_to? :description_data%>
+
+
