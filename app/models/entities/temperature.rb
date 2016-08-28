@@ -9,7 +9,7 @@ class Temperature < Sensor
   end  
 
   def text
-    "#{ value.round(1) } \u00B0 C"
+    "#{ value.try :round,1  } \u00B0 C"
   end
 
   private

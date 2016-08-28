@@ -33,7 +33,7 @@ class Chart < Widget
   
   def line_data_js dt_from = period_default.ago, dt_to = Time.now
     round_seconds = 5 #* 60
-    datetime_int_field = "cast(strftime('%s',created_at) as integer)"
+    datetime_int_field = ActiveRecord::Base.connection.adapter_name=='PostgreSQL' ? "EXTRACT(EPOCH FROM created_at)" : "cast(strftime('%s',created_at) as integer)"
     datetime_group_field = "#{ datetime_int_field } - (#{ datetime_int_field } % #{ round_seconds })"
     rounded_indications_query = "
     SELECT #{ datetime_group_field } as dt, entity_id, value
@@ -44,8 +44,8 @@ LIMIT 10000
     
     sql_query = "
       SELECT 
-        #{ devs.inject('dt'){|command, device| "#{ command } , AVG(case when entity_id=#{ device.id } then value end) as [#{ device.id }]"} }
-      FROM (#{ rounded_indications_query })
+        #{ devs.inject('dt'){|command, device| "#{ command } , AVG(case when entity_id=#{ device.id } then value end) as id#{ device.id }"} }
+      FROM (#{ rounded_indications_query }) as a
       GROUP BY dt
       ORDER BY dt
       "

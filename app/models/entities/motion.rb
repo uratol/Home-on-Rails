@@ -16,7 +16,8 @@ class Motion < Sensor
   end
 
   def text
-    distance_of_time_in_words_to_now(last_motion_time)
+    t=last_motion_time
+    distance_of_time_in_words_to_now(t) if t
   end
   
 end

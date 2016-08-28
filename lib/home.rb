@@ -16,9 +16,12 @@ module Home
   
  # this function maps the vars from your app into your engine
   def self.setup
-     puts "Starting Home: #{ program_name } (#{ $PROGRAM_NAME })"
-     yield self
-     startup
+    puts "Starting Home: #{ program_name } (#{ $PROGRAM_NAME })"
+    yield self
+    
+    if ARGV.include? 'startup'
+      startup
+    end   
   end  
   
   private
