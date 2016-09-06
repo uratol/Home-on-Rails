@@ -16,6 +16,13 @@ module Home
 
     require 'ace-rails-ap'
         
-    require 'devise'  
+    require 'devise'
+    
+    config.to_prepare do
+        Rails.application.config.assets.precompile += %w(
+          entity/* *.png *.ico *.gif *.jpg *.jpeg jquery.js jquery_ujs.js jquery-ui.js jquery.contextMenu.js jquery-ui.css jquery.contextMenu.css ace/ace.js ace/worker-html.js ace/mode-ruby.js 
+        )
+        #
+    end          
   end
 end

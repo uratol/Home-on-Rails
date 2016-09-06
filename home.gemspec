@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-rails'
   s.add_dependency 'jquery-ui-rails'
   s.add_dependency 'jquery_context_menu-rails'
+  s.add_dependency 'jquery-turbolinks'
 
   s.add_dependency 'awesome_nested_set'
 #  s.add_dependency 'sun_times'

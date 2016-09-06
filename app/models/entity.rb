@@ -2,7 +2,7 @@ class Entity < ActiveRecord::Base
   
   extend EntityClassMethods 
 
-  belongs_to :parent, class: Entity
+  belongs_to :parent, class_name: Entity
   has_many :indications, dependent: :destroy
   has_many :jobs, class_name: :EntityJob, dependent: :destroy
   validates :name, presence: true, uniqueness: true, format: { with: /\A[a-z][a-z0-9_]+\Z/ }
@@ -11,7 +11,7 @@ class Entity < ActiveRecord::Base
   validate :name_valid?
   # has_closure_tree
   acts_as_nested_set dependent: :restrict, counter_cache: :children_count, depth_column: :depth
-  has_many :children, class: Entity, foreign_key: :parent_id, dependent: :restrict_with_error
+  has_many :children, class_name: Entity, foreign_key: :parent_id, dependent: :restrict_with_error
   attr_accessor :state, :image_name, :width, :height, :driver_address, :binary
   alias_method :binary?, :binary
   attr_reader :events

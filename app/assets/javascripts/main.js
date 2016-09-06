@@ -74,6 +74,51 @@ function arrangeLayout() {
 	$('.layout_container').height(maxBottom - $('.layout_container').offset().top);
 };
 
+var ready = function(){
+	$(".at_click").hover(function(){
+		
+		if ($(this).data('twin'))
+			$els = $(".at_click[data-twin="+$(this).data('twin')+"]");
+		else	
+			$els = $(this);
+		  
+		$els.toggleClass('hover');
+	});
+	
+	$(".at_click").click(function(){
+		if(isDesignMode) return;
+		
+		var ent_id;
+		ent_id = $(this).data('twin');
+		if (!ent_id)
+			ent_id = this.id;  
+		
+		$.ajax({
+			 url: '/main/click'
+			,data: {root: $(".layout_container").attr('id'), id: ent_id}
+			,success: function(data) {
+				refreshEntityes(data);
+				}
+			,error: onAjaxError
+		});
+	});
+	
+
+	refreshRequest();
+
+	if ($('.layout_container').length) {
+		// setup height container by content
+		// browser needs timeout for building elements
+		setTimeout(function() {
+		arrangeLayout();
+		}, 500);
+	};
+};
+
+$(document).on('page:change', ready);
+$(document).on('turbolinks:load', ready);
+
+/*
 $(document).on('page:change', function() {
 	
 	$(".at_click").hover(function(){
@@ -115,8 +160,7 @@ $(document).on('page:change', function() {
 		}, 500);
 	};
 });
-
+*/
 setInterval(function() {
 	refreshRequest();
 }, 5000);
-
