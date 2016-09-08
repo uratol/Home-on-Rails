@@ -58,7 +58,7 @@ LIMIT 10000
       row_s = row.inject("") do |rs, (k,v)|
         rs + if k == "dt"
           "new Date(#{ v.to_i * 1000 })"
-        elsif k.start_with?('id')
+        elsif k.to_s.start_with?('id')
           ',' + (v || 'null').to_s
         else 
           ""

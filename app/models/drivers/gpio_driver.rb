@@ -68,6 +68,10 @@ module GpioDriver
   def pin_no
     GpioDriver.map_pin(address.to_i)
   end
+  
+  def self.bcm_pins
+    @pin_map.values.uniq.sort
+  end
 
   private
   
