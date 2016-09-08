@@ -1,103 +1,47 @@
-require 'pi_piper' if Home::LINUX_PLATFORM
+require 'wiringpi' if Home::LINUX_PLATFORM 
 
 module GpioDriver
-  
-  @@pins = {}
-  
-  def self.get_pin direction, pin_no
-    result = @@pins[pin_no]
-    pull = direction == :in ? :up : :off
-    result = @@pins[pin_no] = PiPiper::Pin.new(pin: pin_no, direction: direction, pull: pull) if !result || result.direction!=direction
-    return result
-  end
-  
   def set_driver_value v
-    GpioDriver.get_pin(:out, pin_no).update_value(transform_driver_value(v))
+    GpioDriver.io.digital_write(pin_no, transform_driver_value(v).to_i)
   end
 
   def get_driver_value
-    return transform_driver_value(GpioDriver.get_pin(:in, pin_no).read)
+    return transform_driver_value(GpioDriver.io.digital_read(pin_no))
   end
 
-  def pin_no
-     address.to_i
-  end
-  
-  
   def self.watch
-    Sensor.where(driver: :gpio).where.not(address: nil).uniq.pluck(:address).each do |pin_str|
-      begin
-        unexport(pin_str)
-        pin_watch pin_str.to_i do |pin|
-          begin
-            puts 'switch!'
-            puts "before: #{Entity.wc_door.value}"
-            Entity.where(driver: :gpio, address: pin.pin).each{|e| e.write_value e.transform_driver_value(pin.value)}
-            puts "after: #{Entity.wc_door.value}"
-          rescue Exception => e
-            puts e.message
-            Rails.logger.error e.message
-          end     
+    startup
+    
+    @threads ||= []
+    for t in @threads
+      Thread.kill(t)
+    end
+    @threads = []  
+    @threads << Thread.new do
+      pins = sensors.uniq.pluck(:address)
+      values = Array.new(pins.size)
+      last_values = Array.new(pins.size)
+      
+      loop do
+        pins.each_with_index do |pin, i|
+          pin = map_pin(pin)
+          last_values[i] = values[i]
+          values[i] = io.digital_read(pin)
+          if values[i] != last_values[i] && last_values[i]
+            raise_pin(pin, values[i]) 
+          end
+          sleep(0.01)
         end
-        puts "GPIO: watch pin=#{ pin_str }"
+      end  
         
-=begin        
-        PiPiper.watch(pin: pin_str.to_i) do |pin|
-          no, value = pin.pin, pin.value
-          puts "GPIO: changed #{ no } pin, value: #{ value }"
-          
-          begin
-            Thread.new(no, value) do |pin_no, pin_value|
-              begin
-                Thread.exclusive do
-                  begin
-                    Entity.where(driver: :gpio, address: pin_no).each{|e| e.write_value e.transform_driver_value(pin_value)}
-                  rescue
-                    puts "in exclusive"
-                  end  
-                end
-              rescue
-                puts "in thread"
-              end  
-            end
-          ensure
-            Rails.logger.flush
-          end        
-        end
-=end        
-      rescue Exception => e
-        s = "Error watching gpio pin #{ pin_str }: #{ e.message }"
-        puts s
-        Rails.logger.error s
-      end
     end
   end
   
-  def self.pin_watch(pin_no, &block)
-    pin = get_pin(:in, pin_no)
-    new_thread = Thread.new(pin) do |xpin|
-      
-      begin
-        loop do
-          xpin.wait_for_change
-          block.call xpin
-        end
-      rescue Exception => e
-        s = "Error watching gpio pin in thread #{ xpin.pin }: #{ e.message }"
-        puts s
-        Rails.logger.error s        
-      end
-    end
-    new_thread.abort_on_exception = true
-    new_thread
-  end
-
-  def self.unexport pin
-    if File.exist? "/sys/class/gpio/gpio#{ pin }"
-      puts "GPIO: unexport #{ pin } pin"
-      File.open("/sys/class/gpio/unexport", "w") { |f| f.write("#{pin}") }
-    end 
-  end
+  def self.raise_pin(pin, value)
+    for e in devices.where(address: unmap_pin(pin))
+      e.write_value e.transform_driver_value(value)
+    end  
+  end      
 
   def self.scan
     [*2..27]
@@ -121,40 +65,57 @@ module GpioDriver
     end
   end
   
-  private
-
-=begin  
-  Entity.where(driver: :gpio).where.not(address: nil).each do |e|
-    e.unexport
+  def pin_no
+    GpioDriver.map_pin(address.to_i)
   end
-=end
 
-  #initialize watching  
-=begin      
-  puts "GPIO: initialize watching..."  
+  private
   
-  for entity in Entity.where(driver: :gpio).where.not(address: nil)
-    direction = case entity
-                when Sensor
-                  :in 
-                when Actor 
-                  :out
-              end
-    puts "direction= #{direction}; #{ entity.inspect }"              
-    
-    if direction          
-      @@pins[entity.pin_no] = PiPiper::Pin.new(pin: entity.pin_no, direction: direction)
-      
-      PiPiper.watch(pin: entity.pin_no) do |pin|
-        Thread.new(pin) do |p|
-          Thread.exclusive do
-            Entity.where(driver: :gpio, address: p.pin).each{|e| e.write_value e.transform_driver_value(p.value)}
-          end
-        end    
-      end if direction==:in
+  def self.map_pin(pin)
+    @pin_map.key(pin.to_i)
+  end
+
+  def self.unmap_pin(pin)
+    @pin_map[pin.to_i]
+  end
+
+  def self.devices
+    Entity.where(driver: :gpio).where.not(address: nil)
+  end
+
+  def self.sensors
+    Sensor.where(driver: :gpio).where.not(address: nil)
+  end
+  
+  def self.build_pin_map
+    @pin_map ||= {}
+    return @pin_map if @pin_map.any?
+    100.times do |i|
+      bcm_no = io.wpi_pin_to_gpio(i)
+      @pin_map[i] = bcm_no if bcm_no>=0
     end  
-  end if Home::LINUX_PLATFORM
+    @pin_map
+  end
+
+  def self.startup
+    @io ||= WiringPi::GPIO.new
+
+    build_pin_map
+    
+    for e in GpioDriver.devices
+      case e
+      when Sensor
+        io.pin_mode(e.pin_no, WiringPi::INPUT)
+        io.pull_up_dn_control(e.pin_no, WiringPi::PUD_UP)
+      when Actor   
+        io.pin_mode(e.pin_no, WiringPi::OUTPUT)
+      end
+    end
+  end
   
-  puts "GPIO: initialize watching - complete"
-=end    
+  def self.io
+    @io
+  end
 end
+
+GpioDriver.startup

@@ -36,6 +36,9 @@ Gem::Specification.new do |s|
   s.add_dependency 'devise', '3.5.1'
   
   # drivers
-  s.add_dependency 'pi_piper' if RUBY_PLATFORM.match(/linux/)
+  if RUBY_PLATFORM.match(/linux/)
+    s.add_dependency 'wiringpi' 
+#  s.add_dependency 'pi_piper' if RUBY_PLATFORM.match(/linux/)
+  end
   
 end

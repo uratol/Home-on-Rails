@@ -19,35 +19,29 @@ module Home
     puts "Starting Home: #{ program_name } (#{ $PROGRAM_NAME })"
     yield self
     
-    if ARGV.include? 'startup'
-      startup
-    end   
+    startup if program_name == :jobs
   end  
   
   private
   
   def self.startup
-    if program_name == :jobs
-      ActiveRecord::Base.transaction do
-        delete_old_indications
-        Entity.all.each{|e| e.startup}
-      end
-      puts "Watch Home: #{ program_name } (#{ $PROGRAM_NAME })"
-      drivers_watch  
+    ActiveRecord::Base.transaction do
+      delete_old_indications
+      Entity.all.each{|e| e.startup}
     end
+    drivers_send :watch
   end
   
   def self.delete_old_indications
     Indication.where('created_at < ?', DateTime.now - 1.week).delete_all
   end
   
-  def self.drivers_watch
+  def self.drivers_send method
     Entity.drivers.each do |d|
-      if d.respond_to? :watch
-        puts "Watch: #{ d }"
-        d.watch
+      if d.respond_to? method
+        puts "Driver #{ d }: #{ method }"
+        d.send method
       end      
-
     end  
   end
   
