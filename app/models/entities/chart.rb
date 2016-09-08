@@ -32,8 +32,8 @@ class Chart < Widget
   
   
   def line_data_js dt_from = period_default.ago, dt_to = Time.now
-    round_seconds = 5 #* 60
-    datetime_int_field = ActiveRecord::Base.connection.adapter_name=='PostgreSQL' ? "EXTRACT(EPOCH FROM created_at)" : "cast(strftime('%s',created_at) as integer)"
+    round_seconds = 5 * 60
+    datetime_int_field = ActiveRecord::Base.connection.adapter_name=='PostgreSQL' ? "EXTRACT(EPOCH FROM created_at)::int" : "cast(strftime('%s',created_at) as integer)"
     datetime_group_field = "#{ datetime_int_field } - (#{ datetime_int_field } % #{ round_seconds })"
     rounded_indications_query = "
     SELECT #{ datetime_group_field } as dt, entity_id, value
@@ -52,19 +52,22 @@ LIMIT 10000
     
     puts sql_query  
     
-    sql_result = Entity.execute_sql(sql_query, devs.to_a, dt_from, dt_to)
-    '[' + sql_result.map do |row|
-        '[' + row.inject("") do |s, (k,v)|
-          s + if k == 0
-            "new Date(#{ v * 1000 })"
-          elsif k.is_a? Numeric
-            ',' + (v || 'null').to_s
-          else 
-            ""
-          end
-        end  + ']'
-        #row #[row[0], row[1], row[2]]
-    end.join(',') + ']'
+    result = Entity.execute_sql(sql_query, devs.to_a, dt_from, dt_to)
+    #byebug
+    result = result.map do |row|
+      row_s = row.inject("") do |rs, (k,v)|
+        rs + if k == "dt"
+          "new Date(#{ v.to_i * 1000 })"
+        elsif k.start_with?('id')
+          ',' + (v || 'null').to_s
+        else 
+          ""
+        end
+      end
+      '[' + row_s  + ']'
+    end
+      
+    '[' + result.join(',') + ']'
   end
 
   def timeline_data_js dt_from = period_default.ago, dt_to = Time.now
