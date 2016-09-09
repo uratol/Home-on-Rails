@@ -1,4 +1,4 @@
-require 'dht-sensor-ffi'
+require 'dht-sensor-ffi' if Home::LINUX_PLATFORM
 require 'timedcache'
 
 module DhtDriver

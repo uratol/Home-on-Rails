@@ -35,7 +35,7 @@ module GpioDriver
       end  
         
     end
-  end
+  end if Home::LINUX_PLATFORM
   
   def self.raise_pin(pin, value)
     for e in devices.where(address: unmap_pin(pin))
@@ -122,4 +122,4 @@ module GpioDriver
   end
 end
 
-GpioDriver.startup
+GpioDriver.startup if Home::LINUX_PLATFORM
