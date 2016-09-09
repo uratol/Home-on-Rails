@@ -20,8 +20,8 @@ class Entity < ActiveRecord::Base
   after_save :startup
   
   include ::EntityVisualization
-  include ::EntityBehavior
   include ::EntityData
+  include ::EntityBehavior
   
   register_events :at_click, :at_startup, :at_shedule
   register_attributes :min, :max, :shedule
