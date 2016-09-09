@@ -1,4 +1,9 @@
 module BinaryBehavior
+  
+  def self.included(base)
+    base.register_stored_attributes :pwm_power
+  end
+  
   def on?
     value && value!=0
   end
@@ -77,6 +82,19 @@ module BinaryBehavior
       prev_indication = ind
     end
     return sum / (to - from)  
+  end
+
+  def pwm_power=(power)
+    raise 'Shedule must be set for pwm power' unless shedule
+    
+    super
+    save!
+    return power
+  end
+
+  def do_shedule
+    self.on = average_value(shedule * 10) < pwm_power if pwm_power
+    super
   end
 
 end

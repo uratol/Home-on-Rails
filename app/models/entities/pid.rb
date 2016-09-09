@@ -21,23 +21,24 @@ class Pid < Widget
   end  
   
   def do_shedule
+    e = target_value - input_value
+
     #byebug
     prev_indication = last_indication
     #prev_time = prev_indication.created_at
     prev_value = prev_indication.try(:value) || 0
-    
-    e = target_value - input_value
+
     
     p = kP * (e - e_previous)
     i = kI * e
     d = kD * (e - 2 * e_previous + e_previous2)
     
-    self.value = prev_value + p + i + d
+    self.value = trunc_power(prev_value + p + i + d)
     
     self.e_previous2 = e_previous
     self.e_previous = e
 
-    write_value(trunc_power(self.value))
+    write_value(self.value)
     save!
     
     super
