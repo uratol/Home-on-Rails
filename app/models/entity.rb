@@ -24,7 +24,8 @@ class Entity < ActiveRecord::Base
   include ::EntityData
   
   register_events :at_click, :at_startup, :at_shedule
-  register_attributes shedule: nil, invert_driver_value: false
+  register_attributes min, max, shedule
+  register_attributes invert_driver_value: false
   
   def value_at dt
     (indication_at(dt) || self).value

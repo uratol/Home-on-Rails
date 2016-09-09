@@ -6,7 +6,9 @@ module DhtDriver
     model = a.first.to_i
     pin_no = a.second.to_i
     r = DhtSensor.read(pin_no, model)
-    case self when Temperature then r.temperature when Humidity then r.humidity end
+    
+    bounds = lambda{|val, min, max| val if val.between?(min,max)}
+    case self when Temperature then bounds.call(r.temperature,min || -50,max || 100) when Humidity then bounds.call(r.humidity, min || 1, max || 100) end
   end
   
   def self.models
