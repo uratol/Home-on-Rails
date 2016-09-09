@@ -1,14 +1,26 @@
-require "dht-sensor-ffi"
+require 'dht-sensor-ffi'
+require 'timedcache'
 
 module DhtDriver
+  CACHE = TimedCache.new(default_timeout: 15.seconds, type: :file, filename: 'tmp/dht_driver.cache')
+
+  def poll
+    super
+  end
+
   def get_driver_value
     a = address.split(':')
     model = a.first.to_i
     pin_no = a.second.to_i
-    r = DhtSensor.read(pin_no, model)
     
-    bounds = lambda{|val, min, max| val if val.between?(min,max)}
-    case self when Temperature then bounds.call(r.temperature,min || -50,max || 100) when Humidity then bounds.call(r.humidity, min || 1, max || 100) end
+    r = CACHE[pin_no]
+    unless r
+      r = DhtSensor.read(pin_no, model)
+      return if r.humidity > 100
+      CACHE[pin_no] = r  
+    end  
+     
+    case self when Temperature then r.temperature when Humidity then r.humidity end
   end
   
   def self.models
@@ -57,6 +69,5 @@ module DhtDriver
     end  
     result
   end
-  
   
 end

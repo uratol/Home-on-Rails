@@ -35,6 +35,8 @@ Gem::Specification.new do |s|
   
   s.add_dependency 'devise', '3.5.1'
   
+  s.add_dependency 'timedcache'
+  
   # drivers
   if RUBY_PLATFORM.match(/linux/)
     s.add_dependency 'wiringpi' 
