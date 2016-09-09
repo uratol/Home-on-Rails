@@ -17,11 +17,11 @@ class Pid < Widget
   
   def init
     super
-    @shedule = 2.minutes
+    @shedule = 30.seconds
   end  
   
   def do_shedule
-    e = target_value - input_value
+    e = cast_value(target_value) - cast_value(input_value)
 
     #byebug
     prev_indication = last_indication
@@ -39,7 +39,8 @@ class Pid < Widget
     self.e_previous = e
 
     write_value(self.value)
-    save!
+    
+    update_attributes data: save_data 
     
     super
     return value
@@ -54,6 +55,10 @@ class Pid < Widget
   
   
   private
+  
+  def cast_value v
+    if v.is_a? Entity then v.value else v.to_f end
+  end
     
   def trunc_power v
     v ||= 0

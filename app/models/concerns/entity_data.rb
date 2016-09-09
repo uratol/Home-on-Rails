@@ -6,6 +6,12 @@ module EntityData
     class_attribute :stored_attributes
   end
   
+  protected
+
+  def save_data
+    self.data = @data_hash.to_json if @data_hash && @data_hash.any?
+  end
+  
   private
   
   @data_hash = nil
@@ -31,10 +37,6 @@ module EntityData
     
     result = is_assignment ? data_hash[method_sym] = arguments.first : data_hash[method_sym]
     return result || 0
-  end
-  
-  def save_data
-    self.data = @data_hash.to_json if @data_hash && @data_hash.any?
   end
   
   module ClassMethods
