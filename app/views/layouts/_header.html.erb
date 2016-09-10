@@ -14,7 +14,7 @@
 					<%= render 'layouts/header_menu_item', title: "Classes", url: '/entities/classes' %>
 					<%= render 'layouts/header_menu_item', title: "Drivers", url: drivers_path %>
 					<%= render 'layouts/header_menu_item', title: "Users", url: users_path  %>
-					<%= (render 'layouts/header_menu_item', title: "Design mode", url: '#', klass: 'design_menu_item') if params[:controller]=='main' && params[:action]=='show' %>
+					<%= (render 'layouts/header_menu_item', title: "Design mode", url: 'javascript://', klass: 'design_menu_item') if params[:controller]=='main' && params[:action]=='show' %>
 					<%= render 'layouts/header_menu_item', title: "Reboot!", url: '/admin/reboot', method: :post %>
 					<%= render 'layouts/header_menu_item', title: "Console", url: '?console=1' %>
 				</ul>

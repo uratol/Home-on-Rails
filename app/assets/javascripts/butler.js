@@ -8,7 +8,7 @@ function dialogRow(s, cl) {
 	dialog.scrollTop = dialog.scrollHeight;
 };
 
-$(document).on('page:change',function() {
+$(document).on('turbolinks:load',function() {
 	$("#mic").click(function() {
 		isRecognizing = true;
 		startRecognizing(function(text) {

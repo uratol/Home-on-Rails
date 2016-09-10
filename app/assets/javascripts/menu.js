@@ -1,4 +1,4 @@
-$(document).on('page:change', function() {
+$(document).on('turbolinks:load', function() {
 
 	/* prepend menu icon */
 	$('.nav-wrap').prepend('<div class="menu-icon">Menu</div>');

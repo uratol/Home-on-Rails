@@ -9,6 +9,14 @@ module Home
   def self.title
     @@title ||= Rails.root.basename.to_s.capitalize
   end
+  
+  def self.time_zone= t
+    Rails.application.config.time_zone = t
+  end
+
+  def self.time_zone
+    Rails.application.config.time_zone
+  end
 
   def self.custom_behavior_path
     Rails.root.join('app','behavior')

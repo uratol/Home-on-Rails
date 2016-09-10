@@ -40,21 +40,17 @@ class Pid < Widget
 
     write_value(self.value)
     
-    update_attributes data: save_data 
+    update_columns data: save_data 
     
     super
     return value
   end
   
-  ##
-  # Требуемая мощность на выходе
-  # return - float from min_power to max_power
-  def out_power
-    value
-  end
-  
-  
   private
+  
+  def reset
+    self.value, self.e_previous, self.e_previous2 = 0
+  end
   
   def cast_value v
     if v.is_a? Entity then v.value else v.to_f end

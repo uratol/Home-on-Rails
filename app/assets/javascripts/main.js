@@ -115,7 +115,7 @@ var ready = function(){
 	};
 };
 
-$(document).on('page:change', ready);
+//$(document).on('page:change', ready);
 $(document).on('turbolinks:load', ready);
 
 /*

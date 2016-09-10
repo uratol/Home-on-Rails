@@ -17,11 +17,12 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
-  s.add_dependency "rails", "~> 4.2.1"
+  s.add_dependency 'rails', '~> 4.2.1'
   s.add_dependency 'jquery-rails'
   s.add_dependency 'jquery-ui-rails'
   s.add_dependency 'jquery_context_menu-rails'
-  s.add_dependency 'jquery-turbolinks'
+  s.add_dependency 'turbolinks', '~> 5.0.1'
+#  s.add_dependency 'jquery-turbolinks'
 
   s.add_dependency 'awesome_nested_set'
 #  s.add_dependency 'sun_times'
@@ -36,6 +37,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'devise', '3.5.1'
   
   s.add_dependency 'timedcache'
+  
+  s.add_dependency 'web-console', '2.3.0'
   
   # drivers
   if RUBY_PLATFORM.match(/linux/)
