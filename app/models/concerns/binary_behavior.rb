@@ -88,7 +88,7 @@ module BinaryBehavior
     raise 'Shedule must be set for pwm power' unless shedule
     
     super
-    save!
+    update_attributes data: save_data
     return power
   end
 

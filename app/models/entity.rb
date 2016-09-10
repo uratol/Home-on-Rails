@@ -101,6 +101,7 @@ class Entity < ActiveRecord::Base
   end
   
   def do_shedule
+    super rescue NoMethodError
     do_event :at_shedule
   end
 
