@@ -7,7 +7,7 @@ class Butler < Widget
   require 'alarm_clock'
   
   #register_events :at_command
-  
+
   @simple_comands = {}
   
   def at_command *phrases, &block
@@ -191,5 +191,5 @@ class Butler < Widget
     #Rails.logger.debug '++++'+s.mb_chars.downcase.squeeze(' ')
     
     s.to_s.mb_chars.downcase.squeeze(' ')
-  end 
+  end
 end

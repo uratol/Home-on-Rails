@@ -33,10 +33,10 @@ module EntityData
       method_sym = method_sym.to_s[0..-2].to_sym
     end
     
-    return if stored_attributes.nil? || !(stored_attributes.include? method_sym) 
+    raise DataNotFoundException.new(method_sym) if stored_attributes.nil? || !(stored_attributes.include? method_sym) 
     
     result = is_assignment ? data_hash[method_sym] = arguments.first : data_hash[method_sym]
-    return result || 0
+    return result
   end
   
   module ClassMethods
@@ -44,6 +44,9 @@ module EntityData
       self.stored_attributes = [] unless stored_attributes
       self.stored_attributes |= args.flatten
     end
+  end
+  
+  class DataNotFoundException < RuntimeError
   end
 
 end

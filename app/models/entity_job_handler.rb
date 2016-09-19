@@ -35,9 +35,10 @@ class EntityJobHandler
     end
   end
   
-  def after job
-    shedule! job unless run_once?
+  def success(job)
+    shedule! job unless run_once? 
   end
+      
   
   def method_missing(method, *args)
     return if performing?
@@ -50,6 +51,10 @@ class EntityJobHandler
   def max_run_time
     300 # seconds
   end
+  
+  def max_attempts
+    3
+  end  
   
   private
   

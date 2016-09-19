@@ -102,7 +102,7 @@ module GpioDriver
   end
 
   def self.startup
-    @io ||= WiringPi::GPIO.new
+    $wiringpi_io ||= WiringPi::GPIO.new
 
     build_pin_map
     
@@ -118,7 +118,8 @@ module GpioDriver
   end
   
   def self.io
-    @io
+    #global variable usus for development autoload modules mode
+    $wiringpi_io
   end
 end
 

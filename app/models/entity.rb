@@ -164,7 +164,9 @@ class Entity < ActiveRecord::Base
   end
 
   def method_missing method_sym, *arguments, &block
-    Entity[method_sym] || data_method(method_sym, *arguments)  || super
+    data_method(method_sym, *arguments)
+  rescue DataNotFoundException
+    Entity[method_sym] || super
   end
   
   def self.register_required_methods *args
