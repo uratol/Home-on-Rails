@@ -86,8 +86,8 @@ class Entity < ActiveRecord::Base
     invert_driver_value? ? 1-v : v
   end
   
-  def send_mail options = {}
-    HomeMailer.send_mail options
+  def mail body, options = {}
+    HomeMailer.mail body, options
   end
   
   def startup
