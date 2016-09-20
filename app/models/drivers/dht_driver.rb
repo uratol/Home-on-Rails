@@ -13,7 +13,12 @@ module DhtDriver
     model = a.first.to_i
     pin_no = a.second.to_i
     
-    r = CACHE[pin_no] rescue ArgumentError # marshal data too short
+    begin
+      r = CACHE[pin_no] 
+    rescue ArgumentError # marshal data too short
+      r = nil
+    end  
+    
     unless r
       r = DhtSensor.read(pin_no, model)
       return if r.humidity > 100
