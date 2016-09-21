@@ -87,7 +87,9 @@ class Entity < ActiveRecord::Base
   end
   
   def mail body, options = {}
-    HomeMailer.mail body, options
+    options.merge! subject: caption
+    m = HomeMailer.admin_mail(body, options)
+    m.deliver_now
   end
   
   def startup

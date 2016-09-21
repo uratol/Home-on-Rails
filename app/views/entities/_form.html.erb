@@ -14,9 +14,9 @@
 		</div>
 
 		<div class="field">
-			<%= f.label :driver %>
+			<%= f.label :caption %>
 			<br>
-			<%= f.select :driver, @entity_drivers, {include_blank: "None"} %>
+			<%= f.text_field :caption %>
 		</div>
 
 		<div class="field">
@@ -26,9 +26,15 @@
 		</div>
 
 		<div class="field">
-			<%= f.label :caption %>
+			<%= f.label :driver %>
 			<br>
-			<%= f.text_field :caption %>
+			<%= f.select :driver, @entity_drivers, {include_blank: "None"} %>
+		</div>
+
+		<div class="field">
+			<%= f.label :address %>
+			<br>
+			<%= f.text_field :address %>
 		</div>
 
 		<div class="field">
@@ -37,11 +43,6 @@
 			<%= f.select :parent_id, nested_set_options(@parents, @entity) {|i| "#{'&nbsp;'*2 * i.depth}#{i.caption}".html_safe } , {include_blank: "None"} %>
 		</div>
 
-		<div class="field">
-			<%= f.label :address %>
-			<br>
-			<%= f.text_field :address %>
-		</div>
 
 		<% if false %>
 
