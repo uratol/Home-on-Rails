@@ -10,7 +10,6 @@
 # D (t) = Kd * {e (t) — 2 * e (t — 1) + e (t — 2)};
 
 class Pid < Widget
-  register_stored_attributes :e_previous, :e_previous2
   register_attributes kP: 1, kI: 0.1, kD: 0.1, min_power: 0, max_power: 1
   
   register_required_methods :input_value, :target_value
@@ -28,6 +27,8 @@ class Pid < Widget
     #prev_time = prev_indication.created_at
     prev_value = prev_indication.try(:value) || 0
 
+    e_previous = data.e_previous
+    e_previous2 = data.e_previous2
     
     p = kP * (e - e_previous)
     i = kI * e

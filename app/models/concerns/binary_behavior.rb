@@ -1,9 +1,5 @@
 module BinaryBehavior
   
-  def self.included(base)
-    base.register_stored_attributes :pwm_power
-  end
-  
   def on?
     value && value!=0
   end

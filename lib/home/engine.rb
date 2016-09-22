@@ -30,6 +30,14 @@ module Home
         app_config.assets.precompile += %w(
           entity/* *.png *.ico *.gif *.jpg *.jpeg jquery.js jquery_ujs.js jquery-ui.js jquery.contextMenu.js jquery-ui.css jquery.contextMenu.css ace/ace.js ace/worker-html.js ace/mode-ruby.js 
         )
-    end          
+    end
+    
+    config.generators do |g|
+      g.test_framework :rspec, :fixture => false
+      g.fixture_replacement :factory_girl, :dir => 'spec/factories'
+      g.assets false
+      g.helper false
+    end    
+              
   end
 end

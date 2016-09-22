@@ -86,12 +86,6 @@ class Entity < ActiveRecord::Base
     invert_driver_value? ? 1-v : v
   end
   
-  def mail body, options = {}
-    options.merge! subject: caption
-    m = HomeMailer.admin_mail(body, options)
-    m.deliver_now
-  end
-  
   def startup
     cancel :do_shedule
     log {"Startup #{ self }"}
@@ -166,8 +160,6 @@ class Entity < ActiveRecord::Base
   end
 
   def method_missing method_sym, *arguments, &block
-    data_method(method_sym, *arguments)
-  rescue DataNotFoundException
     Entity[method_sym] || super
   end
   

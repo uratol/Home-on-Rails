@@ -1,52 +1,50 @@
 module EntityData
   extend ActiveSupport::Concern
+  
+  class DataEntity
+    def initialize entity
+      @entity = entity
+      if entity.attrs
+        @hash = Marshal.load(entity.attrs).with_indifferent_access
+      else   
+        @hash = {}.with_indifferent_access
+      end  
+    end
+    
+    def method_missing method_sym, *arguments, &block
+      is_assignment = method_sym.to_s.last == '='
+      
+      if (need_args = is_assignment ? 1 : 0) != arguments.size
+        raise ArgumentError.new("Wrong arguments number. #{ arguments.size } of #{ need_args }")
+      end
+      
+      if is_assignment
+        method_sym = method_sym.to_s[0..-2].to_sym
+        if arguments.first.nil?
+          @hash.except! method_sym 
+        else  
+          @hash[method_sym] = arguments.first
+        end  
+        store_hash
+      else
+        @hash[method_sym]
+      end  
+    end
 
-  included do
-    before_save :save_data
-    class_attribute :stored_attributes
+    private
+    
+    def store_hash
+      @entity.attrs = @hash.empty? ? nil : Marshal.dump(@hash)
+      @entity.update_attributes attrs: @entity.attrs unless @entity.new_record?
+    end    
+    
   end
   
-  protected
-
-  def save_data
-    self.data = @data_hash.to_json if @data_hash && @data_hash.any?
+  def data
+    @data ||= DataEntity.new(self)
   end
   
   private
   
-  @data_hash = nil
-  
-  def data_hash
-    return @data_hash if @data_hash 
-    if data
-      @data_hash = JSON.parse(data).with_indifferent_access
-    else
-      @data_hash = {}.with_indifferent_access
-    end    
-    return @data_hash  
-  end
-  
-  
-  def data_method method_sym, *arguments
-    is_assignment = method_sym.to_s.last == '='
-    if is_assignment
-      method_sym = method_sym.to_s[0..-2].to_sym
-    end
-    
-    raise DataNotFoundException.new(method_sym) if stored_attributes.nil? || !(stored_attributes.include? method_sym) 
-    
-    result = is_assignment ? data_hash[method_sym] = arguments.first : data_hash[method_sym]
-    return result
-  end
-  
-  module ClassMethods
-    def register_stored_attributes *args
-      self.stored_attributes = [] unless stored_attributes
-      self.stored_attributes |= args.flatten
-    end
-  end
-  
-  class DataNotFoundException < RuntimeError
-  end
 
 end
