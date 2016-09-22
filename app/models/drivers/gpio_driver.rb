@@ -9,40 +9,29 @@ module GpioDriver
     return transform_driver_value(GpioDriver.io.digital_read(pin_no))
   end
 
-  def self.watch
+  def self.watch &block
     startup
     
-    @threads ||= []
-    for t in @threads
-      Thread.kill(t)
-    end
-    @threads = []  
-    @threads << Thread.new do
-      pins = sensors.uniq.pluck(:address)
-      values = Array.new(pins.size)
-      last_values = Array.new(pins.size)
-      
-      loop do
-        pins.each_with_index do |pin, i|
-          pin = map_pin(pin)
-          last_values[i] = values[i]
-          values[i] = io.digital_read(pin)
-          if values[i] != last_values[i] && last_values[i]
-            raise_pin(pin, values[i]) 
+    pins = sensors.uniq.pluck(:address).map(&:to_i)
+    
+    @threads.each(&:kill) if (@threads ||= []).any?
+    
+    pins.each_with_index do |unmaped_pin|
+      @threads << Thread.new(trigger: block) do
+        maped_pin = map_pin(unmaped_pin)
+        value = nil
+        loop do
+          last_value = value
+          value = io.digital_read(maped_pin)
+          if value != last_value
+            trigger.call(unmaped_pin, value)
           end
           sleep(0.01)
         end
       end  
-        
-    end
+    end  
   end if Home::LINUX_PLATFORM
   
-  def self.raise_pin(pin, value)
-    for e in devices.where(address: unmap_pin(pin))
-      e.write_value e.transform_driver_value(value)
-    end  
-  end      
-
   def self.scan
     [*2..27]
   end

@@ -37,18 +37,29 @@ module Home
       delete_old_indications
       Entity.all.each{|e| e.startup}
     end
-    drivers_send :watch
+    drivers_watch
   end
   
-  def self.delete_old_indications
-    Indication.where('created_at < ?', DateTime.now - 1.week).delete_all
+  def self.delete_old_indications(leave_interval = 1.week)
+    Indication.where('created_at < ?', DateTime.now - leave_interval).delete_all
   end
   
-  def self.drivers_send method
+  def self.drivers_watch
+    
+    @threads.each(&:kill) if (@threads ||= []).any? 
+        
     Entity.drivers.each do |d|
-      if d.respond_to? method
-        puts "Driver #{ d }: #{ method }"
-        d.send method
+      if d.respond_to? :watch
+        @threads << Thread.new do
+          loop do
+            puts "Driver #{ d }: watching"
+            d.watch do |address, value|
+              for e in devices.where(address: address)
+                e.write_value e.transform_driver_value(value)
+              end
+            end  
+          end  
+        end
       end      
     end  
   end
