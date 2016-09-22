@@ -80,16 +80,8 @@ module BinaryBehavior
     return sum / (to - from)  
   end
 
-  def pwm_power=(power)
-    raise 'Shedule must be set for pwm power' unless shedule
-    
-    super
-    update_attributes data: save_data
-    return power
-  end
-
-  def do_shedule
-    self.on = average_value(shedule * 10) < pwm_power if pwm_power
+  def do_schedule
+    self.on = average_value(schedule * 10) < pwm_power if pwm_power
     super
   end
 

@@ -16,10 +16,10 @@ class Pid < Widget
   
   def init
     super
-    @shedule = 30.seconds
+    @schedule = 30.seconds
   end  
   
-  def do_shedule
+  def do_schedule
     e = cast_value(target_value) - cast_value(input_value)
 
     #byebug

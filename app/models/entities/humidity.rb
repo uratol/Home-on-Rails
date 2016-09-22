@@ -5,7 +5,7 @@ class Humidity < Sensor
   def init
     super
     @binary = false
-    @shedule = 1.minute
+    @schedule = 1.minute
   end  
 
   def text

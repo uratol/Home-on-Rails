@@ -7,7 +7,7 @@ class EntityJobHandler
     @entity, @options = obj, options
     if @entity && options[:source_row]
       raise "Block not found in behavior body script. Use method call instead" unless @entity.state.include? :behavior_script_eval
-      shedule! 
+      schedule! 
     end
   end
   
@@ -36,7 +36,7 @@ class EntityJobHandler
   end
   
   def success(job)
-    shedule! job unless run_once? 
+    schedule! job unless run_once? 
   end
       
   
@@ -45,7 +45,7 @@ class EntityJobHandler
     raise NoMethodError, "Undefined method '#{method}' for #{@entity.inspect}" unless @entity.respond_to? method
     self.args = args
     self.options[:method] = method
-    shedule!
+    schedule!
   end
 
   def max_run_time
@@ -58,11 +58,9 @@ class EntityJobHandler
   
   private
   
-  ################ shedule!
-  def shedule! current_job = nil
+  def schedule! current_job = nil
     return unless run_time = next_run_time
 
-#puts "!shedule! current_job=#{ current_job }, options=#{options}, next_run_time=#{ next_run_time }, entity=#{ @entity}"      
       
 #    query = @entity.jobs.where(queue: queue_name)
 #    query = query.where.not(current_job.id) if current_job

@@ -5,7 +5,7 @@ class Temperature < Sensor
   def init
     super
     @binary = false
-    @shedule = 30.seconds
+    @schedule = 30.seconds
   end  
 
   def text

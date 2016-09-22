@@ -3,12 +3,12 @@ class Boiler < Actor
 
   def init
     super
-    @shedule = 30.seconds
+    @schedule = 30.seconds
   end  
   
   def text
     if data.pwm_power
-      "#{ (pwm_power * 100).round }%"
+      "#{ (data.pwm_power * 100).round }%"
     else
       on? ? 'ON' : 'OFF'  
     end

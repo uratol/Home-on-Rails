@@ -23,8 +23,8 @@ class Entity < ActiveRecord::Base
   include ::EntityData
   include ::EntityBehavior
   
-  register_events :at_click, :at_startup, :at_shedule
-  register_attributes :min, :max, :shedule
+  register_events :at_click, :at_startup, :at_schedule
+  register_attributes :min, :max, :schedule
   register_attributes invert_driver_value: false
   
   def value_at dt
@@ -87,18 +87,18 @@ class Entity < ActiveRecord::Base
   end
   
   def startup
-    cancel :do_shedule
+    cancel :do_schedule
     log {"Startup #{ self }"}
-    if shedule
-      log {"Shedule #{ self } : #{ shedule }"}
-      every(shedule).do_shedule 
+    if schedule
+      log {"Schedule #{ self } : #{ schedule }"}
+      every(schedule).do_schedule 
     end
     do_event :at_startup
   end
   
-  def do_shedule
+  def do_schedule
     super rescue NoMethodError
-    do_event :at_shedule
+    do_event :at_schedule
   end
 
   def last_indication value = nil

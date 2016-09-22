@@ -9,7 +9,7 @@ class Sensor < Device
     store_value v if v
   end
 
-  def do_shedule
+  def do_schedule
     poll
     super
   end
