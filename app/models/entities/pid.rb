@@ -36,12 +36,9 @@ class Pid < Widget
     
     self.value = trunc_power(prev_value + p + i + d)
     
-    self.e_previous2 = e_previous
-    self.e_previous = e
-
+    data.e_previous2 = e_previous
+    data.e_previous = e
     write_value(self.value)
-    
-    update_columns data: save_data 
     
     super
     return value
@@ -50,7 +47,7 @@ class Pid < Widget
   private
   
   def reset
-    self.value, self.e_previous, self.e_previous2 = 0
+    self.value, data.e_previous, data.e_previous2 = 0
   end
   
   def cast_value v
