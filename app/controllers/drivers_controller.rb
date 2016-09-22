@@ -1,6 +1,6 @@
 class DriversController < ApplicationController
   def index
-    @drivers = Entity.entity_drivers
+    @drivers = Entity.drivers_names
     @entity_counter = Entity.group(:driver).count
   end
   
