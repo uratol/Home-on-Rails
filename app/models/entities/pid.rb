@@ -27,8 +27,8 @@ class Pid < Widget
     #prev_time = prev_indication.created_at
     prev_value = prev_indication.try(:value) || 0
 
-    e_previous = data.e_previous
-    e_previous2 = data.e_previous2
+    e_previous = data.e_previous || 0
+    e_previous2 = data.e_previous2 || 0
     
     p = kP * (e - e_previous)
     i = kI * e
