@@ -17,7 +17,7 @@ module GpioDriver
     @threads.each(&:kill) if (@threads ||= []).any?
     
     pins.each_with_index do |unmaped_pin|
-      @threads << Thread.new(trigger: block) do
+      @threads << Thread.new(block) do |trigger|
         maped_pin = map_pin(unmaped_pin)
         value = nil
         loop do
@@ -29,7 +29,8 @@ module GpioDriver
           sleep(0.01)
         end
       end  
-    end  
+    end
+    @threads.each(&:join)  
   end if Home::LINUX_PLATFORM
   
   def self.scan
