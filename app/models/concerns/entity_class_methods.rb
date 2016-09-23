@@ -1,11 +1,11 @@
 module EntityClassMethods
 
-  def entity_drivers
-    @@entity_drivers ||= Dir.entries(Home::Engine.root.join('app','models','drivers')).inject([]){|a,f| s=f[-10..-1]; a+if s=='_driver.rb' then [f[0..-11]] else [] end}
+  def drivers_names
+    @@drivers_names ||= Dir.entries(Home::Engine.root.join('app','models','drivers')).inject([]){|a,f| s=f[-10..-1]; a+if s=='_driver.rb' then [f[0..-11]] else [] end}
   end
 
   def drivers
-    entity_drivers.map{|s| "#{ s.camelize }Driver".constantize}
+    drivers_names.map{|s| "#{ s.camelize }Driver".constantize}
   end
   
   def entity_types

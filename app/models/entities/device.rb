@@ -12,7 +12,7 @@ class Device < Entity
   private
 
   def driver_valid?
-     errors.add(:driver, "Driver \"#{ driver }\" is not valid") unless Entity.entity_drivers.include? driver.to_s
+     errors.add(:driver, "Driver \"#{ driver }\" is not valid") unless Entity.drivers_names.include? driver.to_s
   end
   
   def default_values

@@ -92,7 +92,7 @@ class EntitiesController < ApplicationController
   
   def set_form_variables
     @entity_types = Entity.entity_types
-    @entity_drivers = Entity.entity_drivers
+    @drivers_names = Entity.drivers_names
     @parents = allowed_parents
   end
   

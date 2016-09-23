@@ -50,14 +50,18 @@ module Home
         
     Entity.drivers.each do |d|
       if d.respond_to? :watch
-        @threads << Thread.new do
-          loop do
-            puts "Driver #{ d }: watching"
-            d.watch do |address, value|
-              for e in devices.where(address: address)
-                e.write_value e.transform_driver_value(value)
-              end
-            end  
+        @threads << Thread.new(d) do |d|
+          puts "Driver #{ d }: watching"
+          d.watch do |address, value|
+            Thread.exclusive do
+              begin
+                ent = Entity.where(driver: d.name[0..-7].downcase, address: address).first
+                ent.write_value(ent.transform_driver_value(value))
+              rescue RuntimeError => e
+                Rails.logger.error e.message
+                Rails.logger.error e.backtrace.join("\n")
+              end    
+            end
           end  
         end
       end      
