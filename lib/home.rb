@@ -45,7 +45,6 @@ module Home
   end
   
   def self.drivers_watch
-    
     @threads.each(&:kill) if (@threads ||= []).any? 
         
     Entity.drivers.each do |d|

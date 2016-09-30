@@ -26,6 +26,13 @@ class MainController < ApplicationController
     refresh
   end
   
+  def change
+    id = params[:id].to_i
+    e = Entity[id]; 
+    e.write_value(params[:value].to_f)
+    refresh
+  end
+  
   def refresh
     id = params[:root].to_i
 

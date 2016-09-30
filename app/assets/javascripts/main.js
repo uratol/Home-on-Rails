@@ -15,18 +15,24 @@ function setBrightness(elem, brightness) {
 
 function refreshEntityes(entities) {
 	entities.forEach(function(entity) {
-		elem = $('#img' + entity.id);
-		if (elem.attr("src") != entity.img) {
-			elem.attr("src", entity.img);
-		};
-		capt = $('#caption' + entity.id);
-		if (capt != null && entity.text != undefined){
-			capt.text(entity.text);
-		}
-		setBrightness(elem, entity.brightness);
+		commonRefresh(entity);
 	});
-	
 };
+
+function commonRefresh(entity){
+	container = $('.entity').filter('#' + entity.id);
+
+	elem = container.find('#img' + entity.id);
+	if (elem.attr('src') != entity.img) {
+		elem.attr('src', entity.img);
+	};
+	capt = container.find('#caption' + entity.id);
+	if (capt != null && entity.text != undefined)
+		capt.text(entity.text);
+	if (entity.brightness != undefined)
+		setBrightness(elem, entity.brightness);
+	container.trigger('entity:refresh', entity);	
+}
 
 function refreshRequest() {
 	if (!$('.layout_container').length)
@@ -95,7 +101,8 @@ var ready = function(){
 		
 		$.ajax({
 			 url: '/main/click'
-			,data: {root: $(".layout_container").attr('id'), id: ent_id}
+			,method: 'POST'
+			,data: {root: $('.layout_container').attr('id'), id: ent_id}
 			,success: function(data) {
 				refreshEntityes(data);
 				}

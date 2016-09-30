@@ -35,7 +35,7 @@ module EntityData
     
     def store_hash
       @entity.attrs = @hash.empty? ? nil : Marshal.dump(@hash)
-      @entity.update_attributes attrs: @entity.attrs unless @entity.new_record?
+      @entity.update_columns attrs: @entity.attrs unless @entity.new_record?
     end    
     
   end

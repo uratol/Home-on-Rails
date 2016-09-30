@@ -4,8 +4,8 @@ class Humidity < Sensor
 
   def init
     super
-    @binary = false
-    @schedule = 1.minute
+    self.binary = false
+    self.schedule = 1.minute
   end  
 
   def text

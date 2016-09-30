@@ -1,39 +1,39 @@
 module BinaryBehavior
   
   def on?
-    value && value!=0
+    value && value != min
   end
 
   def off?
-    !on?
+    value == min
   end
 
   def opposite_value 
-    1-(value||0)
+    min + max - (value || 0)
   end
 
   def switch! options = {}
-    write_value opposite_value
+    write_value(opposite_value)
   end
 
   def on! options = {}
-    switch! if off? 
+    write_value max if value != max 
     wait_for(options[:delay]).off! if options[:delay]  
     return value  
   end
 
   def on= v
-    if v && v!=0 then on! else off! end
+    if v && v != 0 then on! else off! end
   end
 
   def off! options = {}
-    switch! if on? 
+    write_value min if value != min 
     wait_for(options[:delay]).on! if options[:delay]
     return value  
   end
 
   def off= v
-    if v && v!=0 then off! else on! end
+    if v && v != 0 then off! else on! end
   end
   
   def self.blink args = {}, &block_after
@@ -43,7 +43,7 @@ module BinaryBehavior
     Thread.new do
       (args[:times]||1).times do |i|
         2.times do |j|
-          [*devices].each{|e| e.set_driver_value(if j==0 then 1 - e.value else e.value end)}
+          [*devices].each{|e| e.set_driver_value(if j==0 then e.opposite_value else e.value end)}
           sleep(delay)
         end
       end

@@ -17,14 +17,13 @@ class Entity < ActiveRecord::Base
   attr_reader :events
   
   after_initialize :init
-  after_save :startup
   
   include ::EntityVisualization
   include ::EntityData
   include ::EntityBehavior
   
   register_events :at_click, :at_startup, :at_schedule
-  register_attributes :min, :max, :schedule
+  register_attributes min: 0, max: 1, schedule: nil
   register_attributes invert_driver_value: false
   
   def value_at dt
@@ -143,11 +142,12 @@ class Entity < ActiveRecord::Base
     end
 
     self.value = v
-    Entity.where(id: id).update_all(value: v)
+    update_columns value: v
 #    update_attribute(:value, v) 
     
     if old_value != v
-      do_event(if on? then :at_on else :at_off end)
+      do_event :at_on if on?
+      do_event :at_off if off?
       do_event :at_change
       do_event :at_dbl_change if dbl_change_assigned
     end  

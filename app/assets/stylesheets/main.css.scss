@@ -30,6 +30,14 @@
         transform: translate(0%, -50%)
       }
 
+      &.right-top-inner{
+        position: absolute;
+        top: 0px;
+        left: 100%;
+        transform: translate(-50%, 0%)
+      }
+      
+
       &.left-top-inner{
         position: absolute;
         top: 0px;

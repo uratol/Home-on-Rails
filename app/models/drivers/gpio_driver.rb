@@ -28,9 +28,9 @@ module GpioDriver
           end
           sleep(0.01)
         end
-      end  
+      end
     end
-    @threads.each(&:join)  
+    @threads.each(&:join)
   end if Home::LINUX_PLATFORM
   
   def self.scan

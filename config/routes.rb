@@ -6,7 +6,8 @@ def uniRoutes
   get '/entities/:id/destroy' => 'entities#destroy'
   get '/entities/insert/:parent' => 'entities#insert'
 
-  get '/main/click'
+  post '/main/click'
+  post '/main/change'
   get '/main/refresh'
   get '/main/reseed'
   
