@@ -1,0 +1,6 @@
+<%= content_tag(:div, e.caption, class: "caption #{ e.caption_class }") if e.caption_class %>
+<%= content_tag :div, '', class: '_slider', style: ("height: #{ e.height }px" if e.orientation.to_sym == :vertical), data: {min: e.min, max: e.max, step: e.step, orientation: e.orientation} %>
+<%= content_tag(:div, e.text, class: "_value caption #{ e.orientation.to_sym == :vertical ? 'bottom-left' : 'right-top-inner' }") %>
+
+
+

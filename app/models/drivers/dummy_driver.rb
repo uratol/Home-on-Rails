@@ -1,6 +1,6 @@
 module DummyDriver
   def set_driver_value v
-    # dummy
+    v
   end
 
   def get_driver_value

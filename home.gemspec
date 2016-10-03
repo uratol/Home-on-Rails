@@ -48,6 +48,7 @@ Gem::Specification.new do |s|
     s.add_dependency 'wiringpi' 
 #  s.add_dependency 'pi_piper' if RUBY_PLATFORM.match(/linux/)
     s.add_dependency 'dht-sensor-ffi'
+    s.add_dependency 'rubyserial'
   end
   
   s.add_development_dependency 'rspec-rails'

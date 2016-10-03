@@ -13,6 +13,15 @@ function setBrightness(elem, brightness) {
 	elem.css('filter', f);
 };
 
+var refreshInterval = 0;
+function setRefreshInterval(interval){
+	if (refreshInterval != 0){ clearInterval(refreshInterval) };
+
+	refreshInterval = setInterval(function() {
+		refreshRequest();
+	}, interval);
+}
+
 function refreshEntityes(entities) {
 	entities.forEach(function(entity) {
 		commonRefresh(entity);
@@ -120,6 +129,7 @@ var ready = function(){
 		arrangeLayout();
 		}, 500);
 	};
+	setRefreshInterval(5000);
 };
 
 //$(document).on('page:change', ready);
@@ -168,6 +178,3 @@ $(document).on('page:change', function() {
 	};
 });
 */
-setInterval(function() {
-	refreshRequest();
-}, 5000);

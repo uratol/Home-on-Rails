@@ -1,4 +1,5 @@
 require "home/engine"
+require "rails_extentions"
 
 module Home
   LINUX_PLATFORM = RUBY_PLATFORM.match(/linux/)

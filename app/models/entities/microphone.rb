@@ -1,0 +1,3 @@
+class Microphone < Widget
+  
+end

@@ -64,11 +64,13 @@ class Entity < ActiveRecord::Base
     "#<#{self.class.name}: #{name}>"
   end
   
-  def do_event event_name
-    events.call event_name 
+  def do_event event_name, params = nil
+    events.call event_name, params: params
   end
 
   def write_value v
+    v = max if v > max
+    v = min if v < min
     transaction do
       store_value v
       tw = twins 
@@ -121,7 +123,9 @@ class Entity < ActiveRecord::Base
   end
 
   def required_methods
-    self.class.required_methods
+    result = self.class.required_methods 
+    result += driver_module.required_methods if driver_module.respond_to? :required_methods
+    return result
   end
   
   protected
@@ -134,7 +138,7 @@ class Entity < ActiveRecord::Base
     
     old_value = self.value
 
-    set_driver_value v if is_a?(Actor) && !driver.blank?
+    set_driver_value(v) if respond_to? :set_driver_value 
 
     if (dbl_change_assigned = events.assigned?(:at_dbl_change) )
       last_time = last_indication_time
@@ -148,7 +152,7 @@ class Entity < ActiveRecord::Base
     if old_value != v
       do_event :at_on if on?
       do_event :at_off if off?
-      do_event :at_change
+      do_event :at_change, old_value
       do_event :at_dbl_change if dbl_change_assigned
     end  
     indications.create! value: v, dt: dt
@@ -169,13 +173,22 @@ class Entity < ActiveRecord::Base
     @required_methods |= args.flatten
   end
   
+  def driver_module
+    @driver_module ||= nil
+    if !@driver_module || driver_changed?
+      @driver_module = "#{ driver }_driver".camelcase.constantize unless driver.blank?
+    else  
+      @driver_module
+    end  
+  end
+  
   private
 
   def init
     @events = EntityEvents.new
     self.state = []
     return if name.to_s.blank?
-    extend "#{ driver }_driver".camelcase.constantize unless driver.blank?
+    extend driver_module if driver_module
   end
   
 

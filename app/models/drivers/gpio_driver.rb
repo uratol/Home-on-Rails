@@ -101,7 +101,7 @@ module GpioDriver
       when Sensor
         io.pin_mode(e.pin_no, WiringPi::INPUT)
         io.pull_up_dn_control(e.pin_no, WiringPi::PUD_UP)
-      when Actor   
+      else
         io.pin_mode(e.pin_no, WiringPi::OUTPUT)
       end
     end
@@ -114,3 +114,4 @@ module GpioDriver
 end
 
 GpioDriver.startup if Home::LINUX_PLATFORM
+

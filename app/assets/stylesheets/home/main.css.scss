@@ -60,6 +60,12 @@
         transform: translate(-50%, -50%)
       }
     
+      &.bottom-left{
+        position: absolute;
+        top: 100%;
+        left: 0%;
+      }
+    
       &.top-center{
         position: absolute;
         top: 0px;

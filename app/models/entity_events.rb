@@ -7,8 +7,8 @@ class EntityEvents < Array
       @name, @code, @options = name, code, options
     end
     
-    def call
-      @code.call
+    def call *params
+      @code.call *params
     end
     
     def to_s
@@ -31,8 +31,14 @@ class EntityEvents < Array
   
   def call event_name, options = {}
 #puts "events#call event_name=#{event_name}, options=#{options}, length=#{inspect}"
-    
-    select{|e| e.name==event_name && e.options[:source_row]==options[:source_row]}.each(&:call)
+    select{|e| e.name==event_name && e.options[:source_row]==options[:source_row]}.each do |event|
+      params = options[:params]
+      if params
+        event.call *params
+      else
+        event.call
+      end    
+    end  
   end  
   
 end
