@@ -6,7 +6,7 @@
  style += "height:#{e.height}px;" if e.height
  
  klass = e.types
- klass += (e.events.map{|ev| ev.name} & [:at_click,:at_dbl_click]) if e.events.assigned?(:at_click)
+ klass += (e.events.map{|ev| ev.name} & [:at_click,:at_dbl_click, :at_touchstart, :at_touchend])
  
  twin_id = e.twin_id
  data = if e.twin_id then {twin: e.twin_id} end

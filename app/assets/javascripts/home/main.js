@@ -89,27 +89,16 @@ function arrangeLayout() {
 	$('.layout_container').height(maxBottom - $('.layout_container').offset().top);
 };
 
-var ready = function(){
-	$(".at_click").hover(function(){
-		
-		if ($(this).data('twin'))
-			$els = $(".at_click[data-twin="+$(this).data('twin')+"]");
-		else	
-			$els = $(this);
-		  
-		$els.toggleClass('hover');
-	});
-	
-	$(".at_click").click(function(){
+function act(elem, action){
 		if(isDesignMode) return;
 		
 		var ent_id;
-		ent_id = $(this).data('twin');
+		ent_id = $(elem).data('twin');
 		if (!ent_id)
-			ent_id = this.id;  
+			ent_id = elem.id;  
 		
 		$.ajax({
-			 url: '/main/click'
+			 url: '/main/' + action
 			,method: 'POST'
 			,data: {root: $('.layout_container').attr('id'), id: ent_id}
 			,success: function(data) {
@@ -117,7 +106,21 @@ var ready = function(){
 				}
 			,error: onAjaxError
 		});
+	}
+	
+var ready = function(){
+	$(".at_click, .at_touchstart, .at_touchend").hover(function(){
+		if ($(this).data('twin'))
+			$els = $("div[data-twin="+$(this).data('twin')+"]");
+		else	
+			$els = $(this);
+		  
+		$els.toggleClass('hover');
 	});
+	
+	$(".at_touchstart").bind("touchstart mousedown", function(e){ e.preventDefault(); act(this, 'touchstart'); });
+	$(".at_click, .at_dbl_click").click(function(){ act(this, 'click'); });
+	$(".at_touchend").bind("touchend mouseup", function(e){ e.preventDefault(); act(this, 'touchend'); });
 	
 
 	refreshRequest();

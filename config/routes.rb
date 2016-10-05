@@ -8,6 +8,8 @@ def uniRoutes
 
   post '/main/click'
   post '/main/change'
+  post '/main/touchstart'
+  post '/main/touchend'
   get '/main/refresh'
   get '/main/reseed'
   

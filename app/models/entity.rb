@@ -22,7 +22,7 @@ class Entity < ActiveRecord::Base
   include ::EntityData
   include ::EntityBehavior
   
-  register_events :at_click, :at_startup, :at_schedule
+  register_events :at_click, :at_touchstart, :at_touchend, :at_startup, :at_schedule
   register_attributes min: 0, max: 1, schedule: nil
   register_attributes invert_driver_value: false
   
@@ -100,6 +100,11 @@ class Entity < ActiveRecord::Base
   def do_schedule
     super rescue NoMethodError
     do_event :at_schedule
+  end
+  
+  def at_schedule sched = nil, &block
+    self.schedule = sched if sched
+    events.add_with_replace :at_schedule, block
   end
 
   def last_indication value = nil

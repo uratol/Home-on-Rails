@@ -8,6 +8,9 @@
 
 table.entities {
   td{white-space: nowrap;}
+  tr:hover{
+    background-color: #111;
+  }
 }
 
 textarea{

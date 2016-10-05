@@ -24,7 +24,9 @@ module GpioDriver
           last_value = value
           value = io.digital_read(maped_pin)
           if value != last_value
-            trigger.call(unmaped_pin, value)
+            ActiveRecord::Base.connection_pool.with_connection do
+              trigger.call(unmaped_pin, value)
+            end
           end
           sleep(0.01)
         end

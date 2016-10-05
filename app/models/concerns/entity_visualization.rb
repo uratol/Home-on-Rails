@@ -14,7 +14,7 @@ module EntityVisualization
   def image
     icon_relative_location = "entities"
     file_exts = %w[png gif jpg jpeg]
-    file_bases = [image_name||name] + self.class.ancestors_and_self(Entity.superclass).map{|c| c.name.downcase} 
+    file_bases = [image_name.to_s||name] + self.class.ancestors_and_self(Entity.superclass).map{|c| c.name.downcase} 
     file_values =  []
     file_values << '.'+human_value if value
     file_values << ''

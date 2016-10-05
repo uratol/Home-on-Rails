@@ -26,6 +26,18 @@ class MainController < ApplicationController
     refresh
   end
   
+  def touchstart
+    id = params[:id].to_i
+    Entity[id].do_event :at_touchstart
+    refresh
+  end
+  
+  def touchend
+    id = params[:id].to_i
+    Entity[id].do_event :at_touchend
+    refresh
+  end
+  
   def change
     id = params[:id].to_i
     e = Entity[id]; 
