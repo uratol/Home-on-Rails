@@ -4,14 +4,8 @@ module BidirectionalMotorDriver
     [:up_full_time, :down_full_time]
   end
   
-  def set_driver_value v 
-    if (@stopping ||= false)
-      delay = 0
-    else  
-      delay = calc_delay(current_position, v)
-    end
-    stop_thread
-    start(delay)
+  def set_driver_value target_position 
+    start(target_position)
   end
   
   
@@ -21,8 +15,11 @@ module BidirectionalMotorDriver
   
   def current_position
     if current_direction != 0
-      delay = (Time.now - relay_thread[:start_time]) / (relay_thread[:delay] > 0 ? up_full_time : down_full_time) * (max - min)
-      relay_thread[:start_position] + delay * relay_thread[:delay].sign
+      delay = (Time.now.to_f - relay_thread[:start_time].to_f) / (relay_thread[:delay] > 0 ? up_full_time : down_full_time) * (max - min)
+      pos = relay_thread[:start_position] + delay * relay_thread[:delay].sign
+      pos = min.to_f if pos < min
+      pos = max.to_f if pos > max
+      pos
     else
       value  
     end
@@ -48,10 +45,26 @@ module BidirectionalMotorDriver
     if current_direction != 0
       @stopping = true
       write_value current_position
-      stop_thread
     end
   ensure  
     @stopping = false
+  end
+
+  def contra_pause_time
+    @contra_pause_time ||= 0.5.seconds
+  end
+
+  def contra_pause_time= interval
+    @contra_pause_time = interval
+  end
+  
+  # default 5% of full time moving
+  def adjustment_percent
+    @adjustment_percent ||= 5
+  end
+
+  def adjustment_percent= value
+    @adjustment_percent = value
   end
   
   protected
@@ -68,7 +81,7 @@ module BidirectionalMotorDriver
   
   def stop_thread
     result = current_position
-    if relay_thread && relay_thread.alive?
+    if current_direction != 0 
       relay_thread.terminate
       relay_thread.join
       self.relay_thread = nil 
@@ -76,8 +89,11 @@ module BidirectionalMotorDriver
     result
   end  
   
-  def start(delay)
-      direction = delay.sign
+  def start(target_position)
+      curr_pos = current_position
+      
+      delay = calc_delay(curr_pos, target_position)
+
       if delay > 0
         start_relay, stop_relay = up_motor, down_motor
       else 
@@ -87,25 +103,44 @@ module BidirectionalMotorDriver
       stop_relay.set_driver_value(0)
       if delay == 0
         start_relay.set_driver_value(0)
+        stop_thread
         return
       end
-  
-      start_relay.set_driver_value(1)
-      start_time = Time.now
-      self.relay_thread = Thread.new(start_relay, delay, start_time) do |relay, delay, start_time|
-        sleep(delay.abs + start_time.to_f - Time.now.to_f)
-        ActiveRecord::Base.connection_pool.with_connection do
-          relay.set_driver_value(0)
-        end  
+
+      contra_delay = current_direction * delay < 0 ? contra_pause_time : 0
+#      puts "current_direction: #{ current_direction }; delay: #{ delay }; relay_thread: #{ relay_thread }; relay_thread.alive?: #{ relay_thread.alive? if relay_thread}" 
+#      byebug if delay>0
+      stop_thread
+      self.relay_thread = Thread.new(start_relay, delay, calc_adjustment_time(curr_pos, target_position), contra_delay) do |relay, delay, adjustment_time, contra_delay|
+        sleep(contra_delay) if contra_delay > 0 
+        start_relay.set_driver_value(1)
+        sleep(delay.abs + adjustment_time)
+        relay.set_driver_value(0)
       end
-      relay_thread[:start_time] = start_time
+      relay_thread[:start_time] = Time.now
       relay_thread[:delay] = delay
-      relay_thread[:start_position] = value
+      relay_thread[:start_position] = curr_pos
       relay_thread.priority = 10
   end
-
+  
   private
   
+  def calc_delay(source_position, target_position)
+    return 0 if (@stopping ||= false)
+        
+    delta_position = target_position - source_position
+    full_time = if delta_position > 0 then up_full_time else down_full_time end
+    return delta_position * full_time.to_f / (max - min)
+  end
+  
+  def calc_adjustment_time(source_position, target_position)
+    if target_position==max
+      up_full_time
+    elsif target_position==min  
+      down_full_time
+    else 0 end * adjustment_percent.to_f / 100    
+  end
+
   def relay_thread
     $relay_threads = {} unless $relay_threads
     $relay_threads[id]
@@ -114,12 +149,6 @@ module BidirectionalMotorDriver
   def relay_thread= thread
     $relay_threads = {} unless $relay_threads
     $relay_threads[id] = thread
-  end
-  
-  def calc_delay(source_position, target_position)
-    delta_position = target_position - source_position
-    full_time = if delta_position > 0 then up_full_time else down_full_time end
-    return delta_position * full_time.to_f / (max - min)
   end
   
 end  

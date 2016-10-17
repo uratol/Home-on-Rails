@@ -25,6 +25,7 @@ class Entity < ActiveRecord::Base
   register_events :at_click, :at_touchstart, :at_touchend, :at_startup, :at_schedule
   register_attributes min: 0, max: 1, schedule: nil
   register_attributes invert_driver_value: false
+  alias_method :invert=, :invert_driver_value=
   
   def value_at dt
     (indication_at(dt) || self).value

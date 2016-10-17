@@ -105,6 +105,7 @@ module GpioDriver
         io.pull_up_dn_control(e.pin_no, WiringPi::PUD_UP)
       else
         io.pin_mode(e.pin_no, WiringPi::OUTPUT)
+        io.digital_write(e.pin_no,e.transform_driver_value(e.value).to_i)
       end
     end
   end
