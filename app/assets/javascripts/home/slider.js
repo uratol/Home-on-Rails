@@ -16,7 +16,7 @@ $(document).on('turbolinks:load', function() {
 			step : slider.data('step'),
 			orientation : slider.data('orientation'),
 			slide : function(event, ui) {
-				setSliderText(slider, ui.value);
+				setSliderText($(this), ui.value);
 			},
 			start : function(event, ui) {
 				changing = true;

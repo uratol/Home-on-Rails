@@ -11,7 +11,7 @@ class Slider < Widget
   end
   
   def human_value
-    value.round.to_s
+    value.round.to_s if value
   end
   
 end
