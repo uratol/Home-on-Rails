@@ -1,8 +1,4 @@
 module ActorBehavior
-
-  def set_driver_value v
-    raise "Override this method in driver module"
-  end
   
   protected
 

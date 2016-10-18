@@ -3,7 +3,7 @@ class Entity < ActiveRecord::Base
   extend EntityClassMethods 
 
   belongs_to :parent, class_name: Entity
-  has_many :indications, dependent: :destroy
+  has_many :indications, dependent: :delete_all 
   has_many :jobs, class_name: :EntityJob, dependent: :destroy
   validates :name, presence: true, uniqueness: true, format: { with: /\A[a-z][a-z0-9_]+\Z/ }
   validates :caption, presence: true
