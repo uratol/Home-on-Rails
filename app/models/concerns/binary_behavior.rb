@@ -81,7 +81,7 @@ module BinaryBehavior
   end
 
   def do_schedule
-    self.on = average_value(schedule * 10) < pwm_power if pwm_power
+    self.on = average_value(schedule * 10) < data.pwm_power if data.pwm_power
     super
   end
 

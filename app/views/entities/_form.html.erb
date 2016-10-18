@@ -90,7 +90,7 @@
 					<ul>
 						Required methods:
 						<% for m in @entity.required_methods %>
-						<li class="method" data-pattern="<%= "def #{m} do\n\nend" %>">
+						<li class="method" data-pattern="<%= "def #{m}\n\nend" %>">
 							<%= m %>
 						</li>
 						<% end %>

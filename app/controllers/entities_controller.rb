@@ -108,7 +108,9 @@ class EntitiesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def entity_params
-     params.require(:entity).permit(:name, :type, :caption, :address, :location_x, :location_y, :value, :parent_id, :driver, :power, :behavior_script)
+     p = params.require(:entity).permit(:name, :type, :caption, :address, :location_x, :location_y, :value, :parent_id, :driver, :power, :behavior_script)
+     p[:name].strip!
+     return p
 #    et = Entity.entity_types.map{|e| e.downcase } << 'entity'
 #    params.require(params.find{|key, value| et.include? key}[0]).permit(:name, :type, :caption, :address, :left, :top, :value, :parent_id)
   end
