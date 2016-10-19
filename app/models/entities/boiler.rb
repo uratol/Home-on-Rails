@@ -7,6 +7,6 @@ class Boiler < Actor
   end  
   
   def text
-    data.text || on? ? 'ON' : 'OFF'
+    data.text || (on? ? 'ON' : 'OFF')
   end
 end
