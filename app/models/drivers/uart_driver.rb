@@ -1,4 +1,4 @@
-require 'rubyserial'
+require 'rubyserial' if Home::LINUX_PLATFORM
 
 module UartDriver
   

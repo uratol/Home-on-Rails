@@ -33,6 +33,7 @@ class Init < ActiveRecord::Migration
       t.integer "rgt",            null: false
       t.integer "depth"
       t.integer "children_count"
+      t.binary "attrs"
     end
   
     add_index "entities", ["name"], name: "index_entities_on_name", unique: true

@@ -7,10 +7,6 @@ class Boiler < Actor
   end  
   
   def text
-    if data.pwm_power
-      "#{ (data.pwm_power * 100).round }%"
-    else
-      on? ? 'ON' : 'OFF'  
-    end
+    data.text || on? ? 'ON' : 'OFF'
   end
 end
