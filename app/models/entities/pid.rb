@@ -20,7 +20,7 @@ class Pid < Widget
   end  
   
   def do_schedule
-    e = cast_value(target_value) - cast_value(input_value)
+    e = cast_value(target_value.to_f) - cast_value(input_value.to_f)
 
     #byebug
     prev_indication = last_indication

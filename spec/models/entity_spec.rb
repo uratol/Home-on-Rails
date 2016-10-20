@@ -32,5 +32,10 @@ describe Entity, type: :model do
   it('#mail to admins') { mail :admins, User.admins.count }
   it('#mail to all') { mail nil, User.count }
   it('#mail to array'){ mail ['test@example.com', 'test2 <test2@example.com>', 't@example.com'], 3 }
-  
+
+  it('holiday?') do
+    expect(@e.holiday?(Time.new(2016,10,20))).to be(false)
+    expect(@e.holiday?(Time.new(2016,10,22))).to be(true)
+  end
+
 end

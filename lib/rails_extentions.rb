@@ -23,4 +23,19 @@ class Time
     end
     super(from ,to)
   end
+
+  def holiday?
+    sunday? || saturday?
+  end
+
+end
+
+class Range
+  def ===(other)
+    if other.is_a?(Time)
+      other.between?(first, last)
+    else
+      super(other)
+    end
+  end
 end

@@ -26,7 +26,7 @@ class Entity < ActiveRecord::Base
   register_attributes min: 0, max: 1, schedule: nil
   register_attributes invert_driver_value: false
   alias_method :invert=, :invert_driver_value=
-  
+
   def value_at dt
     (indication_at(dt) || self).value
   end
@@ -41,6 +41,10 @@ class Entity < ActiveRecord::Base
   
   def behavior_methods
     self.class.instance_methods.grep(/^at_/)
+  end
+
+  def to_f
+    value
   end
   
   def twins

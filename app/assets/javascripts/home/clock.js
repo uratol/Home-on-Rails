@@ -112,5 +112,4 @@ clock_ready = function(){
 	$("div#clock").clock( {format:"24"} );
 };
 
-$(document).ready(clock_ready);
-$(document).on('page:load', clock_ready);
+$(document).on('turbolinks:load', clock_ready);

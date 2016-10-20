@@ -61,8 +61,13 @@ module EntityBehaviorHelpers
     BinaryBehavior.blink args, &block_after
   end
   
-  def log &block
+  def log(&block)
     Rails.logger.debug yield 
+  end
+
+  def holiday?(time = nil)
+    time ||= Time.now
+    time.holiday?
   end
   
 end
