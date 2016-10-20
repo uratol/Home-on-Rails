@@ -10,15 +10,18 @@ class Numeric
   end
 end
 
-class Time
+module TimeRangeComparable
   def between?(from, to)
-    from = Time.parse(from) if from.is_a? String
-    to = Time.parse(to) if to.is_a? String
-    if from > to
-      if self > from
-        to += 1.day
-      else
-        from -= 1.day
+    if from.is_a?(String) || to.is_a?(String)
+      from = from.in_time_zone
+      to = to.in_time_zone
+
+      if from > to
+        if self > from
+          to += 1.day
+        else
+          from -= 1.day
+        end
       end
     end
     super(from ,to)
@@ -27,12 +30,23 @@ class Time
   def holiday?
     sunday? || saturday?
   end
+end
 
+class Time
+  include TimeRangeComparable
+end
+
+class DateTime
+  include TimeRangeComparable
+end
+
+class ActiveSupport::TimeWithZone
+  include TimeRangeComparable
 end
 
 class Range
   def ===(other)
-    if other.is_a?(Time)
+    if other.is_a?(TimeRangeComparable)
       other.between?(first, last)
     else
       super(other)

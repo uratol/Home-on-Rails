@@ -65,8 +65,12 @@ module EntityBehaviorHelpers
     Rails.logger.debug yield 
   end
 
+  def now
+    Time.zone.now
+  end
+
   def holiday?(time = nil)
-    time ||= Time.now
+    time ||= now
     time.holiday?
   end
   
