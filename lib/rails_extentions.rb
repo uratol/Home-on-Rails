@@ -12,8 +12,8 @@ end
 
 class Time
   def between?(from, to)
-    from = Time.parse(from)
-    to = Time.parse(to)
+    from = Time.parse(from) if from.is_a? String
+    to = Time.parse(to) if to.is_a? String
     if from > to
       if self > from
         to += 1.day
