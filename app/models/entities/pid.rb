@@ -44,7 +44,7 @@ class Pid < Widget
   end
 
   def text
-    "#{ (to_f * 100).round }%, #{ input_value } => #{ target_value }"
+    "#{ (to_f * 100).round }%, #{ input_value.to_f } => #{ target_value.to_f }"
   end
 
   private
