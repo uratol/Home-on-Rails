@@ -9,6 +9,7 @@ class Entity < ActiveRecord::Base
   validates :caption, presence: true
   validates :type, presence: true
   validate :name_valid?
+  validate :driver_valid?
   # has_closure_tree
   acts_as_nested_set dependent: :restrict, counter_cache: :children_count, depth_column: :depth
   has_many :children, class_name: Entity, foreign_key: :parent_id, dependent: :restrict_with_error
@@ -209,6 +210,13 @@ class Entity < ActiveRecord::Base
 
   def name_valid?
     errors.add :name, "\"#{name}\" is reserved" if Entity.instance_methods.include? name.to_sym if name?
+  end
+
+  def driver_valid?
+    self.driver = nil if driver==''
+    if driver && !Entity.drivers_names.include?(driver.to_s)
+      errors.add(:driver, "Driver \"#{ driver }\" is not valid")
+    end
   end
 
   self.require_entity_classes

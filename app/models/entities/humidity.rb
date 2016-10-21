@@ -1,6 +1,7 @@
 class Humidity < Sensor
 
-  register_attributes caption_class: 'center-bottom-inner' 
+  register_attributes min: 0, max: 100
+  register_attributes caption_class: 'center-bottom-inner'
 
   def init
     super

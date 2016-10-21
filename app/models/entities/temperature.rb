@@ -1,6 +1,6 @@
 class Temperature < Sensor
 
-  register_attributes caption_class: 'center-bottom-inner' 
+  register_attributes min: -50, max: 100, caption_class: 'center-bottom-inner'
 
   def init
     super

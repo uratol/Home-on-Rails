@@ -11,7 +11,9 @@
 
 class Pid < Widget
   register_attributes kP: 0.5, kI: 0.1, kD: 0.1, min: 0, max: 1
-  
+  register_attributes caption_class: 'center-bottom-inner'
+
+
   register_required_methods :input_value, :target_value
   
   def init
