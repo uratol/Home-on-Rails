@@ -42,15 +42,15 @@ class Pid < Widget
     
     super
   end
-  
+
+  def text
+    "#{ (to_f * 100).round }%, #{ input_value } => #{ target_value }"
+  end
+
   private
   
   def reset
     self.value, data.e_previous, data.e_previous2 = 0
   end
   
-  def text
-    "#{ (to_f * 100).round }%, #{ input_value } => #{ target_value }"
-  end
-
 end
