@@ -15,6 +15,8 @@ class Entity < ActiveRecord::Base
   attr_accessor :state, :image_name, :width, :height, :driver_address, :binary
   alias_method :binary?, :binary
   attr_reader :events
+
+  after_commit {delay.startup}
   
   after_initialize :init
   
@@ -27,11 +29,11 @@ class Entity < ActiveRecord::Base
   register_attributes invert_driver_value: false
   alias_method :invert=, :invert_driver_value=
 
-  def value_at dt
+  def value_at(dt)
     (indication_at(dt) || self).value
   end
 
-  def indication_at dt
+  def indication_at(dt)
     Indication.indication_at self, dt
   end
   
@@ -44,7 +46,7 @@ class Entity < ActiveRecord::Base
   end
 
   def to_f
-    value
+    value || 0
   end
   
   def twins
@@ -69,23 +71,24 @@ class Entity < ActiveRecord::Base
     "#<#{self.class.name}: #{name}>"
   end
   
-  def do_event event_name, params = nil
+  def do_event(event_name, params = nil)
     events.call event_name, params: params
   end
 
-  def write_value v
+  def write_value(v)
+    v = v.to_f
     v = max if v > max
     v = min if v < min
     transaction do
       store_value v
       tw = twins 
       twins.where.not(id: id).update_all value: v if tw
-    end  
-    return v
+    end
+    v
   end
 
   def invert_driver_value?
-    return invert_driver_value
+    invert_driver_value
   end
 
   def transform_driver_value(v)
@@ -93,13 +96,15 @@ class Entity < ActiveRecord::Base
   end
   
   def startup
-    cancel :do_schedule
-    log {"Startup #{ self }"}
-    if schedule
-      log {"Schedule #{ self } : #{ schedule }"}
-      every(schedule).do_schedule 
+    transaction do
+      cancel :do_schedule
+      log {"Startup #{ self }"}
+      if schedule
+        log {"Schedule #{ self } : #{ schedule }"}
+        every(schedule).do_schedule
+      end
+      do_event :at_startup
     end
-    do_event :at_startup
   end
   
   def do_schedule
@@ -107,23 +112,23 @@ class Entity < ActiveRecord::Base
     do_event :at_schedule
   end
   
-  def at_schedule sched = nil, &block
+  def at_schedule(sched = nil, &block)
     self.schedule = sched if sched
     events.add_with_replace :at_schedule, block
   end
 
-  def last_indication value = nil
+  def last_indication(value = nil)
     query = indications.limit(1).order('created_at DESC')
     query = query.where(value: value) if value
-    return query.first
+    query.first
   end
 
-  def last_indication_time value = nil
+  def last_indication_time(value = nil)
     indication = last_indication(value)
-    return indication.created_at if indication
+    indication.created_at if indication
   end  
   
-  def last_indication_interval value = nil
+  def last_indication_interval(value = nil)
     v = last_indication_time(value)
     DateTime.now - v if v
   end
@@ -140,17 +145,17 @@ class Entity < ActiveRecord::Base
   
   protected
   
-  def store_value v, dt = Time.now
-    
+  def store_value(v, dt = Time.now)
+
     if binary? && !(v==0 || v==1)
       raise ArgumentError, "Value #{ v } is not binary"
     end
-    
+
     old_value = self.value
 
-    set_driver_value(v) if respond_to? :set_driver_value 
+    set_driver_value(v) if respond_to? :set_driver_value
 
-    if (dbl_change_assigned = events.assigned?(:at_dbl_change) )
+    if (dbl_change_assigned = events.assigned?(:at_dbl_change))
       last_time = last_indication_time
       dbl_change_assigned = last_time && ((Time.now - last_time) < 1.second)
     end
@@ -158,26 +163,26 @@ class Entity < ActiveRecord::Base
     self.value = v
     update_columns value: v
 #    update_attribute(:value, v) 
-    
+
     if old_value != v
       do_event :at_on if on?
       do_event :at_off if off?
       do_event :at_change, old_value
       do_event :at_dbl_change if dbl_change_assigned
-    end  
+    end
     indications.create! value: v, dt: dt
 
   end
 
-  def self.method_missing method_sym, *arguments, &block
+  def self.method_missing(method_sym, *arguments, &block)
     Entity[method_sym] || super
   end
 
-  def method_missing method_sym, *arguments, &block
+  def method_missing(method_sym, *arguments, &block)
     Entity[method_sym] || super
   end
   
-  def self.register_required_methods *args
+  def self.register_required_methods(*args)
     #required_methods |= args.flatten
     @required_methods = [] unless @required_methods
     @required_methods |= args.flatten

@@ -1,7 +1,7 @@
 class Sensor < Device
   
   def get_driver_value
-    raise "Override this method in driver module"
+    raise "Override this method in driver module" if driver
   end
   
   def poll

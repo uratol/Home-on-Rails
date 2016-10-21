@@ -10,21 +10,19 @@
 # D (t) = Kd * {e (t) — 2 * e (t — 1) + e (t — 2)};
 
 class Pid < Widget
-  register_attributes kP: 1, kI: 0.1, kD: 0.1, min_power: 0, max_power: 1
+  register_attributes kP: 0.5, kI: 0.1, kD: 0.1, min: 0, max: 1
   
   register_required_methods :input_value, :target_value
   
   def init
     super
-    @schedule = 30.seconds
+    self.schedule = 30.seconds
   end  
   
   def do_schedule
-    e = cast_value(target_value.to_f) - cast_value(input_value.to_f)
+    e = target_value.to_f - input_value.to_f
 
-    #byebug
     prev_indication = last_indication
-    #prev_time = prev_indication.created_at
     prev_value = prev_indication.try(:value) || 0
 
     e_previous = data.e_previous || 0
@@ -33,15 +31,14 @@ class Pid < Widget
     p = kP * (e - e_previous)
     i = kI * e
     d = kD * (e - 2 * e_previous + e_previous2)
-    
-    self.value = trunc_power(prev_value + p + i + d)
-    
-    data.e_previous2 = e_previous
-    data.e_previous = e
-    write_value(self.value)
+
+    transaction do
+      data.e_previous2 = e_previous
+      data.e_previous = e
+      write_value(prev_value + p + i + d)
+    end
     
     super
-    return value
   end
   
   private
@@ -50,13 +47,8 @@ class Pid < Widget
     self.value, data.e_previous, data.e_previous2 = 0
   end
   
-  def cast_value v
-    if v.is_a? Entity then v.value else v.to_f end
+  def text
+    "#{ (to_f * 100).round }%, #{ input_value } => #{ target_value }"
   end
-    
-  def trunc_power v
-    v ||= 0
-    v < min_power ? min_power : v > max_power ? max_power : v
-  end
-  
+
 end
