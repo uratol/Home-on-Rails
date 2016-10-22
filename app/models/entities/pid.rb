@@ -48,7 +48,7 @@ class Pid < Widget
   end
 
   def startup
-    reset if (last_indication_interval || 0)  > schedule * 10
+   # reset if schedule.nil? || (last_indication_interval || 0)  > schedule * 10
     super
   end
 
