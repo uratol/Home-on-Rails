@@ -12,7 +12,7 @@ end
 
 module TimeRangeComparable
   def between?(from, to)
-    if from.is_a?(String) || to.is_a?(String)
+    if TimeRangeComparable.args_is_time_str(from ,to)
       from = from.in_time_zone
       to = to.in_time_zone
 
@@ -24,11 +24,17 @@ module TimeRangeComparable
         end
       end
     end
-    super(from ,to)
+    super
   end
 
   def holiday?
     sunday? || saturday?
+  end
+
+  protected
+
+  def self.args_is_time_str(first, last)
+    first.is_a?(String) && last.is_a?(String) && first.size.between?(3,5) && last.size.between?(3,5)
   end
 end
 
@@ -46,10 +52,10 @@ end
 
 class Range
   def ===(other)
-    if other.is_a?(TimeRangeComparable)
+    if other.is_a?(TimeRangeComparable) && TimeRangeComparable.args_is_time_str(first, last)
       other.between?(first, last)
     else
-      super(other)
+      super
     end
   end
 end

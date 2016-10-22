@@ -51,7 +51,7 @@ LIMIT 10000
       ORDER BY dt
       "
     
-    puts sql_query  
+    #puts sql_query
     
     result = Entity.execute_sql(sql_query, devs.to_a, dt_from, dt_to)
     #byebug

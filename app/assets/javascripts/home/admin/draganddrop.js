@@ -32,6 +32,7 @@ $(document).on('turbolinks:load', function() {
 				cancel: false,
 				distance: 10
 			});
+            draggableEntities.resizable();
 
 			sortableEntities.sortable({
 				items : 'li.menu_entity',

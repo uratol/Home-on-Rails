@@ -10,9 +10,8 @@ def uniRoutes
   post '/main/change'
   post '/main/touchstart'
   post '/main/touchend'
-  get '/main/refresh'
-  get '/main/reseed'
-  
+  post '/main/refresh'
+
   post '/admin/reboot'
   
   get '/show/:name' => 'main#show'

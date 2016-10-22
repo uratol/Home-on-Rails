@@ -1,3 +1,7 @@
+var refreshInterval = 0;
+    refreshDelay = 5000;
+
+
 function message(msg){
 	$('#flash_messages').text(msg);
 }
@@ -13,10 +17,12 @@ function setBrightness(elem, brightness) {
 	elem.css('filter', f);
 };
 
-var refreshInterval = 0;
-function setRefreshInterval(interval){
-	if (refreshInterval != 0){ clearInterval(refreshInterval) };
+function stopRefresh(){
+    if (refreshInterval != 0){ clearInterval(refreshInterval) };
+}
 
+function setRefreshInterval(interval){
+    stopRefresh();
 	refreshInterval = setInterval(function() {
 		refreshRequest();
 	}, interval);
@@ -46,9 +52,10 @@ function commonRefresh(entity){
 function refreshRequest() {
 	if (!$('.layout_container').length)
 		return;
-		
+
 	$.ajax({
 		 url: "/main/refresh?root=" + $(".layout_container").attr('id')
+        ,method: 'POST'
 		,success: function(data) {
 			refreshEntityes(data);
 			}
@@ -132,52 +139,16 @@ var ready = function(){
 		arrangeLayout();
 		}, 500);
 	};
-	setRefreshInterval(5000);
+
+    setRefreshInterval(refreshDelay);
+
+    $(window).blur(function(){
+        stopRefresh();
+    });
+    $(window).focus(function(){
+        setRefreshInterval(refreshDelay);
+    });
 };
 
 //$(document).on('page:change', ready);
 $(document).on('turbolinks:load', ready);
-
-/*
-$(document).on('page:change', function() {
-	
-	$(".at_click").hover(function(){
-		
-		if ($(this).data('twin'))
-			$els = $(".at_click[data-twin="+$(this).data('twin')+"]");
-		else	
-			$els = $(this);
-		  
-		$els.toggleClass('hover');
-	});
-	
-	$(".at_click").click(function(){
-		if(isDesignMode) return;
-		
-		var ent_id;
-		ent_id = $(this).data('twin');
-		if (!ent_id)
-			ent_id = this.id;  
-		
-		$.ajax({
-			 url: '/main/click'
-			,data: {root: $(".layout_container").attr('id'), id: ent_id}
-			,success: function(data) {
-				refreshEntityes(data);
-				}
-			,error: onAjaxError
-		});
-	});
-	
-
-	refreshRequest();
-
-	if ($('.layout_container').length) {
-		// setup height container by content
-		// browser needs timeout for building elements
-		setTimeout(function() {
-		arrangeLayout();
-		}, 500);
-	};
-});
-*/

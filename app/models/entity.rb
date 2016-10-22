@@ -148,7 +148,7 @@ class Entity < ActiveRecord::Base
   
   def store_value(v, dt = Time.now)
 
-    if binary? && !(v==0 || v==1)
+    if binary? && v && !(v==0 || v==1)
       raise ArgumentError, "Value #{ v } is not binary"
     end
 
@@ -156,14 +156,13 @@ class Entity < ActiveRecord::Base
 
     set_driver_value(v) if respond_to? :set_driver_value
 
-    if (dbl_change_assigned = events.assigned?(:at_dbl_change))
+    if dbl_change_assigned = events.assigned?(:at_dbl_change)
       last_time = last_indication_time
       dbl_change_assigned = last_time && ((Time.now - last_time) < 1.second)
     end
 
     self.value = v
     update_columns value: v
-#    update_attribute(:value, v) 
 
     if old_value != v
       do_event :at_on if on?
@@ -171,8 +170,7 @@ class Entity < ActiveRecord::Base
       do_event :at_change, old_value
       do_event :at_dbl_change if dbl_change_assigned
     end
-    indications.create! value: v, dt: dt
-
+    indications.create! value: v, dt: dt unless v.nil?
   end
 
   def self.method_missing(method_sym, *arguments, &block)

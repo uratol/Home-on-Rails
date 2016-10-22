@@ -44,13 +44,18 @@ class Pid < Widget
   end
 
   def text
-    "#{ (to_f * 100).round }%, #{ input_value.to_f } => #{ target_value.to_f }"
+    "#{ caption } #{(to_f * 100).round }%, #{ input_value.to_f } => #{ target_value.to_f }"
   end
 
   private
   
   def reset
     self.value, data.e_previous, data.e_previous2 = 0
+  end
+
+  def startup
+    reset if (last_indication_interval || 0)  > schedule * 10
+    super
   end
   
 end
