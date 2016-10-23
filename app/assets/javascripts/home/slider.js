@@ -27,11 +27,8 @@ $(document).on('turbolinks:load', function() {
 				if (isDesignMode)
 					return;
 
-				var ent_id;
 				container = $(ui.handle).closest('div.slider');
-				ent_id = container.data('twin');
-				if (!ent_id)
-					ent_id = container[0].id;
+                var ent_id = container[0].id;
 
 				$.ajax({
 					url : '/main/change',
@@ -45,9 +42,9 @@ $(document).on('turbolinks:load', function() {
 						refreshEntityes(data);
 						changing = false;
 					},
-					error : function(data) {
+					error : function(request, ajaxOptions, thrownError) {
 						changing = false;
-						onAjaxError;
+						onAjaxError(request, ajaxOptions, thrownError);
 					}
 				});
 			},

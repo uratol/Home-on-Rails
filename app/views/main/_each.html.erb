@@ -8,10 +8,8 @@
  klass = e.types
  klass += (e.events.map{|ev| ev.name} & [:at_click,:at_dbl_click, :at_touchstart, :at_touchend])
  
- twin_id = e.twin_id
- data = if e.twin_id then {twin: e.twin_id} end
 %>
-<%= content_tag :div, id: e.id, name: e.name, :class => klass, style: style, data: data do %>
+<%= content_tag :div, id: e.id, name: e.name, :class => klass, style: style do %>
 	<div class="entity_container">
 		<% e.types.reverse.each do |t| 
 			begin 

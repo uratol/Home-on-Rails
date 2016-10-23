@@ -49,7 +49,6 @@ class EntitiesController < ApplicationController
   # POST /entities
   # POST /entities.json
   def create
-#    byebug
     params = entity_params
     @entity = Entity.new(params)
     @entity.behavior_script = params[:behavior_script]
@@ -80,10 +79,10 @@ class EntitiesController < ApplicationController
   # DELETE /entities/1
   # DELETE /entities/1.json
   def destroy
-    if !@entity.destroy
-      er, notice = @entity.errors.full_messages.join, nil
-    else
+    if @entity.destroy
       er, notice = nil, 'Entity was successfully destroyed.'
+    else
+      er, notice = @entity.errors.full_messages.join, nil
     end
     redirect_to :back, notice: notice, alert: er
   end
@@ -108,10 +107,8 @@ class EntitiesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def entity_params
-     p = params.require(:entity).permit(:name, :type, :caption, :address, :location_x, :location_y, :value, :parent_id, :driver, :power, :behavior_script)
+     p = params.require(:entity).permit(:name, :type, :caption, :address, :location_x, :location_y, :value, :parent_id, :driver, :power, :behavior_script, :disabled)
      p[:name].strip!
-     return p
-#    et = Entity.entity_types.map{|e| e.downcase } << 'entity'
-#    params.require(params.find{|key, value| et.include? key}[0]).permit(:name, :type, :caption, :address, :left, :top, :value, :parent_id)
+     p
   end
 end

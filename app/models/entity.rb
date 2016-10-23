@@ -17,7 +17,7 @@ class Entity < ActiveRecord::Base
   alias_method :binary?, :binary
   attr_reader :events
 
-  after_commit {delay.startup}
+  after_commit {cancel :startup; delay.startup}
   
   after_initialize :init
   
@@ -50,20 +50,6 @@ class Entity < ActiveRecord::Base
     value || 0
   end
   
-  def twins
-    Entity.where(driver: driver, address: address) unless address.to_s.blank? || driver.to_s.blank?
-  end
-  
-  def twin_id
-    tw = twins
-    tw.minimum(:id) if tw
-  end
-  
-  def original?
-    tw_id = twin_id
-    tw_id.nil? || tw_id==id
-  end
-  
   def to_s
     name ? "#{ name } (#{ caption })" : super
   end
@@ -77,15 +63,13 @@ class Entity < ActiveRecord::Base
   end
 
   def write_value(v)
-    v = v.to_f
-    v = max if v > max
-    v = min if v < min
-    transaction do
-      store_value v
-      tw = twins 
-      twins.where.not(id: id).update_all value: v if tw
+    if v
+      f = v.to_f
+      f = max if f > max
+      f = min if f < min
+      v = f
     end
-    v
+    store_value v
   end
 
   def invert_driver_value?
@@ -98,9 +82,9 @@ class Entity < ActiveRecord::Base
   
   def startup
     transaction do
-      cancel :do_schedule
+      cancel [:do_schedule, :startup]
       log {"Startup #{ self }"}
-      if schedule
+      if schedule && enabled?
         log {"Schedule #{ self } : #{ schedule }"}
         every(schedule).do_schedule
       end
@@ -141,13 +125,21 @@ class Entity < ActiveRecord::Base
   def required_methods
     result = self.class.required_methods 
     result += driver_module.required_methods if driver_module.respond_to? :required_methods
-    return result
+    result
+  end
+
+  def enabled?
+    !disabled?
+  end
+
+  def enabled=(enabled)
+    self.disabled = !enabled
+    save!
   end
   
   protected
   
   def store_value(v, dt = Time.now)
-
     if binary? && v && !(v==0 || v==1)
       raise ArgumentError, "Value #{ v } is not binary"
     end
@@ -171,6 +163,7 @@ class Entity < ActiveRecord::Base
       do_event :at_dbl_change if dbl_change_assigned
     end
     indications.create! value: v, dt: dt unless v.nil?
+    v
   end
 
   def self.method_missing(method_sym, *arguments, &block)
