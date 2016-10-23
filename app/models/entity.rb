@@ -136,6 +136,10 @@ class Entity < ActiveRecord::Base
     self.disabled = !enabled
     save!
   end
+
+  def disabled?
+    disabled
+  end
   
   protected
   
