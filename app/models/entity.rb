@@ -138,7 +138,7 @@ class Entity < ActiveRecord::Base
   end
 
   def disabled?
-    disabled
+    disabled if respond_to? :disabled
   end
   
   protected
