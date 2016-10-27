@@ -51,11 +51,12 @@ class ActiveSupport::TimeWithZone
 end
 
 class Range
+  alias :original_triple_equals :'==='
   def ===(other)
     if other.is_a?(TimeRangeComparable) && TimeRangeComparable.args_is_time_str(first, last)
       other.between?(first, last)
     else
-      super
+      original_triple_equals other # super not worked, use alias
     end
   end
 end

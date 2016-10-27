@@ -55,7 +55,7 @@ class Pid < Widget
   private
   
   def reset
-    self.value, data.e_previous, data.e_previous2 = 0
+    self.value = data.e_previous = data.e_previous2 = 0
   end
 
 end
