@@ -55,10 +55,6 @@ class MainController < ApplicationController
         render json: entities, only:[:id] , methods: [:img, :brightness, :text]
       end
     end
-  rescue Exception => e
-    puts "Entity.curtain1.current_position: #{ Entity.curtain1.current_position }" 
-    byebug
-    puts e  
   end
   
   def design_apply
