@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
 	<nav class="nav-wrap">
 		<ul class="nav">
-			<% Entity.menu_entities.each_with_index do |e,i| %>
+			<% Entity.menu_entities(@root_entity).each_with_index do |e,i| %>
 			<%= render 'layouts/header_menu_item', title: e.caption, id: e.id, klass: 'menu_entity', url: (if i==0 then root_path else "/show/#{e.name}" end) %>
 			<% end %>
 			

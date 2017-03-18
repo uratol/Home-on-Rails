@@ -24,8 +24,8 @@ module EntityClassMethods
     end
   end
   
-  def menu_entities
-    where(parent: nil).order(:location_x)
+  def menu_entities(root = nil)
+    where('parent_id is null and (disabled=? or id=?)', false, root).order(:location_x)
   end
 
   def ancestors_and_self(class_limit = Entity, recurs_class = nil)

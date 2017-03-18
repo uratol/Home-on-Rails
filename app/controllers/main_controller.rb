@@ -5,7 +5,7 @@ class MainController < ApplicationController
     flash[:warning] = 'Entities not found' unless @root_entity
     
     if @root_entity
-      @entities = @root_entity.self_and_descendants
+      @entities = @root_entity.self_and_descendants.where("disabled = ? or id = ?", false, @root_entity)
     else
       @entities = []  
     end  
@@ -21,26 +21,20 @@ class MainController < ApplicationController
   end
   
   def click
-    id = params[:id].to_i
-    Entity[id].do_event :at_click
-    refresh
+    process_event(:at_click)
   end
   
   def touchstart
-    id = params[:id].to_i
-    Entity[id].do_event :at_touchstart
-    refresh
+    process_event(:at_touchstart)
   end
   
   def touchend
-    id = params[:id].to_i
-    Entity[id].do_event :at_touchend
-    refresh
+    process_event(:at_touchend)
   end
   
   def change
     id = params[:id].to_i
-    e = Entity[id]; 
+    e = Entity[id]
     e.write_value(params[:value].to_f)
     refresh
   end
@@ -67,6 +61,21 @@ class MainController < ApplicationController
     end
     redirect_to :back
   end
+
+  private
+
+  def process_event(event_name)
+    e = Entity[params[:id].to_i]
+    e.do_event(event_name)
+    target = e.redirect_target
+    if target
+      e.redirect_target = nil
+      redirect_to(target.is_a?(Entity) ? "/show/#{ target.name }" : target)
+    else
+      refresh
+    end
+  end
+
 end
 
 =begin

@@ -3,7 +3,9 @@ module EntityVisualization
   
   included do
     # relations, callbacks, validations, scopes and others...
-    register_attributes :caption_class
+    register_attributes(:caption_class)
+
+    attr_accessor(:redirect_target)
   end
 
   # instance methods
@@ -34,7 +36,11 @@ module EntityVisualization
   end
 
   def img
-    ActionController::Base.helpers.asset_path image
+    ActionController::Base.helpers.asset_path(image)
+  end
+
+  def redirect_to(target)
+    self.redirect_target = target
   end
 
   module ClassMethods
