@@ -70,7 +70,8 @@ class MainController < ApplicationController
     target = e.redirect_target
     if target
       e.redirect_target = nil
-      redirect_to(target.is_a?(Entity) ? "/show/#{ target.name }" : target)
+      render :js => "window.location = '#{ target.is_a?(Entity) ? "/show/#{ target.name }" : target }'"
+      #redirect_to(target.is_a?(Entity) ? "/show/#{ target.name }" : target)
     else
       refresh
     end
