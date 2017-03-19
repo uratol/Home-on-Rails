@@ -23,8 +23,8 @@ class EntitiesController < ApplicationController
   def new
     source_id = params[:format]
     if source_id
-      source_entity = Entity.find source_id
-      source_attribs = source_entity.attributes.reject{|k,v| %w(lft rgt depth).include? k.to_s }
+      @source_entity = Entity.find source_id
+      source_attribs = @source_entity.attributes_for_copy
     else
       source_attribs = params.permit(:driver, :address) if params
     end  
@@ -52,10 +52,15 @@ class EntitiesController < ApplicationController
     params = entity_params
     @entity = Entity.new(params)
     @entity.behavior_script = params[:behavior_script]
-    if @entity.save
+
+    @source_entity = Entity.find(self.params[:source_id]) if self.params[:source_id]
+
+    #saved = self.params['create_descendants'] == 1 && @source_entity ? @entity.save_and_create_descendants(@source_entity) : @entity.save
+
+    if @entity.save_and_copy_descendants(self.params['create_descendants'].to_s == '1' ? @source_entity : nil)
       redirect_to entities_path, notice: 'Entity was successfully created.'
     else
-      edit
+      set_form_variables
       render :new
     end
   end
@@ -90,6 +95,7 @@ class EntitiesController < ApplicationController
   private
   
   def set_form_variables
+    @source_entity ||= nil
     @entity_types = Entity.entity_types
     @drivers_names = Entity.drivers_names
     @parents = allowed_parents

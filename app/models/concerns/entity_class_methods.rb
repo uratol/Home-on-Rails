@@ -54,7 +54,22 @@ module EntityClassMethods
   def execute_sql(*sql_array)     
     connection.execute(send(:sanitize_sql_array, sql_array))
   end
-  
+
+  def generate_new_name(source_name, target_name, current_name)
+    name_diff = parse_name_difference(source_name, target_name)
+    new_name = current_name.gsub(name_diff[:source], name_diff[:target])
+    while Entity.find_by_name(new_name) != nil
+      number_part = new_name.scan(/\d+/).last
+      if number_part
+        new_name.sub!(number_part, (number_part.to_i + 1).to_s)
+      else
+        new_name += '_1'
+      end
+    end
+    new_name
+  end
+
+
   protected
 
   def register_attributes *args
@@ -64,7 +79,20 @@ module EntityClassMethods
       iterator = args
     end    
     iterator.each {|key,value| register_attribute key, value}
-  end  
+  end
+
+  def parse_name_difference(source, new)
+    detect_prefix_length = lambda{|src, dst| src.each_char.with_index{|ch, i| break i if ch != dst[i]}}
+    prefix_length = detect_prefix_length.call(source, new)
+    suffix_length = detect_prefix_length.call(source.reverse, new.reverse)
+
+    {
+        prefix: source[0,prefix_length],
+        suffix: suffix_length > 0 ? source[-suffix_length..-1] : '',
+        source: source[prefix_length..-suffix_length-1],
+        target: new[prefix_length..-suffix_length-1]
+    }
+  end
 
   private
   

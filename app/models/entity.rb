@@ -140,7 +140,41 @@ class Entity < ActiveRecord::Base
   def disabled?
     disabled if respond_to? :disabled
   end
-  
+
+  def save_and_copy_descendants(source_entity)
+    transaction do
+      unless save
+        return false
+      end
+      return true unless source_entity
+      source_entity.children.each do |child|
+        attribs = child.attributes_for_copy
+        attribs['parent_id'] = nil
+        attribs['name'] = self.class.generate_new_name(source_entity.name, self.name, child.name)
+
+        e = Entity.new(attribs)
+        e.parent = self
+        e.behavior_script = child.behavior_script
+        saved = e.save_and_copy_descendants(child)
+        unless saved
+          e.errors.full_messages.each do |msg|
+            # you can customize the error message here:
+            self.errors[child.name] << msg
+            raise ActiveRecord::Rollback, msg
+          end
+
+          return false
+        end
+      end
+    end
+  end
+
+
+
+  def attributes_for_copy
+    attributes.reject{|k,v| %w(lft rgt depth id children_count).include? k.to_s }
+  end
+
   protected
   
   def store_value(v, dt = Time.now)

@@ -1,153 +1,168 @@
-<% form_url = if @entity.new_record? then entities_path else entity_path(@entity) end %>
-<%= form_for(@entity, as: :entity, url: form_url ) do |f| %>
+<% form_url = if @entity.new_record? then
+                entities_path
+              else
+                entity_path(@entity)
+              end %>
+<%= form_for(@entity, as: :entity, url: form_url) do |f| %>
 
-<%= render '/layouts/entity_errors', entity: @entity %>
+    <%= render '/layouts/entity_errors', entity: @entity %>
 
-<div style="vertical-align: top">
+    <div style="vertical-align: top">
 
-	<div style="display:inline-block">
+      <div style="display:inline-block">
 
-		<div class="field">
-			<%= f.label :name %>
-			<br>
-			<%= f.text_field :name %>
-		</div>
+        <div class="field">
+          <%= f.label :name %>
+          <br>
+          <%= f.text_field :name %>
+        </div>
 
-		<div class="field">
-			<%= f.label :caption %>
-			<br>
-			<%= f.text_field :caption %>
-		</div>
+        <div class="field">
+          <%= f.label :caption %>
+          <br>
+          <%= f.text_field :caption %>
+        </div>
 
-		<div class="field">
-			<%= f.label :type %>
-			<br>
-			<%= f.select :type, types_options{|klass,depth| "#{'&nbsp;'*2 * depth}#{klass.name}".html_safe } %>
-		</div>
+        <div class="field">
+          <%= f.label :type %>
+          <br>
+          <%= f.select :type, types_options { |klass, depth| "#{'&nbsp;'*2 * depth}#{klass.name}".html_safe } %>
+        </div>
 
-		<div class="field">
-			<%= f.label :driver %>
-			<br>
-			<%= f.select :driver, @drivers_names, {include_blank: "None"} %>
-		</div>
+        <div class="field">
+          <%= f.label :driver %>
+          <br>
+          <%= f.select :driver, @drivers_names, {include_blank: "None"} %>
+        </div>
 
-		<div class="field">
-			<%= f.label :address %>
-			<br>
-			<%= f.text_field :address %>
-		</div>
+        <div class="field">
+          <%= f.label :address %>
+          <br>
+          <%= f.text_field :address %>
+        </div>
 
-		<div class="field">
-			<%= f.label :parent_id %>
-			<br>
-			<%= f.select :parent_id, nested_set_options(@parents, @entity) {|i| "#{'&nbsp;'*2 * i.depth}#{i.caption}".html_safe } , {include_blank: "None"} %>
-		</div>
+        <div class="field">
+          <%= f.label :parent_id %>
+          <br>
+          <%= f.select :parent_id, nested_set_options(@parents, @entity) { |i| "#{'&nbsp;'*2 * i.depth}#{i.caption}".html_safe }, {include_blank: "None"} %>
+        </div>
 
 
-		<% if false %>
+        <% if false %>
 
-		<div class="field">
-			<%= f.label :location %>
-			<br>
-			<%= f.number_field :location_x, step: :any, style: 'width: 50px' %>
-			<%= f.number_field :location_y, step: :any %>
-		</div>
+            <div class="field">
+              <%= f.label :location %>
+              <br>
+              <%= f.number_field :location_x, step: :any, style: 'width: 50px' %>
+              <%= f.number_field :location_y, step: :any %>
+            </div>
 
-		<% end %>
+        <% end %>
 
-		<div class="field">
-			<%= f.label :power %>
-			<br>
-			<%= f.text_field :power %>
-		</div>
+        <div class="field">
+          <%= f.label :power %>
+          <br>
+          <%= f.text_field :power %>
+        </div>
 
-		<div class="field">
-			<%= f.label :value %>
-			<br>
-			<%= f.text_field :value %>
-		</div>
+        <div class="field">
+          <%= f.label :value %>
+          <br>
+          <%= f.text_field :value %>
+        </div>
 
         <div class="field">
           <%= f.label :disabled %>
           <br>
           <%= f.check_box :disabled %>
         </div>
-	</div>
 
-	<div style="display:inline-block; vertical-align: top; padding-left: 50px">
-		<div class="field">
-			<%= f.label :behavior_script %>
-			<br>
+        <% if @source_entity.try(:descendants).try(:any?) %>
+            <%= hidden_field_tag :source_id, @source_entity.id  %>
 
-			<%= f.hidden_field :behavior_script %>
-			
-			<div id="editor" style="width:600px; height: 300px;"><%= @entity.behavior_script %></div>
-			<div class="events">
-				Insert stab at cursor:
-				<ul>
-					Events:
-					<% for m in @entity.behavior_methods %>
-					<li class="method" data-pattern="<%= "#{m} do\n\nend" %>">
-						<%= m %>
-					</li>
-					<% end %>
-				</ul>
-				<% if @entity.required_methods.any? %>
-					<ul>
-						Required methods:
-						<% for m in @entity.required_methods %>
-						<li class="method" data-pattern="<%= "def #{m}\n\nend" %>">
-							<%= m %>
-						</li>
-						<% end %>
-					</ul>
-				<% end %>	
-			</div>	
+            <div class="field">
+              <%= f.label "Also copy all descendants (#{ @source_entity.descendants.length } entities)" %>
+              <br>
+              <%= check_box_tag 'create_descendants', "1", self.params['create_descendants'] %>
+              <%#=
+                  check_box_tag 'create_descendants', self.params['create_descendants'].to_s == '1' ? 1 : 0, self.params['create_descendants'].to_s == '1'
+              %>
+            </div>
+        <% end %>
 
-			<script>
-				var editor = ace.edit("editor");
-				editor.getSession().setMode("ace/mode/ruby");
-				editor.setOptions({
-				     maxLines: 80
-				    ,minLines: 15
-				    ,tabSize: 2
-				    ,useSoftTabs: true
-				});
-				editor.$blockScrolling = Infinity;
-				
-				// editor.session.setNewLineMode("unixs")
-				
-				editor.commands.addCommand({
-				    name: "submit",
-				    exec: function() {
-				      $('#new_entity,#edit_entity').submit();
-				    },
-				    bindKey: "Ctrl-Enter"
-				  });				
+      </div>
 
-				
-				$('#new_entity,#edit_entity').submit(function(e){
-					$('#entity_behavior_script').val( editor.getValue() );
-				});
-				
-				$('.method').click(function(e){
-					var pos = editor.getCursorPosition();
-					var pattern = $(this).data('pattern')+'\n\n';
-					editor.insert(pattern);
-					editor.gotoLine(pos.row+2);
-					editor.insert('  ');
+      <div style="display:inline-block; vertical-align: top; padding-left: 50px">
+        <div class="field">
+          <%= f.label :behavior_script %>
+          <br>
+
+          <%= f.hidden_field :behavior_script %>
+
+          <div id="editor" style="width:600px; height: 300px;"><%= @entity.behavior_script %></div>
+          <div class="events">
+            Insert stab at cursor:
+            <ul>
+              Events:
+              <% for m in @entity.behavior_methods %>
+                  <li class="method" data-pattern="<%= "#{m} do\n\nend" %>">
+                    <%= m %>
+                  </li>
+              <% end %>
+            </ul>
+            <% if @entity.required_methods.any? %>
+                <ul>
+                  Required methods:
+                  <% for m in @entity.required_methods %>
+                      <li class="method" data-pattern="<%= "def #{m}\n\nend" %>">
+                        <%= m %>
+                      </li>
+                  <% end %>
+                </ul>
+            <% end %>
+          </div>
+
+          <script>
+              var editor = ace.edit("editor");
+              editor.getSession().setMode("ace/mode/ruby");
+              editor.setOptions({
+                  maxLines: 80, minLines: 15, tabSize: 2, useSoftTabs: true
+              });
+              editor.$blockScrolling = Infinity;
+
+              // editor.session.setNewLineMode("unixs")
+
+              editor.commands.addCommand({
+                  name: "submit",
+                  exec: function () {
+                      $('#new_entity,#edit_entity').submit();
+                  },
+                  bindKey: "Ctrl-Enter"
+              });
+
+
+              $('#new_entity,#edit_entity').submit(function (e) {
+                  $('#entity_behavior_script').val(editor.getValue());
+              });
+
+              $('.method').click(function (e) {
+                  var pos = editor.getCursorPosition();
+                  var pattern = $(this).data('pattern') + '\n\n';
+                  editor.insert(pattern);
+                  editor.gotoLine(pos.row + 2);
+                  editor.insert('  ');
 //					editor.getSession().getSelection().selectionLead.setPosition(pos);
-					editor.focus(); 
-				});
-			</script>
-		</div>
-	</div>
+                  editor.focus();
+              });
+          </script>
+        </div>
+      </div>
 
-</div>
+    </div>
 
-<div class="actions">
-	<%= f.submit%>
-</div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
 
 <% end %>
 
