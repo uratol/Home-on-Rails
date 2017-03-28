@@ -26,6 +26,7 @@ module Home
  # this function maps the vars from your app into your engine
   def self.setup
     puts "Starting Home: #{ program_name } (#{ $PROGRAM_NAME })"
+    Dir.mkdir(custom_behavior_path) unless File.exists?(custom_behavior_path)
     yield self
     
     startup if program_name == :jobs
@@ -72,7 +73,7 @@ module Home
   
   def self.program_name
     @program_name ||= (
-      if %w(thin unicorn nginx apache lighttpd webrick).any?{|s| $PROGRAM_NAME.include? s}
+      if %w(thin unicorn nginx apache lighttpd webrick rake).any?{|s| $PROGRAM_NAME.include? s}
         :web
       else
         :jobs  

@@ -34,7 +34,7 @@ module EntityBehavior
     errors.any?
   end
 
-  def behavior_file_name nm = name 
+  def behavior_file_name(nm = name)
     Home.custom_behavior_path.join(nm+'.rb') if nm
   end  
 
@@ -57,7 +57,7 @@ module EntityBehavior
     old_file_name = behavior_file_name(@old_name)
     new_file_name = behavior_file_name
     
-    File.delete old_file_name if old_file_name && old_file_name!=new_file_name && File.exist?(old_file_name)
+    File.delete(old_file_name) if old_file_name && old_file_name!=new_file_name && File.exist?(old_file_name)
     
     if @old_behavior_script != behavior_script
       if @behavior_script.to_s.strip.blank?
@@ -69,7 +69,7 @@ module EntityBehavior
     end  
   end
   
-  def backtrace_error_line e
+  def backtrace_error_line(e)
     line = nil
     e.backtrace.find do |b|
       /#{ Regexp.escape(behavior_file_name.to_s) }:(\d+):/.match(b).tap{|m| line = "Line #: #{ m[1] }" if m}

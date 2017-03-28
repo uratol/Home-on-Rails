@@ -63,13 +63,7 @@ class Entity < ActiveRecord::Base
   end
 
   def write_value(v)
-    if v
-      f = v.to_f
-      f = max if f > max
-      f = min if f < min
-      v = f
-    end
-    store_value v
+    store_value(v ? v.to_f.restrict_by_range(min, max) : v)
   end
 
   def invert_driver_value?
@@ -191,8 +185,7 @@ class Entity < ActiveRecord::Base
       dbl_change_assigned = last_time && ((Time.now - last_time) < 1.second)
     end
 
-    self.value = v
-    update_columns value: v
+    update_columns(value: v)
 
     if old_value != v
       do_event :at_on if on?
@@ -200,7 +193,12 @@ class Entity < ActiveRecord::Base
       do_event :at_change, old_value
       do_event :at_dbl_change if dbl_change_assigned
     end
-    indications.create! value: v, dt: dt unless v.nil?
+    begin
+    indications.create!(value: v, dt: dt) unless v.nil?
+    rescue Exception => e
+      puts e.message
+      puts e.backtrace.inspect
+    end
     v
   end
 

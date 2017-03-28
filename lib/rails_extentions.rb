@@ -8,6 +8,11 @@ class Numeric
   def sign
     self <=> 0
   end
+
+  def restrict_by_range(min, max = nil)
+    max, min = min.last, min.first unless max
+    self < min ? min : self > max ? max : self
+  end
 end
 
 module TimeRangeComparable

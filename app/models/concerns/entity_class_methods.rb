@@ -43,7 +43,7 @@ module EntityClassMethods
     Dir["#{Home::Engine.root}/app/models/entities/*.rb"].each {|file| require_dependency file}
   end
 
-  def register_events *args
+  def register_events(*args)
     args.each do |sym|
       define_method sym do |&block|
         events.add_with_replace sym, block
