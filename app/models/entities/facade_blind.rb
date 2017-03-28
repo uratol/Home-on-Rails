@@ -34,22 +34,27 @@ class FacadeBlind < Device
   end
 
   def set_position_and_tilt!(position, tilt)
-    if tilt && !tiltable?
-      raise "Methods min_tilt, max_tilt, tilt_up_full_time, tilt_down_full_time must be defined"
+    if tilt
+      raise "Methods min_tilt, max_tilt, tilt_up_full_time, tilt_down_full_time must be defined" unless tiltable?
+      tilt = tilt.restrict_by_range(min_tilt, max_tilt)
     end
-    tilt = tilt.restrict_by_range(min_tilt, max_tilt) if tilt
-    if position
+
+    if position && tilt
       steps = calc_tilt_and_position_steps(position || self.position, tilt)
-    else
+    elsif tilt
       steps = calc_tilt_steps(tilt)
+    elsif position
+      steps = calc_steps_to_positions(position)
+    else
+      return
     end
 
     start_steps!(steps)
+
     if tilt
       relay_thread[:start_tilt] = data.tilt if relay_thread && !relay_thread[:start_tilt]
       data.tilt = tilt
     end
-
   end
 
   def position
