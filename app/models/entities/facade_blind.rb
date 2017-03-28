@@ -88,7 +88,7 @@ class FacadeBlind < Device
   def calc_tilt_and_position_steps(new_position, new_tilt)
     steps = calc_steps_to_positions(new_position)
 
-    return steps if steps.empty? || tilt == new_tilt
+    return steps if steps.empty?
 
     new_tilt ||= tilt
 
