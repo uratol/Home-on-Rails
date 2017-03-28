@@ -38,7 +38,7 @@ module BidirectionalMotorDriver
     off!
   end
   
-  def stop!(at_position)
+  def stop!(at_position = nil)
     @stopping = true
     fire_event(:on_stop)
     write_value(at_position || current_position)
