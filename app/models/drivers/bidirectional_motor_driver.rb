@@ -13,7 +13,7 @@ module BidirectionalMotorDriver
   end
   
   def set_driver_value(target_position)
-    set_position!(target_position) unless @stopping
+    set_positions!(target_position) unless @stopping
   end
 
   def self.description
