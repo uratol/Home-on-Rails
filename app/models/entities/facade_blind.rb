@@ -51,7 +51,7 @@ class FacadeBlind < Device
 
     start_steps!(steps)
 
-    if tilt
+    if tiltable?
       relay_thread[:start_tilt] = data.tilt if relay_thread && !relay_thread[:start_tilt]
       data.tilt = tilt
     end
