@@ -24,9 +24,14 @@ def uniRoutes
     post '/command' => "butler#command"
     get '/command' => "butler#command"
   end
-  
-  get '/driver/read' => "http_driver#read"
-  get '/driver/write' => "http_driver#write"
+
+  post '/remote' => "remote#execute"
+  if Rails.env.development?
+    get '/remote' => "remote#execute"
+  end
+
+#  get '/driver/read' => "http_driver#read"
+#  get '/driver/write' => "http_driver#write"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
