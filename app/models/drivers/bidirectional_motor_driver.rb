@@ -40,6 +40,8 @@ module BidirectionalMotorDriver
   
   def stop!(at_position = nil)
     @stopping = true
+    up_motor.set_driver_value(0)
+    down_motor.set_driver_value(0)
     fire_event(:on_stop)
     write_value(at_position || current_position)
     stop_thread
@@ -96,11 +98,11 @@ module BidirectionalMotorDriver
   def start_steps!(steps)
     return if steps.empty?
 
+    start_position = current_position
+
     stop!(steps.last.finish_position)
 
     up_relay, down_relay = up_motor, down_motor
-
-    start_position = current_position
 
     th = Thread.new do
       th[:start_position] = start_position
@@ -109,6 +111,7 @@ module BidirectionalMotorDriver
 
       steps.each do |step|
         next if step.delay == 0
+        return if @stopping
         now = Time.now
         th[:start_position] = step.start_position || (th[:start_position] + calc_position_offset(th[:start_time], now, th[:direction]))
         th[:start_time] = now
@@ -119,6 +122,9 @@ module BidirectionalMotorDriver
         sleep(step.delay)
         fire_event(:on_finish_step, step)
       end
+      up_relay.set_driver_value(0)
+      down_relay.set_driver_value(0)
+
     end
     self.relay_thread = th
     th.priority = 10
@@ -166,7 +172,7 @@ module BidirectionalMotorDriver
       delay += calc_adjustment_time(position) if direction != 0
 
       if prev_direction * direction == -1
-        steps = add_to_steps(steps, 0, contra_pause_time, position)
+        steps = add_to_steps(steps, 0, contra_pause_time, prev_position)
       end
 
       steps = add_to_steps(steps, direction, delay, position)

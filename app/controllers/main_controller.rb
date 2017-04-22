@@ -1,4 +1,7 @@
 class MainController < ApplicationController
+  
+  rescue_from Exception, with: :handle_exception
+  
   def show
     @root_entity = (Entity[params[:id].to_i] if params[:id]) || (Entity[params[:name]] if params[:name]) || Entity.menu_entities.try(:first)
     
@@ -61,6 +64,23 @@ class MainController < ApplicationController
     end
     redirect_to :back
   end
+  
+  protected
+  
+  def handle_exception(e)
+    
+    error_message = ""
+    
+    respond_to do |format|
+#      format.html do
+#        flash[:error] = e.to_s
+#      end
+      
+      format.json do 
+        render(json: {ent: Entity.find(params[:id]).to_s, message: e.to_s, stack: e.backtrace.first(3)}, status: 500) 
+      end
+    end
+  end  
 
   private
 
