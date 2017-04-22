@@ -25,10 +25,8 @@ def uniRoutes
     get '/command' => "butler#command"
   end
 
-  post '/remote' => "remote#execute"
-  if Rails.env.development?
-    get '/remote' => "remote#execute"
-  end
+#  post '/remote' => "remote#execute"
+  get '/remote' => "remote#execute"
 
 #  get '/driver/read' => "http_driver#read"
 #  get '/driver/write' => "http_driver#write"
