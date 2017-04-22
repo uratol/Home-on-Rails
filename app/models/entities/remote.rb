@@ -51,7 +51,7 @@ class Remote < Device
       when Net::HTTPSuccess
         YAML::load(response.value)
       else
-        raise "Invalid response from remote entity(#{ response }). Address: #{ uri }, entity: #{ remote_entity_name }, method: #{ method_name }, arguments: #{ arguments.except(:email,:pwd).to_s }"
+        raise "Invalid response from remote entity(#{ response }). Address: #{ uri.split('?').first }, entity: #{ remote_entity_name }, method: #{ method_name }, arguments: #{ arguments.to_s }"
     end
   end
 
