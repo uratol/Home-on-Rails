@@ -45,7 +45,7 @@ class MainController < ApplicationController
   def refresh
     id = params[:root].to_i
 
-    entities = if id==0 then Entity.all else Entity[id].self_and_descendants end
+    entities = id==0 ? Entity.all : Entity[id].self_and_descendants
     
     respond_to do |format|
       format.json do 
@@ -77,7 +77,7 @@ class MainController < ApplicationController
 #      end
       
       format.json do 
-        render(json: {ent: Entity.find(params[:id]).to_s, message: e.to_s, stack: e.backtrace.first(3)}, status: 500) 
+        render(json: {ent: Entity.find_by_id(params[:id]).to_s, message: e.to_s, stack: e.backtrace.first(3)}, status: 500)
       end
     end
   end  

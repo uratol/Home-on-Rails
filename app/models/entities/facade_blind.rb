@@ -25,7 +25,7 @@ class FacadeBlind < Device
       current_tilt += tilt_velocity(relay_thread[:direction]) * (Time.now - relay_thread[:start_time])
       current_tilt.restrict_by_range(min_tilt, max_tilt)
     else
-      data.tilt
+      data.tilt.to_f
     end
   end
 
