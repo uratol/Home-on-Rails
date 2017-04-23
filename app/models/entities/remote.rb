@@ -53,7 +53,7 @@ class Remote < Device
 
     case response
       when Net::HTTPSuccess
-        YAML::load(response.value)
+        YAML::load(response.body)
       else
         raise "#{ response.body }. Invalid response from remote server(#{ response.value }). Address: #{ uri.host }, entity: #{ remote_entity_name }, method: #{ method_name }, arguments: #{ arguments.to_s }"
     end
