@@ -76,8 +76,10 @@ class MainController < ApplicationController
 #        flash[:error] = e.to_s
 #      end
       
-      format.json do 
-        render(json: {ent: Entity.find_by_id(params[:id]).to_s, message: e.to_s, stack: e.backtrace.first(3)}, status: 500)
+      format.json do
+        error_message = e.message
+        error_message += '; ' + e.response.body.to_s if e.respond_to?(:response)
+        render(json: {ent: Entity.find_by_id(params[:id]).to_s, message: error_message, stack: e.backtrace.first(3)}, status: 500)
       end
     end
   end  
