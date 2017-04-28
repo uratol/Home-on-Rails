@@ -74,7 +74,7 @@ module Home
   
   def self.program_name
     @program_name ||= (
-      if %w(thin unicorn nginx apache lighttpd webrick rake).any?{|s| $PROGRAM_NAME.include? s}
+      if %w(thin unicorn nginx apache lighttpd webrick).any?{|s| $PROGRAM_NAME.include? s}
         :web
       else
         :jobs  
