@@ -1,4 +1,5 @@
 class EntityJobHandler
+  require 'date'
   
   attr_accessor :entity_id, :args, :options
 
@@ -95,16 +96,36 @@ class EntityJobHandler
     times = times.map{|time| parse_time(time, @options[:timezone])}
     times = times.map{|time| time.in_time_zone @options[:timezone]} if @options[:timezone]
   
-  
     until (next_time = next_future_time(times))  || !interval
-      times.map!{ |time| time + interval }
+      times.map!{ |time| next_interval(time, interval) }
     end
+
   
     # Update @options to avoid growing number of calculations each time
     @options[:at] = times
   
     next_time  
   end
+
+
+  def next_week_day(date, day_of_week)
+	days_shift = (parse_week_day(day_of_week) - date.wday) % 7
+	days_shift = 7 if days_shift == 0
+	date + days_shift.days
+  end
+
+  def parse_week_day(wd)
+	wd.is_a?(Fixnum) && wd<=7 ? wd : Date.parse(wd.to_s).wday
+  end
+
+  def next_interval(time, interval)
+	if interval.is_a?(Enumerable)
+	  interval.map{ |weekday| next_week_day(time, weekday)}.min
+	else
+      time + interval
+	end
+  end
+
 
   def next_future_time(times)
     times.select{|time| time > Time.now}.min
@@ -152,3 +173,14 @@ class EntityJobHandler
   end
   
 end
+
+=begin
+class Fixnum
+	def days
+		self * 3600 * 24
+	end
+end
+
+h = EntityJobHandler.new(nil, run_interval: [:monday, :tuesday])
+puts (h.send :next_run_time)
+=end

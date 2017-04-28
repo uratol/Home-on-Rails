@@ -1,31 +1,34 @@
 require 'wiringpi' if Home::LINUX_PLATFORM 
 
 module GpioDriver
-  def set_driver_value v
+  def set_driver_value(v)
     GpioDriver.io.digital_write(pin_no, transform_driver_value(v).to_i)
   end
 
   def get_driver_value
-    return transform_driver_value(GpioDriver.io.digital_read(pin_no))
+    transform_driver_value(GpioDriver.io.digital_read(pin_no))
   end
 
-  def self.watch &block
+  def self.watch(&block)
     startup
     
     pins = sensors.uniq.pluck(:address).map(&:to_i)
     
     @threads.each(&:kill) if (@threads ||= []).any?
+
+    puts "#{ pins } will be watching"
     
-    pins.each_with_index do |unmaped_pin|
+    pins.each_with_index do |unmapped_pin|
       @threads << Thread.new(block) do |trigger|
-        maped_pin = map_pin(unmaped_pin)
+        mapped_pin = map_pin(unmapped_pin)
         value = nil
+        puts "loop pin #{ unmapped_pin }(#{ mapped_pin })"
         loop do
           last_value = value
-          value = io.digital_read(maped_pin)
+          value = io.digital_read(mapped_pin)
           if value != last_value
             ActiveRecord::Base.connection_pool.with_connection do
-              trigger.call(unmaped_pin, value)
+              trigger.call(unmapped_pin, value)
             end
           end
           sleep(0.01)
@@ -53,7 +56,7 @@ module GpioDriver
     begin
       result += `cat /sys/kernel/debug/gpio` 
     rescue Exception => e
-      result += e.to_s   
+      result + e.to_s
     end
   end
   
@@ -103,7 +106,7 @@ module GpioDriver
       when Sensor
         io.pin_mode(e.pin_no, WiringPi::INPUT)
         io.pull_up_dn_control(e.pin_no, WiringPi::PUD_UP)
-      else
+      when Actor
         io.pin_mode(e.pin_no, WiringPi::OUTPUT)
         io.digital_write(e.pin_no,e.transform_driver_value(e.value).to_i)
       end
@@ -111,7 +114,7 @@ module GpioDriver
   end
   
   def self.io
-    #global variable usus for development autoload modules mode
+    #global variable used for development autoload modules mode
     $wiringpi_io
   end
 end

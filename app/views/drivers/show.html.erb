@@ -12,9 +12,12 @@
 		<% if @driver.respond_to? :scan %>
 		<th> Scanned address </th>
 		<% end %>
-		<th> Entity </th>
-		<th> Address </th>
-		<th> Value </th>
+
+        <th>Name</th>
+        <th>Caption</th>
+        <th>Class</th>
+        <th>Address</th>
+        <th>Value</th>
 	</tr>
 	<% @entities.each do |e| %>
 	<tr>
@@ -28,8 +31,14 @@
         link_to e.name, edit_entity_path(e)
       end
 %> </td>
-		<td> <%= e.address %> </td>
-		<td> <%= e.human_value %> </td>
+      <td style="padding-left:<%= e.depth.to_i*30 %>px">
+        <% ic = e.image %>
+        <%= image_tag ic, width: 16, height: 16 if ic %>
+        <%= e.caption %>
+      </td>
+      <td> <%= e.type unless e.new_record? %> </td>
+      <td> <%= e.address %> </td>
+      <td> <%= e.human_value %> </td>
 	</tr>
 	<% end %>
 </table>
