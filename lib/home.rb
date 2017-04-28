@@ -28,7 +28,8 @@ module Home
     puts "Starting Home: #{ program_name } (#{ $PROGRAM_NAME })"
     Dir.mkdir(custom_behavior_path) unless File.exists?(custom_behavior_path)
     yield self
-    
+
+    puts "setup #{ program_name }: #{ $PROGRAM_NAME }"
     startup if program_name == :jobs
   end  
   
