@@ -2,8 +2,7 @@ class EntitiesController < ApplicationController
 
   before_action :set_entity, only: [:show, :edit, :update, :destroy]
   before_action :admin_user!
-  after_action :driver_startup, only: [:update, :create]
-  
+
   def classes
     @root_class = Entity
     @entities = Entity.all.to_a
@@ -80,10 +79,6 @@ class EntitiesController < ApplicationController
       edit
       render :edit
     end
-  end
-
-  def driver_startup
-    @entity.try(:driver_module).try(:startup)
   end
 
   # DELETE /entities/1
