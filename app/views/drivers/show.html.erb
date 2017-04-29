@@ -31,7 +31,7 @@
         link_to e.name, edit_entity_path(e)
       end
 %> </td>
-      <td style="padding-left:<%= e.depth.to_i*30 %>px">
+      <td>
         <% ic = e.image %>
         <%= image_tag ic, width: 16, height: 16 if ic %>
         <%= e.caption %>
