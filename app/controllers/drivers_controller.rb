@@ -13,8 +13,7 @@ class DriversController < ApplicationController
         if driver_address.is_a? Hash
           driver_address = driver_address[:address]
         end
-        driver_address = driver_address.to_s
-        entity = @entities.detect{|e| e.address == driver_address}
+        entity = @entities.detect{|e| e.address == driver_address.to_s}
         unless entity
           entity = Device.new
           @entities << entity

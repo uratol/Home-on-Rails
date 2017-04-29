@@ -19,7 +19,7 @@
         <th>Address</th>
         <th>Value</th>
 	</tr>
-	<% @entities.each do |e| %>
+	<% @entities.sort_by{|e| e.driver_address}.each do |e| %>
 	<tr>
 		<% if @driver.respond_to? :scan %>
 		<td> <%= e.driver_address %> </td>
