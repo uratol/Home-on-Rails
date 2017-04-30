@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.description = "Visualisation home devices, handling device events, voice control, etc"
   s.license     = "MIT"
 
-  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib,public}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency 'rails', '~> 4.2.1'
@@ -25,8 +25,7 @@ Gem::Specification.new do |s|
 #  s.add_dependency 'jquery-turbolinks'
 
   s.add_dependency 'awesome_nested_set'
-#  s.add_dependency 'sun_times'
-  s.add_dependency 'ruby-sun-times'
+  s.add_dependency 'solar'
   s.add_dependency 'delayed_job_active_record'
   
   s.add_dependency 'nokogiri'
@@ -55,6 +54,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'capybara'
   s.add_development_dependency 'factory_girl_rails'
   s.add_development_dependency 'sqlite3'
-  s.test_files = Dir["spec/**/*"]  
+  s.add_development_dependency 'rdoc'
+  s.test_files = Dir["spec/**/*"]
   
 end

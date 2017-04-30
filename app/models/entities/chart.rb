@@ -1,3 +1,5 @@
+# Объект для отображения графиков
+
 class Chart < Widget
 
   register_attributes width: 900,  height: 850, period_default: 1.day

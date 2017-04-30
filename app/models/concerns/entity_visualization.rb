@@ -35,13 +35,24 @@ module EntityVisualization
     return nil    
   end
 
+  # Перенаправляет браузер на заданный объект либо страницу
+  #
+  # Параметры:
+  # +target+ : Entity || String
+  #
+  # Пример вызова:
+  #   at_click do
+  #     redirect_to floor1
+  #   end
+  def redirect_to(target)
+    self.redirect_target = target
+  end
+
+  #:nodoc:
   def img
     ActionController::Base.helpers.asset_path(image)
   end
 
-  def redirect_to(target)
-    self.redirect_target = target
-  end
 
   module ClassMethods
     # class methods

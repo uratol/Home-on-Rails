@@ -1,7 +1,7 @@
 class Clock < Widget
-  require 'sun_times'
+  require 'solar'
   
-  @@sun_time = nil
+  @sun_time = nil
   
   def time
     Time.now
@@ -18,29 +18,45 @@ class Clock < Widget
   
   def self.sunrise_time
     calc_suntime
-    @@sun_time.first
+    @sun_time[:rise]
   end
 
   def self.sunset_time
     calc_suntime
-    @@sun_time.second
+    @sun_time[:set]
   end
-  
-  
+
+  def self.noon_time
+    calc_suntime
+    @sun_time[:noon]
+  end
+
+  def self.sun_elevation
+    Solar.position(Time.now, Home.longitude, Home.latitude).first
+  end
+
+  def self.sun_azimuth
+    Solar.position(Time.now, Home.longitude, Home.latitude).second
+  end
+
   private
 
   def self.calc_suntime
-    return unless @@sun_time.nil? || @@sun_time[2].to_date!=Date.today
+    day = Date.today
+    return unless @sun_time.nil? || @sun_time[:day] != day
 
     latitude, longitude = Home.latitude, Home.longitude
 
-    unless (latitude && longitude)
+    unless latitude && longitude
       raise 'Latitude or longitude is not defined'
     end
 
-    sun_times = SunTimes.new
-    day = Date.today
-    @@sun_time = [sun_times.rise(day, latitude, longitude), sun_times.set(day, latitude, longitude), day]
+    @sun_time = {}
+    @sun_time[:rise], @sun_time[:noon], @sun_time[:set] = Solar.passages(day, longitude, latitude)
+    @sun_time[:day] = day
+
+    #sun_times = SunTimes.new
+    #@sun_time = [sun_times.rise(day, latitude, longitude), sun_times.set(day, latitude, longitude), day]
   end
 
 end

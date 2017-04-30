@@ -1,5 +1,5 @@
 <%= content_tag :li do %>
-	<%= content_tag :span , c.name %>
+	<%= link_to c.name, "/doc/#{ c.name }.html", target: :_blank %>
 
 	<%= content_tag :span, class: :class_count do %>
 	
@@ -9,7 +9,9 @@
 	%>
 	
 	<% end %>
-	<% if c.subclasses.any? %>
+
+
+    <% if c.subclasses.any? %>
 	<%= content_tag :ul do %>
 		<% c.subclasses.each do |s| %>
 		<%= render 'entities/class', c: s %>

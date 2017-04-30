@@ -122,6 +122,8 @@
             <% end %>
           </div>
 
+          <%= link_to 'Help', "/doc/#{ @entity.class.name }.html", target: :_blank %>
+
           <script>
               var editor = ace.edit("editor");
               editor.getSession().setMode("ace/mode/ruby");

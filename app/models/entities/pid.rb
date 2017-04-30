@@ -1,18 +1,19 @@
 ##
-# Пропорциональный интегрально-дифференциальный регулятор
-# Используется для управления нагрузкой
-# value содержит текущую мощность
+# Пропорциональный интегрально-дифференциальный регулятор.
+# Используется для управления нагрузкой.
+# Аттрибут +value+ содержит текущую мощность, которая пересчитывается по расписанию, указанному в +schedule+
 
-# реккурентная формула
+# Используется реккурентная формула
 # u(t) = u(t — 1) + P (t) + I (t) + D (t);
 # P (t) = Kp * {e (t) — e (t — 1)};
 # I (t) = Ki * e (t);
 # D (t) = Kd * {e (t) — 2 * e (t — 1) + e (t — 2)};
 
 class Pid < Widget
+  # Ключевые коэффициенты для регулятора
   register_attributes kP: 0.5, kI: 0.1, kD: 0.1, min: 0, max: 1
-  register_attributes caption_class: 'center-bottom-inner'
 
+  register_attributes caption_class: 'center-bottom-inner'
 
   register_required_methods :input_value, :target_value
   

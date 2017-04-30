@@ -1,3 +1,5 @@
+# Датчик типа "сухой контакт"
+
 class Switch < Sensor
 
   def invert_driver_value?

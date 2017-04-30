@@ -1,3 +1,4 @@
+# Датчик движения
 class Motion < Sensor
   register_attributes caption_class: 'center-bottom-inner' 
   include ActionView::Helpers::DateHelper

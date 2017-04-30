@@ -1,3 +1,6 @@
+# Базовый класс для всех объектов.
+# От него наследуются все остальные объекты: помещения, устройства, виджеты и т.д.
+
 class Entity < ActiveRecord::Base
   
   extend EntityClassMethods 
@@ -13,9 +16,40 @@ class Entity < ActiveRecord::Base
   # has_closure_tree
   acts_as_nested_set dependent: :restrict, counter_cache: :children_count, depth_column: :depth
   has_many :children, class_name: Entity, foreign_key: :parent_id, dependent: :restrict_with_error
-  attr_accessor :state, :image_name, :width, :height, :driver_address, :binary
-  alias_method :binary?, :binary
-  attr_reader :events
+
+  attr_accessor :state #:nodoc:
+
+  # Имя изображения.
+  # Вызывается каждый раз при обновлении страницы для каждого объекта (как правило раз в пять секунд).
+  # Файл с этим именем должен присутствовать в папке app/assets/image/entities
+  # По умолчанию берёт первый файл из этой папки в следующем порядке:
+  #   ИмяОбъекта.Значение
+  #   ИмяОбъекта
+  #   ИмяКласса.Значение
+  #   ИмяКласса
+  #   ИмяКлассаПредка.Значение
+  #   ИмяКлассаПредка
+  #   ... и т.д. для каждого класса-предка
+  # Перегрузив этот метод, можно задать индивидуальное изображение для каждого объекта.
+  # ==== Пример
+  #   def image_name
+  #     "custom_image_#{ value.round(0) }"
+  #   end
+  attr_accessor :image_name
+
+  # Ширина объекта в пикселах
+  attr_accessor :width
+
+  # Высота объекта в пикселах
+  attr_accessor :height
+
+
+  attr_accessor :driver_address #:nodoc:
+
+  attr_accessor :binary #:nodoc:
+
+  alias_method :binary?, :binary #:nodoc:
+  attr_reader :events #:nodoc:
 
   after_commit {cancel :startup; delay.startup}
   
@@ -30,51 +64,55 @@ class Entity < ActiveRecord::Base
   register_attributes invert_driver_value: false
   alias_method :invert=, :invert_driver_value=
 
+  # возвращает значение на заданное время
   def value_at(dt)
     (indication_at(dt) || self).value
   end
 
-  def indication_at(dt)
+  def indication_at(dt) #:nodoc:
     Indication.indication_at self, dt
   end
   
-  def types
+  def types #:nodoc:
     self.class.types
   end
   
-  def behavior_methods
+  def behavior_methods #:nodoc:
     self.class.instance_methods.grep(/^at_/)
   end
 
-  def to_f
+  def to_f #:nodoc:
     value || 0
   end
   
-  def to_s
+  def to_s #:nodoc:
     name ? "#{ name } (#{ caption })" : super
   end
   
-  def inspect
+  def inspect #:nodoc:
     "#<#{self.class.name}: #{name}>"
   end
   
-  def do_event(event_name, params = nil)
+  def do_event(event_name, params = nil) #:nodoc:
     events.call event_name, params: params
   end
 
+  # Устанавливает и записывает значение (атрибут value)
+  # ==== Параметры
+  # +v+ : Number - значение
   def write_value(v)
     store_value(v ? v.to_f.restrict_by_range(min, max) : v)
   end
 
-  def invert_driver_value?
+  def invert_driver_value? #:nodoc:
     invert_driver_value
   end
 
-  def transform_driver_value(v)
+  def transform_driver_value(v) #:nodoc:
     invert_driver_value? ? 1-v : v
   end
   
-  def startup
+  def startup #:nodoc:
     transaction do
       cancel [:do_schedule, :startup]
       log {"Startup #{ self }"}
@@ -86,37 +124,54 @@ class Entity < ActiveRecord::Base
     end
   end
   
-  def do_schedule
+  def do_schedule #:nodoc:
     super rescue NoMethodError
     do_event :at_schedule
   end
-  
-  def at_schedule(sched = nil, &block)
-    self.schedule = sched if sched
+
+  # задаёт обработчик, вызываемый по расписанию
+  #
+  # ==== Параметры
+  # * +every+ - интервал. например 1.hour, 30.minutes, 10.seconds
+  # * +at+ : String - время в формате 'HH:MM'. Можно также указывать массив, например ['10:00', '13:10']
+  #
+  # ==== Пример
+  #   at_schedule(every: 1.day, at: ['10:00', '13:00']) do
+  #     light1.on! delay: 5.minutes
+  #   end
+  def at_schedule(options = nil, &block)
+    self.schedule = options if options
     events.add_with_replace :at_schedule, block
   end
 
+  # возвращает последнее значение - обект Indication
+  #
+  # * +value+ - значение, если не указано, возвращается время любого изменения значения
   def last_indication(value = nil)
     query = indications.limit(1).order('created_at DESC')
     query = query.where(value: value) if value
     query.first
   end
 
+  # возвращает время последнего изменения значения
+  #
+  # * +value+ - значение, если не указано, возвращается время любого изменения значения
   def last_indication_time(value = nil)
     indication = last_indication(value)
     indication.created_at if indication
   end  
-  
+
+  # возвращает время, прошедшее с последнего изменения значения
   def last_indication_interval(value = nil)
     v = last_indication_time(value)
     DateTime.now - v if v
   end
 
-  def self.required_methods
+  def self.required_methods #:nodoc:
     @required_methods ||= []
   end
 
-  def required_methods
+  def required_methods #:nodoc:
     result = self.class.required_methods 
     result += driver_module.required_methods if driver_module.respond_to? :required_methods
     result
@@ -135,7 +190,7 @@ class Entity < ActiveRecord::Base
     disabled if respond_to? :disabled
   end
 
-  def save_and_copy_descendants(source_entity)
+  def save_and_copy_descendants(source_entity) #:nodoc:
     transaction do
       unless save
         return false
@@ -163,14 +218,13 @@ class Entity < ActiveRecord::Base
     end
   end
 
-
-
-  def attributes_for_copy
+  def attributes_for_copy #:nodoc:
     attributes.reject{|k,v| %w(lft rgt depth id children_count).include? k.to_s }
   end
 
   protected
-  
+
+  #:nodoc:
   def store_value(v, dt = Time.now)
     if binary? && v && !(v==0 || v==1)
       raise ArgumentError, "Value #{ v } is not binary"
@@ -202,20 +256,24 @@ class Entity < ActiveRecord::Base
     v
   end
 
+  #:nodoc:
   def self.method_missing(method_sym, *arguments, &block)
     Entity[method_sym] || super
   end
 
+  #:nodoc:
   def method_missing(method_sym, *arguments, &block)
     Entity[method_sym] || super
   end
-  
+
+  #:nodoc:
   def self.register_required_methods(*args)
     #required_methods |= args.flatten
     @required_methods = [] unless @required_methods
     @required_methods |= args.flatten
   end
-  
+
+  #:nodoc:
   def driver_module
     @driver_module ||= nil
     if !@driver_module || driver_changed?

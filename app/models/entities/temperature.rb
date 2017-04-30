@@ -1,3 +1,5 @@
+# Датчик температуры
+
 class Temperature < Sensor
 
   register_attributes min: -50, max: 100, caption_class: 'center-bottom-inner'

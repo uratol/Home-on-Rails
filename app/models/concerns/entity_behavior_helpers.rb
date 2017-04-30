@@ -16,7 +16,8 @@ module EntityBehaviorHelpers
     opt = {at: run_time, method: :run_at, source_row: (block.source_location.second if block)}
     EntityJobHandler.new self, opt
   end
-  
+
+  # Устанавливает обработчик по расписанию
   def every(run_interval, options = {}, &block)
     options[:run_interval] = run_interval
     if block
@@ -25,7 +26,8 @@ module EntityBehaviorHelpers
     end  
     EntityJobHandler.new self, options 
   end
-  
+
+  # Удаляет задание с переданным именем или все задания
   def cancel(job_name = nil)
     cond = {entity_id: self.id}
     cond[:queue] = job_name if job_name
@@ -40,6 +42,16 @@ module EntityBehaviorHelpers
   # Returns sunset time
   def sunset_time
     Clock.sunset_time.in_time_zone
+  end
+
+  # Возвращает угол возвышения солнца(от горизонта), в градусах.
+  def sun_tilt
+    Clock.sun_elevation
+  end
+
+  # Возвращает азимут солнца, в градусах. Направление от севера по часовой стрелке
+  def sun_azimuth
+    Clock.sun_azimuth
   end
 
   # Sends email to user/users

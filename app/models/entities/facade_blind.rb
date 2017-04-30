@@ -1,6 +1,6 @@
 class FacadeBlind < Device
 
-  register_attributes :min_tilt, :max_tilt, :tilt_up_full_time, :tilt_down_full_time
+  register_attributes :min_tilt, :max_tilt, :tilt_up_full_time, :tilt_down_full_time, :azimuth
 
   def init
     super
@@ -117,6 +117,5 @@ class FacadeBlind < Device
   def tiltable?
     min_tilt && max_tilt && tilt_up_full_time && tilt_down_full_time
   end
-
 
 end

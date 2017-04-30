@@ -1,3 +1,4 @@
+# Лампа
 class Light < Actor
   def power
     super || 100

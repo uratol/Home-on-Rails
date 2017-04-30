@@ -1,3 +1,5 @@
+# Датчик влажности
+
 class Humidity < Sensor
 
   register_attributes min: 0, max: 100
