@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module ParseTime - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-parse_time">#parse_time</a>
+    
+    <li ><a href="#method-i-time_words">#time_words</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-ParseTime">
+  <h1 id="module-ParseTime" class="module">
+    module ParseTime
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-parse_time" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parse_time</span><span
+            class="method-args">(s, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>require &#39;rails/all&#39;</p>
+          
+          
+
+          
+          <div class="method-source-code" id="parse_time-source">
+            <pre><span class="ruby-comment"># File parse_time.rb, line 5</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">parse_time</span> (<span class="ruby-identifier">s</span>, <span class="ruby-identifier">options</span> = {})
+    <span class="ruby-identifier">options</span> = {} <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">nil?</span>
+    
+    <span class="ruby-identifier">s</span>.<span class="ruby-identifier">strip!</span>
+
+    {<span class="ruby-string">&#39;полпервого&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>, <span class="ruby-string">&#39;полвторого&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, <span class="ruby-string">&#39;полтретьего&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>        , <span class="ruby-string">&#39;полчетвёртого&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">3</span>, <span class="ruby-string">&#39;полпятого&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">4</span>, <span class="ruby-string">&#39;полшестого&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">5</span>        , <span class="ruby-string">&#39;полседьмого&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">6</span>, <span class="ruby-string">&#39;полвосьмого&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">7</span>, <span class="ruby-string">&#39;полдевятого&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">8</span>        , <span class="ruby-string">&#39;полдесятого&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">9</span>, <span class="ruby-string">&#39;полодинадцатого&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">10</span>, <span class="ruby-string">&#39;полдвенадцатого&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">11</span>
+    }.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">s</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-identifier">k</span>,<span class="ruby-node">&quot;#{ v.to_s }:30&quot;</span>)
+      <span class="ruby-identifier">s</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-identifier">k</span>[<span class="ruby-value">3</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>],(<span class="ruby-identifier">v</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>).<span class="ruby-identifier">to_s</span>)
+    <span class="ruby-keyword">end</span>
+    
+    {<span class="ruby-string">&#39;полдень&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;12:00&#39;</span>, <span class="ruby-string">&#39;полночь&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;00:00&#39;</span> }.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">s</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span>)
+    <span class="ruby-keyword">end</span>
+    
+    
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:type</span>]=<span class="ruby-value">:interval</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&#39;через&#39;</span>)
+    
+    <span class="ruby-identifier">m</span> = <span class="ruby-identifier">s</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/(?&lt;num1&gt;\d+).?(?&lt;unit1&gt;час|минут)?\D*(?&lt;num2&gt;\d+)?/</span>)
+    
+    
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">m</span>
+      <span class="ruby-identifier">num1</span>, <span class="ruby-identifier">num2</span>, <span class="ruby-identifier">unit1</span> = <span class="ruby-identifier">m</span>[<span class="ruby-value">:num1</span>], <span class="ruby-identifier">m</span>[<span class="ruby-value">:num2</span>], <span class="ruby-identifier">m</span>[<span class="ruby-value">:unit1</span>]
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">m</span> = <span class="ruby-identifier">s</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/(?&lt;unit1&gt;час|минуту)/</span>)
+      <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">m</span>
+      <span class="ruby-identifier">num1</span>, <span class="ruby-identifier">num2</span>, <span class="ruby-identifier">unit1</span> = <span class="ruby-string">&#39;1&#39;</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">m</span>[<span class="ruby-value">:unit1</span>]
+    <span class="ruby-keyword">end</span>
+    
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">num1</span>
+    
+    <span class="ruby-identifier">hours</span>, <span class="ruby-identifier">minutes</span> = <span class="ruby-keyword">nil</span>
+    
+    <span class="ruby-comment"># Rails.logger.debug { &quot;m[:unit1]= #{ m[:unit1] }&quot; }</span>
+    
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">unit1</span><span class="ruby-operator">==</span><span class="ruby-string">&#39;минут&#39;</span>
+      <span class="ruby-identifier">minutes</span> = <span class="ruby-identifier">num1</span>.<span class="ruby-identifier">to_f</span>
+      <span class="ruby-identifier">hours</span> = <span class="ruby-identifier">num2</span>.<span class="ruby-identifier">to_f</span><span class="ruby-operator">-</span><span class="ruby-value">1</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">num2</span>   <span class="ruby-comment"># 5 минут 7-го = 6:05</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">hours</span>, <span class="ruby-identifier">minutes</span> = <span class="ruby-identifier">num1</span>.<span class="ruby-identifier">to_f</span>, <span class="ruby-identifier">num2</span>.<span class="ruby-identifier">to_f</span>
+    
+    <span class="ruby-keyword">end</span>   
+    
+    <span class="ruby-identifier">d</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:type</span>]<span class="ruby-operator">==</span><span class="ruby-value">:interval</span>
+      <span class="ruby-identifier">hours</span> <span class="ruby-operator">||=</span> <span class="ruby-value">0</span>
+      <span class="ruby-identifier">minutes</span> <span class="ruby-operator">||=</span> <span class="ruby-value">0</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">hours</span><span class="ruby-operator">==</span><span class="ruby-value">0</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">minutes</span><span class="ruby-operator">==</span><span class="ruby-value">0</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">d</span> = <span class="ruby-identifier">d</span>.<span class="ruby-identifier">to_date</span>  
+      <span class="ruby-keyword">if</span> (<span class="ruby-identifier">s</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&#39;вечера&#39;</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">hours</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">12</span>) <span class="ruby-operator">||</span> (<span class="ruby-identifier">s</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&#39;дня&#39;</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">hours</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">4</span>)
+        <span class="ruby-identifier">hours</span> <span class="ruby-operator">+=</span> <span class="ruby-value">12</span>
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">hours</span><span class="ruby-operator">&gt;</span><span class="ruby-value">24</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">minutes</span><span class="ruby-operator">&gt;</span><span class="ruby-value">59</span>
+    <span class="ruby-keyword">end</span>
+    
+    
+<span class="ruby-comment"># Rails.logger.debug &quot;num1=#{ num1 } num2=#{ num2 }&quot;</span>
+      
+
+    <span class="ruby-identifier">d</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">hours</span>.<span class="ruby-identifier">hours</span><span class="ruby-operator">+</span><span class="ruby-identifier">minutes</span>.<span class="ruby-identifier">minutes</span>
+    <span class="ruby-identifier">d</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>.<span class="ruby-identifier">day</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">d</span><span class="ruby-operator">&lt;</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&#39;завтра&#39;</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">d</span>
+    
+  <span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-time_words" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">time_words</span><span
+            class="method-args">(t)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="time_words-source">
+            <pre><span class="ruby-comment"># File parse_time.rb, line 75</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">time_words</span> <span class="ruby-identifier">t</span>
+  <span class="ruby-node">&quot;#{ t.to_s(:time) } #{ case when t.today? then &#39;сегодня&#39; when (t-1.day).today? then &#39;завтра&#39; else &quot;, #{ t.day } #{ t.month } #{ t.year }&quot; end }&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.3.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

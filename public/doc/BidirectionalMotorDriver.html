@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module BidirectionalMotorDriver - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-description">::description</a>
+    
+    <li ><a href="#method-c-required_methods">::required_methods</a>
+    
+    <li ><a href="#method-i-adjustment_percent">#adjustment_percent</a>
+    
+    <li ><a href="#method-i-adjustment_percent-3D">#adjustment_percent=</a>
+    
+    <li ><a href="#method-i-binary-3F">#binary?</a>
+    
+    <li ><a href="#method-i-contra_pause_time">#contra_pause_time</a>
+    
+    <li ><a href="#method-i-contra_pause_time-3D">#contra_pause_time=</a>
+    
+    <li ><a href="#method-i-current_direction">#current_direction</a>
+    
+    <li ><a href="#method-i-current_position">#current_position</a>
+    
+    <li ><a href="#method-i-down-21">#down!</a>
+    
+    <li ><a href="#method-i-down_motor">#down_motor</a>
+    
+    <li ><a href="#method-i-extended">#extended</a>
+    
+    <li ><a href="#method-i-set_driver_value">#set_driver_value</a>
+    
+    <li ><a href="#method-i-set_positions-21">#set_positions!</a>
+    
+    <li ><a href="#method-i-stop-21">#stop!</a>
+    
+    <li ><a href="#method-i-stop_thread">#stop_thread</a>
+    
+    <li ><a href="#method-i-up-21">#up!</a>
+    
+    <li ><a href="#method-i-up_motor">#up_motor</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-BidirectionalMotorDriver">
+  <h1 id="module-BidirectionalMotorDriver" class="module">
+    module BidirectionalMotorDriver
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="MotorStep">MotorStep
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-description" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">description</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="description-source">
+            <pre><span class="ruby-comment"># File drivers/bidirectional_motor_driver.rb, line 19</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">description</span>
+  <span class="ruby-string">&quot;Virtual driver for bidirectional motor control. Up and down motor relay entities must exists with [name]_up and [name]_down names respectively&quot;</span> 
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-required_methods" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">required_methods</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="required_methods-source">
+            <pre><span class="ruby-comment"># File drivers/bidirectional_motor_driver.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">required_methods</span>
+  [<span class="ruby-value">:up_full_time</span>, <span class="ruby-value">:down_full_time</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-adjustment_percent" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">adjustment_percent</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>default 5% of full time moving</p>
+          
+          
+
+          
+          <div class="method-source-code" id="adjustment_percent-source">
+            <pre><span class="ruby-comment"># File drivers/bidirectional_motor_driver.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">adjustment_percent</span>
+  <span class="ruby-ivar">@adjustment_percent</span> <span class="ruby-operator">||=</span> <span class="ruby-value">5</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-adjustment_percent-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">adjustment_percent=</span><span
+            class="method-args">(value)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="adjustment_percent-3D-source">
+            <pre><span class="ruby-comment"># File drivers/bidirectional_motor_driver.rb, line 65</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">adjustment_percent=</span>(<span class="ruby-identifier">value</span>)
+  <span class="ruby-ivar">@adjustment_percent</span> = <span class="ruby-identifier">value</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-binary-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">binary?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="binary-3F-source">
+            <pre><span class="ruby-comment"># File drivers/bidirectional_motor_driver.rb, line 7</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">binary?</span>
+  <span class="ruby-keyword">false</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-contra_pause_time" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">contra_pause_time</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="contra_pause_time-source">
+            <pre><span class="ruby-comment"># File drivers/bidirectional_motor_driver.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">contra_pause_time</span>
+  <span class="ruby-ivar">@contra_pause_time</span> <span class="ruby-operator">||=</span> <span class="ruby-value">0.5</span>.<span class="ruby-identifier">seconds</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-contra_pause_time-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">contra_pause_time=</span><span
+            class="method-args">(interval)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="contra_pause_time-3D-source">
+            <pre><span class="ruby-comment"># File drivers/bidirectional_motor_driver.rb, line 56</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">contra_pause_time=</span>(<span class="ruby-identifier">interval</span>)
+  <span class="ruby-ivar">@contra_pause_time</span> = <span class="ruby-identifier">interval</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-current_direction" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">current_direction</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="current_direction-source">
+            <pre><span class="ruby-comment"># File drivers/bidirectional_motor_driver.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">current_direction</span>
+  <span class="ruby-identifier">thread_active?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">relay_thread</span>[<span class="ruby-value">:direction</span>] <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-current_position" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">current_position</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="current_position-source">
+            <pre><span class="ruby-comment"># File drivers/bidirectional_motor_driver.rb, line 23</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">current_position</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">thread_active?</span>
+  <span class="ruby-identifier">distance</span> = <span class="ruby-identifier">calc_position_offset</span>(<span class="ruby-identifier">relay_thread</span>[<span class="ruby-value">:start_time</span>], <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>, <span class="ruby-identifier">relay_thread</span>[<span class="ruby-value">:direction</span>])
+  (<span class="ruby-identifier">relay_thread</span>[<span class="ruby-value">:start_position</span>] <span class="ruby-operator">+</span> <span class="ruby-identifier">distance</span>).<span class="ruby-identifier">restrict_by_range</span>(<span class="ruby-identifier">min</span>,<span class="ruby-identifier">max</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-down-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">down!</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="down-21-source">
+            <pre><span class="ruby-comment"># File drivers/bidirectional_motor_driver.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">down!</span>
+  <span class="ruby-identifier">off!</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-extended" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">extended</span><span
+            class="method-args">(base)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="extended-source">
+            <pre><span class="ruby-comment"># File drivers/bidirectional_motor_driver.rb, line 3</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">extended</span>(<span class="ruby-identifier">base</span>)
+  <span class="ruby-identifier">base</span>.<span class="ruby-identifier">binary</span> = <span class="ruby-keyword">false</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-set_driver_value" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_driver_value</span><span
+            class="method-args">(target_position)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="set_driver_value-source">
+            <pre><span class="ruby-comment"># File drivers/bidirectional_motor_driver.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">set_driver_value</span>(<span class="ruby-identifier">target_position</span>)
+  <span class="ruby-identifier">set_positions!</span>(<span class="ruby-identifier">target_position</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@stopping</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-set_positions-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_positions!</span><span
+            class="method-args">(*positions)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="set_positions-21-source">
+            <pre><span class="ruby-comment"># File drivers/bidirectional_motor_driver.rb, line 69</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">set_positions!</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">positions</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@stopping</span>
+  <span class="ruby-identifier">start_steps!</span>(<span class="ruby-identifier">calc_steps_to_positions</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">positions</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-stop-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">stop!</span><span
+            class="method-args">(at_position = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="stop-21-source">
+            <pre><span class="ruby-comment"># File drivers/bidirectional_motor_driver.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">stop!</span>(<span class="ruby-identifier">at_position</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-ivar">@stopping</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-identifier">up_motor</span>.<span class="ruby-identifier">set_driver_value</span>(<span class="ruby-value">0</span>)
+  <span class="ruby-identifier">down_motor</span>.<span class="ruby-identifier">set_driver_value</span>(<span class="ruby-value">0</span>)
+  <span class="ruby-identifier">fire_event</span>(<span class="ruby-value">:on_stop</span>)
+  <span class="ruby-identifier">write_value</span>(<span class="ruby-identifier">at_position</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">current_position</span>)
+  <span class="ruby-identifier">stop_thread</span>
+<span class="ruby-keyword">ensure</span>
+  <span class="ruby-ivar">@stopping</span> = <span class="ruby-keyword">false</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-up-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">up!</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="up-21-source">
+            <pre><span class="ruby-comment"># File drivers/bidirectional_motor_driver.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">up!</span>
+  <span class="ruby-identifier">on!</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="protected-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Protected Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-down_motor" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">down_motor</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="down_motor-source">
+            <pre><span class="ruby-comment"># File drivers/bidirectional_motor_driver.rb, line 83</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">down_motor</span>
+  <span class="ruby-ivar">@down_motor</span> = <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">name_changed?</span>
+  <span class="ruby-ivar">@down_motor</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">send</span>(<span class="ruby-identifier">name</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;_down&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-stop_thread" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">stop_thread</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="stop_thread-source">
+            <pre><span class="ruby-comment"># File drivers/bidirectional_motor_driver.rb, line 88</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">stop_thread</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">thread_active?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">relay_thread</span>
+    <span class="ruby-identifier">relay_thread</span>.<span class="ruby-identifier">terminate</span>
+    <span class="ruby-identifier">relay_thread</span>.<span class="ruby-identifier">join</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">relay_thread</span> = <span class="ruby-keyword">nil</span> 
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-up_motor" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">up_motor</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="up_motor-source">
+            <pre><span class="ruby-comment"># File drivers/bidirectional_motor_driver.rb, line 78</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">up_motor</span>
+  <span class="ruby-ivar">@up_motor</span> = <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">name_changed?</span>
+  <span class="ruby-ivar">@up_motor</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">send</span>(<span class="ruby-identifier">name</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;_up&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.3.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

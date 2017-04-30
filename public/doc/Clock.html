@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Clock - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Widget.html">Widget</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-day-3F">::day?</a>
+    
+    <li ><a href="#method-c-night-3F">::night?</a>
+    
+    <li ><a href="#method-c-noon_time">::noon_time</a>
+    
+    <li ><a href="#method-c-sun_azimuth">::sun_azimuth</a>
+    
+    <li ><a href="#method-c-sun_elevation">::sun_elevation</a>
+    
+    <li ><a href="#method-c-sunrise_time">::sunrise_time</a>
+    
+    <li ><a href="#method-c-sunset_time">::sunset_time</a>
+    
+    <li ><a href="#method-i-time">#time</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Clock">
+  <h1 id="class-Clock" class="class">
+    class Clock
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-day-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">day?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="day-3F-source">
+            <pre><span class="ruby-comment"># File entities/clock.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">day?</span>
+  <span class="ruby-operator">!</span><span class="ruby-identifier">night?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-night-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">night?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="night-3F-source">
+            <pre><span class="ruby-comment"># File entities/clock.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">night?</span>
+  <span class="ruby-identifier">now</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+  <span class="ruby-keyword">return</span> (<span class="ruby-identifier">now</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">sunrise_time</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">now</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">sunset_time</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-noon_time" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">noon_time</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="noon_time-source">
+            <pre><span class="ruby-comment"># File entities/clock.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">noon_time</span>
+  <span class="ruby-identifier">calc_suntime</span>
+  <span class="ruby-ivar">@sun_time</span>[<span class="ruby-value">:noon</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-sun_azimuth" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">sun_azimuth</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="sun_azimuth-source">
+            <pre><span class="ruby-comment"># File entities/clock.rb, line 38</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">sun_azimuth</span>
+  <span class="ruby-constant">Solar</span>.<span class="ruby-identifier">position</span>(<span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>, <span class="ruby-constant">Home</span>.<span class="ruby-identifier">longitude</span>, <span class="ruby-constant">Home</span>.<span class="ruby-identifier">latitude</span>).<span class="ruby-identifier">second</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-sun_elevation" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">sun_elevation</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="sun_elevation-source">
+            <pre><span class="ruby-comment"># File entities/clock.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">sun_elevation</span>
+  <span class="ruby-constant">Solar</span>.<span class="ruby-identifier">position</span>(<span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>, <span class="ruby-constant">Home</span>.<span class="ruby-identifier">longitude</span>, <span class="ruby-constant">Home</span>.<span class="ruby-identifier">latitude</span>).<span class="ruby-identifier">first</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-sunrise_time" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">sunrise_time</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="sunrise_time-source">
+            <pre><span class="ruby-comment"># File entities/clock.rb, line 19</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">sunrise_time</span>
+  <span class="ruby-identifier">calc_suntime</span>
+  <span class="ruby-ivar">@sun_time</span>[<span class="ruby-value">:rise</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-sunset_time" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">sunset_time</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="sunset_time-source">
+            <pre><span class="ruby-comment"># File entities/clock.rb, line 24</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">sunset_time</span>
+  <span class="ruby-identifier">calc_suntime</span>
+  <span class="ruby-ivar">@sun_time</span>[<span class="ruby-value">:set</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-time" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">time</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="time-source">
+            <pre><span class="ruby-comment"># File entities/clock.rb, line 6</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">time</span>
+  <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.3.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

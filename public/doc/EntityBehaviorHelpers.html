@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module EntityBehaviorHelpers - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-at">#at</a>
+    
+    <li ><a href="#method-i-blink">#blink</a>
+    
+    <li ><a href="#method-i-cancel">#cancel</a>
+    
+    <li ><a href="#method-i-delay">#delay</a>
+    
+    <li ><a href="#method-i-every">#every</a>
+    
+    <li ><a href="#method-i-holiday-3F">#holiday?</a>
+    
+    <li ><a href="#method-i-log">#log</a>
+    
+    <li ><a href="#method-i-mail">#mail</a>
+    
+    <li ><a href="#method-i-now">#now</a>
+    
+    <li ><a href="#method-i-options">#options</a>
+    
+    <li ><a href="#method-i-sun_azimuth">#sun_azimuth</a>
+    
+    <li ><a href="#method-i-sun_tilt">#sun_tilt</a>
+    
+    <li ><a href="#method-i-sunrise_time">#sunrise_time</a>
+    
+    <li ><a href="#method-i-sunset_time">#sunset_time</a>
+    
+    <li ><a href="#method-i-wait_for">#wait_for</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-EntityBehaviorHelpers">
+  <h1 id="module-EntityBehaviorHelpers" class="module">
+    module EntityBehaviorHelpers
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-at" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">at</span><span
+            class="method-args">(run_time, &block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="at-source">
+            <pre><span class="ruby-comment"># File concerns/entity_behavior_helpers.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">at</span>(<span class="ruby-identifier">run_time</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">opt</span> = {<span class="ruby-identifier">at</span><span class="ruby-operator">:</span> <span class="ruby-identifier">run_time</span>, <span class="ruby-identifier">method</span><span class="ruby-operator">:</span> <span class="ruby-value">:run_at</span>, <span class="ruby-identifier">source_row</span><span class="ruby-operator">:</span> (<span class="ruby-identifier">block</span>.<span class="ruby-identifier">source_location</span>.<span class="ruby-identifier">second</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">block</span>)}
+  <span class="ruby-constant">EntityJobHandler</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">self</span>, <span class="ruby-identifier">opt</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-blink" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">blink</span><span
+            class="method-args">(args = {}, &block_after)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="blink-source">
+            <pre><span class="ruby-comment"># File concerns/entity_behavior_helpers.rb, line 70</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">blink</span>(<span class="ruby-identifier">args</span> = {}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block_after</span>)
+  <span class="ruby-identifier">args</span>[<span class="ruby-value">:devices</span>] <span class="ruby-operator">||=</span> <span class="ruby-keyword">self</span>
+  <span class="ruby-identifier">args</span>[<span class="ruby-value">:sender</span>] <span class="ruby-operator">||=</span> <span class="ruby-keyword">self</span>
+  <span class="ruby-constant">BinaryBehavior</span>.<span class="ruby-identifier">blink</span> <span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block_after</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-cancel" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">cancel</span><span
+            class="method-args">(job_name = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Удаляет задание с переданным именем или все задания</p>
+          
+          
+
+          
+          <div class="method-source-code" id="cancel-source">
+            <pre><span class="ruby-comment"># File concerns/entity_behavior_helpers.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">cancel</span>(<span class="ruby-identifier">job_name</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">cond</span> = {<span class="ruby-identifier">entity_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>}
+  <span class="ruby-identifier">cond</span>[<span class="ruby-value">:queue</span>] = <span class="ruby-identifier">job_name</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">job_name</span>
+  <span class="ruby-constant">EntityJob</span>.<span class="ruby-identifier">delete_all</span> <span class="ruby-identifier">cond</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-delay" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">delay</span><span
+            class="method-args">(interval = 1.second, &block)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="EntityBehaviorHelpers.html#method-i-wait_for">wait_for</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-every" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">every</span><span
+            class="method-args">(run_interval, options = {}, &block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Устанавливает обработчик по расписанию</p>
+          
+          
+
+          
+          <div class="method-source-code" id="every-source">
+            <pre><span class="ruby-comment"># File concerns/entity_behavior_helpers.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">every</span>(<span class="ruby-identifier">run_interval</span>, <span class="ruby-identifier">options</span> = {}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:run_interval</span>] = <span class="ruby-identifier">run_interval</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">block</span>
+    <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge!</span>({<span class="ruby-identifier">method</span><span class="ruby-operator">:</span> <span class="ruby-value">:every</span>, <span class="ruby-identifier">source_row</span><span class="ruby-operator">:</span> <span class="ruby-identifier">block</span>.<span class="ruby-identifier">source_location</span>.<span class="ruby-identifier">second</span> })
+    <span class="ruby-identifier">events</span>.<span class="ruby-identifier">add</span> <span class="ruby-value">:every</span>, <span class="ruby-identifier">block</span>, <span class="ruby-identifier">options</span>
+  <span class="ruby-keyword">end</span>  
+  <span class="ruby-constant">EntityJobHandler</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">self</span>, <span class="ruby-identifier">options</span> 
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-holiday-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">holiday?</span><span
+            class="method-args">(time = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="holiday-3F-source">
+            <pre><span class="ruby-comment"># File concerns/entity_behavior_helpers.rb, line 84</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">holiday?</span>(<span class="ruby-identifier">time</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">time</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">now</span>
+  <span class="ruby-identifier">time</span>.<span class="ruby-identifier">holiday?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-log" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">log</span><span
+            class="method-args">() { || ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="log-source">
+            <pre><span class="ruby-comment"># File concerns/entity_behavior_helpers.rb, line 76</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">log</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-keyword">yield</span> 
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-mail" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">mail</span><span
+            class="method-args">(body, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sends email to user/users</p>
+
+<h4 id="method-i-mail-label-Attributes">Attributes<span><a href="#method-i-mail-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>*<code>body</code> - body text *<code>options</code></p>
+
+<h4 id="method-i-mail-label-Options">Options<span><a href="#method-i-mail-label-Options">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>*<code>from</code> - sender email, default: smtp user name in settings
+*<code>to</code> - recepients, can be email string or array of email
+strings or <code>:admins</code> (all admins) or <code>:all</code> (all
+users). Default: all users *<code>subject</code> - subject of mail,
+default: title of current entity</p>
+          
+          
+
+          
+          <div class="method-source-code" id="mail-source">
+            <pre><span class="ruby-comment"># File concerns/entity_behavior_helpers.rb, line 65</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">mail</span>(<span class="ruby-identifier">body</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">options</span>.<span class="ruby-identifier">reverse_merge!</span> <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-identifier">caption</span>
+  <span class="ruby-constant">HomeMailer</span>.<span class="ruby-identifier">send_mail</span>(<span class="ruby-identifier">body</span>, <span class="ruby-identifier">options</span>).<span class="ruby-identifier">deliver_now</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-now" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">now</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="now-source">
+            <pre><span class="ruby-comment"># File concerns/entity_behavior_helpers.rb, line 80</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">now</span>
+  <span class="ruby-constant">Time</span>.<span class="ruby-identifier">zone</span>.<span class="ruby-identifier">now</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-options" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">options</span><span
+            class="method-args">(opt)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="options-source">
+            <pre><span class="ruby-comment"># File concerns/entity_behavior_helpers.rb, line 3</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">options</span>(<span class="ruby-identifier">opt</span>)
+  <span class="ruby-identifier">opt</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">send</span> <span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-string">&#39;=&#39;</span>, <span class="ruby-identifier">v</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-sun_azimuth" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">sun_azimuth</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Возвращает азимут солнца, в градусах. Направление от севера по часовой
+стрелке</p>
+          
+          
+
+          
+          <div class="method-source-code" id="sun_azimuth-source">
+            <pre><span class="ruby-comment"># File concerns/entity_behavior_helpers.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">sun_azimuth</span>
+  <span class="ruby-constant">Clock</span>.<span class="ruby-identifier">sun_azimuth</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-sun_tilt" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">sun_tilt</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Возвращает угол возвышения солнца(от горизонта), в градусах.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="sun_tilt-source">
+            <pre><span class="ruby-comment"># File concerns/entity_behavior_helpers.rb, line 48</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">sun_tilt</span>
+  <span class="ruby-constant">Clock</span>.<span class="ruby-identifier">sun_elevation</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-sunrise_time" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">sunrise_time</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns sunrise time</p>
+          
+          
+
+          
+          <div class="method-source-code" id="sunrise_time-source">
+            <pre><span class="ruby-comment"># File concerns/entity_behavior_helpers.rb, line 38</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">sunrise_time</span>
+  <span class="ruby-constant">Clock</span>.<span class="ruby-identifier">sunrise_time</span>.<span class="ruby-identifier">in_time_zone</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-sunset_time" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">sunset_time</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns sunset time</p>
+          
+          
+
+          
+          <div class="method-source-code" id="sunset_time-source">
+            <pre><span class="ruby-comment"># File concerns/entity_behavior_helpers.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">sunset_time</span>
+  <span class="ruby-constant">Clock</span>.<span class="ruby-identifier">sunset_time</span>.<span class="ruby-identifier">in_time_zone</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-wait_for" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">wait_for</span><span
+            class="method-args">(interval = 1.second, &block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="wait_for-source">
+            <pre><span class="ruby-comment"># File concerns/entity_behavior_helpers.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">wait_for</span>(<span class="ruby-identifier">interval</span> = <span class="ruby-value">1</span>.<span class="ruby-identifier">second</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">at</span> <span class="ruby-identifier">interval</span>.<span class="ruby-identifier">from_now</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span> 
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="EntityBehaviorHelpers.html#method-i-delay">delay</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.3.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
