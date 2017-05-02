@@ -30,14 +30,14 @@ module BinaryBehavior
 
   # Включить дибо выключить устройство
   # @param v [Boolean] значение, true - включить, false - выключить
-  def on= v
-    if v && v != 0 then on! else off! end
+  def on=(v)
+    v && v != 0 ? on! : off!
   end
 
   # Выключает устройство
   # @param options [Hash]
   # @option options [ActiveSupport::Duration, nil] :delay (опционально) время, по прошествии которого устройство будет включено
-  def off! options = {}
+  def off!(options = {})
     write_value min if value != min 
     wait_for(options[:delay]).on! if options[:delay]
     value
@@ -45,15 +45,15 @@ module BinaryBehavior
 
   # Выключить дибо включить устройство
   # @param v [Boolean] значение, true - выключить, false - включить
-  def off= v
-    if v && v != 0 then off! else on! end
+  def off=(v)
+    v && v != 0 ? off! : on!
   end
 
-  # Включить/выключить устройство несколько раз подряд
+  # Включить/выключить устройство/устройства несколько раз подряд (поморгать). При этом значения в indications не попадают, вызывается только set_driver_value
   # @param args [Hash]
   # @option args [ActiveSupport::Duration, nil] :delay время включения/выключения
   # @option args [Fixnum] :times количество включений/выключений
-  # @option args [Entity, Array] :devices массив устройств
+  # @option args [Entity, Array<Entity>] :devices устройство либо массив устройств, которыми моргаем
   def self.blink(args = {}, &block_after)
     delay = args[:delay] || 0.2
     devices = args[:devices]

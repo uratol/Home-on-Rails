@@ -59,7 +59,7 @@ class Entity < ActiveRecord::Base
   #   @return [String]
 
   # @!method parent
-  #   Имя родителя объекта
+  #   Возвращает имя родительского объекта в иерархии
   #   @return [Entity]
 
   after_initialize :init
