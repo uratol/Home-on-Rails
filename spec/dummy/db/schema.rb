@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160921195718) do
+ActiveRecord::Schema.define(version: 20170318143219) do
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -32,21 +32,22 @@ ActiveRecord::Schema.define(version: 20160921195718) do
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
 
   create_table "entities", force: :cascade do |t|
-    t.string  "name",           null: false
+    t.string  "name",                           null: false
     t.integer "parent_id"
-    t.string  "type",           null: false
-    t.string  "caption",        null: false
+    t.string  "type",                           null: false
+    t.string  "caption",                        null: false
     t.string  "address"
     t.float   "value"
     t.float   "location_x"
     t.float   "location_y"
     t.float   "power"
     t.string  "driver"
-    t.integer "lft",            null: false
-    t.integer "rgt",            null: false
+    t.integer "lft",                            null: false
+    t.integer "rgt",                            null: false
     t.integer "depth"
     t.integer "children_count"
     t.binary  "attrs"
+    t.boolean "disabled",       default: false, null: false
   end
 
   add_index "entities", ["name"], name: "index_entities_on_name", unique: true

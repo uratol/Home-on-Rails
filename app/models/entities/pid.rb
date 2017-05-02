@@ -48,11 +48,6 @@ class Pid < Widget
     "#{ caption } #{(to_f * 100).round }%, #{ input_value.to_f } => #{ target_value.to_f }"
   end
 
-  def startup
-   # reset if schedule.nil? || (last_indication_interval || 0)  > schedule * 10
-    super
-  end
-
   private
   
   def reset

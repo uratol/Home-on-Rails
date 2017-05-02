@@ -72,7 +72,7 @@ module EntityClassMethods
 
   protected
 
-  def register_attributes *args
+  def register_attributes(*args)
     if args.length==1 && args.first.is_a?(Hash)
       iterator = args.first
     else
@@ -96,7 +96,7 @@ module EntityClassMethods
 
   private
   
-  def register_attribute attr_name, default_value = nil
+  def register_attribute(attr_name, default_value = nil)
     attr_writer attr_name
     
     define_method attr_name do

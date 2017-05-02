@@ -1,42 +1,60 @@
 module BinaryBehavior
-  
+
+  # @return [Boolean] true если включено, false если выключено
   def on?
     value && value != min
   end
 
+  # @return [Boolean] false если включено, true если выключено
   def off?
     value == min
   end
 
-  def opposite_value 
+  def opposite_value # @!visibility private
     min + max - (value || 0)
   end
 
-  def switch! options = {}
+  # Переключает устройство - включает, если выключено и выключает, если включено
+  def switch!
     write_value(opposite_value)
   end
 
-  def on! options = {}
+  # Включает устройство
+  # @param options [Hash]
+  # @option options [ActiveSupport::Duration, nil] :delay (опционально) время, по прошествии которого устройство будет выключено
+  def on!(options = {})
     write_value max if value != max 
     wait_for(options[:delay]).off! if options[:delay]  
-    return value  
+    value
   end
 
+  # Включить дибо выключить устройство
+  # @param v [Boolean] значение, true - включить, false - выключить
   def on= v
     if v && v != 0 then on! else off! end
   end
 
+  # Выключает устройство
+  # @param options [Hash]
+  # @option options [ActiveSupport::Duration, nil] :delay (опционально) время, по прошествии которого устройство будет включено
   def off! options = {}
     write_value min if value != min 
     wait_for(options[:delay]).on! if options[:delay]
-    return value  
+    value
   end
 
+  # Выключить дибо включить устройство
+  # @param v [Boolean] значение, true - выключить, false - включить
   def off= v
     if v && v != 0 then off! else on! end
   end
-  
-  def self.blink args = {}, &block_after
+
+  # Включить/выключить устройство несколько раз подряд
+  # @param args [Hash]
+  # @option args [ActiveSupport::Duration, nil] :delay время включения/выключения
+  # @option args [Fixnum] :times количество включений/выключений
+  # @option args [Entity, Array] :devices массив устройств
+  def self.blink(args = {}, &block_after)
     delay = args[:delay] || 0.2
     devices = args[:devices]
      
@@ -56,7 +74,10 @@ module BinaryBehavior
       end
     end
   end
-  
+
+  # Среднее значение за период
+  # @param interval [ActiveSupport::Duration] период, за который возвращается среднее значение, начиная от текущего времени
+  # @return [Float]
   def average_value(interval)
     to = Time.now
     from = to - interval
@@ -77,10 +98,10 @@ module BinaryBehavior
       sum += prev_indication.value * (ind.created_at - prev_indication.created_at) if prev_indication
       prev_indication = ind
     end
-    return sum / (to - from)  
+    sum / (to - from)
   end
 
-  def do_schedule
+  def do_schedule # @!visibility private
     self.on = average_value(schedule * 10) < data.pwm_power if data.pwm_power
     super
   end

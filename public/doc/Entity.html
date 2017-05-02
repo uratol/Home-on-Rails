@@ -1,568 +1,1800 @@
 <!DOCTYPE html>
-
 <html>
-<head>
-<meta charset="UTF-8">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Entity
+  
+    &mdash; Documentation by YARD 0.9.9
+  
+</title>
 
-<title>class Entity - RDoc Documentation</title>
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
 
-<script type="text/javascript">
-  var rdoc_rel_prefix = "./";
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "Entity";
+  relpath = '';
 </script>
 
-<script src="./js/jquery.js"></script>
-<script src="./js/darkfish.js"></script>
 
-<link href="./css/fonts.css" rel="stylesheet">
-<link href="./css/rdoc.css" rel="stylesheet">
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
 
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
 
 
-<body id="top" role="document" class="class">
-<nav role="navigation">
-  <div id="project-navigation">
-    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
-  <h2>
-    <a href="./index.html" rel="home">Home</a>
-  </h2>
-
-  <div id="table-of-contents-navigation">
-    <a href="./table_of_contents.html#pages">Pages</a>
-    <a href="./table_of_contents.html#classes">Classes</a>
-    <a href="./table_of_contents.html#methods">Methods</a>
-  </div>
-</div>
-
-    <div id="search-section" role="search" class="project-section initially-hidden">
-  <form action="#" method="get" accept-charset="utf-8">
-    <div id="search-field-wrapper">
-      <input id="search-field" role="combobox" aria-label="Search"
-             aria-autocomplete="list" aria-controls="search-results"
-             type="text" name="search" placeholder="Search" spellcheck="false"
-             title="Type to search, Up and Down to navigate, Enter to load">
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
     </div>
 
-    <ul id="search-results" aria-label="Search Results"
-        aria-busy="false" aria-expanded="false"
-        aria-atomic="false" class="initially-hidden"></ul>
-  </form>
-</div>
-
-  </div>
-
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
   
-
-  <div id="class-metadata">
+    <a href="_index.html">Index (E)</a> &raquo;
     
-    <div id="parent-class-section" class="nav-section">
-  <h3>Parent</h3>
-
-  
-  <p class="link">ActiveRecord::Base
+    
+    <span class="title">Entity</span>
   
 </div>
 
-    <div id="includes-section" class="nav-section">
-  <h3>Included Modules</h3>
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
 
-  <ul class="link-list">
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Entity
   
   
-    <li><a class="include" href="EntityVisualization.html">EntityVisualization</a>
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">ActiveRecord::Base</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ActiveRecord::Base</li>
+          
+            <li class="next">Entity</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  <dl>
+      <dt>Extended by:</dt>
+      <dd><span class='object_link'><a href="EntityClassMethods.html" title="EntityClassMethods (module)">EntityClassMethods</a></span></dd>
+  </dl>
   
   
   
-    <li><a class="include" href="EntityData.html">EntityData</a>
+  <dl>
+      <dt>Includes:</dt>
+      <dd><span class='object_link'><a href="EntityBehavior.html" title="EntityBehavior (module)">EntityBehavior</a></span>, <span class='object_link'><a href="EntityData.html" title="EntityData (module)">EntityData</a></span>, <span class='object_link'><a href="EntityVisualization.html" title="EntityVisualization (module)">EntityVisualization</a></span></dd>
+  </dl>
   
   
+
   
-    <li><a class="include" href="EntityBehavior.html">EntityBehavior</a>
+
   
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>app/models/entity.rb</dd>
+  </dl>
   
-  </ul>
 </div>
 
-    <div id="extends-section" class="nav-section">
-  <h3>Extended With Modules</h3>
-
-  <ul class="link-list">
-    
-  
-    <li><a class="extend" href="EntityClassMethods.html">EntityClassMethods</a>
-  
-  
-  </ul>
-</div>
-
-    <!-- Method Quickref -->
-<div id="method-list-section" class="nav-section">
-  <h3>Methods</h3>
-
-  <ul class="link-list" role="directory">
-    
-    <li ><a href="#method-i-at_schedule">#at_schedule</a>
-    
-    <li ><a href="#method-i-disabled-3F">#disabled?</a>
-    
-    <li ><a href="#method-i-enabled-3D">#enabled=</a>
-    
-    <li ><a href="#method-i-enabled-3F">#enabled?</a>
-    
-    <li ><a href="#method-i-last_indication">#last_indication</a>
-    
-    <li ><a href="#method-i-last_indication_interval">#last_indication_interval</a>
-    
-    <li ><a href="#method-i-last_indication_time">#last_indication_time</a>
-    
-    <li ><a href="#method-i-value_at">#value_at</a>
-    
-    <li ><a href="#method-i-write_value">#write_value</a>
-    
-  </ul>
-</div>
-
-  </div>
-</nav>
-
-<main role="main" aria-labelledby="class-Entity">
-  <h1 id="class-Entity" class="class">
-    class Entity
-  </h1>
-
-  <section class="description">
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
     
 <p>Базовый класс для всех объектов. От него наследуются все остальные объекты:
 помещения, устройства, виджеты и т.д.</p>
 
-  </section>
 
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><span class='object_link'><a href="Device.html" title="Device (class)">Device</a></span>, <span class='object_link'><a href="Placement.html" title="Placement (class)">Placement</a></span>, <span class='object_link'><a href="Widget.html" title="Widget (class)">Widget</a></span></p>
+</div>
+
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#height-instance_method" title="#height (instance method)">#<strong>height</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
   
   
   
-  <section id="5Buntitled-5D" class="documentation-section">
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Высота объекта в пикселах.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#image_name-instance_method" title="#image_name (instance method)">#<strong>image_name</strong>  &#x21d2; String </a>
     
 
     
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
 
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Имя изображения.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#width-instance_method" title="#width (instance method)">#<strong>width</strong>  &#x21d2; Object </a>
     
 
     
-    <section class="attribute-method-details" class="method-section">
-      <header>
-        <h3>Attributes</h3>
-      </header>
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Ширина объекта в пикселах.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#at_click-instance_method" title="#at_click (instance method)">#<strong>at_click</strong> { ... } &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Вызывается при клике на объект в вэб-интерфейсе.</p>
+</div></span>
+  
+</li>
 
       
-      <div id="attribute-i-height" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">height</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#at_schedule-instance_method" title="#at_schedule (instance method)">#<strong>at_schedule</strong>(options = nil) { ... } &#x21d2; Object </a>
+    
 
-        <div class="method-description">
-        
-        <p>Высота объекта в пикселах</p>
-        
-        </div>
-      </div>
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>задаёт обработчик, вызываемый по расписанию.</p>
+</div></span>
+  
+</li>
+
       
-      <div id="attribute-i-image_name" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">image_name</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#at_startup-instance_method" title="#at_startup (instance method)">#<strong>at_startup</strong> { ... } &#x21d2; Object </a>
+    
 
-        <div class="method-description">
-        
-        <p>Имя изображения. Вызывается каждый раз при обновлении страницы для каждого
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Вызывается каждый раз при старте сервера.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#at_touchend-instance_method" title="#at_touchend (instance method)">#<strong>at_touchend</strong> { ... } &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Вызывается при отпускании левой кнопки мыши или тачпада в вэб-интерфейсе.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#at_touchstart-instance_method" title="#at_touchstart (instance method)">#<strong>at_touchstart</strong> { ... } &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Вызывается при нажатии левой кнопки мыши или тачпада  в вэб-интерфейсе.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#disabled%3F-instance_method" title="#disabled? (instance method)">#<strong>disabled?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#enabled=-instance_method" title="#enabled= (instance method)">#<strong>enabled=</strong>(enabled)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#enabled%3F-instance_method" title="#enabled? (instance method)">#<strong>enabled?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#last_indication-instance_method" title="#last_indication (instance method)">#<strong>last_indication</strong>(value = nil)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>возвращает последнее значение - обект Indication.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#last_indication_interval-instance_method" title="#last_indication_interval (instance method)">#<strong>last_indication_interval</strong>(value = nil)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>возвращает время, прошедшее с последнего изменения значения.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#last_indication_time-instance_method" title="#last_indication_time (instance method)">#<strong>last_indication_time</strong>(value = nil)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>возвращает время последнего изменения значения.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#name-instance_method" title="#name (instance method)">#<strong>name</strong>  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Имя объекта.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parent-instance_method" title="#parent (instance method)">#<strong>parent</strong>  &#x21d2; Entity </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Имя родителя объекта.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#value_at-instance_method" title="#value_at (instance method)">#<strong>value_at</strong>(dt)  &#x21d2; Float </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>возвращает значение на заданное время.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#write_value-instance_method" title="#write_value (instance method)">#<strong>write_value</strong>(v)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Устанавливает и записывает значение (атрибут value).</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="EntityClassMethods.html" title="EntityClassMethods (module)">EntityClassMethods</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="EntityClassMethods.html#[]-instance_method" title="EntityClassMethods#[] (method)">[]</a></span>, <span class='object_link'><a href="EntityClassMethods.html#ancestors_and_self-instance_method" title="EntityClassMethods#ancestors_and_self (method)">ancestors_and_self</a></span>, <span class='object_link'><a href="EntityClassMethods.html#drivers-instance_method" title="EntityClassMethods#drivers (method)">drivers</a></span>, <span class='object_link'><a href="EntityClassMethods.html#drivers_names-instance_method" title="EntityClassMethods#drivers_names (method)">drivers_names</a></span>, <span class='object_link'><a href="EntityClassMethods.html#entity_types-instance_method" title="EntityClassMethods#entity_types (method)">entity_types</a></span>, <span class='object_link'><a href="EntityClassMethods.html#entity_types_downcase-instance_method" title="EntityClassMethods#entity_types_downcase (method)">entity_types_downcase</a></span>, <span class='object_link'><a href="EntityClassMethods.html#execute_sql-instance_method" title="EntityClassMethods#execute_sql (method)">execute_sql</a></span>, <span class='object_link'><a href="EntityClassMethods.html#generate_new_name-instance_method" title="EntityClassMethods#generate_new_name (method)">generate_new_name</a></span>, <span class='object_link'><a href="EntityClassMethods.html#menu_entities-instance_method" title="EntityClassMethods#menu_entities (method)">menu_entities</a></span>, <span class='object_link'><a href="EntityClassMethods.html#register_events-instance_method" title="EntityClassMethods#register_events (method)">register_events</a></span>, <span class='object_link'><a href="EntityClassMethods.html#require_entity_classes-instance_method" title="EntityClassMethods#require_entity_classes (method)">require_entity_classes</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="EntityData.html" title="EntityData (module)">EntityData</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="EntityData.html#data-instance_method" title="EntityData#data (method)">#data</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="EntityVisualization.html" title="EntityVisualization (module)">EntityVisualization</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="EntityVisualization.html#human_value-instance_method" title="EntityVisualization#human_value (method)">#human_value</a></span>, <span class='object_link'><a href="EntityVisualization.html#image-instance_method" title="EntityVisualization#image (method)">#image</a></span>, <span class='object_link'><a href="EntityVisualization.html#redirect_to-instance_method" title="EntityVisualization#redirect_to (method)">#redirect_to</a></span></p>
+
+  
+  <div id="method_missing_details" class="method_details_list">
+  <h2>Dynamic Method Handling</h2>
+  <p class="notice this">
+    This class handles dynamic methods through the <tt>method_missing</tt> method
+    
+  </p>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="method_missing-instance_method">
+  
+    #<strong>method_missing</strong>(method_sym, *arguments, &amp;block)  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+307
+308
+309</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 307</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='id identifier rubyid_method_sym'>method_sym</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_arguments'>arguments</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="" title="Entity (class)">Entity</a></span></span><span class='lbracket'>[</span><span class='id identifier rubyid_method_sym'>method_sym</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='kw'>super</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="height=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="height-instance_method">
+  
+    #<strong>height</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Высота объекта в пикселах</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+45
+46
+47</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 45</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_height'>height</span>
+  <span class='ivar'>@height</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="image_name=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="image_name-instance_method">
+  
+    #<strong>image_name</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Имя изображения. Вызывается каждый раз при обновлении страницы для каждого
 объекта (как правило раз в пять секунд). Файл с этим именем должен
 присутствовать в папке app/assets/image/entities По умолчанию берёт первый
 файл из этой папки в следующем порядке:</p>
 
-<pre>ИмяОбъекта.Значение
+<pre class="code ruby"><code class="ruby">ИмяОбъекта.Значение
 ИмяОбъекта
 ИмяКласса.Значение
 ИмяКласса
 ИмяКлассаПредка.Значение
 ИмяКлассаПредка
-... и т.д. для каждого класса-предка</pre>
+... и т.д. для каждого класса-предка</code></pre>
 
 <p>Перегрузив этот метод, можно задать индивидуальное изображение для каждого
 объекта.</p>
 
-<h4 id="attribute-i-image_name-label-D0-9F-D1-80-D0-B8-D0-BC-D0-B5-D1-80">Пример<span><a href="#attribute-i-image_name-label-D0-9F-D1-80-D0-B8-D0-BC-D0-B5-D1-80">&para;</a> <a href="#top">&uarr;</a></span></h4>
 
-<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">image_name</span>
-  <span class="ruby-node">&quot;custom_image_#{ value.round(0) }&quot;</span>
-<span class="ruby-keyword">end</span>
-</pre>
-        
-        </div>
-      </div>
-      
-      <div id="attribute-i-width" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">width</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
-
-        <div class="method-description">
-        
-        <p>Ширина объекта в пикселах</p>
-        
-        </div>
-      </div>
-      
-    </section>
-    
-
-    
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
-       <header>
-         <h3>Public Instance Methods</h3>
-       </header>
-
-    
-      <div id="method-i-at_schedule" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">at_schedule</span><span
-            class="method-args">(options = nil, &block)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>задаёт обработчик, вызываемый по расписанию</p>
-
-<h4 id="method-i-at_schedule-label-D0-9F-D0-B0-D1-80-D0-B0-D0-BC-D0-B5-D1-82-D1-80-D1-8B">Параметры<span><a href="#method-i-at_schedule-label-D0-9F-D0-B0-D1-80-D0-B0-D0-BC-D0-B5-D1-82-D1-80-D1-8B">&para;</a> <a href="#top">&uarr;</a></span></h4>
-<ul><li>
-<p><code>every</code> - интервал. например 1.hour, 30.minutes, 10.seconds</p>
-</li><li>
-<p><code>at</code> : String - время в формате &#39;HH:MM&#39;. Можно также
-указывать массив, например [&#39;10:00&#39;, &#39;13:10&#39;]</p>
-</li></ul>
-
-<h4 id="method-i-at_schedule-label-D0-9F-D1-80-D0-B8-D0-BC-D0-B5-D1-80">Пример<span><a href="#method-i-at_schedule-label-D0-9F-D1-80-D0-B8-D0-BC-D0-B5-D1-80">&para;</a> <a href="#top">&uarr;</a></span></h4>
-
-<pre class="ruby"><span class="ruby-identifier">at_schedule</span>(<span class="ruby-identifier">every</span><span class="ruby-operator">:</span> <span class="ruby-value">1</span>.<span class="ruby-identifier">day</span>, <span class="ruby-identifier">at</span><span class="ruby-operator">:</span> [<span class="ruby-string">&#39;10:00&#39;</span>, <span class="ruby-string">&#39;13:00&#39;</span>]) <span class="ruby-keyword">do</span>
-  <span class="ruby-identifier">light1</span>.<span class="ruby-identifier">on!</span> <span class="ruby-identifier">delay</span><span class="ruby-operator">:</span> <span class="ruby-value">5</span>.<span class="ruby-identifier">minutes</span>
-<span class="ruby-keyword">end</span>
-</pre>
-          
-          
-
-          
-          <div class="method-source-code" id="at_schedule-source">
-            <pre><span class="ruby-comment"># File entity.rb, line 142</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">at_schedule</span>(<span class="ruby-identifier">options</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
-  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">schedule</span> = <span class="ruby-identifier">options</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>
-  <span class="ruby-identifier">events</span>.<span class="ruby-identifier">add_with_replace</span> <span class="ruby-value">:at_schedule</span>, <span class="ruby-identifier">block</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-disabled-3F" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">disabled?</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="disabled-3F-source">
-            <pre><span class="ruby-comment"># File entity.rb, line 189</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">disabled?</span>
-  <span class="ruby-identifier">disabled</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">respond_to?</span> <span class="ruby-value">:disabled</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-enabled-3D" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">enabled=</span><span
-            class="method-args">(enabled)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="enabled-3D-source">
-            <pre><span class="ruby-comment"># File entity.rb, line 184</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">enabled=</span>(<span class="ruby-identifier">enabled</span>)
-  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">disabled</span> = <span class="ruby-operator">!</span><span class="ruby-identifier">enabled</span>
-  <span class="ruby-identifier">save!</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-enabled-3F" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">enabled?</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="enabled-3F-source">
-            <pre><span class="ruby-comment"># File entity.rb, line 180</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">enabled?</span>
-  <span class="ruby-operator">!</span><span class="ruby-identifier">disabled?</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-last_indication" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">last_indication</span><span
-            class="method-args">(value = nil)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>возвращает последнее значение - обект <a
-href="Indication.html">Indication</a></p>
-<ul><li>
-<p><code>value</code> - значение, если не указано, возвращается время любого
-изменения значения</p>
-</li></ul>
-          
-          
-
-          
-          <div class="method-source-code" id="last_indication-source">
-            <pre><span class="ruby-comment"># File entity.rb, line 150</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">last_indication</span>(<span class="ruby-identifier">value</span> = <span class="ruby-keyword">nil</span>)
-  <span class="ruby-identifier">query</span> = <span class="ruby-identifier">indications</span>.<span class="ruby-identifier">limit</span>(<span class="ruby-value">1</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;created_at DESC&#39;</span>)
-  <span class="ruby-identifier">query</span> = <span class="ruby-identifier">query</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">value</span><span class="ruby-operator">:</span> <span class="ruby-identifier">value</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>
-  <span class="ruby-identifier">query</span>.<span class="ruby-identifier">first</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-last_indication_interval" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">last_indication_interval</span><span
-            class="method-args">(value = nil)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>возвращает время, прошедшее с последнего изменения значения</p>
-          
-          
-
-          
-          <div class="method-source-code" id="last_indication_interval-source">
-            <pre><span class="ruby-comment"># File entity.rb, line 165</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">last_indication_interval</span>(<span class="ruby-identifier">value</span> = <span class="ruby-keyword">nil</span>)
-  <span class="ruby-identifier">v</span> = <span class="ruby-identifier">last_indication_time</span>(<span class="ruby-identifier">value</span>)
-  <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">v</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">v</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-last_indication_time" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">last_indication_time</span><span
-            class="method-args">(value = nil)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>возвращает время последнего изменения значения</p>
-<ul><li>
-<p><code>value</code> - значение, если не указано, возвращается время любого
-изменения значения</p>
-</li></ul>
-          
-          
-
-          
-          <div class="method-source-code" id="last_indication_time-source">
-            <pre><span class="ruby-comment"># File entity.rb, line 159</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">last_indication_time</span>(<span class="ruby-identifier">value</span> = <span class="ruby-keyword">nil</span>)
-  <span class="ruby-identifier">indication</span> = <span class="ruby-identifier">last_indication</span>(<span class="ruby-identifier">value</span>)
-  <span class="ruby-identifier">indication</span>.<span class="ruby-identifier">created_at</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">indication</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-value_at" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">value_at</span><span
-            class="method-args">(dt)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>возвращает значение на заданное время</p>
-          
-          
-
-          
-          <div class="method-source-code" id="value_at-source">
-            <pre><span class="ruby-comment"># File entity.rb, line 68</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">value_at</span>(<span class="ruby-identifier">dt</span>)
-  (<span class="ruby-identifier">indication_at</span>(<span class="ruby-identifier">dt</span>) <span class="ruby-operator">||</span> <span class="ruby-keyword">self</span>).<span class="ruby-identifier">value</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-write_value" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">write_value</span><span
-            class="method-args">(v)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Устанавливает и записывает значение (атрибут value)</p>
-
-<h4 id="method-i-write_value-label-D0-9F-D0-B0-D1-80-D0-B0-D0-BC-D0-B5-D1-82-D1-80-D1-8B">Параметры<span><a href="#method-i-write_value-label-D0-9F-D0-B0-D1-80-D0-B0-D0-BC-D0-B5-D1-82-D1-80-D1-8B">&para;</a> <a href="#top">&uarr;</a></span></h4>
-
-<p><code>v</code> : Number - значение</p>
-          
-          
-
-          
-          <div class="method-source-code" id="write_value-source">
-            <pre><span class="ruby-comment"># File entity.rb, line 103</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">write_value</span>(<span class="ruby-identifier">v</span>)
-  <span class="ruby-identifier">store_value</span>(<span class="ruby-identifier">v</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_f</span>.<span class="ruby-identifier">restrict_by_range</span>(<span class="ruby-identifier">min</span>, <span class="ruby-identifier">max</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">v</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-    </section>
+  </div>
+</div>
+<div class="tags">
   
-  </section>
-</main>
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code><span class='kw'>def</span> <span class='id identifier rubyid_image_name'>image_name</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>custom_image_</span><span class='embexpr_beg'>#{</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_round'>round</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span> <span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Имя изображения (без расширения)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
-<footer id="validator-badges" role="contentinfo">
-  <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.3.0.
-  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
-</footer>
+39
+40
+41</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 39</span>
 
+<span class='kw'>def</span> <span class='id identifier rubyid_image_name'>image_name</span>
+  <span class='ivar'>@image_name</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="width=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="width-instance_method">
+  
+    #<strong>width</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Ширина объекта в пикселах</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+42
+43
+44</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 42</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_width'>width</span>
+  <span class='ivar'>@width</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="at_click-instance_method">
+  
+    #<strong>at_click</strong> { ... } &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Вызывается при клике на объект в вэб-интерфейсе</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_at_click'>at_click</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_light1'>light1</span><span class='period'>.</span><span class='id identifier rubyid_on!'>on!</span>
+  <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_page1'>page1</span>
+<span class='kw'>end</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
+<p>скрипт, котрый будет выполнен на сервере при клике на объекте</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 71</span>
+
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="at_schedule-instance_method">
+  
+    #<strong>at_schedule</strong>(options = nil) { ... } &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>задаёт обработчик, вызываемый по расписанию</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>Включать свет на пять минут каждый день в 10:00 и 13:00</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_at_schedule'>at_schedule</span><span class='lparen'>(</span><span class='label'>every:</span> <span class='int'>1</span><span class='period'>.</span><span class='id identifier rubyid_day'>day</span><span class='comma'>,</span> <span class='label'>at:</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>10:00</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>13:00</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_light1'>light1</span><span class='period'>.</span><span class='id identifier rubyid_on!'>on!</span> <span class='label'>delay:</span> <span class='int'>5</span><span class='period'>.</span><span class='id identifier rubyid_minutes'>minutes</span>
+<span class='kw'>end</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Хеш, задающий распимание</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:every</span>
+          <span class="type">(<tt>ActiveSupport::Duration</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>интервал. например 1.hour, 30.minutes, 10.seconds</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:at</span>
+          <span class="type">(<tt>String</tt>, <tt>Time</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>время в формате &#39;HH:MM&#39;. Можно также указывать массив, например
+[&#39;10:00&#39;, &#39;13:10&#39;]</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
+<p>код, который будет выполняться по расписанию</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+186
+187
+188
+189</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 186</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_at_schedule'>at_schedule</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_schedule'>schedule</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span> <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span>
+  <span class='id identifier rubyid_events'>events</span><span class='period'>.</span><span class='id identifier rubyid_add_with_replace'>add_with_replace</span> <span class='symbol'>:at_schedule</span><span class='comma'>,</span> <span class='id identifier rubyid_block'>block</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="at_startup-instance_method">
+  
+    #<strong>at_startup</strong> { ... } &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Вызывается каждый раз при старте сервера</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_at_startup'>at_startup</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>started</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>end</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
+<p>скрипт</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 96</span>
+
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="at_touchend-instance_method">
+  
+    #<strong>at_touchend</strong> { ... } &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Вызывается при отпускании левой кнопки мыши или тачпада в вэб-интерфейсе</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_at_touchend'>at_touchend</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_light1'>light1</span><span class='period'>.</span><span class='id identifier rubyid_off!'>off!</span>
+<span class='kw'>end</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
+<p>скрипт</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 88</span>
+
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="at_touchstart-instance_method">
+  
+    #<strong>at_touchstart</strong> { ... } &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Вызывается при нажатии левой кнопки мыши или тачпада  в вэб-интерфейсе</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_at_touchstart'>at_touchstart</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_light1'>light1</span><span class='period'>.</span><span class='id identifier rubyid_on!'>on!</span>
+<span class='kw'>end</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
+<p>скрипт</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 80</span>
+
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="disabled?-instance_method">
+  
+    #<strong>disabled?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+231
+232
+233</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 231</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_disabled?'>disabled?</span>
+  <span class='id identifier rubyid_disabled'>disabled</span> <span class='kw'>if</span> <span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbol'>:disabled</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="enabled=-instance_method">
+  
+    #<strong>enabled=</strong>(enabled)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+226
+227
+228
+229</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 226</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_enabled='>enabled=</span><span class='lparen'>(</span><span class='id identifier rubyid_enabled'>enabled</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_disabled'>disabled</span> <span class='op'>=</span> <span class='op'>!</span><span class='id identifier rubyid_enabled'>enabled</span>
+  <span class='id identifier rubyid_save!'>save!</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="enabled?-instance_method">
+  
+    #<strong>enabled?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+222
+223
+224</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 222</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_enabled?'>enabled?</span>
+  <span class='op'>!</span><span class='id identifier rubyid_disabled?'>disabled?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="last_indication-instance_method">
+  
+    #<strong>last_indication</strong>(value = nil)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>возвращает последнее значение - обект Indication</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>value</span>
+      
+      
+        <span class='type'>(<tt>Float</tt>, <tt>Fixnum</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>значение, если не указано, возвращается время любого изменения значения</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+193
+194
+195
+196
+197</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 193</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_last_indication'>last_indication</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_query'>query</span> <span class='op'>=</span> <span class='id identifier rubyid_indications'>indications</span><span class='period'>.</span><span class='id identifier rubyid_limit'>limit</span><span class='lparen'>(</span><span class='int'>1</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>created_at DESC</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_query'>query</span> <span class='op'>=</span> <span class='id identifier rubyid_query'>query</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>value:</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span>
+  <span class='id identifier rubyid_query'>query</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="last_indication_interval-instance_method">
+  
+    #<strong>last_indication_interval</strong>(value = nil)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>возвращает время, прошедшее с последнего изменения значения</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+207
+208
+209
+210</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 207</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_last_indication_interval'>last_indication_interval</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='id identifier rubyid_last_indication_time'>last_indication_time</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='const'>DateTime</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span> <span class='op'>-</span> <span class='id identifier rubyid_v'>v</span> <span class='kw'>if</span> <span class='id identifier rubyid_v'>v</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="last_indication_time-instance_method">
+  
+    #<strong>last_indication_time</strong>(value = nil)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>возвращает время последнего изменения значения</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>value</span>
+      
+      
+        <span class='type'>(<tt>Float</tt>, <tt>Fixnum</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><ul><li>
+<p>значение, если не указано, возвращается время любого изменения значения</p>
+</li></ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+201
+202
+203
+204</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 201</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_last_indication_time'>last_indication_time</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_indication'>indication</span> <span class='op'>=</span> <span class='id identifier rubyid_last_indication'>last_indication</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_indication'>indication</span><span class='period'>.</span><span class='id identifier rubyid_created_at'>created_at</span> <span class='kw'>if</span> <span class='id identifier rubyid_indication'>indication</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="name-instance_method">
+  
+    #<strong>name</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Имя объекта</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 57</span>
+
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="parent-instance_method">
+  
+    #<strong>parent</strong>  &#x21d2; <tt><span class='object_link'><a href="" title="Entity (class)">Entity</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Имя родителя объекта</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="Entity (class)">Entity</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+65</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 65</span>
+
+<span class='id identifier rubyid_after_initialize'>after_initialize</span> <span class='symbol'>:init</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="value_at-instance_method">
+  
+    #<strong>value_at</strong>(dt)  &#x21d2; <tt>Float</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>возвращает значение на заданное время</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>dt</span>
+      
+      
+        <span class='type'>(<tt>Date</tt>, <tt>Time</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Float</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+114
+115
+116</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 114</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_value_at'>value_at</span><span class='lparen'>(</span><span class='id identifier rubyid_dt'>dt</span><span class='rparen'>)</span>
+  <span class='lparen'>(</span><span class='id identifier rubyid_indication_at'>indication_at</span><span class='lparen'>(</span><span class='id identifier rubyid_dt'>dt</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='kw'>self</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="write_value-instance_method">
+  
+    #<strong>write_value</strong>(v)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Устанавливает и записывает значение (атрибут value)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>v</span>
+      
+      
+        <span class='type'>(<tt>Float</tt>, <tt>Fixnum</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><ul><li>
+<p>значение</p>
+</li></ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+148
+149
+150</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 148</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_write_value'>write_value</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_store_value'>store_value</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span> <span class='op'>?</span> <span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span><span class='period'>.</span><span class='id identifier rubyid_restrict_by_range'>restrict_by_range</span><span class='lparen'>(</span><span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_max'>max</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Tue May  2 21:50:42 2017 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.9 (ruby-2.1.8).
+</div>
+
+    </div>
+  </body>
+</html>

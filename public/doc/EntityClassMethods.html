@@ -1,644 +1,793 @@
 <!DOCTYPE html>
-
 <html>
-<head>
-<meta charset="UTF-8">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: EntityClassMethods
+  
+    &mdash; Documentation by YARD 0.9.9
+  
+</title>
 
-<title>module EntityClassMethods - RDoc Documentation</title>
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
 
-<script type="text/javascript">
-  var rdoc_rel_prefix = "./";
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "EntityClassMethods";
+  relpath = '';
 </script>
 
-<script src="./js/jquery.js"></script>
-<script src="./js/darkfish.js"></script>
 
-<link href="./css/fonts.css" rel="stylesheet">
-<link href="./css/rdoc.css" rel="stylesheet">
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
 
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
 
 
-<body id="top" role="document" class="module">
-<nav role="navigation">
-  <div id="project-navigation">
-    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
-  <h2>
-    <a href="./index.html" rel="home">Home</a>
-  </h2>
-
-  <div id="table-of-contents-navigation">
-    <a href="./table_of_contents.html#pages">Pages</a>
-    <a href="./table_of_contents.html#classes">Classes</a>
-    <a href="./table_of_contents.html#methods">Methods</a>
-  </div>
-</div>
-
-    <div id="search-section" role="search" class="project-section initially-hidden">
-  <form action="#" method="get" accept-charset="utf-8">
-    <div id="search-field-wrapper">
-      <input id="search-field" role="combobox" aria-label="Search"
-             aria-autocomplete="list" aria-controls="search-results"
-             type="text" name="search" placeholder="Search" spellcheck="false"
-             title="Type to search, Up and Down to navigate, Enter to load">
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
     </div>
 
-    <ul id="search-results" aria-label="Search Results"
-        aria-busy="false" aria-expanded="false"
-        aria-atomic="false" class="initially-hidden"></ul>
-  </form>
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (E)</a> &raquo;
+    
+    
+    <span class="title">EntityClassMethods</span>
+  
 </div>
 
-  </div>
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
 
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: EntityClassMethods
+  
+  
+  
+</h1>
+<div class="box_info">
   
 
-  <div id="class-metadata">
-    
-    
-    
-    
-    <!-- Method Quickref -->
-<div id="method-list-section" class="nav-section">
-  <h3>Methods</h3>
+  
+  
+  
+  
+  
 
-  <ul class="link-list" role="directory">
-    
-    <li ><a href="#method-i-5B-5D">#[]</a>
-    
-    <li ><a href="#method-i-ancestors_and_self">#ancestors_and_self</a>
-    
-    <li ><a href="#method-i-drivers">#drivers</a>
-    
-    <li ><a href="#method-i-drivers_names">#drivers_names</a>
-    
-    <li ><a href="#method-i-entity_types">#entity_types</a>
-    
-    <li ><a href="#method-i-entity_types_downcase">#entity_types_downcase</a>
-    
-    <li ><a href="#method-i-execute_sql">#execute_sql</a>
-    
-    <li ><a href="#method-i-generate_new_name">#generate_new_name</a>
-    
-    <li ><a href="#method-i-menu_entities">#menu_entities</a>
-    
-    <li ><a href="#method-i-parse_name_difference">#parse_name_difference</a>
-    
-    <li ><a href="#method-i-register_attributes">#register_attributes</a>
-    
-    <li ><a href="#method-i-register_events">#register_events</a>
-    
-    <li ><a href="#method-i-require_entity_classes">#require_entity_classes</a>
-    
-    <li ><a href="#method-i-types">#types</a>
-    
-  </ul>
+  
+  <dl>
+    <dt>Included in:</dt>
+    <dd><span class='object_link'><a href="Entity.html" title="Entity (class)">Entity</a></span></dd>
+  </dl>
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>app/models/concerns/entity_class_methods.rb</dd>
+  </dl>
+  
 </div>
 
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#[]-instance_method" title="#[] (instance method)">#<strong>[]</strong>(ind)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ancestors_and_self-instance_method" title="#ancestors_and_self (instance method)">#<strong>ancestors_and_self</strong>(class_limit = Entity, recurs_class = nil)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#drivers-instance_method" title="#drivers (instance method)">#<strong>drivers</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#drivers_names-instance_method" title="#drivers_names (instance method)">#<strong>drivers_names</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#entity_types-instance_method" title="#entity_types (instance method)">#<strong>entity_types</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#entity_types_downcase-instance_method" title="#entity_types_downcase (instance method)">#<strong>entity_types_downcase</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#execute_sql-instance_method" title="#execute_sql (instance method)">#<strong>execute_sql</strong>(*sql_array)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#generate_new_name-instance_method" title="#generate_new_name (instance method)">#<strong>generate_new_name</strong>(source_name, target_name, current_name)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#menu_entities-instance_method" title="#menu_entities (instance method)">#<strong>menu_entities</strong>(root = nil)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#register_events-instance_method" title="#register_events (instance method)">#<strong>register_events</strong>(*args)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#require_entity_classes-instance_method" title="#require_entity_classes (instance method)">#<strong>require_entity_classes</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#types-instance_method" title="#types (instance method)">#<strong>types</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="[]-instance_method">
+  
+    #<strong>[]</strong>(ind)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+19
+20
+21
+22
+23
+24
+25</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 19</span>
+
+<span class='kw'>def</span> <span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_ind'>ind</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_ind'>ind</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Fixnum</span> <span class='op'>||</span> <span class='id identifier rubyid_ind'>ind</span><span class='period'>.</span><span class='id identifier rubyid_is_number?'>is_number?</span> 
+    <span class='id identifier rubyid_find'>find</span> <span class='id identifier rubyid_ind'>ind</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_find_by'>find_by</span> <span class='label'>name:</span> <span class='id identifier rubyid_ind'>ind</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="ancestors_and_self-instance_method">
+  
+    #<strong>ancestors_and_self</strong>(class_limit = Entity, recurs_class = nil)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+31
+32
+33
+34
+35
+36</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 31</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ancestors_and_self'>ancestors_and_self</span><span class='lparen'>(</span><span class='id identifier rubyid_class_limit'>class_limit</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Entity.html" title="Entity (class)">Entity</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid_recurs_class'>recurs_class</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_klass'>klass</span> <span class='op'>=</span> <span class='id identifier rubyid_recurs_class'>recurs_class</span> <span class='op'>||</span> <span class='kw'>self</span>
+  <span class='id identifier rubyid_is_limit'>is_limit</span> <span class='op'>=</span> <span class='id identifier rubyid_klass'>klass</span><span class='period'>.</span><span class='id identifier rubyid_superclass'>superclass</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='lparen'>(</span><span class='id identifier rubyid_klass'>klass</span><span class='op'>==</span><span class='id identifier rubyid_class_limit'>class_limit</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_a'>a</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_is_limit'>is_limit</span> <span class='op'>?</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_ancestors_and_self'>ancestors_and_self</span><span class='lparen'>(</span><span class='id identifier rubyid_class_limit'>class_limit</span><span class='comma'>,</span> <span class='id identifier rubyid_klass'>klass</span><span class='period'>.</span><span class='id identifier rubyid_superclass'>superclass</span><span class='rparen'>)</span> <span class='rparen'>)</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_klass'>klass</span>
+  <span class='id identifier rubyid_recurs_class'>recurs_class</span> <span class='op'>?</span> <span class='id identifier rubyid_a'>a</span> <span class='op'>:</span> <span class='id identifier rubyid_a'>a</span><span class='period'>.</span><span class='id identifier rubyid_reverse'>reverse</span> 
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="drivers-instance_method">
+  
+    #<strong>drivers</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+7
+8
+9</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 7</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_drivers'>drivers</span>
+  <span class='id identifier rubyid_drivers_names'>drivers_names</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='op'>|</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_camelize'>camelize</span> <span class='embexpr_end'>}</span><span class='tstring_content'>Driver</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_constantize'>constantize</span><span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="drivers_names-instance_method">
+  
+    #<strong>drivers_names</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+3
+4
+5</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 3</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_drivers_names'>drivers_names</span>
+  <span class='cvar'>@@drivers_names</span> <span class='op'>||=</span> <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_entries'>entries</span><span class='lparen'>(</span><span class='const'>Home</span><span class='op'>::</span><span class='const'>Engine</span><span class='period'>.</span><span class='id identifier rubyid_root'>root</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>app</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>models</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>drivers</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_a'>a</span><span class='comma'>,</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span> <span class='id identifier rubyid_s'>s</span><span class='op'>=</span><span class='id identifier rubyid_f'>f</span><span class='lbracket'>[</span><span class='op'>-</span><span class='int'>10</span><span class='op'>..</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span><span class='semicolon'>;</span> <span class='id identifier rubyid_a'>a</span><span class='op'>+</span><span class='kw'>if</span> <span class='id identifier rubyid_s'>s</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>_driver.rb</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>then</span> <span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='lbracket'>[</span><span class='int'>0</span><span class='op'>..</span><span class='op'>-</span><span class='int'>11</span><span class='rbracket'>]</span><span class='rbracket'>]</span> <span class='kw'>else</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='kw'>end</span><span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="entity_types-instance_method">
+  
+    #<strong>entity_types</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+11
+12
+13</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 11</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_entity_types'>entity_types</span>
+  <span class='cvar'>@@entity_types</span> <span class='op'>||=</span> <span class='id identifier rubyid_descendants'>descendants</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_d'>d</span><span class='op'>|</span> <span class='id identifier rubyid_d'>d</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="entity_types_downcase-instance_method">
+  
+    #<strong>entity_types_downcase</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+15
+16
+17</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 15</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_entity_types_downcase'>entity_types_downcase</span>
+  <span class='id identifier rubyid_entity_types'>entity_types</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_t'>t</span><span class='op'>|</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="execute_sql-instance_method">
+  
+    #<strong>execute_sql</strong>(*sql_array)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+54
+55
+56</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 54</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_execute_sql'>execute_sql</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_sql_array'>sql_array</span><span class='rparen'>)</span>     
+  <span class='id identifier rubyid_connection'>connection</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='symbol'>:sanitize_sql_array</span><span class='comma'>,</span> <span class='id identifier rubyid_sql_array'>sql_array</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="generate_new_name-instance_method">
+  
+    #<strong>generate_new_name</strong>(source_name, target_name, current_name)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 58</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_generate_new_name'>generate_new_name</span><span class='lparen'>(</span><span class='id identifier rubyid_source_name'>source_name</span><span class='comma'>,</span> <span class='id identifier rubyid_target_name'>target_name</span><span class='comma'>,</span> <span class='id identifier rubyid_current_name'>current_name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_name_diff'>name_diff</span> <span class='op'>=</span> <span class='id identifier rubyid_parse_name_difference'>parse_name_difference</span><span class='lparen'>(</span><span class='id identifier rubyid_source_name'>source_name</span><span class='comma'>,</span> <span class='id identifier rubyid_target_name'>target_name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_new_name'>new_name</span> <span class='op'>=</span> <span class='id identifier rubyid_current_name'>current_name</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='id identifier rubyid_name_diff'>name_diff</span><span class='lbracket'>[</span><span class='symbol'>:source</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_name_diff'>name_diff</span><span class='lbracket'>[</span><span class='symbol'>:target</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>while</span> <span class='const'><span class='object_link'><a href="Entity.html" title="Entity (class)">Entity</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find_by_name'>find_by_name</span><span class='lparen'>(</span><span class='id identifier rubyid_new_name'>new_name</span><span class='rparen'>)</span> <span class='op'>!=</span> <span class='kw'>nil</span>
+    <span class='id identifier rubyid_number_part'>number_part</span> <span class='op'>=</span> <span class='id identifier rubyid_new_name'>new_name</span><span class='period'>.</span><span class='id identifier rubyid_scan'>scan</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\d+</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_number_part'>number_part</span>
+      <span class='id identifier rubyid_new_name'>new_name</span><span class='period'>.</span><span class='id identifier rubyid_sub!'>sub!</span><span class='lparen'>(</span><span class='id identifier rubyid_number_part'>number_part</span><span class='comma'>,</span> <span class='lparen'>(</span><span class='id identifier rubyid_number_part'>number_part</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>+</span> <span class='int'>1</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_new_name'>new_name</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>_1</span><span class='tstring_end'>&#39;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_new_name'>new_name</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="menu_entities-instance_method">
+  
+    #<strong>menu_entities</strong>(root = nil)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+27
+28
+29</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 27</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_menu_entities'>menu_entities</span><span class='lparen'>(</span><span class='id identifier rubyid_root'><span class='object_link'><a href="top-level-namespace.html" title="Top Level Namespace (root)">root</a></span></span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>parent_id is null and (disabled=? or id=?)</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='id identifier rubyid_root'><span class='object_link'><a href="top-level-namespace.html" title="Top Level Namespace (root)">root</a></span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_order'>order</span><span class='lparen'>(</span><span class='symbol'>:location_x</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="register_events-instance_method">
+  
+    #<strong>register_events</strong>(*args)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+46
+47
+48
+49
+50
+51
+52</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 46</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_register_events'>register_events</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_sym'>sym</span><span class='op'>|</span>
+    <span class='id identifier rubyid_define_method'>define_method</span> <span class='id identifier rubyid_sym'>sym</span> <span class='kw'>do</span> <span class='op'>|</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='op'>|</span>
+      <span class='id identifier rubyid_events'>events</span><span class='period'>.</span><span class='id identifier rubyid_add_with_replace'>add_with_replace</span> <span class='id identifier rubyid_sym'>sym</span><span class='comma'>,</span> <span class='id identifier rubyid_block'>block</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="require_entity_classes-instance_method">
+  
+    #<strong>require_entity_classes</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+42
+43
+44</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 42</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_require_entity_classes'>require_entity_classes</span>
+  <span class='const'>Dir</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>Home</span><span class='op'>::</span><span class='const'>Engine</span><span class='period'>.</span><span class='id identifier rubyid_root'>root</span><span class='embexpr_end'>}</span><span class='tstring_content'>/app/models/entities/*.rb</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_file'>file</span><span class='op'>|</span> <span class='id identifier rubyid_require_dependency'>require_dependency</span> <span class='id identifier rubyid_file'>file</span><span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="types-instance_method">
+  
+    #<strong>types</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+38
+39
+40</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 38</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_types'>types</span> 
+  <span class='id identifier rubyid_ancestors_and_self'>ancestors_and_self</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_c'>c</span><span class='op'>|</span> <span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_reverse'>reverse</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
   </div>
-</nav>
 
-<main role="main" aria-labelledby="module-EntityClassMethods">
-  <h1 id="module-EntityClassMethods" class="module">
-    module EntityClassMethods
-  </h1>
+</div>
 
-  <section class="description">
-    
-  </section>
+      <div id="footer">
+  Generated on Tue May  2 21:50:35 2017 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.9 (ruby-2.1.8).
+</div>
 
-  
-  
-  
-  <section id="5Buntitled-5D" class="documentation-section">
-    
-
-    
-
-    
-
-    
-
-    
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
-       <header>
-         <h3>Public Instance Methods</h3>
-       </header>
-
-    
-      <div id="method-i-5B-5D" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">[]</span><span
-            class="method-args">(ind)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="5B-5D-source">
-            <pre><span class="ruby-comment"># File concerns/entity_class_methods.rb, line 19</span>
-<span class="ruby-keyword">def</span> <span class="ruby-operator">[]</span>(<span class="ruby-identifier">ind</span>)
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">ind</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Fixnum</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">ind</span>.<span class="ruby-identifier">is_number?</span> 
-    <span class="ruby-identifier">find</span> <span class="ruby-identifier">ind</span>
-  <span class="ruby-keyword">else</span>
-    <span class="ruby-identifier">find_by</span> <span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">ind</span>.<span class="ruby-identifier">to_s</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-ancestors_and_self" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">ancestors_and_self</span><span
-            class="method-args">(class_limit = Entity, recurs_class = nil)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="ancestors_and_self-source">
-            <pre><span class="ruby-comment"># File concerns/entity_class_methods.rb, line 31</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">ancestors_and_self</span>(<span class="ruby-identifier">class_limit</span> = <span class="ruby-constant">Entity</span>, <span class="ruby-identifier">recurs_class</span> = <span class="ruby-keyword">nil</span>)
-  <span class="ruby-identifier">klass</span> = <span class="ruby-identifier">recurs_class</span> <span class="ruby-operator">||</span> <span class="ruby-keyword">self</span>
-  <span class="ruby-identifier">is_limit</span> = <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">superclass</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> (<span class="ruby-identifier">klass</span><span class="ruby-operator">==</span><span class="ruby-identifier">class_limit</span>)
-  <span class="ruby-identifier">a</span> = (<span class="ruby-identifier">is_limit</span> <span class="ruby-operator">?</span> [] <span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ancestors_and_self</span>(<span class="ruby-identifier">class_limit</span>, <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">superclass</span>) ) <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">klass</span>
-  <span class="ruby-identifier">recurs_class</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">reverse</span> 
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-drivers" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">drivers</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="drivers-source">
-            <pre><span class="ruby-comment"># File concerns/entity_class_methods.rb, line 7</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">drivers</span>
-  <span class="ruby-identifier">drivers_names</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;#{ s.camelize }Driver&quot;</span>.<span class="ruby-identifier">constantize</span>}
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-drivers_names" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">drivers_names</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="drivers_names-source">
-            <pre><span class="ruby-comment"># File concerns/entity_class_methods.rb, line 3</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">drivers_names</span>
-  <span class="ruby-identifier">@@drivers_names</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">entries</span>(<span class="ruby-constant">Home</span><span class="ruby-operator">::</span><span class="ruby-constant">Engine</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;app&#39;</span>,<span class="ruby-string">&#39;models&#39;</span>,<span class="ruby-string">&#39;drivers&#39;</span>)).<span class="ruby-identifier">inject</span>([]){<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>=<span class="ruby-identifier">f</span>[<span class="ruby-value">-10</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>]; <span class="ruby-identifier">a</span><span class="ruby-operator">+</span><span class="ruby-keyword">if</span> <span class="ruby-identifier">s</span><span class="ruby-operator">==</span><span class="ruby-string">&#39;_driver.rb&#39;</span> <span class="ruby-keyword">then</span> [<span class="ruby-identifier">f</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">-11</span>]] <span class="ruby-keyword">else</span> [] <span class="ruby-keyword">end</span>}
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-entity_types" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">entity_types</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="entity_types-source">
-            <pre><span class="ruby-comment"># File concerns/entity_class_methods.rb, line 11</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">entity_types</span>
-  <span class="ruby-identifier">@@entity_types</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">descendants</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span> <span class="ruby-identifier">d</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span> }
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-entity_types_downcase" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">entity_types_downcase</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="entity_types_downcase-source">
-            <pre><span class="ruby-comment"># File concerns/entity_class_methods.rb, line 15</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">entity_types_downcase</span>
-  <span class="ruby-identifier">entity_types</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">downcase</span> }
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-execute_sql" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">execute_sql</span><span
-            class="method-args">(*sql_array)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="execute_sql-source">
-            <pre><span class="ruby-comment"># File concerns/entity_class_methods.rb, line 54</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">execute_sql</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">sql_array</span>)     
-  <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-identifier">send</span>(<span class="ruby-value">:sanitize_sql_array</span>, <span class="ruby-identifier">sql_array</span>))
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-generate_new_name" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">generate_new_name</span><span
-            class="method-args">(source_name, target_name, current_name)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="generate_new_name-source">
-            <pre><span class="ruby-comment"># File concerns/entity_class_methods.rb, line 58</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">generate_new_name</span>(<span class="ruby-identifier">source_name</span>, <span class="ruby-identifier">target_name</span>, <span class="ruby-identifier">current_name</span>)
-  <span class="ruby-identifier">name_diff</span> = <span class="ruby-identifier">parse_name_difference</span>(<span class="ruby-identifier">source_name</span>, <span class="ruby-identifier">target_name</span>)
-  <span class="ruby-identifier">new_name</span> = <span class="ruby-identifier">current_name</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-identifier">name_diff</span>[<span class="ruby-value">:source</span>], <span class="ruby-identifier">name_diff</span>[<span class="ruby-value">:target</span>])
-  <span class="ruby-keyword">while</span> <span class="ruby-constant">Entity</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-identifier">new_name</span>) <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span>
-    <span class="ruby-identifier">number_part</span> = <span class="ruby-identifier">new_name</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/\d+/</span>).<span class="ruby-identifier">last</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">number_part</span>
-      <span class="ruby-identifier">new_name</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-identifier">number_part</span>, (<span class="ruby-identifier">number_part</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>).<span class="ruby-identifier">to_s</span>)
-    <span class="ruby-keyword">else</span>
-      <span class="ruby-identifier">new_name</span> <span class="ruby-operator">+=</span> <span class="ruby-string">&#39;_1&#39;</span>
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">new_name</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-menu_entities" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">menu_entities</span><span
-            class="method-args">(root = nil)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="menu_entities-source">
-            <pre><span class="ruby-comment"># File concerns/entity_class_methods.rb, line 27</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">menu_entities</span>(<span class="ruby-identifier">root</span> = <span class="ruby-keyword">nil</span>)
-  <span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;parent_id is null and (disabled=? or id=?)&#39;</span>, <span class="ruby-keyword">false</span>, <span class="ruby-identifier">root</span>).<span class="ruby-identifier">order</span>(<span class="ruby-value">:location_x</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-register_events" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">register_events</span><span
-            class="method-args">(*args)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="register_events-source">
-            <pre><span class="ruby-comment"># File concerns/entity_class_methods.rb, line 46</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">register_events</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
-  <span class="ruby-identifier">args</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sym</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">define_method</span> <span class="ruby-identifier">sym</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">events</span>.<span class="ruby-identifier">add_with_replace</span> <span class="ruby-identifier">sym</span>, <span class="ruby-identifier">block</span>
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-require_entity_classes" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">require_entity_classes</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="require_entity_classes-source">
-            <pre><span class="ruby-comment"># File concerns/entity_class_methods.rb, line 42</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">require_entity_classes</span>
-  <span class="ruby-constant">Dir</span>[<span class="ruby-node">&quot;#{Home::Engine.root}/app/models/entities/*.rb&quot;</span>].<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span> <span class="ruby-identifier">require_dependency</span> <span class="ruby-identifier">file</span>}
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-types" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">types</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="types-source">
-            <pre><span class="ruby-comment"># File concerns/entity_class_methods.rb, line 38</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">types</span> 
-  <span class="ruby-identifier">ancestors_and_self</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">downcase</span>}.<span class="ruby-identifier">reverse</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-    </section>
-  
-     <section id="protected-instance-5Buntitled-5D-method-details" class="method-section">
-       <header>
-         <h3>Protected Instance Methods</h3>
-       </header>
-
-    
-      <div id="method-i-parse_name_difference" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">parse_name_difference</span><span
-            class="method-args">(source, new)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="parse_name_difference-source">
-            <pre><span class="ruby-comment"># File concerns/entity_class_methods.rb, line 84</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">parse_name_difference</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">new</span>)
-  <span class="ruby-identifier">detect_prefix_length</span> = <span class="ruby-identifier">lambda</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">src</span>, <span class="ruby-identifier">dst</span><span class="ruby-operator">|</span> <span class="ruby-identifier">src</span>.<span class="ruby-identifier">each_char</span>.<span class="ruby-identifier">with_index</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">ch</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-keyword">break</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">ch</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">dst</span>[<span class="ruby-identifier">i</span>]}}
-  <span class="ruby-identifier">prefix_length</span> = <span class="ruby-identifier">detect_prefix_length</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">new</span>)
-  <span class="ruby-identifier">suffix_length</span> = <span class="ruby-identifier">detect_prefix_length</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">source</span>.<span class="ruby-identifier">reverse</span>, <span class="ruby-identifier">new</span>.<span class="ruby-identifier">reverse</span>)
-
-  {
-      <span class="ruby-identifier">prefix</span><span class="ruby-operator">:</span> <span class="ruby-identifier">source</span>[<span class="ruby-value">0</span>,<span class="ruby-identifier">prefix_length</span>],
-      <span class="ruby-identifier">suffix</span><span class="ruby-operator">:</span> <span class="ruby-identifier">suffix_length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">source</span>[<span class="ruby-operator">-</span><span class="ruby-identifier">suffix_length</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>] <span class="ruby-operator">:</span> <span class="ruby-string">&#39;&#39;</span>,
-      <span class="ruby-identifier">source</span><span class="ruby-operator">:</span> <span class="ruby-identifier">source</span>[<span class="ruby-identifier">prefix_length</span><span class="ruby-operator">..</span><span class="ruby-operator">-</span><span class="ruby-identifier">suffix_length</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>],
-      <span class="ruby-identifier">target</span><span class="ruby-operator">:</span> <span class="ruby-identifier">new</span>[<span class="ruby-identifier">prefix_length</span><span class="ruby-operator">..</span><span class="ruby-operator">-</span><span class="ruby-identifier">suffix_length</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>]
-  }
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-register_attributes" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">register_attributes</span><span
-            class="method-args">(*args)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="register_attributes-source">
-            <pre><span class="ruby-comment"># File concerns/entity_class_methods.rb, line 75</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">register_attributes</span> <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">==</span><span class="ruby-value">1</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
-    <span class="ruby-identifier">iterator</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span>
-  <span class="ruby-keyword">else</span>
-    <span class="ruby-identifier">iterator</span> = <span class="ruby-identifier">args</span>
-  <span class="ruby-keyword">end</span>    
-  <span class="ruby-identifier">iterator</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">key</span>,<span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-identifier">register_attribute</span> <span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>}
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-    </section>
-  
-  </section>
-</main>
-
-
-<footer id="validator-badges" role="contentinfo">
-  <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.3.0.
-  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
-</footer>
-
+    </div>
+  </body>
+</html>

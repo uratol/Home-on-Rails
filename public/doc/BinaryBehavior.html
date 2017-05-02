@@ -1,550 +1,1065 @@
 <!DOCTYPE html>
-
 <html>
-<head>
-<meta charset="UTF-8">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: BinaryBehavior
+  
+    &mdash; Documentation by YARD 0.9.9
+  
+</title>
 
-<title>module BinaryBehavior - RDoc Documentation</title>
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
 
-<script type="text/javascript">
-  var rdoc_rel_prefix = "./";
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "BinaryBehavior";
+  relpath = '';
 </script>
 
-<script src="./js/jquery.js"></script>
-<script src="./js/darkfish.js"></script>
 
-<link href="./css/fonts.css" rel="stylesheet">
-<link href="./css/rdoc.css" rel="stylesheet">
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
 
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
 
 
-<body id="top" role="document" class="module">
-<nav role="navigation">
-  <div id="project-navigation">
-    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
-  <h2>
-    <a href="./index.html" rel="home">Home</a>
-  </h2>
-
-  <div id="table-of-contents-navigation">
-    <a href="./table_of_contents.html#pages">Pages</a>
-    <a href="./table_of_contents.html#classes">Classes</a>
-    <a href="./table_of_contents.html#methods">Methods</a>
-  </div>
-</div>
-
-    <div id="search-section" role="search" class="project-section initially-hidden">
-  <form action="#" method="get" accept-charset="utf-8">
-    <div id="search-field-wrapper">
-      <input id="search-field" role="combobox" aria-label="Search"
-             aria-autocomplete="list" aria-controls="search-results"
-             type="text" name="search" placeholder="Search" spellcheck="false"
-             title="Type to search, Up and Down to navigate, Enter to load">
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
     </div>
 
-    <ul id="search-results" aria-label="Search Results"
-        aria-busy="false" aria-expanded="false"
-        aria-atomic="false" class="initially-hidden"></ul>
-  </form>
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (B)</a> &raquo;
+    
+    
+    <span class="title">BinaryBehavior</span>
+  
 </div>
 
-  </div>
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: BinaryBehavior
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  
+  
+  
 
   
 
-  <div id="class-metadata">
-    
-    
-    
-    
-    <!-- Method Quickref -->
-<div id="method-list-section" class="nav-section">
-  <h3>Methods</h3>
-
-  <ul class="link-list" role="directory">
-    
-    <li ><a href="#method-c-blink">::blink</a>
-    
-    <li ><a href="#method-i-average_value">#average_value</a>
-    
-    <li class="calls-super" ><a href="#method-i-do_schedule">#do_schedule</a>
-    
-    <li ><a href="#method-i-off-21">#off!</a>
-    
-    <li ><a href="#method-i-off-3D">#off=</a>
-    
-    <li ><a href="#method-i-off-3F">#off?</a>
-    
-    <li ><a href="#method-i-on-21">#on!</a>
-    
-    <li ><a href="#method-i-on-3D">#on=</a>
-    
-    <li ><a href="#method-i-on-3F">#on?</a>
-    
-    <li ><a href="#method-i-opposite_value">#opposite_value</a>
-    
-    <li ><a href="#method-i-switch-21">#switch!</a>
-    
-  </ul>
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>app/models/concerns/binary_behavior.rb</dd>
+  </dl>
+  
 </div>
 
+
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#blink-class_method" title="blink (class method)">.<strong>blink</strong>(args = {}, &amp;block_after)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Включить/выключить устройство несколько раз подряд.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#average_value-instance_method" title="#average_value (instance method)">#<strong>average_value</strong>(interval)  &#x21d2; Float </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Среднее значение за период.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#off!-instance_method" title="#off! (instance method)">#<strong>off!</strong>(options = {})  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Выключает устройство.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#off=-instance_method" title="#off= (instance method)">#<strong>off=</strong>(v)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Выключить дибо включить устройство.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#off%3F-instance_method" title="#off? (instance method)">#<strong>off?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>False если включено, true если выключено.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#on!-instance_method" title="#on! (instance method)">#<strong>on!</strong>(options = {})  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Включает устройство.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#on=-instance_method" title="#on= (instance method)">#<strong>on=</strong>(v)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Включить дибо выключить устройство.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#on%3F-instance_method" title="#on? (instance method)">#<strong>on?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>True если включено, false если выключено.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#switch!-instance_method" title="#switch! (instance method)">#<strong>switch!</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Переключает устройство - включает, если выключено и выключает, если
+включено.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="blink-class_method">
+  
+    .<strong>blink</strong>(args = {}, &amp;block_after)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Включить/выключить устройство несколько раз подряд</p>
+
+
   </div>
-</nav>
-
-<main role="main" aria-labelledby="module-BinaryBehavior">
-  <h1 id="module-BinaryBehavior" class="module">
-    module BinaryBehavior
-  </h1>
-
-  <section class="description">
-    
-  </section>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>args</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
 
   
+    
+    
+    <p class="tag_title">Options Hash (<tt>args</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:delay</span>
+          <span class="type">(<tt>ActiveSupport::Duration</tt>, <tt>nil</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>время включения/выключения</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:times</span>
+          <span class="type">(<tt>Fixnum</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>количество включений/выключений</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:devices</span>
+          <span class="type">(<tt><span class='object_link'><a href="Entity.html" title="Entity (class)">Entity</a></span></tt>, <tt>Array</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>массив устройств</p>
+</div>
+          
+        </li>
+      
+    </ul>
   
-  
-  <section id="5Buntitled-5D" class="documentation-section">
+    
     
 
-    
 
-    
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
-    
 
-    
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
-       <header>
-         <h3>Public Class Methods</h3>
-       </header>
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/binary_behavior.rb', line 57</span>
 
-    
-      <div id="method-c-blink" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">blink</span><span
-            class="method-args">(args = {})</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="blink-source">
-            <pre><span class="ruby-comment"># File concerns/binary_behavior.rb, line 39</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">blink</span> <span class="ruby-identifier">args</span> = {}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block_after</span>
-  <span class="ruby-identifier">delay</span> = <span class="ruby-identifier">args</span>[<span class="ruby-value">:delay</span>] <span class="ruby-operator">||</span> <span class="ruby-value">0.2</span>
-  <span class="ruby-identifier">devices</span> = <span class="ruby-identifier">args</span>[<span class="ruby-value">:devices</span>]
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_blink'>blink</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block_after'>block_after</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_delay'>delay</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='symbol'>:delay</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='float'>0.2</span>
+  <span class='id identifier rubyid_devices'>devices</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='symbol'>:devices</span><span class='rbracket'>]</span>
    
-  <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
-    (<span class="ruby-identifier">args</span>[<span class="ruby-value">:times</span>]<span class="ruby-operator">||</span><span class="ruby-value">1</span>).<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
-      <span class="ruby-value">2</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">j</span><span class="ruby-operator">|</span>
-        [<span class="ruby-operator">*</span><span class="ruby-identifier">devices</span>].<span class="ruby-identifier">each</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">set_driver_value</span>(<span class="ruby-keyword">if</span> <span class="ruby-identifier">j</span><span class="ruby-operator">==</span><span class="ruby-value">0</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">opposite_value</span> <span class="ruby-keyword">else</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">value</span> <span class="ruby-keyword">end</span>)}
-        <span class="ruby-identifier">sleep</span>(<span class="ruby-identifier">delay</span>)
-      <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_after</span>
-      <span class="ruby-keyword">if</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:sender</span>]
-        <span class="ruby-identifier">args</span>[<span class="ruby-value">:sender</span>].<span class="ruby-identifier">instance_eval</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block_after</span>) 
-      <span class="ruby-keyword">else</span>
-        <span class="ruby-identifier">block_after</span>.<span class="ruby-identifier">call</span>  
-      <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
+  <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>do</span>
+    <span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='symbol'>:times</span><span class='rbracket'>]</span><span class='op'>||</span><span class='int'>1</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_times'>times</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
+      <span class='int'>2</span><span class='period'>.</span><span class='id identifier rubyid_times'>times</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_j'>j</span><span class='op'>|</span>
+        <span class='lbracket'>[</span><span class='op'>*</span><span class='id identifier rubyid_devices'>devices</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_e'>e</span><span class='op'>|</span> <span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_set_driver_value'>set_driver_value</span><span class='lparen'>(</span><span class='kw'>if</span> <span class='id identifier rubyid_j'>j</span><span class='op'>==</span><span class='int'>0</span> <span class='kw'>then</span> <span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_opposite_value'>opposite_value</span> <span class='kw'>else</span> <span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span> <span class='kw'>end</span><span class='rparen'>)</span><span class='rbrace'>}</span>
+        <span class='id identifier rubyid_sleep'>sleep</span><span class='lparen'>(</span><span class='id identifier rubyid_delay'>delay</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_block_after'>block_after</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='symbol'>:sender</span><span class='rbracket'>]</span>
+        <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='symbol'>:sender</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_instance_eval'>instance_eval</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block_after'>block_after</span><span class='rparen'>)</span> 
+      <span class='kw'>else</span>
+        <span class='id identifier rubyid_block_after'>block_after</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span>  
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
-        
-
-        
-      </div>
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
 
     
-    </section>
+      <div class="method_details first">
+  <h3 class="signature first" id="average_value-instance_method">
   
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
-       <header>
-         <h3>Public Instance Methods</h3>
-       </header>
-
-    
-      <div id="method-i-average_value" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">average_value</span><span
-            class="method-args">(interval)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="average_value-source">
-            <pre><span class="ruby-comment"># File concerns/binary_behavior.rb, line 60</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">average_value</span>(<span class="ruby-identifier">interval</span>)
-  <span class="ruby-identifier">to</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
-  <span class="ruby-identifier">from</span> = <span class="ruby-identifier">to</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">interval</span>
-  <span class="ruby-identifier">first_indication</span> = <span class="ruby-identifier">indication_at</span>(<span class="ruby-identifier">from</span>)
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">first_indication</span>
-    <span class="ruby-identifier">first_indication</span>.<span class="ruby-identifier">created_at</span> = <span class="ruby-identifier">from</span>
-  <span class="ruby-keyword">else</span>
-    <span class="ruby-identifier">first_indication</span> = <span class="ruby-constant">Indication</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">created_at</span><span class="ruby-operator">:</span> <span class="ruby-identifier">from</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">:</span> <span class="ruby-value">0</span>)
-  <span class="ruby-keyword">end</span>
+    #<strong>average_value</strong>(interval)  &#x21d2; <tt>Float</tt> 
   
-  <span class="ruby-identifier">arr</span> = [<span class="ruby-identifier">first_indication</span>] 
-  <span class="ruby-identifier">arr</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">indications</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;created_at between ? and ?&#39;</span>, <span class="ruby-identifier">from</span>, <span class="ruby-identifier">to</span>).<span class="ruby-identifier">order</span>(<span class="ruby-value">:created_at</span>).<span class="ruby-identifier">to_a</span> 
-  <span class="ruby-identifier">arr</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Indication</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">created_at</span><span class="ruby-operator">:</span> <span class="ruby-identifier">to</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">:</span> <span class="ruby-identifier">value</span>)
+
   
-  <span class="ruby-identifier">prev_indication</span> = <span class="ruby-keyword">nil</span>
-  <span class="ruby-identifier">sum</span>  = <span class="ruby-value">0</span>
-  <span class="ruby-identifier">arr</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ind</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">sum</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">prev_indication</span>.<span class="ruby-identifier">value</span> <span class="ruby-operator">*</span> (<span class="ruby-identifier">ind</span>.<span class="ruby-identifier">created_at</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">prev_indication</span>.<span class="ruby-identifier">created_at</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">prev_indication</span>
-    <span class="ruby-identifier">prev_indication</span> = <span class="ruby-identifier">ind</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">return</span> <span class="ruby-identifier">sum</span> <span class="ruby-operator">/</span> (<span class="ruby-identifier">to</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">from</span>)  
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
 
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-do_schedule" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">do_schedule</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-            <div class="method-calls-super">
-              Calls superclass method
-              
-            </div>
-          
-
-          
-          <div class="method-source-code" id="do_schedule-source">
-            <pre><span class="ruby-comment"># File concerns/binary_behavior.rb, line 83</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">do_schedule</span>
-  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">on</span> = <span class="ruby-identifier">average_value</span>(<span class="ruby-identifier">schedule</span> <span class="ruby-operator">*</span> <span class="ruby-value">10</span>) <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">data</span>.<span class="ruby-identifier">pwm_power</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">data</span>.<span class="ruby-identifier">pwm_power</span>
-  <span class="ruby-keyword">super</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-off-21" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">off!</span><span
-            class="method-args">(options = {})</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="off-21-source">
-            <pre><span class="ruby-comment"># File concerns/binary_behavior.rb, line 29</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">off!</span> <span class="ruby-identifier">options</span> = {}
-  <span class="ruby-identifier">write_value</span> <span class="ruby-identifier">min</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">min</span> 
-  <span class="ruby-identifier">wait_for</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:delay</span>]).<span class="ruby-identifier">on!</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:delay</span>]
-  <span class="ruby-keyword">return</span> <span class="ruby-identifier">value</span>  
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-off-3D" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">off=</span><span
-            class="method-args">(v)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="off-3D-source">
-            <pre><span class="ruby-comment"># File concerns/binary_behavior.rb, line 35</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">off=</span> <span class="ruby-identifier">v</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">v</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">v</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">off!</span> <span class="ruby-keyword">else</span> <span class="ruby-identifier">on!</span> <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-off-3F" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">off?</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="off-3F-source">
-            <pre><span class="ruby-comment"># File concerns/binary_behavior.rb, line 7</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">off?</span>
-  <span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">min</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-on-21" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">on!</span><span
-            class="method-args">(options = {})</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="on-21-source">
-            <pre><span class="ruby-comment"># File concerns/binary_behavior.rb, line 19</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">on!</span> <span class="ruby-identifier">options</span> = {}
-  <span class="ruby-identifier">write_value</span> <span class="ruby-identifier">max</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">max</span> 
-  <span class="ruby-identifier">wait_for</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:delay</span>]).<span class="ruby-identifier">off!</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:delay</span>]  
-  <span class="ruby-keyword">return</span> <span class="ruby-identifier">value</span>  
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-on-3D" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">on=</span><span
-            class="method-args">(v)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="on-3D-source">
-            <pre><span class="ruby-comment"># File concerns/binary_behavior.rb, line 25</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">on=</span> <span class="ruby-identifier">v</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">v</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">v</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">on!</span> <span class="ruby-keyword">else</span> <span class="ruby-identifier">off!</span> <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-on-3F" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">on?</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="on-3F-source">
-            <pre><span class="ruby-comment"># File concerns/binary_behavior.rb, line 3</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">on?</span>
-  <span class="ruby-identifier">value</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">min</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-opposite_value" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">opposite_value</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="opposite_value-source">
-            <pre><span class="ruby-comment"># File concerns/binary_behavior.rb, line 11</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">opposite_value</span> 
-  <span class="ruby-identifier">min</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">max</span> <span class="ruby-operator">-</span> (<span class="ruby-identifier">value</span> <span class="ruby-operator">||</span> <span class="ruby-value">0</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-switch-21" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">switch!</span><span
-            class="method-args">(options = {})</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="switch-21-source">
-            <pre><span class="ruby-comment"># File concerns/binary_behavior.rb, line 15</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">switch!</span> <span class="ruby-identifier">options</span> = {}
-  <span class="ruby-identifier">write_value</span>(<span class="ruby-identifier">opposite_value</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-    </section>
   
-  </section>
-</main>
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Среднее значение за период</p>
 
 
-<footer id="validator-badges" role="contentinfo">
-  <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.3.0.
-  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
-</footer>
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>interval</span>
+      
+      
+        <span class='type'>(<tt>ActiveSupport::Duration</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>период, за который возвращается среднее значение, начиная от текущего
+времени</p>
+</div>
+      
+    </li>
+  
+</ul>
 
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Float</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/binary_behavior.rb', line 81</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_average_value'>average_value</span><span class='lparen'>(</span><span class='id identifier rubyid_interval'>interval</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_to'>to</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span>
+  <span class='id identifier rubyid_from'>from</span> <span class='op'>=</span> <span class='id identifier rubyid_to'>to</span> <span class='op'>-</span> <span class='id identifier rubyid_interval'>interval</span>
+  <span class='id identifier rubyid_first_indication'>first_indication</span> <span class='op'>=</span> <span class='id identifier rubyid_indication_at'>indication_at</span><span class='lparen'>(</span><span class='id identifier rubyid_from'>from</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_first_indication'>first_indication</span>
+    <span class='id identifier rubyid_first_indication'>first_indication</span><span class='period'>.</span><span class='id identifier rubyid_created_at'>created_at</span> <span class='op'>=</span> <span class='id identifier rubyid_from'>from</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_first_indication'>first_indication</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Indication.html" title="Indication (class)">Indication</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>created_at:</span> <span class='id identifier rubyid_from'>from</span><span class='comma'>,</span> <span class='label'>value:</span> <span class='int'>0</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  
+  <span class='id identifier rubyid_arr'>arr</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_first_indication'>first_indication</span><span class='rbracket'>]</span> 
+  <span class='id identifier rubyid_arr'>arr</span> <span class='op'>+=</span> <span class='id identifier rubyid_indications'>indications</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>created_at between ? and ?</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_from'>from</span><span class='comma'>,</span> <span class='id identifier rubyid_to'>to</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_order'>order</span><span class='lparen'>(</span><span class='symbol'>:created_at</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span> 
+  <span class='id identifier rubyid_arr'>arr</span> <span class='op'>&lt;&lt;</span> <span class='const'><span class='object_link'><a href="Indication.html" title="Indication (class)">Indication</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>created_at:</span> <span class='id identifier rubyid_to'>to</span><span class='comma'>,</span> <span class='label'>value:</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  
+  <span class='id identifier rubyid_prev_indication'>prev_indication</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='id identifier rubyid_sum'>sum</span>  <span class='op'>=</span> <span class='int'>0</span>
+  <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_each_with_index'>each_with_index</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_ind'>ind</span><span class='comma'>,</span> <span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
+    <span class='id identifier rubyid_sum'>sum</span> <span class='op'>+=</span> <span class='id identifier rubyid_prev_indication'>prev_indication</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span> <span class='op'>*</span> <span class='lparen'>(</span><span class='id identifier rubyid_ind'>ind</span><span class='period'>.</span><span class='id identifier rubyid_created_at'>created_at</span> <span class='op'>-</span> <span class='id identifier rubyid_prev_indication'>prev_indication</span><span class='period'>.</span><span class='id identifier rubyid_created_at'>created_at</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_prev_indication'>prev_indication</span>
+    <span class='id identifier rubyid_prev_indication'>prev_indication</span> <span class='op'>=</span> <span class='id identifier rubyid_ind'>ind</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_sum'>sum</span> <span class='op'>/</span> <span class='lparen'>(</span><span class='id identifier rubyid_to'>to</span> <span class='op'>-</span> <span class='id identifier rubyid_from'>from</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="off!-instance_method">
+  
+    #<strong>off!</strong>(options = {})  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Выключает устройство</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:delay</span>
+          <span class="type">(<tt>ActiveSupport::Duration</tt>, <tt>nil</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>опционально</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>время, по прошествии которого устройство будет включено</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+40
+41
+42
+43
+44</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/binary_behavior.rb', line 40</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_off!'>off!</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='id identifier rubyid_write_value'>write_value</span> <span class='id identifier rubyid_min'>min</span> <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>!=</span> <span class='id identifier rubyid_min'>min</span> 
+  <span class='id identifier rubyid_wait_for'>wait_for</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:delay</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_on!'>on!</span> <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:delay</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_value'>value</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="off=-instance_method">
+  
+    #<strong>off=</strong>(v)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Выключить дибо включить устройство</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>v</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>значение, true - выключить, false - включить</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+48
+49
+50</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/binary_behavior.rb', line 48</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_off='>off=</span> <span class='id identifier rubyid_v'>v</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_v'>v</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_v'>v</span> <span class='op'>!=</span> <span class='int'>0</span> <span class='kw'>then</span> <span class='id identifier rubyid_off!'>off!</span> <span class='kw'>else</span> <span class='id identifier rubyid_on!'>on!</span> <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="off?-instance_method">
+  
+    #<strong>off?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns false если включено, true если выключено</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>false если включено, true если выключено</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+9
+10
+11</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/binary_behavior.rb', line 9</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_off?'>off?</span>
+  <span class='id identifier rubyid_value'>value</span> <span class='op'>==</span> <span class='id identifier rubyid_min'>min</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="on!-instance_method">
+  
+    #<strong>on!</strong>(options = {})  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Включает устройство</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:delay</span>
+          <span class="type">(<tt>ActiveSupport::Duration</tt>, <tt>nil</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>опционально</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>время, по прошествии которого устройство будет выключено</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+25
+26
+27
+28
+29</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/binary_behavior.rb', line 25</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_on!'>on!</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_write_value'>write_value</span> <span class='id identifier rubyid_max'>max</span> <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>!=</span> <span class='id identifier rubyid_max'>max</span> 
+  <span class='id identifier rubyid_wait_for'>wait_for</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:delay</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_off!'>off!</span> <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:delay</span><span class='rbracket'>]</span>  
+  <span class='id identifier rubyid_value'>value</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="on=-instance_method">
+  
+    #<strong>on=</strong>(v)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Включить дибо выключить устройство</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>v</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>значение, true - включить, false - выключить</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+33
+34
+35</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/binary_behavior.rb', line 33</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_on='>on=</span> <span class='id identifier rubyid_v'>v</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_v'>v</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_v'>v</span> <span class='op'>!=</span> <span class='int'>0</span> <span class='kw'>then</span> <span class='id identifier rubyid_on!'>on!</span> <span class='kw'>else</span> <span class='id identifier rubyid_off!'>off!</span> <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="on?-instance_method">
+  
+    #<strong>on?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns true если включено, false если выключено</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>true если включено, false если выключено</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+4
+5
+6</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/binary_behavior.rb', line 4</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_on?'>on?</span>
+  <span class='id identifier rubyid_value'>value</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>!=</span> <span class='id identifier rubyid_min'>min</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="switch!-instance_method">
+  
+    #<strong>switch!</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Переключает устройство - включает, если выключено и выключает, если
+включено</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+18
+19
+20</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/binary_behavior.rb', line 18</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_switch!'>switch!</span>
+  <span class='id identifier rubyid_write_value'>write_value</span><span class='lparen'>(</span><span class='id identifier rubyid_opposite_value'>opposite_value</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Tue May  2 21:50:34 2017 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.9 (ruby-2.1.8).
+</div>
+
+    </div>
+  </body>
+</html>

@@ -2,13 +2,11 @@ module EntityVisualization
   extend ActiveSupport::Concern
   
   included do
-    # relations, callbacks, validations, scopes and others...
     register_attributes(:caption_class)
 
     attr_accessor(:redirect_target)
   end
 
-  # instance methods
   def human_value
     ("%g" % ("%.2f" % value) if value).to_s
   end
@@ -48,7 +46,7 @@ module EntityVisualization
     self.redirect_target = target
   end
 
-  #:nodoc:
+  # @!visibility private
   def img
     ActionController::Base.helpers.asset_path(image)
   end

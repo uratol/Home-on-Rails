@@ -2,8 +2,8 @@
 # От него наследуются все остальные объекты: помещения, устройства, виджеты и т.д.
 
 class Entity < ActiveRecord::Base
-  
-  extend EntityClassMethods 
+
+  extend EntityClassMethods
 
   belongs_to :parent, class_name: Entity
   has_many :indications, dependent: :delete_all 
@@ -17,7 +17,7 @@ class Entity < ActiveRecord::Base
   acts_as_nested_set dependent: :restrict, counter_cache: :children_count, depth_column: :depth
   has_many :children, class_name: Entity, foreign_key: :parent_id, dependent: :restrict_with_error
 
-  attr_accessor :state #:nodoc:
+  attr_accessor :state # @!visibility private
 
   # Имя изображения.
   # Вызывается каждый раз при обновлении страницы для каждого объекта (как правило раз в пять секунд).
@@ -31,7 +31,8 @@ class Entity < ActiveRecord::Base
   #   ИмяКлассаПредка
   #   ... и т.д. для каждого класса-предка
   # Перегрузив этот метод, можно задать индивидуальное изображение для каждого объекта.
-  # ==== Пример
+  # @return [String] Имя изображения (без расширения)
+  # @example
   #   def image_name
   #     "custom_image_#{ value.round(0) }"
   #   end
@@ -44,75 +45,119 @@ class Entity < ActiveRecord::Base
   attr_accessor :height
 
 
-  attr_accessor :driver_address #:nodoc:
+  attr_accessor :driver_address # @!visibility private
 
-  attr_accessor :binary #:nodoc:
+  attr_accessor :binary # @!visibility private
 
-  alias_method :binary?, :binary #:nodoc:
-  attr_reader :events #:nodoc:
+  alias_method :binary?, :binary # @!visibility private
+  attr_reader :events # @!visibility private
 
   after_commit {cancel :startup; delay.startup}
-  
+
+  # @!method name
+  #   Имя объекта
+  #   @return [String]
+
+  # @!method parent
+  #   Имя родителя объекта
+  #   @return [Entity]
+
   after_initialize :init
   
   include ::EntityVisualization
   include ::EntityData
   include ::EntityBehavior
-  
+
+  # @!method at_click
+  # Вызывается при клике на объект в вэб-интерфейсе
+  # @yield скрипт, котрый будет выполнен на сервере при клике на объекте
+  # @example
+  #   at_click do
+  #     light1.on!
+  #     redirect_to page1
+  #   end
+
+  # @!method at_touchstart
+  # Вызывается при нажатии левой кнопки мыши или тачпада  в вэб-интерфейсе
+  # @yield скрипт
+  # @example
+  #   at_touchstart do
+  #     light1.on!
+  #   end
+
+  # @!method at_touchend
+  # Вызывается при отпускании левой кнопки мыши или тачпада в вэб-интерфейсе
+  # @yield скрипт
+  # @example
+  #   at_touchend do
+  #     light1.off!
+  #   end
+
+  # @!method at_startup
+  # Вызывается каждый раз при старте сервера
+  # @yield скрипт
+  # @example
+  #   at_startup do
+  #     log 'started'
+  #   end
+
+
+
   register_events :at_click, :at_touchstart, :at_touchend, :at_startup, :at_schedule
   register_attributes min: 0, max: 1, schedule: nil
   register_attributes invert_driver_value: false
   alias_method :invert=, :invert_driver_value=
 
   # возвращает значение на заданное время
+  # @param dt [Date, Time]
+  # @return [Float]
   def value_at(dt)
     (indication_at(dt) || self).value
   end
 
-  def indication_at(dt) #:nodoc:
+  def indication_at(dt) # @!visibility private
     Indication.indication_at self, dt
   end
   
-  def types #:nodoc:
+  def types # @!visibility private
     self.class.types
   end
   
-  def behavior_methods #:nodoc:
+  def behavior_methods # @!visibility private
     self.class.instance_methods.grep(/^at_/)
   end
 
-  def to_f #:nodoc:
+  def to_f # @!visibility private
     value || 0
   end
   
-  def to_s #:nodoc:
+  def to_s # @!visibility private
     name ? "#{ name } (#{ caption })" : super
   end
   
-  def inspect #:nodoc:
+  def inspect # @!visibility private
     "#<#{self.class.name}: #{name}>"
   end
   
-  def do_event(event_name, params = nil) #:nodoc:
+  def do_event(event_name, params = nil) # @!visibility private
     events.call event_name, params: params
   end
 
   # Устанавливает и записывает значение (атрибут value)
-  # ==== Параметры
-  # +v+ : Number - значение
+  # @param v [Float, Fixnum] - значение
   def write_value(v)
     store_value(v ? v.to_f.restrict_by_range(min, max) : v)
   end
 
-  def invert_driver_value? #:nodoc:
+  def invert_driver_value? # @!visibility private
     invert_driver_value
   end
 
-  def transform_driver_value(v) #:nodoc:
+  def transform_driver_value(v) # @!visibility private
     invert_driver_value? ? 1-v : v
   end
   
-  def startup #:nodoc:
+  def startup # @!visibility private
     transaction do
       cancel [:do_schedule, :startup]
       log {"Startup #{ self }"}
@@ -124,18 +169,17 @@ class Entity < ActiveRecord::Base
     end
   end
   
-  def do_schedule #:nodoc:
+  def do_schedule # @!visibility private
     super rescue NoMethodError
     do_event :at_schedule
   end
 
   # задаёт обработчик, вызываемый по расписанию
-  #
-  # ==== Параметры
-  # * +every+ - интервал. например 1.hour, 30.minutes, 10.seconds
-  # * +at+ : String - время в формате 'HH:MM'. Можно также указывать массив, например ['10:00', '13:10']
-  #
-  # ==== Пример
+  # @param options [Hash] Хеш, задающий распимание
+  # @option options [ActiveSupport::Duration] :every интервал. например 1.hour, 30.minutes, 10.seconds
+  # @option options [String, Time] :at время в формате 'HH:MM'. Можно также указывать массив, например ['10:00', '13:10']
+  # @yield код, который будет выполняться по расписанию
+  # @example Включать свет на пять минут каждый день в 10:00 и 13:00
   #   at_schedule(every: 1.day, at: ['10:00', '13:00']) do
   #     light1.on! delay: 5.minutes
   #   end
@@ -145,8 +189,7 @@ class Entity < ActiveRecord::Base
   end
 
   # возвращает последнее значение - обект Indication
-  #
-  # * +value+ - значение, если не указано, возвращается время любого изменения значения
+  # @param value [Float, Fixnum] значение, если не указано, возвращается время любого изменения значения
   def last_indication(value = nil)
     query = indications.limit(1).order('created_at DESC')
     query = query.where(value: value) if value
@@ -154,24 +197,24 @@ class Entity < ActiveRecord::Base
   end
 
   # возвращает время последнего изменения значения
-  #
-  # * +value+ - значение, если не указано, возвращается время любого изменения значения
+  # @param value [Float, Fixnum] - значение, если не указано, возвращается время любого изменения значения
   def last_indication_time(value = nil)
     indication = last_indication(value)
     indication.created_at if indication
   end  
 
   # возвращает время, прошедшее с последнего изменения значения
+  # @return [ActiveSupport::Duration]
   def last_indication_interval(value = nil)
     v = last_indication_time(value)
     DateTime.now - v if v
   end
 
-  def self.required_methods #:nodoc:
+  def self.required_methods # @!visibility private
     @required_methods ||= []
   end
 
-  def required_methods #:nodoc:
+  def required_methods # @!visibility private
     result = self.class.required_methods 
     result += driver_module.required_methods if driver_module.respond_to? :required_methods
     result
@@ -190,7 +233,7 @@ class Entity < ActiveRecord::Base
     disabled if respond_to? :disabled
   end
 
-  def save_and_copy_descendants(source_entity) #:nodoc:
+  def save_and_copy_descendants(source_entity) # @!visibility private
     transaction do
       unless save
         return false
@@ -218,13 +261,13 @@ class Entity < ActiveRecord::Base
     end
   end
 
-  def attributes_for_copy #:nodoc:
+  def attributes_for_copy # @!visibility private
     attributes.reject{|k,v| %w(lft rgt depth id children_count).include? k.to_s }
   end
 
   protected
 
-  #:nodoc:
+  # @!visibility private
   def store_value(v, dt = Time.now)
     if binary? && v && !(v==0 || v==1)
       raise ArgumentError, "Value #{ v } is not binary"
@@ -256,24 +299,24 @@ class Entity < ActiveRecord::Base
     v
   end
 
-  #:nodoc:
+  # @!visibility private
   def self.method_missing(method_sym, *arguments, &block)
     Entity[method_sym] || super
   end
 
-  #:nodoc:
+  # @!visibility private
   def method_missing(method_sym, *arguments, &block)
     Entity[method_sym] || super
   end
 
-  #:nodoc:
+  # @!visibility private
   def self.register_required_methods(*args)
     #required_methods |= args.flatten
     @required_methods = [] unless @required_methods
     @required_methods |= args.flatten
   end
 
-  #:nodoc:
+  # @!visibility private
   def driver_module
     @driver_module ||= nil
     if !@driver_module || driver_changed?

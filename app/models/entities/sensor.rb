@@ -4,7 +4,7 @@
 
 class Sensor < Device
 
-  #:nodoc:
+  # @!visibility private
   def get_driver_value
     raise "Override this method in driver module" if driver
   end
@@ -15,7 +15,7 @@ class Sensor < Device
     store_value v if v
   end
 
-  #:nodoc:
+  # @!visibility private
   def do_schedule
     poll
     super
