@@ -35,9 +35,9 @@ function refreshEntityes(entities) {
 };
 
 function commonRefresh(entity){
-	container = $('.entity').filter('#' + entity.id);
+	var container = $('.entity').filter('#' + entity.id);
 
-	elem = container.find('#img' + entity.id);
+	var elem = container.find('#img' + entity.id);
 	if (elem.attr('src') != entity.img) {
 		elem.attr('src', entity.img);
 	};
@@ -46,6 +46,8 @@ function commonRefresh(entity){
 		capt.text(entity.text);
 	if (entity.brightness != undefined)
 		setBrightness(elem, entity.brightness);
+    if (entity.refresh_script != undefined)
+        eval(entity.refresh_script);
 	container.trigger('entity:refresh', entity);	
 }
 

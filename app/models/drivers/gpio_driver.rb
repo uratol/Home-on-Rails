@@ -2,7 +2,7 @@ require 'wiringpi' if Home::LINUX_PLATFORM
 
 module GpioDriver
   def set_driver_value(v)
-    GpioDriver.io.digital_write(pin_no, transform_driver_value(v).to_i)
+    GpioDriver.io.digital_write(pin_no, transform_driver_value(v).to_i) if Home::LINUX_PLATFORM
   end
 
   def get_driver_value

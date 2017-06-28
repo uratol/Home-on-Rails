@@ -27,10 +27,11 @@ module EntityVisualization
           f = "#{ file_base+file_value }.#{ file_ext }"
           return File.join(icon_relative_location,f) if files.include? f 
         end
-      end  
+      end
     end
-    
-    return nil    
+    nil
+  rescue Exception
+    nil
   end
 
   # Перенаправляет браузер на заданный объект либо страницу

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :admin_user!
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :update, :destroy]
 
   def index
     @users = User.all
@@ -34,10 +34,10 @@ class UsersController < ApplicationController
   end  
 
   def destroy
-    if !@user.destroy
-      er, notice = @user.errors.full_messages.join, nil
-    else
+    if @user.destroy
       er, notice = nil, 'User was successfully destroyed.'
+    else
+      er, notice = @user.errors.full_messages.join, nil
     end
     redirect_to :back, notice: notice, alert: er
   end
@@ -47,13 +47,11 @@ class UsersController < ApplicationController
   end
   
   def user_params
-     p = params.require(:user).permit(:name, :email, :isadmin, :password)
-     if p[:password].blank?
-       p.except! :password 
+     params_user = params.require(:user).permit(:name, :email, :isadmin, :password)
+     if params_user[:password].blank?
+       params_user.except! :password
      end
-     return p
-#    et = Entity.entity_types.map{|e| e.downcase } << 'entity'
-#    params.require(params.find{|key, value| et.include? key}[0]).permit(:name, :type, :caption, :address, :left, :top, :value, :parent_id)
+     params_user
   end
   
 end

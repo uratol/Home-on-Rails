@@ -49,7 +49,7 @@ class MainController < ApplicationController
     
     respond_to do |format|
       format.json do 
-        render json: entities, only:[:id] , methods: [:img, :brightness, :text]
+        render json: entities, only:[:id] , methods: [:img, :brightness, :text, :refresh_script]
       end
     end
   end
@@ -69,17 +69,15 @@ class MainController < ApplicationController
   
   def handle_exception(e)
     
-    error_message = ""
-    
     respond_to do |format|
-#      format.html do
-#        flash[:error] = e.to_s
-#      end
-      
       format.json do
         error_message = e.message
         error_message += '; ' + e.response.body.to_s if e.respond_to?(:response)
         render(json: {ent: Entity.find_by_id(params[:id]).to_s, message: error_message, stack: e.backtrace.first(3)}, status: 500)
+      end
+
+      format.html do
+        raise(e)
       end
     end
   end  

@@ -246,7 +246,7 @@ class Entity < ActiveRecord::Base
 
         e = Entity.new(attribs)
         e.parent = self
-        e.behavior_script = child.behavior_script
+        e.behavior_script = child.behavior_script.to_s.gsub(source_entity.name, self.name)
         saved = e.save_and_copy_descendants(child)
         unless saved
           e.errors.full_messages.each do |msg|
@@ -259,6 +259,21 @@ class Entity < ActiveRecord::Base
         end
       end
     end
+  end
+
+  def destroy_with_descendants
+    transaction do
+      children.each{|c| c.destroy_with_descendants}
+      if (!destroy) && parent
+        errors.full_messages.each do |msg|
+          # you can customize the error message here:
+          parent.errors[name] << msg
+          raise ActiveRecord::Rollback, msg
+        end
+      end
+      return true
+    end
+    false
   end
 
   def attributes_for_copy # @!visibility private

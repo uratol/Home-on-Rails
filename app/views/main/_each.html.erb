@@ -11,7 +11,7 @@
 %>
 <%= content_tag :div, id: e.id, name: e.name, :class => klass, style: style do %>
 	<div class="entity_container">
-		<% e.types.reverse.each do |t| 
+		<% ([e.name] + e.types.reverse).each do |t|
 			begin 
 				%><%= render "main/#{ t }", e: e %><%	 
 			rescue ActionView::MissingTemplate

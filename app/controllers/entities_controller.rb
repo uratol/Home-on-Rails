@@ -58,7 +58,7 @@ class EntitiesController < ApplicationController
     #saved = self.params['create_descendants'] == 1 && @source_entity ? @entity.save_and_create_descendants(@source_entity) : @entity.save
 
     if @entity.save_and_copy_descendants(self.params['create_descendants'].to_s == '1' ? @source_entity : nil)
-      redirect_to entities_path, notice: 'Entity was successfully created.'
+      redirect_to(entities_path, notice: 'Entity was successfully created.')
     else
       set_form_variables
       render :new
@@ -84,7 +84,7 @@ class EntitiesController < ApplicationController
   # DELETE /entities/1
   # DELETE /entities/1.json
   def destroy
-    if @entity.destroy
+    if @entity.destroy_with_descendants
       er, notice = nil, 'Entity was successfully destroyed.'
     else
       er, notice = @entity.errors.full_messages.join, nil

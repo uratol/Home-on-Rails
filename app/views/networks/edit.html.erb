@@ -1,0 +1,41 @@
+<%= form_for(@network, as: :user, url: network_path(@network), html: {autocomplete: 'off'} ) do |f| %>
+
+    <% if @network.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= "#{ pluralize(user.errors.count, "error") } found" %> </h2>
+
+          <ul>
+            <% @network.errors.messages.each do |fld, msg| %>
+                <li>
+                  <%= "#{fld}: #{ msg.join('; ') }" %>
+                </li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+    <div style="vertical-align: top">
+
+      <div style="display:inline-block">
+
+        <div class="field">
+          <%= f.label :network_name %>
+          <br>
+          <%= f.text_field :network_name, autofocus: true %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password %>
+          <br>
+          <%= f.password_field :password, value: nil, autocomplete: 'new-password' %>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>
+

@@ -5,7 +5,13 @@
 <%= content_tag :div, class: "layout_container", id: (@root_entity.try(:id)) do %>
 
 <% @entities.each do |e| %>
-	<%= render 'main/each', e: e %>
+	<%=
+      begin
+        render 'main/each', e: e
+      rescue Exception => error
+        render text: error.message
+      end
+    %>
 <% end %>
 
 

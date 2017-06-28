@@ -7,8 +7,8 @@ $(document).on('turbolinks:load', function() {
 	var changing = false;
 	
 	$('._slider').each(function() {
-		slider = $(this);
-		container = slider.closest('.entity');
+		var slider = $(this);
+		var container = slider.closest('.entity');
 		slider.slider({
 			range : false,
 			min : slider.data('min'),
@@ -47,7 +47,7 @@ $(document).on('turbolinks:load', function() {
 						onAjaxError(request, ajaxOptions, thrownError);
 					}
 				});
-			},
+			}
 		});
 		container.on('entity:refresh', {
 			slider : slider

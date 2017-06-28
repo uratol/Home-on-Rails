@@ -24,29 +24,29 @@
 
   <tbody>
     <% @entities.each do |entity| %>
+      <% edit_path = edit_entity_path(entity) %>
       <tr>
-      	<td style="padding-left:<%= entity.depth*30 %>px">
+      	<td data-link="<%= edit_path %>" style="padding-left:<%= entity.depth*30 %>px">
       		<% ic = entity.image %>
       		<%= image_tag ic, width: 16, height: 16 if ic %>
       		<%= entity.caption %>
       	</td>
-        <td><%= entity.type %></td>
-        <td><%= entity.name %></td>
-        <td><%= entity.driver %></td>
-        <td><%= entity.address %></td>
-        <td><%= entity.human_value %></td>
-        <td><%= entity.power %></td>
-        <td> <%= link_to image_tag('script-icon.png'), edit_entity_path(entity) if entity.behavior_script %>
+        <td data-link="<%= edit_path %>"><%= entity.type %></td>
+        <td data-link="<%= edit_path %>"><%= entity.name %></td>
+        <td data-link="<%= edit_path %>"><%= entity.driver %></td>
+        <td data-link="<%= edit_path %>"><%= entity.address %></td>
+        <td data-link="<%= edit_path %>"><%= entity.human_value %></td>
+        <td data-link="<%= edit_path %>"><%= entity.power %></td>
+        <td data-link="<%= edit_path %>"> <%= image_tag('script-icon.png') if entity.behavior_script %>
         	<% entity.events.each do |event| %>
         		<%= content_tag :span, event.name, {title: (event.options if event.options.any?)}.compact %>
         		<%#= content_tag :span, event.options if event.options.any? %>
         	<% end %>
         </td>
-        <td><% entity.jobs.each do |j| %>
+        <td data-link="<%= edit_path %>"><% entity.jobs.each do |j| %>
 	        	<%= content_tag :span, j.queue, {title: "at #{j.run_at}\n#{j.last_error}", class: "job#{' error' if j.last_error}"}.compact %>
         	<% end %>
         </td>
-        <td><%= link_to 'Edit', edit_entity_path(entity) %></td>
         <td><%= link_to 'Copy', new_entity_path(entity) %></td>
         <td><%= link_to 'Destroy', entity_path(entity), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
