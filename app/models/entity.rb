@@ -159,7 +159,7 @@ class Entity < ActiveRecord::Base
   end
 
   def transform_driver_value(v) # @!visibility private
-    invert_driver_value? ? 1-v : v
+    invert_driver_value? ? 1 - v : v if v
   end
   
   def startup # @!visibility private
