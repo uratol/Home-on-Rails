@@ -6,18 +6,20 @@ def uniRoutes
   get '/entities/:id/destroy' => 'entities#destroy'
   get '/entities/insert/:parent' => 'entities#insert'
 
-  post '/main/click'
-  post '/main/change'
-  post '/main/touchstart'
-  post '/main/touchend'
-  post '/main/refresh'
+
+  scope ['/show/:name(/:subname)', '/'] do
+    get '' => 'main#show'
+    post '/refresh' => 'main#refresh'
+    post '/click' => 'main#click'
+    post '/change' => 'main#change'
+    post '/touchstart' => 'main#touchstart'
+    post '/touchend' => 'main#touchend'
+  end
+  post '/refresh' => 'main#refresh'
 
   post '/admin/reboot'
   
-  get '/show/:name' => 'main#show'
-  get '/show/:id' => 'main#show'
-  post '/show/:id' => 'main#show'
-  
+
   post '/main/design_apply'
 
   scope :butler do

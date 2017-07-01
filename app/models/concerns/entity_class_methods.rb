@@ -69,6 +69,13 @@ module EntityClassMethods
     new_name
   end
 
+  def params
+    @params
+  end
+
+  def params=(params)
+    @params = params
+  end
 
   protected
 

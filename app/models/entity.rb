@@ -103,10 +103,15 @@ class Entity < ActiveRecord::Base
 
 
 
-  register_events :at_click, :at_touchstart, :at_touchend, :at_startup, :at_schedule
+  register_events :at_click, :at_touchstart, :at_touchend, :at_startup, :at_schedule, :at_show
   register_attributes min: 0, max: 1, schedule: nil
   register_attributes invert_driver_value: false
   alias_method :invert=, :invert_driver_value=
+  alias_method :invert?, :invert_driver_value
+
+  def invert
+    self.invert = true
+  end
 
   # возвращает значение на заданное время
   # @param dt [Date, Time]
@@ -197,17 +202,18 @@ class Entity < ActiveRecord::Base
   end
 
   # возвращает время последнего изменения значения
+  # если значение не менялось, возвращается 0000 год 01 мес 01 день
   # @param value [Float, Fixnum] - значение, если не указано, возвращается время любого изменения значения
   def last_indication_time(value = nil)
     indication = last_indication(value)
-    indication.created_at if indication
+    indication ? indication.created_at : Time.new(0)
   end  
 
   # возвращает время, прошедшее с последнего изменения значения
   # @return [ActiveSupport::Duration]
   def last_indication_interval(value = nil)
     v = last_indication_time(value)
-    DateTime.now - v if v
+    Time.now - v if v
   end
 
   def self.required_methods # @!visibility private

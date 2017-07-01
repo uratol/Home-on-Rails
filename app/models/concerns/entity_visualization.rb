@@ -52,6 +52,9 @@ module EntityVisualization
     ActionController::Base.helpers.asset_path(image)
   end
 
+  def params
+    Entity.params
+  end
 
   module ClassMethods
     # class methods

@@ -31,7 +31,7 @@ $(document).on('turbolinks:load', function() {
                 var ent_id = container[0].id;
 
 				$.ajax({
-					url : '/main/change',
+					url : action_path('change'),
 					method: 'POST',
 					data : {
 						root : $(".layout_container").attr('id'),

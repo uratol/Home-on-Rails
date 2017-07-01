@@ -11,6 +11,14 @@ var onAjaxError = function (request, ajaxOptions, thrownError) {
 	        	message(thrownError+': '+request.responseText.substring(0,550));
 	     };
 
+function action_path(action){
+    var path = window.location.pathname;
+    if (path.substr(path.length - 1) != '/')
+        path += '/';
+    path += action;
+    return path;
+}
+
 function setBrightness(elem, brightness) {
 	f = 'brightness(' + brightness + '%)';
 	elem.css('-webkit-filter', f);
@@ -52,11 +60,13 @@ function commonRefresh(entity){
 }
 
 function refreshRequest() {
-	if (!$('.layout_container').length)
-		return;
+    path = action_path('refresh');
+    if (path != '/refresh' && path.substring(0,6) != '/show/')
+      return;
 
 	$.ajax({
-		 url: "/main/refresh?root=" + $(".layout_container").attr('id')
+		// url: "/main/refresh?root=" + $(".layout_container").attr('id')
+         url: action_path('refresh')
         ,method: 'POST'
 		,success: function(data) {
 			refreshEntityes(data);
@@ -105,9 +115,9 @@ function act(elem, action){
 		var ent_id = elem.id;
 
 		$.ajax({
-			 url: '/main/' + action
+			 url: action_path(action)
 			,method: 'POST'
-			,data: {root: $('.layout_container').attr('id'), id: ent_id}
+			,data: {id: ent_id}
 			,success: function(data) {
 				refreshEntityes(data);
 				}

@@ -8,6 +8,13 @@
 
 table.entities {
   td{white-space: nowrap;}
+  tr{
+    cursor: pointer;
+    &:hover {
+      color: white;
+      background-color: #111;
+    }
+  }
 }
 
 textarea{

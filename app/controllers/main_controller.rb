@@ -1,9 +1,11 @@
 class MainController < ApplicationController
   
   rescue_from Exception, with: :handle_exception
+
+  before_filter :provide_params_to_model
   
   def show
-    @root_entity = (Entity[params[:id].to_i] if params[:id]) || (Entity[params[:name]] if params[:name]) || Entity.menu_entities.try(:first)
+    @root_entity = root_entity
     
     flash[:warning] = 'Entities not found' unless @root_entity
     
@@ -43,9 +45,13 @@ class MainController < ApplicationController
   end
   
   def refresh
-    id = params[:root].to_i
+    # id = params[:root].to_i
+    # entities = id==0 ? Entity.all : Entity[id].self_and_descendants
+    @root_entity = root_entity
 
-    entities = id==0 ? Entity.all : Entity[id].self_and_descendants
+    return unless @root_entity
+
+    entities = @root_entity.self_and_descendants
     
     respond_to do |format|
       format.json do 
@@ -64,7 +70,7 @@ class MainController < ApplicationController
     end
     redirect_to :back
   end
-  
+
   protected
   
   def handle_exception(e)
@@ -84,13 +90,21 @@ class MainController < ApplicationController
 
   private
 
+  def root_entity
+    (Entity[params[:name]] if params[:name]) || Entity.menu_entities.try(:first)
+  end
+
+  def provide_params_to_model
+    Entity.params = params
+  end
+
   def process_event(event_name)
     e = Entity[params[:id].to_i]
     e.do_event(event_name)
     target = e.redirect_target
     if target
       e.redirect_target = nil
-      render :js => "window.location = '#{ target.is_a?(Entity) ? "/show/#{ target.name }" : target }'"
+      render js: "window.location = '#{ target.is_a?(Entity) ? "/show/#{ target.name }" : target }'"
       #redirect_to(target.is_a?(Entity) ? "/show/#{ target.name }" : target)
     else
       refresh
