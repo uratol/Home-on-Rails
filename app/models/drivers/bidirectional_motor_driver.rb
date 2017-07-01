@@ -32,19 +32,27 @@ module BidirectionalMotorDriver
   
   def up!
     on!
+    parent_remote_call(:on!)
   end
 
   def down!
     off!
+    parent_remote_call(:off!)
   end
   
   def stop!(at_position = nil)
     @stopping = true
+
     up_motor.set_driver_value(0)
     down_motor.set_driver_value(0)
+
     fire_event(:on_stop)
     write_value(at_position || current_position)
     stop_thread
+    unless at_position
+      fire_event(:on_finish)
+      parent_remote_call(:stop!)
+    end
   ensure
     @stopping = false
   end
@@ -124,7 +132,7 @@ module BidirectionalMotorDriver
       end
       up_relay.set_driver_value(0)
       down_relay.set_driver_value(0)
-
+      fire_event(:on_finish)
     end
     self.relay_thread = th
     th.priority = 10
@@ -213,5 +221,12 @@ module BidirectionalMotorDriver
     $relay_threads = {} unless $relay_threads
     $relay_threads[id] = thread
   end
-  
+
+  # Проверяет, если родитель - удалённый сервер - вызывает метод *method_name* на удалённом сервере
+  def parent_remote_call(method_name, *args)
+    if parent.is_a?(Server) && parent.address.present? && !remote_call?
+      parent.execute_remote_method(name, method_name, *args)
+    end
+  end
+
 end  

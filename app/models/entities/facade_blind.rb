@@ -1,6 +1,7 @@
 class FacadeBlind < Device
 
   register_attributes :min_tilt, :max_tilt, :tilt_up_full_time, :tilt_down_full_time, :azimuth
+  register_events :at_finish
 
   def init
     super
@@ -15,10 +16,12 @@ class FacadeBlind < Device
     self.min, self.max = r.first, r.last
   end
 
+  # Запускает поток установки позиции, угол наклона ламелей в результате останется текущим
   def set_position! (position)
     set_position_and_tilt!(position, nil)
   end
 
+  # Возвращает текущий угол наклона ламелей
   def tilt
     if thread_active? && tiltable?
       current_tilt = (relay_thread[:start_tilt] || data.tilt || min_tilt)
@@ -29,10 +32,12 @@ class FacadeBlind < Device
     end
   end
 
+  # Запускает поток установки угла наклона ламелей, позиция в результате останется текущей
   def set_tilt!(tilt)
     set_position_and_tilt!(nil, tilt)
   end
 
+  # Запускает поток установки позиции и угла наклона ламелей
   def set_position_and_tilt!(position, tilt)
     if tilt
       raise "Methods min_tilt, max_tilt, tilt_up_full_time, tilt_down_full_time must be defined" unless tiltable?
@@ -55,8 +60,11 @@ class FacadeBlind < Device
       relay_thread[:start_tilt] = data.tilt if relay_thread && !relay_thread[:start_tilt]
       data.tilt = tilt
     end
+
+    parent_remote_call(:set_position_and_tilt!, position, tilt)
   end
 
+  # возвращает текущую позицию
   def position
     if respond_to?(:current_position)
       current_position
@@ -65,6 +73,7 @@ class FacadeBlind < Device
     end
   end
 
+  # @!visibility private
   def on_finish_step(step)
     if tiltable?
       new_tilt = (relay_thread[:start_tilt] || data.tilt) + tilt_velocity(step.direction) * (Time.now - relay_thread[:start_time])
@@ -72,8 +81,13 @@ class FacadeBlind < Device
     end
   end
 
+  # @!visibility private
   def on_stop
     data.tilt = tilt
+  end
+
+  def on_finish
+    do_event(:at_finish)
   end
 
   private
@@ -117,5 +131,4 @@ class FacadeBlind < Device
   def tiltable?
     min_tilt && max_tilt && tilt_up_full_time && tilt_down_full_time
   end
-
 end
