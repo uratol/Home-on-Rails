@@ -32,8 +32,8 @@ class Server < Device
 
   PROTOCOL_PREFIX = 'http://'
 
-  validates :address, presence: true
-
+  # Вызывает метод *method_name* объекта *remote_entity_name* на удалённом сервере
+  # Вместо прямого вызова этого метода лучше пользоваться следующим синтаксисом:  remote_server.remote_object.remote_method(parameter1,...)
   def execute_remote_method(remote_entity_name, method_name, *arguments)
     uri = address
     uri = PROTOCOL_PREFIX + uri unless address.start_with?(PROTOCOL_PREFIX)

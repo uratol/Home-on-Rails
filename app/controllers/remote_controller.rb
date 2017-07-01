@@ -12,7 +12,13 @@ class RemoteController < ApplicationController
     ent = Entity[entity_name]
     raise "Invalid entity '#{ entity_name }'" unless ent
 
-    render(plain: ent.public_send(method_name, *YAML.load(method_params)).to_yaml)
+    ent.state.push :remote_execute
+    begin
+      method_result = ent.public_send(method_name, *YAML.load(method_params))
+    ensure
+      ent.state.pop
+    end
+    render(plain: method_result.to_yaml)
   rescue Exception => e
      render(plain: e.message, status: :not_implemented)
   end

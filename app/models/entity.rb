@@ -286,6 +286,12 @@ class Entity < ActiveRecord::Base
     attributes.reject{|k,v| %w(lft rgt depth id children_count).include? k.to_s }
   end
 
+  # проверяет, является ли текущий контекст вызова метода удалённым,
+  # т.е. вызванным на другом сервере с помощью объекта класса *Server*
+  def remote_call?
+    state.include?(:remote_execute)
+  end
+
   protected
 
   # @!visibility private
@@ -325,7 +331,6 @@ class Entity < ActiveRecord::Base
     Entity[method_sym] || super
   end
 
-  # @!visibility private
   def method_missing(method_sym, *arguments, &block)
     Entity[method_sym] || super
   end
