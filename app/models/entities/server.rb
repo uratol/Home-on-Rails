@@ -49,7 +49,7 @@ class Server < Device
 #    request = Net::HTTP::Post.new(uri)
 #    request.set_form_data(entity: remote_entity_name, method: method_name, params: params.to_yaml)
 
-    response = Net::HTTP.start(uri.hostname, uri.port, read_timeout: 10) do |http|
+    response = Net::HTTP.start(uri.hostname, uri.port, read_timeout: 3) do |http|
       http.request(request)
     end
 

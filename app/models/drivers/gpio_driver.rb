@@ -1,5 +1,8 @@
 require 'wiringpi' if Home::LINUX_PLATFORM 
 
+# Драйвер обеспечивает прямой доступ к портам ввода-вывода GPIO (general-purpose input/output).
+# В адресе указывается номер пина по BCM-нумерации
+# При инициализации порта, указанного в адресе, устанавливает подтяжку по напряжению (pull up)
 module GpioDriver
   def set_driver_value(v)
     GpioDriver.io.digital_write(pin_no, transform_driver_value(v).to_i) if Home::LINUX_PLATFORM

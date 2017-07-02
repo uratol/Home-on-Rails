@@ -111,6 +111,8 @@ module BidirectionalMotorDriver
     stop!(steps.last.finish_position)
 
     up_relay, down_relay = up_motor, down_motor
+    up_value, down_value = -1
+    time_lag_start = nil
 
     th = Thread.new do
       th[:start_position] = start_position
@@ -125,9 +127,22 @@ module BidirectionalMotorDriver
         th[:start_time] = now
         th[:direction] = step.direction
         fire_event(:on_start_step, step)
-        up_relay.set_driver_value(step.direction > 0 ? 1 : 0)
-        down_relay.set_driver_value(step.direction < 0 ? 1 : 0)
-        sleep(step.delay)
+
+        up_value_previous = up_value
+        down_value_previous = down_value
+
+        up_value = step.direction > 0 ? 1 : 0
+        down_value = step.direction < 0 ? 1 : 0
+
+        up_relay.set_driver_value(up_value) if up_value != up_value_previous
+        down_relay.set_driver_value(down_value) if down_value != down_value_previous
+
+        now = Time.now
+        time_lag = now - (time_lag_start || now)
+        sleep(step.delay - time_lag)
+
+        time_lag_start = Time.now
+
         fire_event(:on_finish_step, step)
       end
       up_relay.set_driver_value(0)
