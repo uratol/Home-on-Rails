@@ -132,6 +132,7 @@ module BidirectionalMotorDriver
       end
       up_relay.set_driver_value(0)
       down_relay.set_driver_value(0)
+      self.relay_thread = nil
       fire_event(:on_finish)
     end
     self.relay_thread = th
