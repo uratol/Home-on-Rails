@@ -23,11 +23,13 @@ module BidirectionalMotorDriver
     set_positions!(target_position) unless @stopping
   end
 
-  def current_position
+  def position
     return value.to_f unless thread_active?
     distance = calc_position_offset(relay_thread[:start_time], Time.now, relay_thread[:direction])
     (relay_thread[:start_position] + distance).restrict_by_range(min,max)
   end
+
+  alias_method :current_position, :position
 
   def current_direction
     thread_active? ? relay_thread[:direction] : 0
@@ -45,19 +47,21 @@ module BidirectionalMotorDriver
   
   def stop!(at_position = nil)
     @stopping = true
-
+    write_value(at_position || current_position)
     up_motor.set_driver_value(0)
     down_motor.set_driver_value(0)
-
-    fire_event(:on_stop)
-    write_value(at_position || current_position)
-    stop_thread
     unless at_position
+      fire_event(:on_stop)
       fire_event(:on_finish)
-      parent_remote_call(:stop!)
     end
+    stop_thread
+    parent_remote_call(:stop!) unless at_position
   ensure
     @stopping = false
+  end
+
+  def on_finish
+    do_event(:at_finish)
   end
 
   def contra_pause_time
@@ -117,7 +121,9 @@ module BidirectionalMotorDriver
     up_value, down_value = -1
     time_lag_start = nil
 
+    fire_event(:on_start)
     th = Thread.new do
+
       th[:start_position] = start_position
       th[:direction] = 0
       th[:start_time] = Time.now
@@ -150,6 +156,7 @@ module BidirectionalMotorDriver
       end
       up_relay.set_driver_value(0)
       down_relay.set_driver_value(0)
+      fire_event(:on_before_finish)
       self.relay_thread = nil
       fire_event(:on_finish)
     end

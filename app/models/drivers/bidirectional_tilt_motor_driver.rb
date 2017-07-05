@@ -11,12 +11,12 @@ module BidirectionalTiltMotorDriver
 
   # Возвращает текущий угол наклона ламелей
   def tilt
-    if thread_active? && tiltable?
-      current_tilt = (relay_thread[:start_tilt] || data.tilt || min_tilt)
+    if thread_active?
+      current_tilt = (relay_thread[:start_tilt])
       current_tilt += tilt_velocity(relay_thread[:direction]) * (Time.now - relay_thread[:start_time])
       current_tilt.restrict_by_range(min_tilt, max_tilt)
     else
-      data.tilt.to_f
+      data.tilt.to_f || min_tilt
     end
   end
 
@@ -32,10 +32,8 @@ module BidirectionalTiltMotorDriver
 
   # Запускает поток установки позиции и угла наклона ламелей
   def set_position_and_tilt!(position, tilt)
-    if tilt
-      raise "Methods min_tilt, max_tilt, tilt_up_full_time, tilt_down_full_time must be defined" unless tiltable?
-      tilt = tilt.restrict_by_range(min_tilt, max_tilt)
-    end
+
+    tilt = tilt.restrict_by_range(min_tilt, max_tilt) if tilt
 
     if position && tilt
       steps = calc_tilt_and_position_steps(position || self.position, tilt)
@@ -49,38 +47,39 @@ module BidirectionalTiltMotorDriver
 
     start_steps!(steps)
 
-    if tiltable?
-      relay_thread[:start_tilt] = data.tilt if relay_thread && !relay_thread[:start_tilt]
-      data.tilt = tilt
-    end
+#    relay_thread[:start_tilt] = data.tilt if relay_thread && !relay_thread[:start_tilt]
+#    data.tilt = tilt
 
     parent_remote_call(:set_position_and_tilt!, position, tilt)
   end
 
-  # возвращает текущую позицию
-  def position
-    if respond_to?(:current_position)
-      current_position
-    else
-      value
-    end
+  def remember_tilt(tilt = nil)
+    data.tilt = tilt || self.tilt.restrict_by_range(min_tilt, max_tilt)
+  end
+
+  # @!visibility private
+  def on_start_step(step)
+    relay_thread[:start_tilt] = data.tilt unless relay_thread[:start_tilt]
   end
 
   # @!visibility private
   def on_finish_step(step)
-    if tiltable?
-      new_tilt = (relay_thread[:start_tilt] || data.tilt) + tilt_velocity(step.direction) * (Time.now - relay_thread[:start_time])
-      relay_thread[:start_tilt] = new_tilt.restrict_by_range(min_tilt, max_tilt)
-    end
+    new_tilt = (relay_thread[:start_tilt]) + tilt_velocity(step.direction) * (Time.now - relay_thread[:start_time])
+    new_tilt = new_tilt.restrict_by_range(min_tilt, max_tilt)
+    relay_thread[:start_tilt] = new_tilt
   end
 
   # @!visibility private
   def on_stop
-    data.tilt = tilt
+    remember_tilt
   end
 
-  def on_finish
-    do_event(:at_finish)
+  def on_start
+    remember_tilt
+  end
+
+  def on_before_finish
+    remember_tilt(relay_thread[:start_tilt]) if relay_thread && (data.tilt.to_f - relay_thread[:start_tilt]).abs > 0.1
   end
 
   private
@@ -96,7 +95,7 @@ module BidirectionalTiltMotorDriver
     start_tilt = tilt
     start_position = position
 
-    time_up_before_collapse = (max_tilt - start_tilt) * tilt_velocity(1)
+    time_up_before_collapse = (max_tilt - start_tilt) / tilt_velocity(1)
     time_up_collapsed = (new_position - start_position) / velocity(1)
     position_up = start_position + (time_up_before_collapse + time_up_collapsed) * velocity(1)
     position_up = max if position_up > max
@@ -105,7 +104,7 @@ module BidirectionalTiltMotorDriver
     up_full_time = time_up_before_collapse + time_up_collapsed + time_up_reverse
 
 
-    time_down_before_collapse = (min_tilt - start_tilt) * tilt_velocity(-1)
+    time_down_before_collapse = (min_tilt - start_tilt) / tilt_velocity(-1)
     time_down_collapsed = (new_position - start_position) / velocity(-1)
     position_down = start_position + (time_down_before_collapse + time_down_collapsed) * velocity(-1)
     position_down = min if position_down < min
@@ -116,18 +115,12 @@ module BidirectionalTiltMotorDriver
     up_error = (position_up - new_position).abs
     down_error = (position_down - new_position).abs
 
-    path = if up_error == down_error
-      up_full_time < down_full_time ? :up : :down
-    else
-      up_error < down_error ? :up : :down
-    end
-
-    start_direction, forward_time, reverse_time = (path == :up ?
+    start_direction, forward_time, reverse_time = ( (up_full_time >= 0 && (up_full_time < down_full_time || down_full_time < 0)) ?
           [1, time_up_before_collapse + time_up_collapsed, time_up_reverse] :
           [-1, time_down_before_collapse + time_down_collapsed, time_down_reverse])
 
     steps = add_to_steps([], start_direction, forward_time)
-    add_to_steps(steps, -start_direction, reverse_time, new_position)
+    add_to_steps(steps, -start_direction, reverse_time)
 
 
 
