@@ -1,4 +1,11 @@
+# Драйвер для управления двунаправленным мотором
+# Моторы управляются с помощью двух реле, которые должны быть созданы как подчинённые объекты с именами [имя]_up and [имя]_down соответственно
 module BidirectionalMotorDriver
+
+  def self.description
+    "Virtual driver for bidirectional motor control. Up and down motor relay entities must exists with [name]_up and [name]_down names respectively"
+  end
+
 
   def extended(base)
     base.binary = false
@@ -16,10 +23,6 @@ module BidirectionalMotorDriver
     set_positions!(target_position) unless @stopping
   end
 
-  def self.description
-    "Virtual driver for bidirectional motor control. Up and down motor relay entities must exists with [name]_up and [name]_down names respectively" 
-  end
-  
   def current_position
     return value.to_f unless thread_active?
     distance = calc_position_offset(relay_thread[:start_time], Time.now, relay_thread[:direction])
