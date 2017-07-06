@@ -32,6 +32,7 @@ module BidirectionalTiltMotorDriver
 
   # Запускает поток установки позиции и угла наклона ламелей
   def set_position_and_tilt!(position, tilt)
+    parent_remote_call(:set_position_and_tilt!, position, tilt)
 
     tilt = tilt.restrict_by_range(min_tilt, max_tilt) if tilt
 
@@ -49,8 +50,6 @@ module BidirectionalTiltMotorDriver
 
 #    relay_thread[:start_tilt] = data.tilt if relay_thread && !relay_thread[:start_tilt]
 #    data.tilt = tilt
-
-    parent_remote_call(:set_position_and_tilt!, position, tilt)
   end
 
 

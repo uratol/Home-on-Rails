@@ -36,16 +36,17 @@ module BidirectionalMotorDriver
   end
   
   def up!
-    on!
     parent_remote_call(:on!)
+    on!
   end
 
   def down!
-    off!
     parent_remote_call(:off!)
+    off!
   end
   
   def stop!(at_position = nil)
+    parent_remote_call(:stop!) unless at_position
     @stopping = true
     write_value(at_position || current_position)
     up_motor.set_driver_value(0)
@@ -55,7 +56,6 @@ module BidirectionalMotorDriver
       fire_event(:on_finish)
     end
     stop_thread
-    parent_remote_call(:stop!) unless at_position
   ensure
     @stopping = false
   end
