@@ -16,14 +16,21 @@
 
   .caption{
       text-shadow: 1px 1px 0px #000;
-      
-      &.left-top-inner{
-          position: absolute;
-          top: 0px;
-          left: 0px;
-      }
-      
-      &.none{
+
+    &.left-top-inner{
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+
+    &.center-top-inner{
+      position: absolute;
+      top: 0px;
+      left: 50%;
+      transform: translate(-50%, 0%)
+    }
+
+    &.none{
         display: none;
       }
       

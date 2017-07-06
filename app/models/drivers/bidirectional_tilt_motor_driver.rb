@@ -53,7 +53,6 @@ module BidirectionalTiltMotorDriver
     parent_remote_call(:set_position_and_tilt!, position, tilt)
   end
 
-  private
 
   # @!visibility private
   def on_start_step(step)
@@ -72,20 +71,24 @@ module BidirectionalTiltMotorDriver
     remember_tilt
   end
 
+  # @!visibility private
   def on_start
     remember_tilt
   end
 
+  # @!visibility private
   def on_before_finish
     if relay_thread && (data.tilt.to_f - relay_thread[:start_tilt]).abs > (max_tilt - min_tilt)/100
       remember_tilt(relay_thread[:start_tilt])
     end
   end
 
+  # @!visibility private
   def remember_tilt(tilt = nil)
     data.tilt = tilt || self.tilt.restrict_by_range(min_tilt, max_tilt)
   end
 
+  # @!visibility private
   def calc_tilt_steps(new_tilt)
     direction = (new_tilt - tilt).sign
     return [] if direction == 0
@@ -93,6 +96,7 @@ module BidirectionalTiltMotorDriver
     add_to_steps([], direction, time.abs)
   end
 
+  # @!visibility private
   def calc_tilt_and_position_steps(new_position, new_tilt)
     start_tilt = tilt
     start_position = position
@@ -114,41 +118,10 @@ module BidirectionalTiltMotorDriver
 
     steps = add_to_steps([], start_direction, forward_time)
     add_to_steps(steps, -start_direction, reverse_time)
-
-
-
-=begin
-    steps = calc_steps_to_positions(new_position)
-
-    return steps if steps.empty?
-
-    new_tilt ||= tilt
-
-    end_tilt = calc_end_tilt_for_steps(steps)
-    tilt_diff = new_tilt - end_tilt
-    tilt_direction = steps.last.direction != 0 ? -steps.last.direction : -tilt_diff.sign
-    tilt_set_time = (tilt_diff / tilt_velocity(tilt_direction)).abs
-
-    steps = add_to_steps(steps, -tilt_direction, tilt_set_time)
-    add_to_steps(steps, tilt_direction, tilt_set_time, new_position)
-=end
-  end
-
-  def calc_end_tilt_for_steps(steps)
-    end_tilt = tilt || min_tilt
-    steps.each do |step|
-      end_tilt += tilt_velocity(step.direction) * step.delay
-      end_tilt = end_tilt.restrict_by_range(min_tilt,max_tilt)
-    end
-    end_tilt
   end
 
   def tilt_velocity(direction)
     (max_tilt.to_f - min_tilt.to_f) / (direction == 1 ? tilt_up_full_time : tilt_down_full_time) * direction
-  end
-
-  def tiltable?
-    min_tilt && max_tilt && tilt_up_full_time && tilt_down_full_time
   end
 
 end

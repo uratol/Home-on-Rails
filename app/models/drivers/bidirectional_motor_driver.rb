@@ -50,7 +50,7 @@ module BidirectionalMotorDriver
     write_value(at_position || current_position)
     up_motor.set_driver_value(0)
     down_motor.set_driver_value(0)
-    unless at_position
+    if thread_active? || at_position.nil?
       fire_event(:on_stop)
       fire_event(:on_finish)
     end
@@ -111,11 +111,11 @@ module BidirectionalMotorDriver
   private
 
   def start_steps!(steps)
-    return if steps.empty?
 
     start_position = current_position
-
     stop!(steps.last.finish_position)
+
+    return if steps.empty?
 
     up_relay, down_relay = up_motor, down_motor
     up_value, down_value = -1
