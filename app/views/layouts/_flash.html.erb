@@ -1,7 +1,5 @@
 <div id="flash_messages">
-	<% flash.each do |key, value| %>
-	<div class="alert alert-<%= key %>">
-		<%= value %>
-	</div>
+	<% flash.select{|key, value| value.present?}.each do |key, value| %>
+      <%= content_tag :div, value, class: "alert alert-#{key}" unless value.blank? %>
 	<% end %>
 </div>

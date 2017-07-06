@@ -7,7 +7,7 @@
 	attrs = (method ||= :get) == :get ? {} : {method: method}
 	
 	id_attr = (id ||= nil) ? {id: id} : {}
-	
+
 %>
 <%= content_tag :li, class_attr do %>
 	<%= link_to title, url, id_attr.merge(attrs) %>

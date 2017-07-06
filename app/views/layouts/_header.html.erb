@@ -2,7 +2,7 @@
 	<nav class="nav-wrap">
 		<ul class="nav">
 			<% Entity.menu_entities(@root_entity).each_with_index do |e,i| %>
-			<%= render 'layouts/header_menu_item', title: e.caption, id: e.id, klass: 'menu_entity', url: (if i==0 then root_path else "/show/#{e.name}" end) %>
+			<%= render 'layouts/header_menu_item', title: e.caption, id: e.id, klass: 'menu_entity', url: (i==0 ? root_path : e == @root_entity ? request.env['PATH_INFO'] : "/show/#{e.name}") %>
 			<% end %>
 			
 			<%= render 'layouts/header_menu_item', title: "Sign out", url: destroy_user_session_path, method: :delete %>

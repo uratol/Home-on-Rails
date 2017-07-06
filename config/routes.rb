@@ -44,7 +44,7 @@ def uniRoutes
     get "/command/:command/" => "speech#speak"
   end
 
-  devise_for :users
+  devise_for :users, controllers: { sessions: "users/sessions" }
   resources :users
   resources :drivers
   resource :network

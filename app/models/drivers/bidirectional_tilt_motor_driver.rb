@@ -12,7 +12,7 @@ module BidirectionalTiltMotorDriver
   # Возвращает текущий угол наклона ламелей
   def tilt
     if thread_active?
-      current_tilt = (relay_thread[:start_tilt])
+      current_tilt = (relay_thread[:start_tilt] || data.tilt.to_f)
       current_tilt += tilt_velocity(relay_thread[:direction]) * (Time.now - relay_thread[:start_time])
       current_tilt.restrict_by_range(min_tilt, max_tilt)
     else
@@ -53,9 +53,7 @@ module BidirectionalTiltMotorDriver
     parent_remote_call(:set_position_and_tilt!, position, tilt)
   end
 
-  def remember_tilt(tilt = nil)
-    data.tilt = tilt || self.tilt.restrict_by_range(min_tilt, max_tilt)
-  end
+  private
 
   # @!visibility private
   def on_start_step(step)
@@ -79,10 +77,14 @@ module BidirectionalTiltMotorDriver
   end
 
   def on_before_finish
-    remember_tilt(relay_thread[:start_tilt]) if relay_thread && (data.tilt.to_f - relay_thread[:start_tilt]).abs > 0.1
+    if relay_thread && (data.tilt.to_f - relay_thread[:start_tilt]).abs > (max_tilt - min_tilt)/100
+      remember_tilt(relay_thread[:start_tilt])
+    end
   end
 
-  private
+  def remember_tilt(tilt = nil)
+    data.tilt = tilt || self.tilt.restrict_by_range(min_tilt, max_tilt)
+  end
 
   def calc_tilt_steps(new_tilt)
     direction = (new_tilt - tilt).sign
@@ -97,23 +99,14 @@ module BidirectionalTiltMotorDriver
 
     time_up_before_collapse = (max_tilt - start_tilt) / tilt_velocity(1)
     time_up_collapsed = (new_position - start_position) / velocity(1)
-    position_up = start_position + (time_up_before_collapse + time_up_collapsed) * velocity(1)
-    position_up = max if position_up > max
     time_up_reverse = (max_tilt - new_tilt) / tilt_velocity(-1).abs
-    position_up += time_up_reverse * velocity(-1)
     up_full_time = time_up_before_collapse + time_up_collapsed + time_up_reverse
 
 
     time_down_before_collapse = (min_tilt - start_tilt) / tilt_velocity(-1)
     time_down_collapsed = (new_position - start_position) / velocity(-1)
-    position_down = start_position + (time_down_before_collapse + time_down_collapsed) * velocity(-1)
-    position_down = min if position_down < min
     time_down_reverse = (new_tilt - min_tilt) / tilt_velocity(1)
-    position_down += time_down_reverse * velocity(1)
     down_full_time = time_down_before_collapse + time_down_collapsed + time_down_reverse
-
-    up_error = (position_up - new_position).abs
-    down_error = (position_down - new_position).abs
 
     start_direction, forward_time, reverse_time = ( (up_full_time >= 0 && (up_full_time < down_full_time || down_full_time < 0)) ?
           [1, time_up_before_collapse + time_up_collapsed, time_up_reverse] :
