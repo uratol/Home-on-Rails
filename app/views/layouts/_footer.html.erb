@@ -1,7 +1,1 @@
-<% if request.env[:timestamp] %>
-<ul>
-	<%= "#{ (Time.now - request.env[:timestamp]).round(3) } s" %>
-</ul>
-<% end %>
-
 <% console if isadmin? && params[:console]%>

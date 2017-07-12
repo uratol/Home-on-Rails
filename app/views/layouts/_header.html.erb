@@ -1,28 +1,34 @@
 <% if user_signed_in? %>
-	<nav class="nav-wrap">
-		<ul class="nav">
-			<% Entity.menu_entities(@root_entity).each_with_index do |e,i| %>
-			<%= render 'layouts/header_menu_item', title: e.caption, id: e.id, klass: 'menu_entity', url: (i==0 ? root_path : e == @root_entity ? request.env['PATH_INFO'] : "/show/#{e.name}") %>
-			<% end %>
-			
-			<%= render 'layouts/header_menu_item', title: "Sign out", url: destroy_user_session_path, method: :delete %>
-			
-			<%= content_tag :li do %>
-				<%= content_tag :a, 'Admin', ({class: 'active'} if %w(Entities Classes Users).include?(yield(:title)) ) %>
-				<ul>
-					<%= render 'layouts/header_menu_item', title: "Entities", url: entities_path %>
-					<%= render 'layouts/header_menu_item', title: "Classes", url: '/entities/classes' %>
-					<%= render 'layouts/header_menu_item', title: "Drivers", url: drivers_path %>
-					<%= render 'layouts/header_menu_item', title: "Users", url: users_path  %>
-					<%= (render 'layouts/header_menu_item', title: "Design mode", url: 'javascript://', klass: 'design_menu_item') if params[:controller]=='main' && params[:action]=='show' %>
-					<%#= render 'layouts/header_menu_item', title: "Network setup", url: edit_network_path %>
-                    <%= render 'layouts/header_menu_item', title: "Reboot!", url: '/admin/reboot', method: :post %>
-					<%= render 'layouts/header_menu_item', title: "Console", url: '?console=1' %>
-				</ul>
-			<% end if isadmin? %>
-		</ul>
-		<ul>
-			<%#= current_user.name %>
-		</ul>	
-	</nav>
+    <nav class="nav">
+
+      <%= render 'layouts/header_menu_item', title: "", url: root_path, klass: 'menu-logo' %>
+
+      <div class="menu-icon dropdown">
+        <div class="dropbtn"></div>
+        <div class="dropdown-content"></div>
+      </div>
+
+      <div class="menu">
+
+        <% Entity.menu_entities(@root_entity).each_with_index do |e, i| %>
+            <%= render 'layouts/header_menu_item', title: e.caption, id: e.id, klass: 'menu_entity', url: (i==0 ? root_path : e == @root_entity ? request.env['PATH_INFO'] : "/show/#{e.name}") %>
+        <% end %>
+
+        <%= render 'layouts/header_menu_item', title: "Sign out", url: destroy_user_session_path, method: :delete %>
+
+        <%= content_tag :div, class: 'dropdown' do %>
+            <div class="dropbtn">Admin</div>
+            <div class="dropdown-content">
+                <%= render 'layouts/header_menu_item', title: "Entities", url: entities_path %>
+                <%= render 'layouts/header_menu_item', title: "Classes", url: '/entities/classes' %>
+                <%= render 'layouts/header_menu_item', title: "Drivers", url: drivers_path %>
+                <%= render 'layouts/header_menu_item', title: "Users", url: users_path %>
+                <%= (render 'layouts/header_menu_item', title: "Design mode", url: 'javascript://', klass: 'design_menu_item') if params[:controller]=='main' && params[:action]=='show' %>
+                <%#= render 'layouts/header_menu_item', title: "Network setup", url: edit_network_path %>
+                <%= render 'layouts/header_menu_item', title: "Reboot!", url: '/admin/reboot', method: :post %>
+                <%= render 'layouts/header_menu_item', title: "Console", url: '?console=1' %>
+            </div>
+        <% end if isadmin? %>
+      </div>
+    </nav>
 <% end %>

@@ -1,0 +1,50 @@
+
+.nav {
+    $height: 26px;
+
+    height: $height;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 10px;
+    margin-bottom: 10px;
+
+    .menu-logo {
+        display: none;
+        height: $height;
+        float: left;
+    }
+
+    .menu-icon {
+        width: $height;
+        height: $height;
+        background: url(<%= asset_path "menu-icon.png" %>) no-repeat center;
+        float: right;
+    }
+
+    .menu {
+        height: $height;
+        width: auto;
+
+        > * {
+            float: left;
+        }
+    }
+
+    .menu-icon, .menu > * {
+        height: $height;
+        background-color: #cccccc;
+        color: black;
+        margin: 0 5px;
+        padding: 0 10px;
+        line-height: $height;
+        &:hover, &:active {
+            background-color: #f8f8f8;
+        }
+        &.active, .active {
+            background-color: white;
+        }
+    }
+}
+
+
+

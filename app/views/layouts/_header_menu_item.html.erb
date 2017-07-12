@@ -1,14 +1,14 @@
 <% 
 	klass ||= ''
+    klass += ' menu-item'
 	klass += ' active' if title==yield(:title)
+
 	
 	class_attr = {class: klass}.reject{|k,v|  v.strip.empty? }
 	
 	attrs = (method ||= :get) == :get ? {} : {method: method}
-	
+
 	id_attr = (id ||= nil) ? {id: id} : {}
 
 %>
-<%= content_tag :li, class_attr do %>
-	<%= link_to title, url, id_attr.merge(attrs) %>
-<% end %>
+<%= link_to title, url, id_attr.merge(attrs).merge(class_attr) %>
