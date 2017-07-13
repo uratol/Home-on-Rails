@@ -1,7 +1,8 @@
 <% if user_signed_in? %>
+    <div class="menu-logo">
+        <%= render 'layouts/header_menu_item', title: "", url: root_path, klass: 'menu-logo' %>
+    </div>
     <nav class="nav">
-
-      <%= render 'layouts/header_menu_item', title: "", url: root_path, klass: 'menu-logo' %>
 
       <div class="menu-icon dropdown">
         <div class="dropbtn"></div>
@@ -14,10 +15,10 @@
             <%= render 'layouts/header_menu_item', title: e.caption, id: e.id, klass: 'menu_entity', url: (i==0 ? root_path : e == @root_entity ? request.env['PATH_INFO'] : "/show/#{e.name}") %>
         <% end %>
 
-        <%= render 'layouts/header_menu_item', title: "Sign out", url: destroy_user_session_path, method: :delete %>
+        <%= render 'layouts/header_menu_item', title: t(:signout), url: destroy_user_session_path, method: :delete %>
 
         <%= content_tag :div, class: 'dropdown' do %>
-            <div class="dropbtn">Admin</div>
+            <div class="dropbtn"><%= t(:admin) %></div>
             <div class="dropdown-content">
                 <%= render 'layouts/header_menu_item', title: "Entities", url: entities_path %>
                 <%= render 'layouts/header_menu_item', title: "Classes", url: '/entities/classes' %>

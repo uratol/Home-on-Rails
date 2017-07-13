@@ -20,7 +20,7 @@ module Home
     
     require 'web-console'
     require 'turbolinks'
-    
+
     config.to_prepare do
         app_config = Rails.application.config
         app_config.eager_load_paths -= [Home.custom_behavior_path.to_s]

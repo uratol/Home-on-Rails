@@ -9,7 +9,6 @@ Gem::Specification.new do |s|
   s.version     = Home::VERSION
   s.authors     = ["uratol"]
   s.email       = ["uratol@gmail.com"]
-  s.homepage    = "http://infopolis.com.ua"
   s.summary     = "Home automation on Ruby On Rails."
   s.description = "Visualisation home devices, handling device events, voice control, etc"
   s.license     = "MIT"

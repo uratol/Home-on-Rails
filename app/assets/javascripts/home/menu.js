@@ -1,7 +1,7 @@
 setMenu = function () {
 
     function isMenuItemInMobileMenu(item){
-        return (item.position().top > 20);
+        return (item.position().top > item.parent().position().top + 5);
     }
 
 
