@@ -2,8 +2,19 @@
 
 html{
   height: 100%;
-  background: linear-gradient(to top, #333, #888);
+//  background: linear-gradient(to bottom, #888, #333);
+//  background-attachment: fixed;
+
+  background: #808080;
+  background: -moz-linear-gradient(top,  #808080 0%, #303030 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#808080), color-stop(100%,#303030));
+  background: -webkit-linear-gradient(top,  #808080 0%,#303030 100%);
+  background: -o-linear-gradient(top,  #808080 0%,#303030 100%);
+  background: -ms-linear-gradient(top,  #808080 0%,#303030 100%);
+  background: linear-gradient(to bottom,  #808080 0%,#303030 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#808080', endColorstr='#303030',GradientType=0 );
   background-attachment: fixed;
+
 }
 
 
