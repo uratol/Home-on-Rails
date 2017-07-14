@@ -1,45 +1,41 @@
 // theme
 
-html{
+html {
   height: 100%;
-//  background: linear-gradient(to bottom, #888, #333);
-//  background-attachment: fixed;
-
-  background: #808080;
-  background: -moz-linear-gradient(top,  #808080 0%, #303030 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#808080), color-stop(100%,#303030));
-  background: -webkit-linear-gradient(top,  #808080 0%,#303030 100%);
-  background: -o-linear-gradient(top,  #808080 0%,#303030 100%);
-  background: -ms-linear-gradient(top,  #808080 0%,#303030 100%);
-  background: linear-gradient(to bottom,  #808080 0%,#303030 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#808080', endColorstr='#303030',GradientType=0 );
-  background-attachment: fixed;
-
 }
 
-
 body {
-//	background: url(<%= asset_path "bg.png" %>);
+  //	background: url(
+<%= asset_path "bg.png" %> );
 
-//  background: url(asset_path('bg.png', image)); 
-//	background-color: #333;
-	  color: white;
-	};
+  //  background: url(asset_path('bg.png', image));
+  //	background-color: #333;
 
-h1{
+  height: 100%;
+  margin: 0;
+  background: linear-gradient(to bottom, #808080 0%, #303030 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  color: white;
+}
+
+;
+
+h1 {
   font-size: 10pt;
 }
 
 a {
-	text-decoration: none;
-	color: yellow;
-	&:visited {
-	    color: #dd6;
-	  }
-	&:hover {
-	    color: black;
-	    background-color: yellow;
-	  }
+  text-decoration: none;
+  color: yellow;
+  &:visited {
+    color: #dd6;
+  }
+  &:hover {
+    color: black;
+    background-color: yellow;
+  }
 }
 
 footer {
@@ -65,16 +61,18 @@ footer {
   }
 }
 
-td,th {padding: 0px 7px}
-
-tr[data-link], tr>[data-link]{
-    cursor: pointer;
-    &:hover {
-        color: white;
-        background-color: #111;
-    }
+td, th {
+  padding: 0px 7px
 }
 
-td[data-link]{
-    cursor: pointer;
+tr[data-link], tr > [data-link] {
+  cursor: pointer;
+  &:hover {
+    color: white;
+    background-color: #111;
+  }
+}
+
+td[data-link] {
+  cursor: pointer;
 }
