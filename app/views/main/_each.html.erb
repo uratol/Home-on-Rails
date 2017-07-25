@@ -14,7 +14,7 @@
 		<% ([e.name] + e.types.reverse).each do |t|
 			begin
                 e.do_event(:at_show)
-				%><%= render "main/#{ t }", e: e %><%	 
+				%><%= render "main/#{ t }", e: e %><%
 			rescue ActionView::MissingTemplate
 				next 
 			else 

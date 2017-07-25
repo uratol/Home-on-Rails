@@ -9,12 +9,11 @@ class FacadeBlind < Device
     self.binary = false
   end
 
-  def tilt_range=(r)
-    self.min_tilt, self.max_tilt = r.first, r.last
+  def tiltable?
+    driver == 'bidirectional_tilt_motor'
   end
 
-  def position_range=(r)
-    self.min, self.max = r.first, r.last
+  def tilt
   end
 
   private

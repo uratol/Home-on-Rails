@@ -36,11 +36,11 @@ module EntityClassMethods
   end
   
   def types 
-    ancestors_and_self.map{|c| c.name.downcase}.reverse
+    ancestors_and_self.map{|c| c.name.underscore}.reverse
   end  
   
   def require_entity_classes
-    Dir["#{Home::Engine.root}/app/models/entities/*.rb"].each {|file| require_dependency file}
+    (Dir["#{Home::Engine.root}/app/models/entities/*.rb"] + Dir["#{Rails.root}/app/models/entities/*.rb"]).each {|file| require_dependency file}
   end
 
   def register_events(*args)

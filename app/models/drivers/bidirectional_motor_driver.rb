@@ -86,6 +86,8 @@ module BidirectionalMotorDriver
     start_steps!(calc_steps_to_positions(*positions))
   end
 
+  alias_method :set_position!, :set_positions!
+
   protected
 
   MotorStep = Struct.new(:direction, :delay, :start_position, :finish_position)
