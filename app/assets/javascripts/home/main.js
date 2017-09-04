@@ -126,6 +126,11 @@ function act(elem, action){
 	}
 	
 var ready = function(){
+
+    $.ajaxSetup({
+        headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') }
+    });
+
 	$(".at_click, .at_touchstart, .at_touchend").hover(function(){
         $(this).toggleClass('hover');
 	});
