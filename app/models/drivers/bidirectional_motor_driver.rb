@@ -83,6 +83,7 @@ module BidirectionalMotorDriver
 
   def set_positions!(*positions)
     return if @stopping
+    parent_remote_call(:stop!, *positions)
     start_steps!(calc_steps_to_positions(*positions))
   end
 
