@@ -1,5 +1,14 @@
 private
 
+def actions
+  get '' => 'main#show'
+  post '/refresh' => 'main#refresh'
+  post '/click' => 'main#click'
+  post '/change' => 'main#change'
+  post '/touchstart' => 'main#touchstart'
+  post '/touchend' => 'main#touchend'
+end
+
 def uniRoutes
   get 'entities/classes'
   resources :entities
@@ -7,14 +16,14 @@ def uniRoutes
   get '/entities/insert/:parent' => 'entities#insert'
 
 
-  scope ['/show/:name(/:subname)', '/'] do
-    get '' => 'main#show'
-    post '/refresh' => 'main#refresh'
-    post '/click' => 'main#click'
-    post '/change' => 'main#change'
-    post '/touchstart' => 'main#touchstart'
-    post '/touchend' => 'main#touchend'
+  scope '/show/:name(/:subname)' do
+    actions
   end
+
+  scope '/' do
+    actions
+  end
+
   post '/refresh' => 'main#refresh'
 
   post '/admin/reboot'
