@@ -1,7 +1,17 @@
-require 'dht-sensor-ffi' if Home::LINUX_PLATFORM
-require 'timedcache'
-
 module DhtDriver
+
+  mattr_accessor :dht_installed
+
+  begin
+    require 'dht-sensor-ffi' #if Home::LINUX_PLATFORM
+    self.dht_installed = true
+  rescue LoadError => e
+    puts e
+    self.dht_installed = false
+  end
+
+  require 'timedcache'
+
   CACHE = TimedCache.new(default_timeout: 15.seconds, type: :file, filename: 'tmp/dht_driver.cache')
 
   def poll

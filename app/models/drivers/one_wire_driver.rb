@@ -12,7 +12,8 @@ module OneWireDriver
     file_data = file.read
 
     return file_data.split( 't=' ).last.to_f / 1000 if file_data.include? 'YES'
-  rescue Errno::ENOENT
+  rescue Errno::ENOENT => e
+    puts e
   end
 
   def self.scan

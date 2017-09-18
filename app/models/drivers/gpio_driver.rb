@@ -1,11 +1,20 @@
-require 'wiringpi' if Home::LINUX_PLATFORM 
-
 # Драйвер обеспечивает прямой доступ к портам ввода-вывода GPIO (general-purpose input/output).
 # В адресе указывается номер пина по BCM-нумерации
 # При инициализации порта, указанного в адресе, устанавливает подтяжку по напряжению (pull up)
 module GpioDriver
+
+  mattr_accessor :gpio_installed
+
+  begin
+    require 'wiringpi'
+    self.gpio_installed = true
+  rescue LoadError => e
+    puts e
+    self.gpio_installed = false
+  end
+
   def set_driver_value(v)
-    GpioDriver.io.digital_write(pin_no, transform_driver_value(v).to_i) if Home::LINUX_PLATFORM
+    GpioDriver.io.digital_write(pin_no, transform_driver_value(v).to_i) if self.gpio_installed
   end
 
   def get_driver_value
@@ -39,7 +48,7 @@ module GpioDriver
       end
     end
     @threads.each(&:join)
-  end if Home::LINUX_PLATFORM
+  end if self.gpio_installed
   
   def self.scan
     [*2..27]
@@ -100,6 +109,7 @@ module GpioDriver
   end
 
   def self.startup
+    return unless GpioDriver.gpio_installed
     $wiringpi_io ||= WiringPi::GPIO.new
 
     build_pin_map
@@ -122,5 +132,5 @@ module GpioDriver
   end
 end
 
-GpioDriver.startup if Home::LINUX_PLATFORM
+GpioDriver.startup
 
