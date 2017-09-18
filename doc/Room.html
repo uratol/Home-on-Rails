@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Room
+  
+    &mdash; Documentation by YARD 0.9.9
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "Room";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (R)</a> &raquo;
+    
+    
+    <span class="title">Room</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Room
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName"><span class='object_link'><a href="Placement.html" title="Placement (class)">Placement</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ActiveRecord::Base</li>
+          
+            <li class="next"><span class='object_link'><a href="Entity.html" title="Entity (class)">Entity</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="Placement.html" title="Placement (class)">Placement</a></span></li>
+          
+            <li class="next">Room</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>app/models/entities/room.rb</dd>
+  </dl>
+  
+</div>
+
+
+
+
+
+
+
+  <h2>Instance Attribute Summary</h2>
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="Entity.html" title="Entity (class)">Entity</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Entity.html#height-instance_method" title="Entity#height (method)">#height</a></span>, <span class='object_link'><a href="Entity.html#image_name-instance_method" title="Entity#image_name (method)">#image_name</a></span>, <span class='object_link'><a href="Entity.html#width-instance_method" title="Entity#width (method)">#width</a></span></p>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#brightness-instance_method" title="#brightness (instance method)">#<strong>brightness</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#data_attributes-instance_method" title="#data_attributes (instance method)">#<strong>data_attributes</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#illumination-instance_method" title="#illumination (instance method)">#<strong>illumination</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>def presense     value!=0   end      def presense= v     value= if v ||
+v==0 then 0 else 1 end   end.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#lamplight-instance_method" title="#lamplight (instance method)">#<strong>lamplight</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="Placement.html" title="Placement (class)">Placement</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Placement.html#all_off!-instance_method" title="Placement#all_off! (method)">#all_off!</a></span>, <span class='object_link'><a href="Placement.html#light_off!-instance_method" title="Placement#light_off! (method)">#light_off!</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="Entity.html" title="Entity (class)">Entity</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Entity.html#at_click-instance_method" title="Entity#at_click (method)">#at_click</a></span>, <span class='object_link'><a href="Entity.html#at_schedule-instance_method" title="Entity#at_schedule (method)">#at_schedule</a></span>, <span class='object_link'><a href="Entity.html#at_startup-instance_method" title="Entity#at_startup (method)">#at_startup</a></span>, <span class='object_link'><a href="Entity.html#at_touchend-instance_method" title="Entity#at_touchend (method)">#at_touchend</a></span>, <span class='object_link'><a href="Entity.html#at_touchstart-instance_method" title="Entity#at_touchstart (method)">#at_touchstart</a></span>, <span class='object_link'><a href="Entity.html#destroy_with_descendants-instance_method" title="Entity#destroy_with_descendants (method)">#destroy_with_descendants</a></span>, <span class='object_link'><a href="Entity.html#disabled%3F-instance_method" title="Entity#disabled? (method)">#disabled?</a></span>, <span class='object_link'><a href="Entity.html#enabled=-instance_method" title="Entity#enabled= (method)">#enabled=</a></span>, <span class='object_link'><a href="Entity.html#enabled%3F-instance_method" title="Entity#enabled? (method)">#enabled?</a></span>, <span class='object_link'><a href="Entity.html#invert-instance_method" title="Entity#invert (method)">#invert</a></span>, <span class='object_link'><a href="Entity.html#last_indication-instance_method" title="Entity#last_indication (method)">#last_indication</a></span>, <span class='object_link'><a href="Entity.html#last_indication_interval-instance_method" title="Entity#last_indication_interval (method)">#last_indication_interval</a></span>, <span class='object_link'><a href="Entity.html#last_indication_time-instance_method" title="Entity#last_indication_time (method)">#last_indication_time</a></span>, <span class='object_link'><a href="Entity.html#name-instance_method" title="Entity#name (method)">#name</a></span>, <span class='object_link'><a href="Entity.html#parent-instance_method" title="Entity#parent (method)">#parent</a></span>, <span class='object_link'><a href="Entity.html#remote_call%3F-instance_method" title="Entity#remote_call? (method)">#remote_call?</a></span>, <span class='object_link'><a href="Entity.html#value_at-instance_method" title="Entity#value_at (method)">#value_at</a></span>, <span class='object_link'><a href="Entity.html#write_value-instance_method" title="Entity#write_value (method)">#write_value</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="EntityClassMethods.html" title="EntityClassMethods (module)">EntityClassMethods</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="EntityClassMethods.html#[]-instance_method" title="EntityClassMethods#[] (method)">#[]</a></span>, <span class='object_link'><a href="EntityClassMethods.html#ancestors_and_self-instance_method" title="EntityClassMethods#ancestors_and_self (method)">#ancestors_and_self</a></span>, <span class='object_link'><a href="EntityClassMethods.html#drivers-instance_method" title="EntityClassMethods#drivers (method)">#drivers</a></span>, <span class='object_link'><a href="EntityClassMethods.html#drivers_names-instance_method" title="EntityClassMethods#drivers_names (method)">#drivers_names</a></span>, <span class='object_link'><a href="EntityClassMethods.html#entity_types-instance_method" title="EntityClassMethods#entity_types (method)">#entity_types</a></span>, <span class='object_link'><a href="EntityClassMethods.html#entity_types_downcase-instance_method" title="EntityClassMethods#entity_types_downcase (method)">#entity_types_downcase</a></span>, <span class='object_link'><a href="EntityClassMethods.html#execute_sql-instance_method" title="EntityClassMethods#execute_sql (method)">#execute_sql</a></span>, <span class='object_link'><a href="EntityClassMethods.html#generate_new_name-instance_method" title="EntityClassMethods#generate_new_name (method)">#generate_new_name</a></span>, <span class='object_link'><a href="EntityClassMethods.html#menu_entities-instance_method" title="EntityClassMethods#menu_entities (method)">#menu_entities</a></span>, <span class='object_link'><a href="EntityClassMethods.html#params-instance_method" title="EntityClassMethods#params (method)">#params</a></span>, <span class='object_link'><a href="EntityClassMethods.html#params=-instance_method" title="EntityClassMethods#params= (method)">#params=</a></span>, <span class='object_link'><a href="EntityClassMethods.html#register_events-instance_method" title="EntityClassMethods#register_events (method)">#register_events</a></span>, <span class='object_link'><a href="EntityClassMethods.html#require_entity_classes-instance_method" title="EntityClassMethods#require_entity_classes (method)">#require_entity_classes</a></span>, <span class='object_link'><a href="EntityClassMethods.html#types-instance_method" title="EntityClassMethods#types (method)">#types</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="EntityData.html" title="EntityData (module)">EntityData</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="EntityData.html#data-instance_method" title="EntityData#data (method)">#data</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="EntityVisualization.html" title="EntityVisualization (module)">EntityVisualization</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="EntityVisualization.html#human_value-instance_method" title="EntityVisualization#human_value (method)">#human_value</a></span>, <span class='object_link'><a href="EntityVisualization.html#image-instance_method" title="EntityVisualization#image (method)">#image</a></span>, <span class='object_link'><a href="EntityVisualization.html#params-instance_method" title="EntityVisualization#params (method)">#params</a></span>, <span class='object_link'><a href="EntityVisualization.html#redirect_to-instance_method" title="EntityVisualization#redirect_to (method)">#redirect_to</a></span></p>
+
+  
+  <div id="method_missing_details" class="method_details_list">
+  <h2>Dynamic Method Handling</h2>
+  <p class="notice super">
+    This class handles dynamic methods through the <tt>method_missing</tt> method
+    
+      in the class <span class='object_link'>Entity</span>
+    
+  </p>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="brightness-instance_method">
+  
+    #<strong>brightness</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+43
+44
+45
+46
+47
+48
+49</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/entities/room.rb', line 43</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_brightness'>brightness</span>
+  <span class='comment'># for a brigthness filter in views. 100 - normal
+</span>  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_illumination'>illumination</span><span class='op'>||</span><span class='int'>1</span><span class='rparen'>)</span><span class='op'>*</span><span class='int'>100</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='int'>25</span><span class='op'>+</span><span class='id identifier rubyid_result'>result</span><span class='op'>*</span><span class='float'>0.75</span>
+  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='int'>130</span> <span class='kw'>if</span> <span class='id identifier rubyid_result'>result</span><span class='op'>&gt;</span><span class='int'>130</span>
+  <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_round'>round</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="data_attributes-instance_method">
+  
+    #<strong>data_attributes</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+51
+52
+53</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/entities/room.rb', line 51</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_data_attributes'>data_attributes</span>
+  <span class='kw'>super</span> <span class='op'>+</span> <span class='lbracket'>[</span><span class='symbol'>:brightness</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="illumination-instance_method">
+  
+    #<strong>illumination</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>def presense</p>
+
+<pre class="code ruby"><code class="ruby">  value!=0
+end
+
+def presense= v
+  value= if v || v==0 then 0 else 1 end
+end
+
+def presense!
+  presense=true
+end
+
+def absense
+  !presense
+end
+
+def absense!
+  presense=false
+end</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+27
+28
+29
+30</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/entities/room.rb', line 27</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_illumination'>illumination</span>
+  <span class='comment'># 1 - normal
+</span>  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_lamplight'>lamplight</span> <span class='op'>+</span> <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Clock.html" title="Clock (class)">Clock</a></span></span><span class='period'>.</span><span class='id identifier rubyid_night?'><span class='object_link'><a href="Clock.html#night%3F-class_method" title="Clock.night? (method)">night?</a></span></span> <span class='op'>?</span> <span class='int'>0</span> <span class='op'>:</span> <span class='lparen'>(</span><span class='id identifier rubyid_daylight'>daylight</span><span class='op'>||</span><span class='int'>100</span><span class='rparen'>)</span><span class='op'>/</span><span class='int'>100</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="lamplight-instance_method">
+  
+    #<strong>lamplight</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/entities/room.rb', line 32</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_lamplight'>lamplight</span>
+  <span class='id identifier rubyid_lamps'>lamps</span> <span class='op'>=</span> <span class='id identifier rubyid_descendants'>descendants</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>type:</span> <span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="Light.html" title="Light (class)">Light</a></span></span><span class='rbracket'>]</span><span class='op'>+</span><span class='const'><span class='object_link'><a href="Light.html" title="Light (class)">Light</a></span></span><span class='period'>.</span><span class='id identifier rubyid_descendants'>descendants</span> <span class='rparen'>)</span> <span class='comment'># select{|e| e.is_a? Light}
+</span>
+  <span class='id identifier rubyid_sum_power'>sum_power</span> <span class='op'>=</span> <span class='id identifier rubyid_lamps'>lamps</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='comma'>,</span><span class='id identifier rubyid_e'>e</span><span class='op'>|</span> <span class='id identifier rubyid_s'>s</span><span class='op'>+</span><span class='lparen'>(</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_power'>power</span><span class='op'>||</span><span class='int'>0</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_sum_power'>sum_power</span><span class='op'>!=</span><span class='int'>0</span>
+    <span class='id identifier rubyid_lamps'>lamps</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='comma'>,</span><span class='id identifier rubyid_e'>e</span><span class='op'>|</span> <span class='id identifier rubyid_s'>s</span><span class='op'>+</span><span class='lparen'>(</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='op'>||</span><span class='int'>0</span><span class='rparen'>)</span><span class='op'>*</span><span class='lparen'>(</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_power'>power</span><span class='op'>||</span><span class='int'>0</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='op'>/</span><span class='id identifier rubyid_sum_power'>sum_power</span>
+  <span class='kw'>else</span>
+    <span class='int'>0</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Mon Sep 18 22:03:18 2017 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.9 (ruby-2.1.8).
+</div>
+
+    </div>
+  </body>
+</html>
