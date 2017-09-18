@@ -8,6 +8,7 @@ module EntityBehavior
     before_save :behavior_script_write
     after_initialize :behavior_script_read
     after_initialize :behavior_script_eval
+    after_destroy :behavior_script_delete
   
     include ::BinaryBehavior
     include ::EntityBehaviorHelpers
@@ -61,14 +62,18 @@ module EntityBehavior
     
     if @old_behavior_script != behavior_script
       if @behavior_script.to_s.strip.blank?
-        File.delete behavior_file_name if File.exist? behavior_file_name
+        behavior_script_delete
         return
       end
       File.write behavior_file_name, @behavior_script.gsub("\r\n","\n") #fix windows linebreaks
       behavior_script_eval
     end  
   end
-  
+
+  def behavior_script_delete
+    File.delete behavior_file_name if File.exist? behavior_file_name
+  end
+
   def backtrace_error_line(e)
     line = nil
     e.backtrace.find do |b|

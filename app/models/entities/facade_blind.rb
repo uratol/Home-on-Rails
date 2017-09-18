@@ -20,7 +20,7 @@ class FacadeBlind < Device
 
   def driver_valid?
     unless ['bidirectional_motor', 'bidirectional_tilt_motor'].include?(driver)
-      errors.add(:driver, "Driver \"#{ driver }\" is not valid")
+      errors.add(:driver, "Driver \"#{ driver }\" is not valid for this class")
     end
   end
 

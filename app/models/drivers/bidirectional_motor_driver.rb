@@ -31,9 +31,12 @@ module BidirectionalMotorDriver
 
   alias_method :current_position, :position
 
-  def current_direction
+  # текущее направление, 1 - вверх, -1 - вниз, 0 - стоит
+  def direction
     thread_active? ? relay_thread[:direction] : 0
   end
+
+  alias_method :current_direction, :direction
   
   def up!
     parent_remote_call(:on!)
@@ -48,9 +51,9 @@ module BidirectionalMotorDriver
   def stop!(at_position = nil)
     parent_remote_call(:stop!) unless at_position
     @stopping = true
-    write_value(at_position || current_position)
     up_motor.set_driver_value(0)
     down_motor.set_driver_value(0)
+    write_value(at_position || current_position)
     if thread_active? || at_position.nil?
       fire_event(:on_stop)
       fire_event(:on_finish)
@@ -88,6 +91,15 @@ module BidirectionalMotorDriver
   end
 
   alias_method :set_position!, :set_positions!
+
+  def velocity(direction = current_direction)
+    (max - min).to_f / (direction == 1 ? up_full_time : down_full_time) * direction
+  end
+
+  def time_to_position(position)
+    delta = current_position - position
+    (delta / velocity(delta < 0 ? 1 : -1)).abs + (current_direction * -delta > 0 ? contra_pause_time : 0)
+  end
 
   protected
 
@@ -186,10 +198,6 @@ module BidirectionalMotorDriver
       last_step.finish_position = finish_position
       steps
     end
-  end
-
-  def velocity(direction)
-    (max - min).to_f / (direction == 1 ? up_full_time : direction == -1 ? down_full_time : 0) * direction
   end
 
   def fire_event(method_sym, *args)

@@ -25,7 +25,11 @@ module DhtDriver
       CACHE[pin_no] = r  
     end  
      
-    case self when Temperature then r.temperature when Humidity then r.humidity end
+    case self
+      when Temperature then r.temperature
+      when Humidity then r.humidity
+      else nil
+    end
   end
   
   def self.models

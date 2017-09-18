@@ -3,7 +3,8 @@ class MainController < ApplicationController
   rescue_from Exception, with: :handle_exception
 
   before_filter :provide_params_to_model
-  
+  skip_before_filter :verify_authenticity_token, only: :refresh
+
   def show
     @root_entity = root_entity
     
