@@ -113,7 +113,7 @@ module BinaryBehavior
   end
 
   def pwm_power=(value)
-    raise 'PWM power must be in 0..1 range' unless (0..1).include(value)
+    raise 'PWM power must be in 0..1 range' unless (0..1).include?(value)
     data.pwm_power = value
   end
 
