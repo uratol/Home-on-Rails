@@ -11,8 +11,9 @@ module Home
     @@title ||= Rails.root.basename.to_s.capitalize
   end
   
-  def self.time_zone= t
-    Rails.application.config.time_zone = t
+  def self.time_zone=(zone_name)
+    Log.e("Invalid time zone #{ zone_name }") unless ActiveSupport::TimeZone.zones_map[zone_name]
+    Rails.application.config.time_zone = Time.zone = zone_name
   end
 
   def self.time_zone
