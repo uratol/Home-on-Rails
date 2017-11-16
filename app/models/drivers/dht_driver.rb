@@ -50,7 +50,9 @@ module DhtDriver
     "DHT-XX type humidity/temperature sensor
     Address format: XX:P 
     where XX - kind of sensor, #{ models.join(" or ") }
-    P - GPIO BCM pin number"
+    P - GPIO BCM pin number
+    Current GPIO pin configuration:
+    " + GpioDriver.description_data
   end
   
   def self.scan

@@ -49,6 +49,15 @@ end
 
 class DateTime
   include TimeRangeComparable
+
+  # fix for Windows - Time#utc returns Time
+
+  alias_method :old_utc, :utc
+
+  def utc
+    old_utc.to_datetime
+  end
+
 end
 
 class ActiveSupport::TimeWithZone
