@@ -2,7 +2,8 @@ module OneWireDriver
   
   DEVICE_ROOT = Home::LINUX_PLATFORM ? '/sys/bus/w1/devices/' : 'c:/Temp/w1/devices/'
   
-  
+
+  # not implemented yet
   def set_driver_value(v)
   end
 
