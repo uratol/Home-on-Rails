@@ -50,7 +50,7 @@ Gem::Specification.new do |s|
   end
 
   s.add_dependency 'net-ping'
-
+  s.add_dependency 'mqtt'
 
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'capybara'

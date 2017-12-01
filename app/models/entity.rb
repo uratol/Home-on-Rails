@@ -52,7 +52,11 @@ class Entity < ActiveRecord::Base
   alias_method :binary?, :binary # @!visibility private
   attr_reader :events # @!visibility private
 
-  after_commit {cancel :startup; delay.startup}
+  after_commit do
+    driver_module(previous_changes[:driver].first).do_watch if previous_changes[:driver]
+    driver_module.do_watch if previous_changes[:driver] || previous_changes[:address]
+    delay.startup
+  end
 
   # @!method name
   #   Имя объекта
@@ -170,13 +174,13 @@ class Entity < ActiveRecord::Base
         log {"Schedule #{ self } : #{ schedule }"}
         every(schedule).do_schedule
       end
-      do_event :at_startup
+      do_event(:at_startup)
     end
   end
   
   def do_schedule # @!visibility private
     super rescue NoMethodError
-    do_event :at_schedule
+    do_event(:at_schedule)
   end
 
   # задаёт обработчик, вызываемый по расписанию
@@ -190,7 +194,7 @@ class Entity < ActiveRecord::Base
   #   end
   def at_schedule(options = nil, &block)
     self.schedule = options if options
-    events.add_with_replace :at_schedule, block
+    events.add_with_replace(:at_schedule, block)
   end
 
   # возвращает последнее значение - обект Indication
@@ -343,10 +347,10 @@ class Entity < ActiveRecord::Base
   end
 
   # @!visibility private
-  def driver_module
+  def driver_module(driver_name = driver)
     @driver_module ||= nil
     if !@driver_module || driver_changed?
-      @driver_module = "#{ driver }_driver".camelcase.constantize unless driver.blank?
+      @driver_module = "#{ driver_name }_driver".camelcase.constantize unless driver.blank?
     else  
       @driver_module
     end  

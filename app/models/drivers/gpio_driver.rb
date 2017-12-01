@@ -28,9 +28,9 @@ module GpioDriver
     
     @threads.each(&:kill) if (@threads ||= []).any?
 
-    puts "#{ pins } will be watching"
+    puts "GPIO pins #{ pins } will be watching"
     
-    pins.each_with_index do |unmapped_pin|
+    pins.each do |unmapped_pin|
       @threads << Thread.new(block) do |trigger|
         mapped_pin = map_pin(unmapped_pin)
         value = nil
@@ -39,9 +39,7 @@ module GpioDriver
           last_value = value
           value = io.digital_read(mapped_pin)
           if value != last_value
-            ActiveRecord::Base.connection_pool.with_connection do
-              trigger.call(unmapped_pin, value)
-            end
+            trigger.call(unmapped_pin, value)
           end
           sleep(0.01)
         end

@@ -55,7 +55,7 @@ class MainController < ApplicationController
     entities = @root_entity.self_and_descendants
     
     respond_to do |format|
-      format.json do 
+      format.json do
         render json: entities, only:[:id] , methods: [:img, :brightness, :text, :refresh_script]
       end
     end

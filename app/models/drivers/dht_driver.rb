@@ -1,3 +1,5 @@
+require 'timedcache'
+
 module DhtDriver
 
   mattr_accessor :dht_installed
@@ -9,8 +11,6 @@ module DhtDriver
     puts e
     self.dht_installed = false
   end
-
-  require 'timedcache'
 
   CACHE = TimedCache.new(default_timeout: 15.seconds, type: :file, filename: 'tmp/dht_driver.cache')
 

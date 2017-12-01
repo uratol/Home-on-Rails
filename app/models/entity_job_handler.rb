@@ -60,7 +60,7 @@ class EntityJobHandler
   private
   
   def schedule! current_job = nil
-    return unless run_time = next_run_time
+    return unless (run_time = next_run_time)
 
       
 #    query = @entity.jobs.where(queue: queue_name)
@@ -73,7 +73,7 @@ class EntityJobHandler
     ensure  
       @entity = tmp_obj #return
     end
-    return true
+    true
   end
   
 

@@ -7,13 +7,14 @@ function message(msg){
 }
 
 var onAjaxError = function (request, ajaxOptions, thrownError) {
-			if (thrownError)
-	        	message(thrownError+': '+request.responseText.substring(0,550));
-	     };
+    progressEnd();
+    if (thrownError)
+	    message(thrownError+': '+request.responseText.substring(0,550));
+};
 
 function action_path(action){
     var path = window.location.pathname;
-    if (path.substr(path.length - 1) != '/')
+    if (path.substr(path.length - 1) !== '/')
         path += '/';
     path += action;
     return path;
@@ -26,7 +27,7 @@ function setBrightness(elem, brightness) {
 };
 
 function stopRefresh(){
-    if (refreshInterval != 0){ clearInterval(refreshInterval) };
+    if (refreshInterval !== 0){ clearInterval(refreshInterval) };
 }
 
 function setRefreshInterval(interval){
@@ -46,30 +47,32 @@ function commonRefresh(entity){
 	var container = $('.entity').filter('#' + entity.id);
 
 	var elem = container.find('#img' + entity.id);
-	if (elem.attr('src') != entity.img) {
+	if (elem.attr('src') !== entity.img) {
 		elem.attr('src', entity.img);
 	};
 	capt = container.find('#caption' + entity.id);
-	if (capt != null && entity.text != undefined)
+	if (capt !== null && entity.text !== undefined)
 		capt.text(entity.text);
-	if (entity.brightness != undefined)
+	if (entity.brightness !== undefined)
 		setBrightness(elem, entity.brightness);
-    if (entity.refresh_script != undefined)
+    if (entity.refresh_script !== undefined)
         eval(entity.refresh_script);
 	container.trigger('entity:refresh', entity);	
 }
 
 function refreshRequest() {
     path = action_path('refresh');
-    if (path != '/refresh' && path.substring(0,6) != '/show/')
+    if (path !== '/refresh' && path.substring(0,6) !== '/show/')
       return;
 
+    progressStart(5);
 	$.ajax({
 		// url: "/main/refresh?root=" + $(".layout_container").attr('id')
          url: action_path('refresh')
         ,method: 'POST'
 		,success: function(data) {
-			refreshEntityes(data);
+             progressEnd();
+			 refreshEntityes(data);
 			}
 		,error: onAjaxError
 	});
@@ -148,7 +151,7 @@ var ready = function(){
 		setTimeout(function() {
 		arrangeLayout();
 		}, 500);
-	};
+	}
 
     setRefreshInterval(refreshDelay);
 
