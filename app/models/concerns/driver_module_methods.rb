@@ -3,7 +3,7 @@ module DriverModuleMethods
   def do_watch
     return unless respond_to? :watch
     @threads.each(&:kill) if (@threads ||= []).any?
-    @threads << Thread.new(driver_module) do |d|
+    @threads << Thread.new(self) do |d|
       puts "Driver #{ d }: watching"
       ActiveRecord::Base.connection_pool.with_connection do
         watch do |address, value|
