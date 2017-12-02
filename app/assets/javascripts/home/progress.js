@@ -15,27 +15,29 @@ function progressStart(estimatedDurationInSeconds){
     progressSet(0);
     progressStartTime = new Date();
     if (progressTimerId !== 0)
-        clearInterval(progressTimerId);
-    progressTimerId = setInterval(
-        function(){
+        clearTimeout(progressTimerId);
+    progressTimerId = setTimeout(function tick(){
             var progressPercent = ((new Date()).getTime() - progressStartTime.getTime()) / 1000 / estimatedDurationInSeconds * 100;
             if (progressPercent >= 100) {
                 progressPercent = 99;
-                clearInterval(progressTimerId);
-                progressTimerId = 0;
             }
+            else
+                progressTimerId = setTimeout(tick, 500);
             progressSet(progressPercent);
-        }, 500);
+        }
+        , 500);
 }
 
 function progressEnd(){
     if (progressTimerId !== 0)
-        clearInterval(progressTimerId);
+        clearTimeout(progressTimerId);
     progressSet(100);
 }
 
 $(document).on('turbolinks:load', function() {
     progress = $('#progress');
+    if (progressTimerId !== 0)
+        clearTimeout(progressTimerId);
     progressSet(100);
 });
 

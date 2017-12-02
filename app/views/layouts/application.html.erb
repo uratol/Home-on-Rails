@@ -16,10 +16,10 @@
 		<%= favicon_link_tag 'favicon.ico' %>
 	</head>
 	<body>
+    <span id="progress"></span>
 		<header>
 			<%= render 'layouts/header'%>
 		</header>
-    <%= image_tag('progress.png', id: :progress, style: 'position: absolute; height: 1px;') %>
 		<%= render 'layouts/flash'%>
 		<%= yield %>
 

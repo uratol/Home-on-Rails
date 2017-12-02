@@ -24,10 +24,10 @@ function setBrightness(elem, brightness) {
 	f = 'brightness(' + brightness + '%)';
 	elem.css('-webkit-filter', f);
 	elem.css('filter', f);
-};
+}
 
 function stopRefresh(){
-    if (refreshInterval !== 0){ clearInterval(refreshInterval) };
+    if (refreshInterval !== 0){ clearInterval(refreshInterval) }
 }
 
 function setRefreshInterval(interval){
@@ -41,7 +41,7 @@ function refreshEntityes(entities) {
 	entities.forEach(function(entity) {
 		commonRefresh(entity);
 	});
-};
+}
 
 function commonRefresh(entity){
 	var container = $('.entity').filter('#' + entity.id);
@@ -49,7 +49,7 @@ function commonRefresh(entity){
 	var elem = container.find('#img' + entity.id);
 	if (elem.attr('src') !== entity.img) {
 		elem.attr('src', entity.img);
-	};
+	}
 	capt = container.find('#caption' + entity.id);
 	if (capt !== null && entity.text !== undefined)
 		capt.text(entity.text);
@@ -77,7 +77,7 @@ function refreshRequest() {
 		,error: onAjaxError
 	});
 
-};
+}
 
 function arrangeLayout() {
 	//lc.height(lc[0].scrollHeight);
