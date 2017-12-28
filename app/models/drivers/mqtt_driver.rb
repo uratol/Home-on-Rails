@@ -23,6 +23,17 @@ module MqttDriver
 
   mattr_accessor :brokers
   self.brokers = {}
+
+  def self.startup
+    devices.each do |device|
+      broker_addr = device.broker_address.strip
+      unless brokers[broker_addr]
+        puts "mqtt broker will be connected: #{ broker_addr }"
+        brokers[broker_addr] = MQTT::Client.connect(host: broker_addr, username: device.broker_username , password: device.broker_password)
+      end
+    end
+  end
+
   self.startup
 
   def self.watch(&block)
@@ -36,16 +47,6 @@ module MqttDriver
       end
     end
     @threads.each(&:join)
-  end
-
-  def self.startup
-    devices.each do |device|
-      broker_addr = device.broker_address.strip
-      unless brokers[broker_addr]
-        puts "mqtt broker will be connected: #{ broker_addr }"
-        brokers[broker_addr] = MQTT::Client.connect(host: broker_addr, username: device.broker_username , password: device.broker_password)
-      end
-    end
   end
 
   def self.devices
