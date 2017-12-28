@@ -34,8 +34,6 @@ module MqttDriver
     end
   end
 
-  self.startup
-
   def self.watch(&block)
     @threads.each(&:kill) if (@threads ||= []).any?
     puts "MQTT sensors #{ sensors.pluck(:name).join(',') } will be watching"
@@ -56,6 +54,8 @@ module MqttDriver
   def self.sensors
     Sensor.where(driver: :mqtt).where.not(address: nil)
   end
+
+  self.startup
 
   def broker_address
     DEFAULT_BROKER_ADDRESS
