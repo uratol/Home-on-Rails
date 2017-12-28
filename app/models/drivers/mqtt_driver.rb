@@ -55,8 +55,6 @@ module MqttDriver
     Sensor.where(driver: :mqtt).where.not(address: nil)
   end
 
-  self.startup
-
   def broker_address
     DEFAULT_BROKER_ADDRESS
   end
@@ -79,5 +77,7 @@ module MqttDriver
   def broker
     self.brokers[broker_address]
   end
+
+  self.startup
 
 end
