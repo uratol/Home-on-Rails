@@ -6,6 +6,7 @@ module Home
   
   mattr_writer :title
   mattr_accessor :latitude, :longitude
+  mattr_accessor :mqtt_username, :mqtt_password
   
   def self.title
     @title ||= Rails.root.basename.to_s.capitalize

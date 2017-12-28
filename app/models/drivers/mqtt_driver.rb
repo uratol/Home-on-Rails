@@ -40,8 +40,9 @@ module MqttDriver
   end
 
   def self.startup
-    devices.map{|s| s.broker_address.strip || DEFAULT_BROKER_ADDRESS }.uniq.each do |broker_addr|
-      brokers[broker_addr] = MQTT::Client.connect(broker_addr)
+    devices.each do |device|
+      broker_addr = device.broker_address.strip
+      brokers[broker_addr] = MQTT::Client.connect(host: broker_addr, username: device.broker_username , password: device.broker_password) unless brokers[broker_addr]
     end
   end
 
@@ -57,6 +58,13 @@ module MqttDriver
     DEFAULT_BROKER_ADDRESS
   end
 
+  def broker_username
+    Home.mqtt_username
+  end
+
+  def broker_password
+    Home.mqtt_password
+  end
 
 
   def set_driver_value(v)
