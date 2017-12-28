@@ -23,7 +23,7 @@ module MqttDriver
 
   mattr_accessor :brokers
   self.brokers = {}
-  startup
+  self.startup
 
   def self.watch(&block)
     @threads.each(&:kill) if (@threads ||= []).any?
