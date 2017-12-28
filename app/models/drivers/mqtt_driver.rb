@@ -23,10 +23,9 @@ module MqttDriver
 
   mattr_accessor :brokers
   self.brokers = {}
+  startup
 
   def self.watch(&block)
-    startup
-
     @threads.each(&:kill) if (@threads ||= []).any?
     puts "MQTT sensors #{ sensors.pluck(:name).join(',') } will be watching"
     sensors.each do |sensor|
@@ -42,7 +41,10 @@ module MqttDriver
   def self.startup
     devices.each do |device|
       broker_addr = device.broker_address.strip
-      brokers[broker_addr] = MQTT::Client.connect(host: broker_addr, username: device.broker_username , password: device.broker_password) unless brokers[broker_addr]
+      unless brokers[broker_addr]
+        puts "mqtt broker will be connected: #{ broker_addr }"
+        brokers[broker_addr] = MQTT::Client.connect(host: broker_addr, username: device.broker_username , password: device.broker_password)
+      end
     end
   end
 

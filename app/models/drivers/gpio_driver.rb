@@ -23,7 +23,7 @@ module GpioDriver
 
   def self.watch(&block)
     startup
-    
+
     pins = sensors.uniq.pluck(:address).map(&:to_i)
     
     @threads.each(&:kill) if (@threads ||= []).any?
