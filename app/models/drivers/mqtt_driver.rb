@@ -19,7 +19,8 @@ end
 
 
 module MqttDriver
-  DEFAULT_BROKER_ADDRESS = Rails.env.production? ? 'localhost' : 'test.mosquitto.org'
+  DEFAULT_BROKER_ADDRESS = 'localhost'
+  DEFAULT_BROKER_PORT = 1883
 
   mattr_accessor :brokers
   self.brokers = {}
@@ -29,7 +30,7 @@ module MqttDriver
       broker_addr = device.broker_address.strip
       unless brokers[broker_addr]
         puts "mqtt broker will be connected: #{ broker_addr }"
-        brokers[broker_addr] = MQTT::Client.connect(host: broker_addr, username: device.broker_username , password: device.broker_password)
+        brokers[broker_addr] = MQTT::Client.connect(host: broker_addr, port: device.broker_port, username: device.broker_username , password: device.broker_password)
       end
     end
   end
@@ -59,6 +60,10 @@ module MqttDriver
     DEFAULT_BROKER_ADDRESS
   end
 
+  def broker_port
+    DEFAULT_BROKER_PORT
+  end
+
   def broker_username
     Home.mqtt_username
   end
@@ -78,6 +83,6 @@ module MqttDriver
     self.brokers[broker_address]
   end
 
-  self.startup
-
 end
+
+

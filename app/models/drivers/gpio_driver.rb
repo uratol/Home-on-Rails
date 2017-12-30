@@ -22,7 +22,6 @@ module GpioDriver
   end
 
   def self.watch(&block)
-    startup
 
     pins = sensors.uniq.pluck(:address).map(&:to_i)
     
@@ -130,5 +129,5 @@ module GpioDriver
   end
 end
 
-GpioDriver.startup
+
 

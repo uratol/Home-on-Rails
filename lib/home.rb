@@ -32,17 +32,22 @@ module Home
     yield self
 
     puts "setup #{ program_name }: #{ $PROGRAM_NAME }"
-    startup if program_name == :jobs
+    startup
+    watch_drivers if program_name == :jobs
   end  
   
   private
   
   def self.startup
+    Entity.drivers.each do |driver|
+      driver.do_startup
+    end
+
     ActiveRecord::Base.transaction do
       delete_old_indications
       Entity.all.each{|e| e.startup}
     end
-    watch_drivers
+
   end
   
   def self.delete_old_indications(leave_interval = 1.week)
@@ -50,7 +55,9 @@ module Home
   end
   
   def self.watch_drivers
-    Entity.drivers.each(&:do_watch)
+    Entity.drivers.each do |driver|
+      driver.do_watch
+    end
 
 =begin
 #    @threads.each(&:kill) if (@threads ||= []).any?

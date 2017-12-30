@@ -1,5 +1,12 @@
 module DriverModuleMethods
 
+  def do_startup
+    startup if respond_to? :startup
+  rescue Exception => e
+    puts e.message
+    Rails.logger.error e.message
+  end
+
   def do_watch
     return unless respond_to? :watch
     @watch_thread.try :kill
@@ -21,5 +28,10 @@ module DriverModuleMethods
         end
       end
     end
+
+
+  rescue Exception => e
+    puts e.message
+    Rails.logger.error e.message
   end
 end

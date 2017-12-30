@@ -3,9 +3,9 @@
 # для этого в роутере для мобильного телефона задаётся фиксированный ip-адрес
 # и этот ip-адрес записывается в поле "address" текущего объекта.
 
-module PingDriver
+require 'net/ping' if Home::LINUX_PLATFORM
 
-  require 'net/ping'
+module PingDriver
 
   def self.extended(base)
     ip_block = /\d{,2}|1\d{2}|2[0-4]\d|25[0-5]/
