@@ -40,7 +40,7 @@ module MqttDriver
     sensors.each do |sensor|
       @threads << Thread.new(block) do |trigger|
         sensor.broker.get(sensor.address) do |topic,message|
-          trigger.call(topic, message.to_f)
+          trigger.call(topic, message)
         end
       end
     end
