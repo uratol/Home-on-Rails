@@ -154,8 +154,8 @@ class Entity < ActiveRecord::Base
 
   # Устанавливает и записывает значение (атрибут value)
   # @param v [Float, Fixnum] - значение
-  def write_value(v)
-    store_value(v ? v.to_f.restrict_by_range(min, max) : v)
+  def write_value(new_value, do_set_driver = true)
+    store_value(new_value ? new_value.to_f.restrict_by_range(min, max) : new_value, Time.now, do_set_driver)
   end
 
   def invert_driver_value? # @!visibility private
@@ -299,16 +299,18 @@ class Entity < ActiveRecord::Base
   protected
 
   # @!visibility private
-  def store_value(v, dt = Time.now)
+  def store_value(v, dt = Time.now, do_set_driver = true)
     if binary? && v && !(v==0 || v==1)
       raise ArgumentError, "Value #{ v } is not binary"
     end
 
     old_value = self.value
 
-    set_driver_value(v) if respond_to? :set_driver_value
+    set_driver_value(v) if respond_to?(:set_driver_value) && do_set_driver
 
-    if dbl_change_assigned = events.assigned?(:at_dbl_change)
+    dbl_change_assigned = events.assigned?(:at_dbl_change)
+
+    if dbl_change_assigned
       last_time = last_indication_time
       dbl_change_assigned = last_time && ((Time.now - last_time) < 1.second)
     end

@@ -39,9 +39,21 @@ module MqttDriver
     @threads.each(&:kill) if (@threads ||= []).any?
     puts "MQTT sensors #{ sensors.pluck(:name).join(',') } will be watching"
     sensors.each do |sensor|
-      @threads << Thread.new(block) do |trigger|
-        sensor.broker.get(sensor.address) do |topic,message|
-          trigger.call(topic, message)
+      @threads << Thread.new(block, sensor) do |trigger, entity|
+        begin
+          entity.broker.get(entity.address) do |topic,message|
+            value = case message
+                      when 'OFF'
+                        0
+                      when 'ON'
+                        1
+                      else
+                        message
+                    end
+            trigger.call(topic, value)
+          end
+        rescue Exception => e
+          Rails.logger.error(e)
         end
       end
     end
@@ -74,10 +86,9 @@ module MqttDriver
 
 
   def set_driver_value(v)
+    broker.connect unless broker.connected?
     broker.publish(address, v)
   end
-
-  private
 
   def broker
     self.brokers[broker_address]

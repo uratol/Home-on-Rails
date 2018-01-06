@@ -18,7 +18,7 @@ module DriverModuleMethods
             ActiveRecord::Base.connection_pool.with_connection do
               begin
                 ent = Entity.where(driver: d.name[0..-7].downcase, address: address).first
-                ent.write_value(ent.transform_driver_value(value))
+                ent.write_value(ent.transform_driver_value(value), false)
               rescue RuntimeError => e
                 Rails.logger.error e.message
                 Rails.logger.error e.backtrace.join("\n")
