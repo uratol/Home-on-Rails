@@ -30,7 +30,12 @@ module MqttDriver
       broker_addr = device.broker_address.strip
       unless brokers[broker_addr]
         puts "mqtt broker will be connected: #{ broker_addr }"
-        brokers[broker_addr] = MQTT::Client.connect(host: broker_addr, port: device.broker_port, username: device.broker_username , password: device.broker_password)
+        begin
+          brokers[broker_addr] = MQTT::Client.connect(host: broker_addr, port: device.broker_port, username: device.broker_username , password: device.broker_password)
+        rescue Exception => e
+          Rails.logger.error e.message
+          Rails.logger.error e.backtrace.join("\n")
+        end
       end
     end
   end
@@ -45,6 +50,7 @@ module MqttDriver
             trigger.call(topic, message)
           end
         rescue Exception => e
+          puts e
           Rails.logger.error(e)
         end
       end
@@ -53,7 +59,7 @@ module MqttDriver
   end
 
   def self.devices
-    Entity.where(driver: :mqtt).where.not(address: nil)
+    Entity.where(driver: :mqtt, disabled: false).where.not(address: nil)
   end
 
   def self.sensors
