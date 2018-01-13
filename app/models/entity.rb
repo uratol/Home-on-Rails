@@ -113,6 +113,8 @@ class Entity < ActiveRecord::Base
   alias_method :invert=, :invert_driver_value=
   alias_method :invert?, :invert_driver_value
 
+  # переводит режим в инверсный режим
+  # т.е. при вызове on! драйверу будет отправлен ноль, при вызове off!  - единица
   def invert
     self.invert = true
   end
@@ -152,8 +154,9 @@ class Entity < ActiveRecord::Base
     events.call event_name, params: params
   end
 
-  # Устанавливает и записывает значение (атрибут value)
-  # @param v [Float, Fixnum] - значение
+  # Устанавливает и записывает значение (атрибут value) и отправляет это значение драйверу
+  # @param new_value [Float, Fixnum] - новое значение объекта
+  # @param do_set_driver [Boolean] -  отправлять значение драйверу, по умолчанию true
   def write_value(new_value, do_set_driver = true)
     store_value(new_value ? new_value.to_f.restrict_by_range(min, max) : new_value, Time.now, do_set_driver)
   end
@@ -162,10 +165,20 @@ class Entity < ActiveRecord::Base
     invert_driver_value
   end
 
-  def transform_driver_value(v) # @!visibility private
-    invert_driver_value? ? 1 - v : v if v
+  # преобразовывает значение, полученное от драйвера, в число, сохраняемое в атрибуте value
+  # @param driver_value [Object] - значение, полученное от драйвера
+  # @return [Float]
+  def driver_value_to_value(driver_value)
+    invert? ? 1 - driver_value : driver_value if driver_value
   end
-  
+
+  # преобразовывает значение объекта (числовое) в объект, который будет передан драйверу
+  # @param value [Float] - значение объекта
+  # @return [Object] - объект, который будет передан драйверу
+  def value_to_driver_value(value)
+    invert? ? 1 - value : value if value
+  end
+
   def startup # @!visibility private
     transaction do
       cancel [:do_schedule, :startup]
@@ -306,7 +319,7 @@ class Entity < ActiveRecord::Base
 
     old_value = self.value
 
-    set_driver_value(v) if respond_to?(:set_driver_value) && do_set_driver
+    set_driver_value(value_to_driver_value(v)) if respond_to?(:set_driver_value) && do_set_driver
 
     dbl_change_assigned = events.assigned?(:at_dbl_change)
 

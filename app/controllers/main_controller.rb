@@ -22,8 +22,6 @@ class MainController < ApplicationController
         render json: @entities
       end
     end 
-    #@entities = @root_entity.get_descendants
-    #flash[:info] = Entity.first.ku
   end
   
   def click

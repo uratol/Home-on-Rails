@@ -13,12 +13,12 @@ module GpioDriver
     self.gpio_installed = false
   end
 
-  def set_driver_value(v)
-    GpioDriver.io.digital_write(pin_no, transform_driver_value(v).to_i) if self.gpio_installed
+  def set_driver_value(driver_value)
+    GpioDriver.io.digital_write(pin_no, driver_value.to_i) if self.gpio_installed
   end
 
   def get_driver_value
-    transform_driver_value(GpioDriver.io.digital_read(pin_no))
+    GpioDriver.io.digital_read(pin_no)
   end
 
   def self.watch(&block)
@@ -118,7 +118,7 @@ module GpioDriver
         io.pull_up_dn_control(e.pin_no, WiringPi::PUD_UP)
       else
         io.pin_mode(e.pin_no, WiringPi::OUTPUT)
-        io.digital_write(e.pin_no,e.transform_driver_value(e.value).to_i) if e.value
+        io.digital_write(e.pin_no,e.value_to_driver_value(e.value).to_i) if e.value
       end
     end
   end

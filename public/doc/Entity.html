@@ -351,6 +351,28 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#destroy_with_descendants-instance_method" title="#destroy_with_descendants (instance method)">#<strong>destroy_with_descendants</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#disabled%3F-instance_method" title="#disabled? (instance method)">#<strong>disabled?</strong>  &#x21d2; Boolean </a>
     
 
@@ -366,6 +388,31 @@
 
   
     <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#driver_value_to_value-instance_method" title="#driver_value_to_value (instance method)">#<strong>driver_value_to_value</strong>(driver_value)  &#x21d2; Float </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>преобразовывает значение, полученное от драйвера, в число, сохраняемое в
+атрибуте value.</p>
+</div></span>
   
 </li>
 
@@ -417,6 +464,30 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#invert-instance_method" title="#invert (instance method)">#<strong>invert</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>переводит режим в инверсный режим т.е.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#last_indication-instance_method" title="#last_indication (instance method)">#<strong>last_indication</strong>(value = nil)  &#x21d2; Object </a>
     
 
@@ -441,7 +512,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#last_indication_interval-instance_method" title="#last_indication_interval (instance method)">#<strong>last_indication_interval</strong>(value = nil)  &#x21d2; Object </a>
+      <a href="#last_indication_interval-instance_method" title="#last_indication_interval (instance method)">#<strong>last_indication_interval</strong>(value = nil)  &#x21d2; ActiveSupport::Duration </a>
     
 
     
@@ -480,7 +551,8 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>возвращает время последнего изменения значения.</p>
+<p>возвращает время последнего изменения значения если значение не менялось,
+возвращается 0000 год 01 мес 01 день.</p>
 </div></span>
   
 </li>
@@ -528,7 +600,31 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Имя родителя объекта.</p>
+<p>Возвращает имя родительского объекта в иерархии.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#remote_call%3F-instance_method" title="#remote_call? (instance method)">#<strong>remote_call?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>проверяет, является ли текущий контекст вызова метода удалённым, т.е.</p>
 </div></span>
   
 </li>
@@ -561,7 +657,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#write_value-instance_method" title="#write_value (instance method)">#<strong>write_value</strong>(v)  &#x21d2; Object </a>
+      <a href="#value_to_driver_value-instance_method" title="#value_to_driver_value (instance method)">#<strong>value_to_driver_value</strong>(value)  &#x21d2; Object </a>
     
 
     
@@ -576,7 +672,33 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Устанавливает и записывает значение (атрибут value).</p>
+<p>преобразовывает значение объекта (числовое) в объект, который будет передан
+драйверу.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#write_value-instance_method" title="#write_value (instance method)">#<strong>write_value</strong>(new_value, do_set_driver = true)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Устанавливает и записывает значение (атрибут value) и отправляет это
+значение драйверу.</p>
 </div></span>
   
 </li>
@@ -595,7 +717,7 @@
   
   
   <h3 class="inherited">Methods included from <span class='object_link'><a href="EntityClassMethods.html" title="EntityClassMethods (module)">EntityClassMethods</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="EntityClassMethods.html#[]-instance_method" title="EntityClassMethods#[] (method)">[]</a></span>, <span class='object_link'><a href="EntityClassMethods.html#ancestors_and_self-instance_method" title="EntityClassMethods#ancestors_and_self (method)">ancestors_and_self</a></span>, <span class='object_link'><a href="EntityClassMethods.html#drivers-instance_method" title="EntityClassMethods#drivers (method)">drivers</a></span>, <span class='object_link'><a href="EntityClassMethods.html#drivers_names-instance_method" title="EntityClassMethods#drivers_names (method)">drivers_names</a></span>, <span class='object_link'><a href="EntityClassMethods.html#entity_types-instance_method" title="EntityClassMethods#entity_types (method)">entity_types</a></span>, <span class='object_link'><a href="EntityClassMethods.html#entity_types_downcase-instance_method" title="EntityClassMethods#entity_types_downcase (method)">entity_types_downcase</a></span>, <span class='object_link'><a href="EntityClassMethods.html#execute_sql-instance_method" title="EntityClassMethods#execute_sql (method)">execute_sql</a></span>, <span class='object_link'><a href="EntityClassMethods.html#generate_new_name-instance_method" title="EntityClassMethods#generate_new_name (method)">generate_new_name</a></span>, <span class='object_link'><a href="EntityClassMethods.html#menu_entities-instance_method" title="EntityClassMethods#menu_entities (method)">menu_entities</a></span>, <span class='object_link'><a href="EntityClassMethods.html#register_events-instance_method" title="EntityClassMethods#register_events (method)">register_events</a></span>, <span class='object_link'><a href="EntityClassMethods.html#require_entity_classes-instance_method" title="EntityClassMethods#require_entity_classes (method)">require_entity_classes</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="EntityClassMethods.html#[]-instance_method" title="EntityClassMethods#[] (method)">[]</a></span>, <span class='object_link'><a href="EntityClassMethods.html#ancestors_and_self-instance_method" title="EntityClassMethods#ancestors_and_self (method)">ancestors_and_self</a></span>, <span class='object_link'><a href="EntityClassMethods.html#drivers-instance_method" title="EntityClassMethods#drivers (method)">drivers</a></span>, <span class='object_link'><a href="EntityClassMethods.html#drivers_names-instance_method" title="EntityClassMethods#drivers_names (method)">drivers_names</a></span>, <span class='object_link'><a href="EntityClassMethods.html#entity_types-instance_method" title="EntityClassMethods#entity_types (method)">entity_types</a></span>, <span class='object_link'><a href="EntityClassMethods.html#entity_types_downcase-instance_method" title="EntityClassMethods#entity_types_downcase (method)">entity_types_downcase</a></span>, <span class='object_link'><a href="EntityClassMethods.html#execute_sql-instance_method" title="EntityClassMethods#execute_sql (method)">execute_sql</a></span>, <span class='object_link'><a href="EntityClassMethods.html#generate_new_name-instance_method" title="EntityClassMethods#generate_new_name (method)">generate_new_name</a></span>, <span class='object_link'><a href="EntityClassMethods.html#menu_entities-instance_method" title="EntityClassMethods#menu_entities (method)">menu_entities</a></span>, <span class='object_link'><a href="EntityClassMethods.html#params-instance_method" title="EntityClassMethods#params (method)">params</a></span>, <span class='object_link'><a href="EntityClassMethods.html#params=-instance_method" title="EntityClassMethods#params= (method)">params=</a></span>, <span class='object_link'><a href="EntityClassMethods.html#register_events-instance_method" title="EntityClassMethods#register_events (method)">register_events</a></span>, <span class='object_link'><a href="EntityClassMethods.html#require_entity_classes-instance_method" title="EntityClassMethods#require_entity_classes (method)">require_entity_classes</a></span></p>
 
   
   
@@ -625,7 +747,7 @@
   
   
   <h3 class="inherited">Methods included from <span class='object_link'><a href="EntityVisualization.html" title="EntityVisualization (module)">EntityVisualization</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="EntityVisualization.html#human_value-instance_method" title="EntityVisualization#human_value (method)">#human_value</a></span>, <span class='object_link'><a href="EntityVisualization.html#image-instance_method" title="EntityVisualization#image (method)">#image</a></span>, <span class='object_link'><a href="EntityVisualization.html#redirect_to-instance_method" title="EntityVisualization#redirect_to (method)">#redirect_to</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="EntityVisualization.html#human_value-instance_method" title="EntityVisualization#human_value (method)">#human_value</a></span>, <span class='object_link'><a href="EntityVisualization.html#image-instance_method" title="EntityVisualization#image (method)">#image</a></span>, <span class='object_link'><a href="EntityVisualization.html#params-instance_method" title="EntityVisualization#params (method)">#params</a></span>, <span class='object_link'><a href="EntityVisualization.html#redirect_to-instance_method" title="EntityVisualization#redirect_to (method)">#redirect_to</a></span></p>
 
   
   <div id="method_missing_details" class="method_details_list">
@@ -638,7 +760,7 @@
     <div class="method_details first">
   <h3 class="signature first" id="method_missing-instance_method">
   
-    #<strong>method_missing</strong>(method_sym, *arguments, &amp;block)  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+    #<strong>method_missing</strong>(method_sym, *arguments, &amp;block)  &#x21d2; <tt>Object</tt>  <span class="extras">(protected)</span>
   
 
   
@@ -650,12 +772,12 @@
       <pre class="lines">
 
 
-307
-308
-309</pre>
+353
+354
+355</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 307</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 353</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='id identifier rubyid_method_sym'>method_sym</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_arguments'>arguments</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="" title="Entity (class)">Entity</a></span></span><span class='lbracket'>[</span><span class='id identifier rubyid_method_sym'>method_sym</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='kw'>super</span>
@@ -906,7 +1028,7 @@
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 71</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 75</span>
 
 </pre>
     </td>
@@ -1030,17 +1152,17 @@
       <pre class="lines">
 
 
-186
-187
-188
-189</pre>
+208
+209
+210
+211</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 186</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 208</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_at_schedule'>at_schedule</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_schedule'>schedule</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span> <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span>
-  <span class='id identifier rubyid_events'>events</span><span class='period'>.</span><span class='id identifier rubyid_add_with_replace'>add_with_replace</span> <span class='symbol'>:at_schedule</span><span class='comma'>,</span> <span class='id identifier rubyid_block'>block</span>
+  <span class='id identifier rubyid_events'>events</span><span class='period'>.</span><span class='id identifier rubyid_add_with_replace'>add_with_replace</span><span class='lparen'>(</span><span class='symbol'>:at_schedule</span><span class='comma'>,</span> <span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1104,7 +1226,7 @@
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 96</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 100</span>
 
 </pre>
     </td>
@@ -1169,7 +1291,7 @@
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 88</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 92</span>
 
 </pre>
     </td>
@@ -1234,9 +1356,61 @@
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 80</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 84</span>
 
 </pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="destroy_with_descendants-instance_method">
+  
+    #<strong>destroy_with_descendants</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 287</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_destroy_with_descendants'>destroy_with_descendants</span>
+  <span class='id identifier rubyid_transaction'>transaction</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_children'>children</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_c'>c</span><span class='op'>|</span> <span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_destroy_with_descendants'>destroy_with_descendants</span><span class='rbrace'>}</span>
+    <span class='kw'>if</span> <span class='lparen'>(</span><span class='op'>!</span><span class='id identifier rubyid_destroy'>destroy</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_parent'>parent</span>
+      <span class='id identifier rubyid_errors'>errors</span><span class='period'>.</span><span class='id identifier rubyid_full_messages'>full_messages</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_msg'>msg</span><span class='op'>|</span>
+        <span class='comment'># you can customize the error message here:
+</span>        <span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_errors'>errors</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_msg'>msg</span>
+        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ActiveRecord</span><span class='op'>::</span><span class='const'>Rollback</span><span class='comma'>,</span> <span class='id identifier rubyid_msg'>msg</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+    <span class='kw'>return</span> <span class='kw'>true</span>
+  <span class='kw'>end</span>
+  <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -1279,15 +1453,91 @@
       <pre class="lines">
 
 
-231
-232
-233</pre>
+255
+256
+257</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 231</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 255</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_disabled?'>disabled?</span>
   <span class='id identifier rubyid_disabled'>disabled</span> <span class='kw'>if</span> <span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbol'>:disabled</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="driver_value_to_value-instance_method">
+  
+    #<strong>driver_value_to_value</strong>(driver_value)  &#x21d2; <tt>Float</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>преобразовывает значение, полученное от драйвера, в число, сохраняемое в
+атрибуте value</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>driver_value</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><ul><li>
+<p>значение, полученное от драйвера</p>
+</li></ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Float</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+171
+172
+173</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 171</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_driver_value_to_value'>driver_value_to_value</span><span class='lparen'>(</span><span class='id identifier rubyid_driver_value'>driver_value</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_invert?'>invert?</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>-</span> <span class='id identifier rubyid_driver_value'>driver_value</span> <span class='op'>:</span> <span class='id identifier rubyid_driver_value'>driver_value</span> <span class='kw'>if</span> <span class='id identifier rubyid_driver_value'>driver_value</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1309,13 +1559,13 @@
       <pre class="lines">
 
 
-226
-227
-228
-229</pre>
+250
+251
+252
+253</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 226</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 250</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_enabled='>enabled=</span><span class='lparen'>(</span><span class='id identifier rubyid_enabled'>enabled</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_disabled'>disabled</span> <span class='op'>=</span> <span class='op'>!</span><span class='id identifier rubyid_enabled'>enabled</span>
@@ -1363,15 +1613,57 @@
       <pre class="lines">
 
 
-222
-223
-224</pre>
+246
+247
+248</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 222</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 246</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_enabled?'>enabled?</span>
   <span class='op'>!</span><span class='id identifier rubyid_disabled?'>disabled?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="invert-instance_method">
+  
+    #<strong>invert</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>переводит режим в инверсный режим т.е. при вызове on! драйверу будет
+отправлен ноль, при вызове off!  - единица</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+118
+119
+120</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 118</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_invert'>invert</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_invert'>invert</span> <span class='op'>=</span> <span class='kw'>true</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1426,14 +1718,14 @@
       <pre class="lines">
 
 
-193
-194
-195
-196
-197</pre>
+215
+216
+217
+218
+219</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 193</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 215</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_last_indication'>last_indication</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_query'>query</span> <span class='op'>=</span> <span class='id identifier rubyid_indications'>indications</span><span class='period'>.</span><span class='id identifier rubyid_limit'>limit</span><span class='lparen'>(</span><span class='int'>1</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>created_at DESC</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1448,7 +1740,7 @@
       <div class="method_details ">
   <h3 class="signature " id="last_indication_interval-instance_method">
   
-    #<strong>last_indication_interval</strong>(value = nil)  &#x21d2; <tt>Object</tt> 
+    #<strong>last_indication_interval</strong>(value = nil)  &#x21d2; <tt>ActiveSupport::Duration</tt> 
   
 
   
@@ -1464,6 +1756,19 @@
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ActiveSupport::Duration</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1471,17 +1776,17 @@
       <pre class="lines">
 
 
-207
-208
-209
-210</pre>
+231
+232
+233
+234</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 207</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 231</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_last_indication_interval'>last_indication_interval</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='id identifier rubyid_last_indication_time'>last_indication_time</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
-  <span class='const'>DateTime</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span> <span class='op'>-</span> <span class='id identifier rubyid_v'>v</span> <span class='kw'>if</span> <span class='id identifier rubyid_v'>v</span>
+  <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span> <span class='op'>-</span> <span class='id identifier rubyid_v'>v</span> <span class='kw'>if</span> <span class='id identifier rubyid_v'>v</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1500,7 +1805,8 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>возвращает время последнего изменения значения</p>
+<p>возвращает время последнего изменения значения если значение не менялось,
+возвращается 0000 год 01 мес 01 день</p>
 
 
   </div>
@@ -1537,17 +1843,17 @@
       <pre class="lines">
 
 
-201
-202
-203
-204</pre>
+224
+225
+226
+227</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 201</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 224</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_last_indication_time'>last_indication_time</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_indication'>indication</span> <span class='op'>=</span> <span class='id identifier rubyid_last_indication'>last_indication</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_indication'>indication</span><span class='period'>.</span><span class='id identifier rubyid_created_at'>created_at</span> <span class='kw'>if</span> <span class='id identifier rubyid_indication'>indication</span>
+  <span class='id identifier rubyid_indication'>indication</span> <span class='op'>?</span> <span class='id identifier rubyid_indication'>indication</span><span class='period'>.</span><span class='id identifier rubyid_created_at'>created_at</span> <span class='op'>:</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1596,7 +1902,7 @@
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 57</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 61</span>
 
 </pre>
     </td>
@@ -1616,7 +1922,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Имя родителя объекта</p>
+<p>Возвращает имя родительского объекта в иерархии</p>
 
 
   </div>
@@ -1643,12 +1949,68 @@
       <pre class="lines">
 
 
-65</pre>
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 65</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 69</span>
 
 <span class='id identifier rubyid_after_initialize'>after_initialize</span> <span class='symbol'>:init</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="remote_call?-instance_method">
+  
+    #<strong>remote_call?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>проверяет, является ли текущий контекст вызова метода удалённым, т.е.
+вызванным на другом сервере с помощью объекта класса
+<strong>Server</strong></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+308
+309
+310</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 308</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_remote_call?'>remote_call?</span>
+  <span class='id identifier rubyid_state'>state</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='symbol'>:remote_execute</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -1708,12 +2070,12 @@
       <pre class="lines">
 
 
-114
-115
-116</pre>
+125
+126
+127</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 114</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 125</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_value_at'>value_at</span><span class='lparen'>(</span><span class='id identifier rubyid_dt'>dt</span><span class='rparen'>)</span>
   <span class='lparen'>(</span><span class='id identifier rubyid_indication_at'>indication_at</span><span class='lparen'>(</span><span class='id identifier rubyid_dt'>dt</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='kw'>self</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>
@@ -1724,9 +2086,9 @@
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="write_value-instance_method">
+  <h3 class="signature " id="value_to_driver_value-instance_method">
   
-    #<strong>write_value</strong>(v)  &#x21d2; <tt>Object</tt> 
+    #<strong>value_to_driver_value</strong>(value)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -1735,7 +2097,8 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Устанавливает и записывает значение (атрибут value)</p>
+<p>преобразовывает значение объекта (числовое) в объект, который будет передан
+драйверу</p>
 
 
   </div>
@@ -1746,7 +2109,89 @@
   
     <li>
       
-        <span class='name'>v</span>
+        <span class='name'>value</span>
+      
+      
+        <span class='type'>(<tt>Float</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><ul><li>
+<p>значение объекта</p>
+</li></ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><ul><li>
+<p>объект, который будет передан драйверу</p>
+</li></ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+178
+179
+180</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 178</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_value_to_driver_value'>value_to_driver_value</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_invert?'>invert?</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>-</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>:</span> <span class='id identifier rubyid_value'>value</span> <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="write_value-instance_method">
+  
+    #<strong>write_value</strong>(new_value, do_set_driver = true)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Устанавливает и записывает значение (атрибут value) и отправляет это
+значение драйверу</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>new_value</span>
       
       
         <span class='type'>(<tt>Float</tt>, <tt>Fixnum</tt>)</span>
@@ -1755,7 +2200,26 @@
       
         &mdash;
         <div class='inline'><ul><li>
-<p>значение</p>
+<p>новое значение объекта</p>
+</li></ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>do_set_driver</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><ul><li>
+<p>отправлять значение драйверу, по умолчанию true</p>
 </li></ul>
 </div>
       
@@ -1770,15 +2234,15 @@
       <pre class="lines">
 
 
-148
-149
-150</pre>
+160
+161
+162</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 148</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 160</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_write_value'>write_value</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_store_value'>store_value</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span> <span class='op'>?</span> <span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span><span class='period'>.</span><span class='id identifier rubyid_restrict_by_range'>restrict_by_range</span><span class='lparen'>(</span><span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_max'>max</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_write_value'>write_value</span><span class='lparen'>(</span><span class='id identifier rubyid_new_value'>new_value</span><span class='comma'>,</span> <span class='id identifier rubyid_do_set_driver'>do_set_driver</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_store_value'>store_value</span><span class='lparen'>(</span><span class='id identifier rubyid_new_value'>new_value</span> <span class='op'>?</span> <span class='id identifier rubyid_new_value'>new_value</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span><span class='period'>.</span><span class='id identifier rubyid_restrict_by_range'>restrict_by_range</span><span class='lparen'>(</span><span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_max'>max</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='id identifier rubyid_new_value'>new_value</span><span class='comma'>,</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='comma'>,</span> <span class='id identifier rubyid_do_set_driver'>do_set_driver</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1790,7 +2254,7 @@
 </div>
 
       <div id="footer">
-  Generated on Tue May  2 21:50:42 2017 by
+  Generated on Sat Jan 13 13:04:57 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.1.8).
 </div>

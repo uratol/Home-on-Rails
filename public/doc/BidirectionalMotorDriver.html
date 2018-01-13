@@ -74,6 +74,11 @@
   
 
   
+  <dl>
+    <dt>Included in:</dt>
+    <dd><span class='object_link'><a href="BidirectionalTiltMotorDriver.html" title="BidirectionalTiltMotorDriver (module)">BidirectionalTiltMotorDriver</a></span></dd>
+  </dl>
+  
 
   
   <dl>
@@ -83,7 +88,20 @@
   
 </div>
 
-<h2>Defined Under Namespace</h2>
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Драйвер для управления двунаправленным мотором Моторы управляются с помощью
+двух реле, которые должны быть созданы как подчинённые объекты с именами
+[имя]_up and [имя]_down соответственно</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><h2>Defined Under Namespace</h2>
 <p class="children">
   
     
@@ -276,31 +294,11 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#current_direction-instance_method" title="#current_direction (instance method)">#<strong>current_direction</strong>  &#x21d2; Object </a>
+      <a href="#direction-instance_method" title="#direction (instance method)">#<strong>direction</strong>  &#x21d2; Object </a>
     
 
     
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#current_position-instance_method" title="#current_position (instance method)">#<strong>current_position</strong>  &#x21d2; Object </a>
-    
-
+      (also: #current_direction)
     
   </span>
   
@@ -312,7 +310,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>текущее направление, 1 - вверх, -1 - вниз, 0 - стоит.</p>
+</div></span>
   
 </li>
 
@@ -364,6 +364,52 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#on_finish-instance_method" title="#on_finish (instance method)">#<strong>on_finish</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#position-instance_method" title="#position (instance method)">#<strong>position</strong>  &#x21d2; Object </a>
+    
+
+    
+      (also: #current_position)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#set_driver_value-instance_method" title="#set_driver_value (instance method)">#<strong>set_driver_value</strong>(target_position)  &#x21d2; Object </a>
     
 
@@ -389,6 +435,8 @@
       <a href="#set_positions!-instance_method" title="#set_positions! (instance method)">#<strong>set_positions!</strong>(*positions)  &#x21d2; Object </a>
     
 
+    
+      (also: #set_position!)
     
   </span>
   
@@ -430,7 +478,51 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#time_to_position-instance_method" title="#time_to_position (instance method)">#<strong>time_to_position</strong>(position)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#up!-instance_method" title="#up! (instance method)">#<strong>up!</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#velocity-instance_method" title="#velocity (instance method)">#<strong>velocity</strong>(direction = current_direction)  &#x21d2; Object </a>
     
 
     
@@ -473,15 +565,15 @@
       <pre class="lines">
 
 
-19
-20
-21</pre>
+5
+6
+7</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 19</span>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 5</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_description'>description</span>
-  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Virtual driver for bidirectional motor control. Up and down motor relay entities must exists with [name]_up and [name]_down names respectively</span><span class='tstring_end'>&quot;</span></span> 
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Virtual driver for bidirectional motor control. Up and down motor relay entities must exists with [name]_up and [name]_down names respectively</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -503,12 +595,12 @@
       <pre class="lines">
 
 
-11
-12
-13</pre>
+18
+19
+20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 11</span>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 18</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_required_methods'>required_methods</span>
   <span class='lbracket'>[</span><span class='symbol'>:up_full_time</span><span class='comma'>,</span> <span class='symbol'>:down_full_time</span><span class='rbracket'>]</span>
@@ -550,12 +642,12 @@
       <pre class="lines">
 
 
-61
-62
-63</pre>
+79
+80
+81</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 79</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_adjustment_percent'>adjustment_percent</span>
   <span class='ivar'>@adjustment_percent</span> <span class='op'>||=</span> <span class='int'>5</span>
@@ -580,12 +672,12 @@
       <pre class="lines">
 
 
-65
-66
-67</pre>
+83
+84
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 65</span>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 83</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_adjustment_percent='>adjustment_percent=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='ivar'>@adjustment_percent</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -632,12 +724,12 @@
       <pre class="lines">
 
 
-7
-8
-9</pre>
+14
+15
+16</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 7</span>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 14</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_binary?'>binary?</span>
   <span class='kw'>false</span>
@@ -662,12 +754,12 @@
       <pre class="lines">
 
 
-52
-53
-54</pre>
+70
+71
+72</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 52</span>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 70</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_contra_pause_time'>contra_pause_time</span>
   <span class='ivar'>@contra_pause_time</span> <span class='op'>||=</span> <span class='float'>0.5</span><span class='period'>.</span><span class='id identifier rubyid_seconds'>seconds</span>
@@ -692,12 +784,12 @@
       <pre class="lines">
 
 
-56
-57
-58</pre>
+74
+75
+76</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 56</span>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 74</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_contra_pause_time='>contra_pause_time=</span><span class='lparen'>(</span><span class='id identifier rubyid_interval'>interval</span><span class='rparen'>)</span>
   <span class='ivar'>@contra_pause_time</span> <span class='op'>=</span> <span class='id identifier rubyid_interval'>interval</span>
@@ -708,63 +800,44 @@
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="current_direction-instance_method">
+  <h3 class="signature " id="direction-instance_method">
   
-    #<strong>current_direction</strong>  &#x21d2; <tt>Object</tt> 
-  
-
+    #<strong>direction</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
-</h3><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
+    <span class="aliases">Also known as:
+    <span class="names"><span id='current_direction-instance_method'>current_direction</span></span>
+    </span>
+  
 
-
-29
-30
-31</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 29</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_current_direction'>current_direction</span>
-  <span class='id identifier rubyid_thread_active?'>thread_active?</span> <span class='op'>?</span> <span class='id identifier rubyid_relay_thread'>relay_thread</span><span class='lbracket'>[</span><span class='symbol'>:direction</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='int'>0</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
+  
+</h3><div class="docstring">
+  <div class="discussion">
     
-      <div class="method_details ">
-  <h3 class="signature " id="current_position-instance_method">
-  
-    #<strong>current_position</strong>  &#x21d2; <tt>Object</tt> 
+<p>текущее направление, 1 - вверх, -1 - вниз, 0 - стоит</p>
+
+
+  </div>
+</div>
+<div class="tags">
   
 
-  
-
-  
-</h3><table class="source_code">
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-23
-24
-25
-26
-27</pre>
+35
+36
+37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 35</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_current_position'>current_position</span>
-  <span class='kw'>return</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span> <span class='kw'>unless</span> <span class='id identifier rubyid_thread_active?'>thread_active?</span>
-  <span class='id identifier rubyid_distance'>distance</span> <span class='op'>=</span> <span class='id identifier rubyid_calc_position_offset'>calc_position_offset</span><span class='lparen'>(</span><span class='id identifier rubyid_relay_thread'>relay_thread</span><span class='lbracket'>[</span><span class='symbol'>:start_time</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='comma'>,</span> <span class='id identifier rubyid_relay_thread'>relay_thread</span><span class='lbracket'>[</span><span class='symbol'>:direction</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-  <span class='lparen'>(</span><span class='id identifier rubyid_relay_thread'>relay_thread</span><span class='lbracket'>[</span><span class='symbol'>:start_position</span><span class='rbracket'>]</span> <span class='op'>+</span> <span class='id identifier rubyid_distance'>distance</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_restrict_by_range'>restrict_by_range</span><span class='lparen'>(</span><span class='id identifier rubyid_min'>min</span><span class='comma'>,</span><span class='id identifier rubyid_max'>max</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_direction'>direction</span>
+  <span class='id identifier rubyid_thread_active?'>thread_active?</span> <span class='op'>?</span> <span class='id identifier rubyid_relay_thread'>relay_thread</span><span class='lbracket'>[</span><span class='symbol'>:direction</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='int'>0</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -786,14 +859,16 @@
       <pre class="lines">
 
 
-37
-38
-39</pre>
+46
+47
+48
+49</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 37</span>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 46</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_down!'>down!</span>
+  <span class='id identifier rubyid_parent_remote_call'>parent_remote_call</span><span class='lparen'>(</span><span class='symbol'>:off!</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_off!'>off!</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -816,15 +891,83 @@
       <pre class="lines">
 
 
-3
-4
-5</pre>
+10
+11
+12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 3</span>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_extended'>extended</span><span class='lparen'>(</span><span class='id identifier rubyid_base'>base</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_base'>base</span><span class='period'>.</span><span class='id identifier rubyid_binary'>binary</span> <span class='op'>=</span> <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="on_finish-instance_method">
+  
+    #<strong>on_finish</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+66
+67
+68</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 66</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_on_finish'>on_finish</span>
+  <span class='id identifier rubyid_do_event'>do_event</span><span class='lparen'>(</span><span class='symbol'>:at_finish</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="position-instance_method">
+  
+    #<strong>position</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='current_position-instance_method'>current_position</span></span>
+    </span>
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+26
+27
+28
+29
+30</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 26</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_position'>position</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span> <span class='kw'>unless</span> <span class='id identifier rubyid_thread_active?'>thread_active?</span>
+  <span class='id identifier rubyid_distance'>distance</span> <span class='op'>=</span> <span class='id identifier rubyid_calc_position_offset'>calc_position_offset</span><span class='lparen'>(</span><span class='id identifier rubyid_relay_thread'>relay_thread</span><span class='lbracket'>[</span><span class='symbol'>:start_time</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='comma'>,</span> <span class='id identifier rubyid_relay_thread'>relay_thread</span><span class='lbracket'>[</span><span class='symbol'>:direction</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='lparen'>(</span><span class='id identifier rubyid_relay_thread'>relay_thread</span><span class='lbracket'>[</span><span class='symbol'>:start_position</span><span class='rbracket'>]</span> <span class='op'>+</span> <span class='id identifier rubyid_distance'>distance</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_restrict_by_range'>restrict_by_range</span><span class='lparen'>(</span><span class='id identifier rubyid_min'>min</span><span class='comma'>,</span><span class='id identifier rubyid_max'>max</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -846,12 +989,12 @@
       <pre class="lines">
 
 
-15
-16
-17</pre>
+22
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 15</span>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_driver_value'>set_driver_value</span><span class='lparen'>(</span><span class='id identifier rubyid_target_position'>target_position</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_set_positions!'>set_positions!</span><span class='lparen'>(</span><span class='id identifier rubyid_target_position'>target_position</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='ivar'>@stopping</span>
@@ -868,6 +1011,10 @@
   
 
   
+    <span class="aliases">Also known as:
+    <span class="names"><span id='set_position!-instance_method'>set_position!</span></span>
+    </span>
+  
 
   
 </h3><table class="source_code">
@@ -876,16 +1023,18 @@
       <pre class="lines">
 
 
-69
-70
-71
-72</pre>
+87
+88
+89
+90
+91</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 69</span>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 87</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_positions!'>set_positions!</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_positions'>positions</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>if</span> <span class='ivar'>@stopping</span>
+  <span class='id identifier rubyid_parent_remote_call'>parent_remote_call</span><span class='lparen'>(</span><span class='symbol'>:set_positions!</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_positions'>positions</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_start_steps!'>start_steps!</span><span class='lparen'>(</span><span class='id identifier rubyid_calc_steps_to_positions'>calc_steps_to_positions</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_positions'>positions</span><span class='rparen'>)</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -908,29 +1057,69 @@
       <pre class="lines">
 
 
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50</pre>
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 51</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stop!'>stop!</span><span class='lparen'>(</span><span class='id identifier rubyid_at_position'>at_position</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_parent_remote_call'>parent_remote_call</span><span class='lparen'>(</span><span class='symbol'>:stop!</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_at_position'>at_position</span>
   <span class='ivar'>@stopping</span> <span class='op'>=</span> <span class='kw'>true</span>
   <span class='id identifier rubyid_up_motor'>up_motor</span><span class='period'>.</span><span class='id identifier rubyid_set_driver_value'>set_driver_value</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_down_motor'>down_motor</span><span class='period'>.</span><span class='id identifier rubyid_set_driver_value'>set_driver_value</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_fire_event'>fire_event</span><span class='lparen'>(</span><span class='symbol'>:on_stop</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_write_value'>write_value</span><span class='lparen'>(</span><span class='id identifier rubyid_at_position'>at_position</span> <span class='op'>||</span> <span class='id identifier rubyid_current_position'>current_position</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_thread_active?'>thread_active?</span> <span class='op'>||</span> <span class='id identifier rubyid_at_position'>at_position</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='id identifier rubyid_fire_event'>fire_event</span><span class='lparen'>(</span><span class='symbol'>:on_stop</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_fire_event'>fire_event</span><span class='lparen'>(</span><span class='symbol'>:on_finish</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
   <span class='id identifier rubyid_stop_thread'>stop_thread</span>
 <span class='kw'>ensure</span>
   <span class='ivar'>@stopping</span> <span class='op'>=</span> <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="time_to_position-instance_method">
+  
+    #<strong>time_to_position</strong>(position)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+99
+100
+101
+102</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 99</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_time_to_position'>time_to_position</span><span class='lparen'>(</span><span class='id identifier rubyid_position'>position</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_delta'>delta</span> <span class='op'>=</span> <span class='id identifier rubyid_current_position'>current_position</span> <span class='op'>-</span> <span class='id identifier rubyid_position'>position</span>
+  <span class='lparen'>(</span><span class='id identifier rubyid_delta'>delta</span> <span class='op'>/</span> <span class='id identifier rubyid_velocity'>velocity</span><span class='lparen'>(</span><span class='id identifier rubyid_delta'>delta</span> <span class='op'>&lt;</span> <span class='int'>0</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>:</span> <span class='op'>-</span><span class='int'>1</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_abs'>abs</span> <span class='op'>+</span> <span class='lparen'>(</span><span class='id identifier rubyid_current_direction'>current_direction</span> <span class='op'>*</span> <span class='op'>-</span><span class='id identifier rubyid_delta'>delta</span> <span class='op'>&gt;</span> <span class='int'>0</span> <span class='op'>?</span> <span class='id identifier rubyid_contra_pause_time'>contra_pause_time</span> <span class='op'>:</span> <span class='int'>0</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -952,15 +1141,47 @@
       <pre class="lines">
 
 
-33
-34
-35</pre>
+41
+42
+43
+44</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 33</span>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 41</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_up!'>up!</span>
+  <span class='id identifier rubyid_parent_remote_call'>parent_remote_call</span><span class='lparen'>(</span><span class='symbol'>:on!</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_on!'>on!</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="velocity-instance_method">
+  
+    #<strong>velocity</strong>(direction = current_direction)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+95
+96
+97</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/bidirectional_motor_driver.rb', line 95</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_velocity'>velocity</span><span class='lparen'>(</span><span class='id identifier rubyid_direction'>direction</span> <span class='op'>=</span> <span class='id identifier rubyid_current_direction'>current_direction</span><span class='rparen'>)</span>
+  <span class='lparen'>(</span><span class='id identifier rubyid_max'>max</span> <span class='op'>-</span> <span class='id identifier rubyid_min'>min</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span> <span class='op'>/</span> <span class='lparen'>(</span><span class='id identifier rubyid_direction'>direction</span> <span class='op'>==</span> <span class='int'>1</span> <span class='op'>?</span> <span class='id identifier rubyid_up_full_time'>up_full_time</span> <span class='op'>:</span> <span class='id identifier rubyid_down_full_time'>down_full_time</span><span class='rparen'>)</span> <span class='op'>*</span> <span class='id identifier rubyid_direction'>direction</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -972,7 +1193,7 @@
 </div>
 
       <div id="footer">
-  Generated on Tue May  2 21:50:35 2017 by
+  Generated on Sat Jan 13 13:04:54 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.1.8).
 </div>

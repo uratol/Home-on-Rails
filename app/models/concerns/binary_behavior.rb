@@ -61,7 +61,7 @@ module BinaryBehavior
     Thread.new do
       (args[:times]||1).times do |i|
         2.times do |j|
-          [*devices].each{|e| e.set_driver_value(if j==0 then e.opposite_value else e.value end)}
+          [*devices].each{|e| e.set_driver_value(e.value_to_driver_value(if j==0 then e.opposite_value else e.value end))}
           sleep(delay)
         end
       end

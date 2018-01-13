@@ -304,6 +304,50 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#params-instance_method" title="#params (instance method)">#<strong>params</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#params=-instance_method" title="#params= (instance method)">#<strong>params=</strong>(params)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#register_events-instance_method" title="#register_events (instance method)">#<strong>register_events</strong>(*args)  &#x21d2; Object </a>
     
 
@@ -391,16 +435,16 @@
       <pre class="lines">
 
 
-19
-20
-21
-22
 23
 24
-25</pre>
+25
+26
+27
+28
+29</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 19</span>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_ind'>ind</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_ind'>ind</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Fixnum</span> <span class='op'>||</span> <span class='id identifier rubyid_ind'>ind</span><span class='period'>.</span><span class='id identifier rubyid_is_number?'>is_number?</span> 
@@ -429,15 +473,15 @@
       <pre class="lines">
 
 
-31
-32
-33
-34
 35
-36</pre>
+36
+37
+38
+39
+40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 31</span>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 35</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ancestors_and_self'>ancestors_and_self</span><span class='lparen'>(</span><span class='id identifier rubyid_class_limit'>class_limit</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Entity.html" title="Entity (class)">Entity</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid_recurs_class'>recurs_class</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_klass'>klass</span> <span class='op'>=</span> <span class='id identifier rubyid_recurs_class'>recurs_class</span> <span class='op'>||</span> <span class='kw'>self</span>
@@ -467,13 +511,21 @@
 
 7
 8
-9</pre>
+9
+10
+11
+12
+13</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 7</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_drivers'>drivers</span>
-  <span class='id identifier rubyid_drivers_names'>drivers_names</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='op'>|</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_camelize'>camelize</span> <span class='embexpr_end'>}</span><span class='tstring_content'>Driver</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_constantize'>constantize</span><span class='rbrace'>}</span>
+  <span class='ivar'>@drivers</span> <span class='op'>||=</span> <span class='id identifier rubyid_drivers_names'>drivers_names</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
+    <span class='id identifier rubyid_driver'>driver</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_camelize'>camelize</span> <span class='embexpr_end'>}</span><span class='tstring_content'>Driver</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_constantize'>constantize</span>
+    <span class='id identifier rubyid_driver'>driver</span><span class='period'>.</span><span class='id identifier rubyid_extend'>extend</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="DriverModuleMethods.html" title="DriverModuleMethods (module)">DriverModuleMethods</a></span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_driver'>driver</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -503,7 +555,7 @@
       <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 3</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_drivers_names'>drivers_names</span>
-  <span class='cvar'>@@drivers_names</span> <span class='op'>||=</span> <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_entries'>entries</span><span class='lparen'>(</span><span class='const'>Home</span><span class='op'>::</span><span class='const'>Engine</span><span class='period'>.</span><span class='id identifier rubyid_root'>root</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>app</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>models</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>drivers</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_a'>a</span><span class='comma'>,</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span> <span class='id identifier rubyid_s'>s</span><span class='op'>=</span><span class='id identifier rubyid_f'>f</span><span class='lbracket'>[</span><span class='op'>-</span><span class='int'>10</span><span class='op'>..</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span><span class='semicolon'>;</span> <span class='id identifier rubyid_a'>a</span><span class='op'>+</span><span class='kw'>if</span> <span class='id identifier rubyid_s'>s</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>_driver.rb</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>then</span> <span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='lbracket'>[</span><span class='int'>0</span><span class='op'>..</span><span class='op'>-</span><span class='int'>11</span><span class='rbracket'>]</span><span class='rbracket'>]</span> <span class='kw'>else</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='kw'>end</span><span class='rbrace'>}</span>
+  <span class='ivar'>@drivers_names</span> <span class='op'>||=</span> <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_entries'>entries</span><span class='lparen'>(</span><span class='const'>Home</span><span class='op'>::</span><span class='const'>Engine</span><span class='period'>.</span><span class='id identifier rubyid_root'>root</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>app</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>models</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>drivers</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_a'>a</span><span class='comma'>,</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span> <span class='id identifier rubyid_s'>s</span><span class='op'>=</span><span class='id identifier rubyid_f'>f</span><span class='lbracket'>[</span><span class='op'>-</span><span class='int'>10</span><span class='op'>..</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span><span class='semicolon'>;</span> <span class='id identifier rubyid_a'>a</span><span class='op'>+</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>_driver.rb</span><span class='tstring_end'>&#39;</span></span> <span class='op'>?</span> <span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='lbracket'>[</span><span class='int'>0</span><span class='op'>..</span><span class='op'>-</span><span class='int'>11</span><span class='rbracket'>]</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -525,15 +577,15 @@
       <pre class="lines">
 
 
-11
-12
-13</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 11</span>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_entity_types'>entity_types</span>
-  <span class='cvar'>@@entity_types</span> <span class='op'>||=</span> <span class='id identifier rubyid_descendants'>descendants</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_d'>d</span><span class='op'>|</span> <span class='id identifier rubyid_d'>d</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='rbrace'>}</span>
+  <span class='ivar'>@entity_types</span> <span class='op'>||=</span> <span class='id identifier rubyid_descendants'>descendants</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_d'>d</span><span class='op'>|</span> <span class='id identifier rubyid_d'>d</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -555,12 +607,12 @@
       <pre class="lines">
 
 
-15
-16
-17</pre>
+19
+20
+21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 15</span>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 19</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_entity_types_downcase'>entity_types_downcase</span>
   <span class='id identifier rubyid_entity_types'>entity_types</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_t'>t</span><span class='op'>|</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span> <span class='rbrace'>}</span>
@@ -585,12 +637,12 @@
       <pre class="lines">
 
 
-54
-55
-56</pre>
+58
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_execute_sql'>execute_sql</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_sql_array'>sql_array</span><span class='rparen'>)</span>     
   <span class='id identifier rubyid_connection'>connection</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='symbol'>:sanitize_sql_array</span><span class='comma'>,</span> <span class='id identifier rubyid_sql_array'>sql_array</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -615,10 +667,6 @@
       <pre class="lines">
 
 
-58
-59
-60
-61
 62
 63
 64
@@ -627,10 +675,14 @@
 67
 68
 69
-70</pre>
+70
+71
+72
+73
+74</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 58</span>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 62</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_generate_new_name'>generate_new_name</span><span class='lparen'>(</span><span class='id identifier rubyid_source_name'>source_name</span><span class='comma'>,</span> <span class='id identifier rubyid_target_name'>target_name</span><span class='comma'>,</span> <span class='id identifier rubyid_current_name'>current_name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_name_diff'>name_diff</span> <span class='op'>=</span> <span class='id identifier rubyid_parse_name_difference'>parse_name_difference</span><span class='lparen'>(</span><span class='id identifier rubyid_source_name'>source_name</span><span class='comma'>,</span> <span class='id identifier rubyid_target_name'>target_name</span><span class='rparen'>)</span>
@@ -665,15 +717,75 @@
       <pre class="lines">
 
 
-27
-28
-29</pre>
+31
+32
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 31</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_menu_entities'>menu_entities</span><span class='lparen'>(</span><span class='id identifier rubyid_root'><span class='object_link'><a href="top-level-namespace.html" title="Top Level Namespace (root)">root</a></span></span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>parent_id is null and (disabled=? or id=?)</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='id identifier rubyid_root'><span class='object_link'><a href="top-level-namespace.html" title="Top Level Namespace (root)">root</a></span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_order'>order</span><span class='lparen'>(</span><span class='symbol'>:location_x</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="params-instance_method">
+  
+    #<strong>params</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+76
+77
+78</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 76</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_params'>params</span>
+  <span class='ivar'>@params</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="params=-instance_method">
+  
+    #<strong>params=</strong>(params)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+80
+81
+82</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 80</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_params='>params=</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
+  <span class='ivar'>@params</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -695,16 +807,16 @@
       <pre class="lines">
 
 
-46
-47
-48
-49
 50
 51
-52</pre>
+52
+53
+54
+55
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 46</span>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 50</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_register_events'>register_events</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_sym'>sym</span><span class='op'>|</span>
@@ -733,15 +845,15 @@
       <pre class="lines">
 
 
-42
-43
-44</pre>
+46
+47
+48</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 42</span>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 46</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_require_entity_classes'>require_entity_classes</span>
-  <span class='const'>Dir</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>Home</span><span class='op'>::</span><span class='const'>Engine</span><span class='period'>.</span><span class='id identifier rubyid_root'>root</span><span class='embexpr_end'>}</span><span class='tstring_content'>/app/models/entities/*.rb</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_file'>file</span><span class='op'>|</span> <span class='id identifier rubyid_require_dependency'>require_dependency</span> <span class='id identifier rubyid_file'>file</span><span class='rbrace'>}</span>
+  <span class='lparen'>(</span><span class='const'>Dir</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>Home</span><span class='op'>::</span><span class='const'>Engine</span><span class='period'>.</span><span class='id identifier rubyid_root'>root</span><span class='embexpr_end'>}</span><span class='tstring_content'>/app/models/entities/*.rb</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>+</span> <span class='const'>Dir</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_root'>root</span><span class='embexpr_end'>}</span><span class='tstring_content'>/app/models/entities/*.rb</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_file'>file</span><span class='op'>|</span> <span class='id identifier rubyid_require_dependency'>require_dependency</span> <span class='id identifier rubyid_file'>file</span><span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -763,15 +875,15 @@
       <pre class="lines">
 
 
-38
-39
-40</pre>
+42
+43
+44</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/entity_class_methods.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_types'>types</span> 
-  <span class='id identifier rubyid_ancestors_and_self'>ancestors_and_self</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_c'>c</span><span class='op'>|</span> <span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_reverse'>reverse</span>
+  <span class='id identifier rubyid_ancestors_and_self'>ancestors_and_self</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_c'>c</span><span class='op'>|</span> <span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_underscore'>underscore</span><span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_reverse'>reverse</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -783,7 +895,7 @@
 </div>
 
       <div id="footer">
-  Generated on Tue May  2 21:50:35 2017 by
+  Generated on Sat Jan 13 13:04:54 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.1.8).
 </div>

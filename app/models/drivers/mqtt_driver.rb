@@ -42,15 +42,7 @@ module MqttDriver
       @threads << Thread.new(block, sensor) do |trigger, entity|
         begin
           entity.broker.get(entity.address) do |topic,message|
-            value = case message
-                      when 'OFF'
-                        0
-                      when 'ON'
-                        1
-                      else
-                        message
-                    end
-            trigger.call(topic, value)
+            trigger.call(topic, message)
           end
         rescue Exception => e
           Rails.logger.error(e)
@@ -66,6 +58,18 @@ module MqttDriver
 
   def self.sensors
     Sensor.where(driver: :mqtt).where.not(address: nil)
+  end
+
+  def driver_value_to_value(driver_value)
+    v = case driver_value
+          when 'OFF'
+            0
+          when 'ON'
+            1
+          else
+            driver_value
+        end
+    invert? ? 1 - v : v if v
   end
 
   def broker_address
@@ -84,7 +88,6 @@ module MqttDriver
     Home.mqtt_password
   end
 
-
   def set_driver_value(v)
     broker.connect unless broker.connected?
     broker.publish(address, v)
@@ -96,4 +99,4 @@ module MqttDriver
 
 end
 
-
+MqttDriver.startup if Rails.env.development?

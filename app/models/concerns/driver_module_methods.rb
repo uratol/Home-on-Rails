@@ -1,10 +1,14 @@
 module DriverModuleMethods
 
+  def driver_name
+    name[0..-7].downcase # cut "Driver" suffix (module names should be "GpioDriver", "MqttDriver" etc)
+  end
+
   def do_startup
     startup if respond_to? :startup
   rescue Exception => e
     puts e.message
-    Rails.logger.error e.message
+    Rails.logger.error(e.message)
   end
 
   def do_watch
@@ -17,8 +21,8 @@ module DriverModuleMethods
           Thread.exclusive do
             ActiveRecord::Base.connection_pool.with_connection do
               begin
-                ent = Entity.where(driver: d.name[0..-7].downcase, address: address).first
-                ent.write_value(ent.transform_driver_value(value), false)
+                ent = Entity.where(driver: d.driver_name, address: address).first
+                ent.write_value(ent.driver_value_to_value(value), false)
               rescue RuntimeError => e
                 Rails.logger.error e.message
                 Rails.logger.error e.backtrace.join("\n")
@@ -32,6 +36,6 @@ module DriverModuleMethods
 
   rescue Exception => e
     puts e.message
-    Rails.logger.error e.message
+    Rails.logger.error(e.message)
   end
 end

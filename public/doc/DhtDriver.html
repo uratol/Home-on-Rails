@@ -251,21 +251,25 @@
       <pre class="lines">
 
 
-35
-36
-37
-38
-39
-40</pre>
+49
+50
+51
+52
+53
+54
+55
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/dht_driver.rb', line 35</span>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/dht_driver.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_description_data'>description_data</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>DHT-XX type humidity/temperature sensor
   Address format: XX:P 
   where XX - kind of sensor, </span><span class='embexpr_beg'>#{</span> <span class='id identifier rubyid_models'>models</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> or </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='embexpr_end'>}</span><span class='tstring_content'>
-  P - GPIO BCM pin number</span><span class='tstring_end'>&quot;</span></span>
+  P - GPIO BCM pin number
+  Current GPIO pin configuration:
+  </span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='const'><span class='object_link'><a href="GpioDriver.html" title="GpioDriver (module)">GpioDriver</a></span></span><span class='period'>.</span><span class='id identifier rubyid_description_data'><span class='object_link'><a href="GpioDriver.html#description_data-class_method" title="GpioDriver.description_data (method)">description_data</a></span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -287,12 +291,12 @@
       <pre class="lines">
 
 
-31
-32
-33</pre>
+45
+46
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/dht_driver.rb', line 31</span>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/dht_driver.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_models'>models</span>
   <span class='lbracket'>[</span><span class='int'>11</span><span class='comma'>,</span><span class='int'>22</span><span class='rbracket'>]</span>
@@ -317,22 +321,6 @@
       <pre class="lines">
 
 
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
 58
 59
 60
@@ -351,10 +339,26 @@
 73
 74
 75
-76</pre>
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/dht_driver.rb', line 42</span>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/dht_driver.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_scan'>scan</span>
   
@@ -417,16 +421,6 @@
       <pre class="lines">
 
 
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
 21
 22
 23
@@ -435,10 +429,24 @@
 26
 27
 28
-29</pre>
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/dht_driver.rb', line 11</span>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/dht_driver.rb', line 21</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_driver_value'>get_driver_value</span>
   <span class='id identifier rubyid_a'>a</span> <span class='op'>=</span> <span class='id identifier rubyid_address'>address</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>:</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -457,7 +465,11 @@
     <span class='const'><span class='object_link'><a href="#CACHE-constant" title="DhtDriver::CACHE (constant)">CACHE</a></span></span><span class='lbracket'>[</span><span class='id identifier rubyid_pin_no'>pin_no</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_r'>r</span>  
   <span class='kw'>end</span>  
    
-  <span class='kw'>case</span> <span class='kw'>self</span> <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Temperature.html" title="Temperature (class)">Temperature</a></span></span> <span class='kw'>then</span> <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_temperature'>temperature</span> <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Humidity.html" title="Humidity (class)">Humidity</a></span></span> <span class='kw'>then</span> <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_humidity'>humidity</span> <span class='kw'>end</span>
+  <span class='kw'>case</span> <span class='kw'>self</span>
+    <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Temperature.html" title="Temperature (class)">Temperature</a></span></span> <span class='kw'>then</span> <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_temperature'>temperature</span>
+    <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Humidity.html" title="Humidity (class)">Humidity</a></span></span> <span class='kw'>then</span> <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_humidity'>humidity</span>
+    <span class='kw'>else</span> <span class='kw'>nil</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -479,12 +491,12 @@
       <pre class="lines">
 
 
-7
-8
-9</pre>
+17
+18
+19</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/dht_driver.rb', line 7</span>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/dht_driver.rb', line 17</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_poll'>poll</span>
   <span class='kw'>super</span>
@@ -499,7 +511,7 @@
 </div>
 
       <div id="footer">
-  Generated on Tue May  2 21:50:35 2017 by
+  Generated on Sat Jan 13 13:04:54 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.1.8).
 </div>
