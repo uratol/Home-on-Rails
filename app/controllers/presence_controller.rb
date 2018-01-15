@@ -5,7 +5,7 @@ class PresenceController < ApplicationController
   Entity.require_entity_classes
   
   def presence
-    Person.where(address: params[:keyword]) do |person|
+    Person.where(address: params[:keyword]).each do |person|
       person.on!
     end
     head :ok, content_type: "text/html"
