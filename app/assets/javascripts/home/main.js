@@ -30,6 +30,14 @@ function stopRefresh(){
     if (refreshInterval !== 0){ clearInterval(refreshInterval) }
 }
 
+function doExit(){
+    stopRefresh();
+}
+
+function doEnter(){
+    setRefreshInterval(refreshDelay);
+}
+
 function setRefreshInterval(interval){
     stopRefresh();
 	refreshInterval = setInterval(function() {
@@ -156,10 +164,10 @@ var ready = function(){
     setRefreshInterval(refreshDelay);
 
     $(window).blur(function(){
-        stopRefresh();
+        doExit();
     });
     $(window).focus(function(){
-        setRefreshInterval(refreshDelay);
+        doEnter();
     });
 };
 

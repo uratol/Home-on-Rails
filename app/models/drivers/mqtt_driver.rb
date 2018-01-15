@@ -63,7 +63,7 @@ module MqttDriver
   end
 
   def self.sensors
-    Sensor.where(driver: :mqtt).where.not(address: nil)
+    Sensor.where(driver: :mqtt, disabled: false).where.not(address: nil)
   end
 
   def driver_value_to_value(driver_value)

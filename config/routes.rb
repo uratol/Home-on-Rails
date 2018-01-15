@@ -9,7 +9,7 @@ def actions
   post '/touchend' => 'main#touchend'
 end
 
-def uniRoutes
+def uni_routes
   get 'entities/classes'
   resources :entities
   get '/entities/:id/destroy' => 'entities#destroy'
@@ -26,9 +26,11 @@ def uniRoutes
 
   post '/refresh' => 'main#refresh'
 
+  post '/presence' => 'presence#presence'
+  get '/presence' => 'presence#presence'
+
   post '/admin/reboot'
   
-
   post '/main/design_apply'
 
   scope :butler do
@@ -62,10 +64,10 @@ end
 public
 
 Home::Engine.routes.draw do
-  uniRoutes
+  uni_routes
 end
 
 Rails.application.routes.draw do
-  uniRoutes
+  uni_routes
 end
 
