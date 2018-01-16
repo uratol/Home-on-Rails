@@ -74,3 +74,21 @@ class Range
     end
   end
 end
+
+
+module MethodsPropagateToMembers
+  def method_missing(method_sym, *arguments, &block)
+    results = map do |member|
+      member.public_send(method_sym, *arguments)
+    end
+    method_sym.to_s.ends_with?('?') ? results.all? : results
+  end
+end
+
+class ActiveRecord::Relation
+  include MethodsPropagateToMembers
+end
+
+class Array
+  include MethodsPropagateToMembers
+end
