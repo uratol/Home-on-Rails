@@ -4,7 +4,6 @@
 
 class Button < Widget
 
-  include ::ChangeBehavior
   include ::ActorBehavior
 
   def caption_class

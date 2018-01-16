@@ -71,6 +71,8 @@ class Entity < ActiveRecord::Base
   include ::EntityVisualization
   include ::EntityData
   include ::EntityBehavior
+  include ::ChangeBehavior
+
 
   # @!method at_click
   # Вызывается при клике на объект в вэб-интерфейсе
