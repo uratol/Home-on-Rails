@@ -26,8 +26,8 @@ def uni_routes
 
   post '/refresh' => 'main#refresh'
 
-  post '/presence' => 'presence#presence'
-  get '/presence' => 'presence#presence'
+  post '/presence' => 'http_driver#ping'
+  get '/presence' => 'http_driver#ping'
 
   post '/admin/reboot'
   

@@ -76,7 +76,7 @@ class Range
 end
 
 
-module MethodsPropagateToMembers
+module PropagateMethodsToMembers
   def method_missing(method_sym, *arguments, &block)
     results = map do |member|
       member.public_send(method_sym, *arguments)
@@ -86,9 +86,9 @@ module MethodsPropagateToMembers
 end
 
 class ActiveRecord::Relation
-  include MethodsPropagateToMembers
+#  include PropagateMethodsToMembers
 end
 
 class Array
-  include MethodsPropagateToMembers
+#  include PropagateMethodsToMembers
 end
