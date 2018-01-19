@@ -15,12 +15,4 @@ class Humidity < Sensor
     "#{ value.try :round  } %"
   end
 
-  private
-  
-  def on?
-  end
-
-  def off?
-  end
-    
 end

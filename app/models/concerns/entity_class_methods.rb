@@ -81,6 +81,10 @@ module EntityClassMethods
     @params = params
   end
 
+  def everyone
+    all.everyone
+  end
+
   protected
 
   def register_attributes(*args)

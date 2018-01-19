@@ -14,13 +14,4 @@ class Temperature < Sensor
     "#{ value.try :round,1  } \u00B0 C"
   end
 
-  private
-  
-  def on?
-  end   
-
-  def off?
-  end
-
-    
 end

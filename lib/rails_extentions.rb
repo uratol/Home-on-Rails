@@ -75,22 +75,27 @@ class Range
   end
 end
 
+class EveryOneProxy
+  def initialize(base)
+    @base = base
+  end
 
-module PropagateMethodsToMembers
   def method_missing(method_sym, *arguments, &block)
-    super
-  rescue NoMethodError
-    results = map do |member|
+    results = @base.map do |member|
       member.public_send(method_sym, *arguments)
     end
-    return method_sym.to_s.ends_with?('?') ? results.all? : results
+    method_sym.to_s.ends_with?('?') ? results.all? : results
   end
 end
 
 class ActiveRecord::Relation
-  include PropagateMethodsToMembers
+  def everyone
+    EveryOneProxy.new(self)
+  end
 end
 
 class Array
-  include PropagateMethodsToMembers
+  def everyone
+    EveryOneProxy.new(self)
+  end
 end
