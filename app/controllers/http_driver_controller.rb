@@ -1,9 +1,8 @@
-class HttpDriverController < ApplicationController
+class HttpDriverController < ApiController
   Entity.require_entity_classes
-  skip_before_action :verify_authenticity_token, only: :ping
 
   def ping
-    Entity.where(address: params[:keyword], driver: :http).each do |person|
+    Entity.where(address: params[:address], driver: :http).each do |person|
       person.ping
     end
 
