@@ -78,17 +78,19 @@ end
 
 module PropagateMethodsToMembers
   def method_missing(method_sym, *arguments, &block)
+    super
+  rescue NoMethodError
     results = map do |member|
       member.public_send(method_sym, *arguments)
     end
-    method_sym.to_s.ends_with?('?') ? results.all? : results
+    return method_sym.to_s.ends_with?('?') ? results.all? : results
   end
 end
 
 class ActiveRecord::Relation
-#  include PropagateMethodsToMembers
+  include PropagateMethodsToMembers
 end
 
 class Array
-#  include PropagateMethodsToMembers
+  include PropagateMethodsToMembers
 end
