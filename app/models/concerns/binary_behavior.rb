@@ -94,7 +94,7 @@ module BinaryBehavior
     
     prev_indication = nil
     sum  = 0
-    arr.each_with_index do |ind, i|
+    arr.each do |ind|
       sum += prev_indication.value * (ind.created_at - prev_indication.created_at) if prev_indication
       prev_indication = ind
     end
@@ -102,16 +102,27 @@ module BinaryBehavior
   end
 
   def do_schedule # @!visibility private
-    self.on = average_value(schedule * 10) < data.pwm_power if data.pwm_power
+    if pwm_power
+      self.on = (pwm_power >= 1) || average_value(pwm_consider_time_range) < pwm_power
+    end
     super
   end
 
+  # возвращает интервал, за который учитывается мощность ШИМ
+  def pwm_consider_time_range
+    schedule.to_f * 10 if schedule
+  end
+
   # возвращает мощность ШИМ, при которой с периодичностью, заданой в опции schedule элемент будет включаться/выключаться
+  # таким образом, чтобы среднее значение его стремилось к pwm_power
   # @return [Float] мощность задаётся в пределах 0..1
   def pwm_power
     data.pwm_power
   end
 
+  # задаёт мощность ШИМ, при которой с периодичностью, заданой в опции schedule элемент будет включаться/выключаться
+  # таким образом, чтобы среднее значение его стремилось к pwm_power
+  # @param value [Float] мощность, задаётся в пределах 0..1
   def pwm_power=(value)
     raise 'PWM power must be in 0..1 range' if value && !((0..1).include?(value))
     data.pwm_power = value
