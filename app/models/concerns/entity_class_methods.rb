@@ -1,7 +1,22 @@
 module EntityClassMethods
 
   def drivers_names
-    @drivers_names ||= Dir.entries(Home::Engine.root.join('app','models','drivers')).inject([]){|a,f| s=f[-10..-1]; a+(s=='_driver.rb' ? [f[0..-11]] : [])}
+    return @drivers_names if @drivers_names
+
+    drivers_path = '/app/models/drivers'
+    @drivers_names = []
+    [Home::Engine.root, Rails.root].each do |dir|
+      full_dir_path = dir.to_s + drivers_path
+      if Dir.exist?(full_dir_path)
+        @drivers_names += Dir.entries(full_dir_path).inject([]) do |a, f|
+          s = f[-10..-1]
+          a + (s=='_driver.rb' ? [f[0..-11]] : [])
+        end
+      end
+    end
+    @drivers_names = @drivers_names.uniq
+
+    #@drivers_names ||= Dir.entries(Home::Engine.root.join('app','models','drivers')).inject([]){|a,f| s=f[-10..-1]; a+(s=='_driver.rb' ? [f[0..-11]] : [])}
   end
 
   def drivers
