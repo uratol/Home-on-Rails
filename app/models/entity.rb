@@ -72,6 +72,8 @@ class Entity < ActiveRecord::Base
   include ::EntityData
   include ::EntityBehavior
   include ::ChangeBehavior
+  extend ::Every
+
 
 
   # @!method at_click

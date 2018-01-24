@@ -75,27 +75,32 @@ class Range
   end
 end
 
-class EveryOneProxy
-  def initialize(base)
-    @base = base
+module Every
+  class EveryProxy
+    def initialize(base)
+      @base = base
+    end
+
+    def method_missing(method_sym, *arguments, &block)
+      members = @base.respond_to?(:map) ? @base : @base.all
+
+      results = members.map do |member|
+        member.public_send(method_sym, *arguments)
+      end
+      method_sym.to_s.ends_with?('?') ? results.all? : results
+    end
   end
 
-  def method_missing(method_sym, *arguments, &block)
-    results = @base.map do |member|
-      member.public_send(method_sym, *arguments)
-    end
-    method_sym.to_s.ends_with?('?') ? results.all? : results
+  def every
+    EveryProxy.new(self)
   end
+
 end
 
 class ActiveRecord::Relation
-  def everyone
-    EveryOneProxy.new(self)
-  end
+  include Every
 end
 
 class Array
-  def everyone
-    EveryOneProxy.new(self)
-  end
+  include Every
 end
