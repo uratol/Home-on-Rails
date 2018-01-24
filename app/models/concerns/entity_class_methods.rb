@@ -1,5 +1,9 @@
 module EntityClassMethods
 
+  def require_drivers
+    Dir["#{Rails.root}/app/models/drivers/*_driver.rb"].each {|file| require_dependency file}
+  end
+
   def drivers_names
     return @drivers_names if @drivers_names
 

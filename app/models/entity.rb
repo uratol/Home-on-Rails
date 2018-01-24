@@ -235,6 +235,13 @@ class Entity < ActiveRecord::Base
     Time.now - v if v
   end
 
+  # Опрашивает датчик и сохраняет значение в +value+
+  def poll
+    return unless respond_to? :get_driver_value
+    v = get_driver_value
+    store_value v if v
+  end
+
   def self.required_methods # @!visibility private
     @required_methods ||= []
   end
@@ -394,6 +401,7 @@ class Entity < ActiveRecord::Base
     end
   end
 
+  self.require_drivers
   self.require_entity_classes
 end
 
