@@ -25,7 +25,7 @@ module Home
         app_config = Rails.application.config
         app_config.eager_load_paths -= [Home.custom_behavior_path.to_s]
         app_config.web_console.development_only = false
-        app_config.web_console.whitelisted_ips = '192.168.0.0/16'
+        #app_config.web_console.whitelisted_ips = '192.168.0.0/16'
 
         app_config.assets.precompile += %w(
           entity/* *.png *.ico *.gif *.jpg *.jpeg jquery.js jquery_ujs.js jquery-ui.js jquery.contextMenu.js jquery-ui.css jquery.contextMenu.css ace/ace.js ace/worker-html.js ace/mode-ruby.js 
