@@ -23,7 +23,11 @@ class Pid < Widget
   end  
   
   def do_schedule
-    e = target_value.to_f - input_value.to_f
+    target_value_cached = target_value
+
+    return nil unless target_value_cached
+
+    e = target_value_cached.to_f - input_value.to_f
 
     prev_indication = last_indication
     prev_value = prev_indication.try(:value) || 0
