@@ -1,0 +1,30 @@
+$( function() {
+    var input_container = $('#input_container');
+
+    input_container.attr('title', '<%= @entity.caption %>');
+
+    input_container.html(`<%= render(partial: 'input_form') %>`);
+
+    var input_form = input_container.find('form');
+
+    function input_submit(){
+      ajax('<%= request.env['PATH_INFO'] %>', input_form.serialize());
+      input_container.dialog("close");
+    }
+
+    input_form.submit(function( event ) {
+        event.preventDefault();
+        input_submit();
+    });
+
+    input_container.dialog({
+            modal: true,
+            buttons: {
+                Ok: input_submit,
+                Cancel: function () {
+                    input_container.dialog("close");
+                }
+            }
+        }
+    );
+}());

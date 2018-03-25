@@ -5,6 +5,7 @@ module EntityVisualization
     register_attributes(:caption_class)
 
     attr_accessor(:redirect_target)
+    attr_accessor(:input_items)
   end
 
   def human_value
@@ -53,7 +54,22 @@ module EntityVisualization
   end
 
   def params
-    Entity.params
+    controller.try(:params)
+  end
+
+  def controller
+    Entity.controller
+  end
+
+  def input(*input_items)
+    input_items.flatten!
+    first = input_first_call(input_items)
+    @input_items = input_items if first
+    !first
+  end
+
+  def input_first_call(input_items)
+    !(params[input_items.first[:name]] || params[input_items.first[:caption]])
   end
 
   module ClassMethods

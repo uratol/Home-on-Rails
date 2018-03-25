@@ -1,0 +1,22 @@
+<%= form_tag({}, {method: :post, remote: true}) do %>
+  <%= hidden_field_tag :id, @entity.id %>
+  <%= hidden_field_tag :name, @root_entity.name %>
+  <table>
+  <% [*@entity.input_items].each do |item| %>
+        <%
+          name = item[:name] || item[:caption]
+          type = item[:type] || 'text'
+        %>
+        <tr>
+          <td>
+            <%= label_tag name, item[:caption] %>
+          </td>
+          <td>
+            <%= public_send "#{ type }_field_tag", name, item[:default] %>
+          </td>
+        </tr>
+        <%#= submit_tag %>
+  <% end %>
+  </table>
+  <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+<% end %>

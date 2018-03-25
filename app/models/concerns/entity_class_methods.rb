@@ -92,12 +92,12 @@ module EntityClassMethods
     new_name
   end
 
-  def params
-    @params
+  def controller
+    @controller
   end
 
-  def params=(params)
-    @params = params
+  def controller=(controller)
+    @controller = controller
   end
 
   def everyone
