@@ -6,13 +6,24 @@
         <%
           name = item[:name] || item[:caption]
           type = item[:type] || 'text'
+          options = item.except(:name, :type, :caption, :default, :select)
+          caption = item[:caption] || name
         %>
         <tr>
           <td>
-            <%= label_tag name, item[:caption] %>
+            <%= label_tag name, caption %>
           </td>
           <td>
-            <%= public_send "#{ type }_field_tag", name, item[:default] %>
+            <%=
+              if type.to_s == 'checkbox'
+                check_box_tag(name, nil, item[:default], options)
+              elsif type.to_s == 'select'
+                  select_tag(name, options_for_select(item[:select], item[:default]), options)
+              else
+                public_send("#{ type }_field_tag", name, item[:default], options)
+              end
+            %>
+
           </td>
         </tr>
         <%#= submit_tag %>
