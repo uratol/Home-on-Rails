@@ -6,7 +6,7 @@
 <title>
   Module: BinaryBehavior
   
-    &mdash; Documentation by YARD 0.9.9
+    &mdash; Documentation by YARD 0.9.12
   
 </title>
 
@@ -302,6 +302,30 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#pwm_consider_time_range-instance_method" title="#pwm_consider_time_range (instance method)">#<strong>pwm_consider_time_range</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>возвращает интервал, за который учитывается мощность ШИМ.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#pwm_power-instance_method" title="#pwm_power (instance method)">#<strong>pwm_power</strong>  &#x21d2; Float </a>
     
 
@@ -318,7 +342,8 @@
   
     <span class="summary_desc"><div class='inline'>
 <p>возвращает мощность ШИМ, при которой с периодичностью, заданой в опции
-schedule элемент будет включаться/выключаться.</p>
+schedule элемент будет включаться/выключаться таким образом, чтобы среднее
+значение его стремилось к pwm_power.</p>
 </div></span>
   
 </li>
@@ -341,7 +366,11 @@ schedule элемент будет включаться/выключаться.<
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>задаёт мощность ШИМ, при которой с периодичностью, заданой в опции schedule
+элемент будет включаться/выключаться таким образом, чтобы среднее значение
+его стремилось к pwm_power.</p>
+</div></span>
   
 </li>
 
@@ -632,7 +661,7 @@ set_driver_value</p>
   
   <span class='id identifier rubyid_prev_indication'>prev_indication</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='id identifier rubyid_sum'>sum</span>  <span class='op'>=</span> <span class='int'>0</span>
-  <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_each_with_index'>each_with_index</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_ind'>ind</span><span class='comma'>,</span> <span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
+  <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_ind'>ind</span><span class='op'>|</span>
     <span class='id identifier rubyid_sum'>sum</span> <span class='op'>+=</span> <span class='id identifier rubyid_prev_indication'>prev_indication</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span> <span class='op'>*</span> <span class='lparen'>(</span><span class='id identifier rubyid_ind'>ind</span><span class='period'>.</span><span class='id identifier rubyid_created_at'>created_at</span> <span class='op'>-</span> <span class='id identifier rubyid_prev_indication'>prev_indication</span><span class='period'>.</span><span class='id identifier rubyid_created_at'>created_at</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_prev_indication'>prev_indication</span>
     <span class='id identifier rubyid_prev_indication'>prev_indication</span> <span class='op'>=</span> <span class='id identifier rubyid_ind'>ind</span>
   <span class='kw'>end</span>
@@ -1058,6 +1087,47 @@ set_driver_value</p>
 </div>
     
       <div class="method_details ">
+  <h3 class="signature " id="pwm_consider_time_range-instance_method">
+  
+    #<strong>pwm_consider_time_range</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>возвращает интервал, за который учитывается мощность ШИМ</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+112
+113
+114</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/binary_behavior.rb', line 112</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_pwm_consider_time_range'>pwm_consider_time_range</span>
+  <span class='id identifier rubyid_schedule'>schedule</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span> <span class='op'>*</span> <span class='int'>10</span> <span class='kw'>if</span> <span class='id identifier rubyid_schedule'>schedule</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <h3 class="signature " id="pwm_power-instance_method">
   
     #<strong>pwm_power</strong>  &#x21d2; <tt>Float</tt> 
@@ -1070,7 +1140,8 @@ set_driver_value</p>
   <div class="discussion">
     
 <p>возвращает мощность ШИМ, при которой с периодичностью, заданой в опции
-schedule элемент будет включаться/выключаться</p>
+schedule элемент будет включаться/выключаться таким образом, чтобы среднее
+значение его стремилось к pwm_power</p>
 
 
   </div>
@@ -1102,12 +1173,12 @@ schedule элемент будет включаться/выключаться</
       <pre class="lines">
 
 
-111
-112
-113</pre>
+119
+120
+121</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/concerns/binary_behavior.rb', line 111</span>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/binary_behavior.rb', line 119</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pwm_power'>pwm_power</span>
   <span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_pwm_power'>pwm_power</span>
@@ -1126,19 +1197,52 @@ schedule элемент будет включаться/выключаться</
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>задаёт мощность ШИМ, при которой с периодичностью, заданой в опции schedule
+элемент будет включаться/выключаться таким образом, чтобы среднее значение
+его стремилось к pwm_power</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>value</span>
+      
+      
+        <span class='type'>(<tt>Float</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>мощность, задаётся в пределах 0..1</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-115
-116
-117
-118</pre>
+126
+127
+128
+129</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/concerns/binary_behavior.rb', line 115</span>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/binary_behavior.rb', line 126</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pwm_power='>pwm_power=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>PWM power must be in 0..1 range</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='lparen'>(</span><span class='lparen'>(</span><span class='int'>0</span><span class='op'>..</span><span class='int'>1</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -1196,9 +1300,9 @@ schedule элемент будет включаться/выключаться</
 </div>
 
       <div id="footer">
-  Generated on Sat Jan 13 13:04:54 2018 by
+  Generated on Tue Mar 27 20:47:14 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.1.8).
+  0.9.12 (ruby-2.2.6).
 </div>
 
     </div>

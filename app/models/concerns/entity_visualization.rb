@@ -35,14 +35,15 @@ module EntityVisualization
     nil
   end
 
-  # Перенаправляет браузер на заданный объект либо страницу
-  #
-  # Параметры:
-  # +target+ : Entity || String
-  #
-  # Пример вызова:
+  # Redirects browser to object or url
+  # @param target [Entity, String]
+  # @example Redirect to object
   #   at_click do
   #     redirect_to floor1
+  #   end
+  # @example Redirect to url
+  #   at_click do
+  #     redirect_to 'http://google.com'
   #   end
   def redirect_to(target)
     self.redirect_target = target
@@ -53,23 +54,47 @@ module EntityVisualization
     ActionController::Base.helpers.asset_path(image)
   end
 
+  # Provide access to browser request parameters, including {#input} users data
+  # @return [Hash]
   def params
     controller.try(:params)
   end
 
+  # Provide access to current Ruby On Rails controller
+  # @return [ActionController::Base]
   def controller
     Entity.controller
   end
 
+  # Allows you to request additional information from the user
+  # by displaying a dialog box
+  # @param [Array<Hash>] input_items contains array of [Hash] represented visual controls in dialog. Each [Hash] contains the keys:
+  # @option input_items [String] :caption Caption of control, required. For :range control caption can include wildcard %value, which will be replaced by current value
+  # @option input_items [:text, :number, :range, :checkbox, :select, :time, :date, :datetime, :color] :type Type of control, default :text
+  # @option input_items [String, Number] :default Default value of control
+  # Depending on :type, other properties can also be specified, google: html input
+  #
+  # @return [true, false] Returns true at second method call, wherein {#params} contains user input data
+  # @example
+  #   at_click do
+  #     if input(
+  #         {caption: num = "номер (%value)" , type: :range, default: data.num, min: 1, max: 15},
+  #         {caption: "цвет", type: :color, default: data.color},
+  #         {caption: "email", type: :email, default: data.text, size: 25, style: "background-color: #{ data.color }"},
+  #         {caption: "список", type: :select, select:  ['one','two','three'], default: 'two'},
+  #         {caption: "птичка", type: :checkbox, default: data.checked}
+  #     )
+  #       data.text = params["email"]
+  #       data.color = params["цвет"]
+  #       data.num = params[num]
+  #       data.checked = params["птичка"]
+  #     end
+  #   end
   def input(*input_items)
     input_items.flatten!
-    first = input_first_call(input_items)
-    @input_items = input_items if first
-    !first
-  end
-
-  def input_first_call(input_items)
-    !(params[input_items.first[:name]] || params[input_items.first[:caption]])
+    is_first_call = !(params[input_items.first[:name]] || params[input_items.first[:caption]])
+    @input_items = input_items if is_first_call
+    !is_first_call
   end
 
   module ClassMethods

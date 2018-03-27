@@ -6,7 +6,7 @@
 <title>
   Class: Entity
   
-    &mdash; Documentation by YARD 0.9.9
+    &mdash; Documentation by YARD 0.9.12
   
 </title>
 
@@ -89,14 +89,14 @@
   
   <dl>
       <dt>Extended by:</dt>
-      <dd><span class='object_link'><a href="EntityClassMethods.html" title="EntityClassMethods (module)">EntityClassMethods</a></span></dd>
+      <dd><span class='object_link'><a href="EntityClassMethods.html" title="EntityClassMethods (module)">EntityClassMethods</a></span>, Every</dd>
   </dl>
   
   
   
   <dl>
       <dt>Includes:</dt>
-      <dd><span class='object_link'><a href="EntityBehavior.html" title="EntityBehavior (module)">EntityBehavior</a></span>, <span class='object_link'><a href="EntityData.html" title="EntityData (module)">EntityData</a></span>, <span class='object_link'><a href="EntityVisualization.html" title="EntityVisualization (module)">EntityVisualization</a></span></dd>
+      <dd><span class='object_link'><a href="ChangeBehavior.html" title="ChangeBehavior (module)">ChangeBehavior</a></span>, <span class='object_link'><a href="EntityBehavior.html" title="EntityBehavior (module)">EntityBehavior</a></span>, <span class='object_link'><a href="EntityData.html" title="EntityData (module)">EntityData</a></span>, <span class='object_link'><a href="EntityVisualization.html" title="EntityVisualization (module)">EntityVisualization</a></span></dd>
   </dl>
   
   
@@ -125,7 +125,7 @@
 
 </div><div id="subclasses">
   <h2>Direct Known Subclasses</h2>
-  <p class="children"><span class='object_link'><a href="Device.html" title="Device (class)">Device</a></span>, <span class='object_link'><a href="Placement.html" title="Placement (class)">Placement</a></span>, <span class='object_link'><a href="Widget.html" title="Widget (class)">Widget</a></span></p>
+  <p class="children"><span class='object_link'><a href="Device.html" title="Device (class)">Device</a></span>, <span class='object_link'><a href="Person.html" title="Person (class)">Person</a></span>, <span class='object_link'><a href="Placement.html" title="Placement (class)">Placement</a></span>, <span class='object_link'><a href="Widget.html" title="Widget (class)">Widget</a></span></p>
 </div>
 
 
@@ -609,6 +609,30 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#poll-instance_method" title="#poll (instance method)">#<strong>poll</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Опрашивает датчик и сохраняет значение в <code>value</code>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#remote_call%3F-instance_method" title="#remote_call? (instance method)">#<strong>remote_call?</strong>  &#x21d2; Boolean </a>
     
 
@@ -716,8 +740,20 @@
   
   
   
+  
   <h3 class="inherited">Methods included from <span class='object_link'><a href="EntityClassMethods.html" title="EntityClassMethods (module)">EntityClassMethods</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="EntityClassMethods.html#[]-instance_method" title="EntityClassMethods#[] (method)">[]</a></span>, <span class='object_link'><a href="EntityClassMethods.html#ancestors_and_self-instance_method" title="EntityClassMethods#ancestors_and_self (method)">ancestors_and_self</a></span>, <span class='object_link'><a href="EntityClassMethods.html#drivers-instance_method" title="EntityClassMethods#drivers (method)">drivers</a></span>, <span class='object_link'><a href="EntityClassMethods.html#drivers_names-instance_method" title="EntityClassMethods#drivers_names (method)">drivers_names</a></span>, <span class='object_link'><a href="EntityClassMethods.html#entity_types-instance_method" title="EntityClassMethods#entity_types (method)">entity_types</a></span>, <span class='object_link'><a href="EntityClassMethods.html#entity_types_downcase-instance_method" title="EntityClassMethods#entity_types_downcase (method)">entity_types_downcase</a></span>, <span class='object_link'><a href="EntityClassMethods.html#execute_sql-instance_method" title="EntityClassMethods#execute_sql (method)">execute_sql</a></span>, <span class='object_link'><a href="EntityClassMethods.html#generate_new_name-instance_method" title="EntityClassMethods#generate_new_name (method)">generate_new_name</a></span>, <span class='object_link'><a href="EntityClassMethods.html#menu_entities-instance_method" title="EntityClassMethods#menu_entities (method)">menu_entities</a></span>, <span class='object_link'><a href="EntityClassMethods.html#params-instance_method" title="EntityClassMethods#params (method)">params</a></span>, <span class='object_link'><a href="EntityClassMethods.html#params=-instance_method" title="EntityClassMethods#params= (method)">params=</a></span>, <span class='object_link'><a href="EntityClassMethods.html#register_events-instance_method" title="EntityClassMethods#register_events (method)">register_events</a></span>, <span class='object_link'><a href="EntityClassMethods.html#require_entity_classes-instance_method" title="EntityClassMethods#require_entity_classes (method)">require_entity_classes</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="EntityClassMethods.html#[]-instance_method" title="EntityClassMethods#[] (method)">[]</a></span>, <span class='object_link'><a href="EntityClassMethods.html#ancestors_and_self-instance_method" title="EntityClassMethods#ancestors_and_self (method)">ancestors_and_self</a></span>, <span class='object_link'><a href="EntityClassMethods.html#controller-instance_method" title="EntityClassMethods#controller (method)">controller</a></span>, <span class='object_link'><a href="EntityClassMethods.html#controller=-instance_method" title="EntityClassMethods#controller= (method)">controller=</a></span>, <span class='object_link'><a href="EntityClassMethods.html#drivers-instance_method" title="EntityClassMethods#drivers (method)">drivers</a></span>, <span class='object_link'><a href="EntityClassMethods.html#drivers_names-instance_method" title="EntityClassMethods#drivers_names (method)">drivers_names</a></span>, <span class='object_link'><a href="EntityClassMethods.html#entity_types-instance_method" title="EntityClassMethods#entity_types (method)">entity_types</a></span>, <span class='object_link'><a href="EntityClassMethods.html#entity_types_downcase-instance_method" title="EntityClassMethods#entity_types_downcase (method)">entity_types_downcase</a></span>, <span class='object_link'><a href="EntityClassMethods.html#everyone-instance_method" title="EntityClassMethods#everyone (method)">everyone</a></span>, <span class='object_link'><a href="EntityClassMethods.html#execute_sql-instance_method" title="EntityClassMethods#execute_sql (method)">execute_sql</a></span>, <span class='object_link'><a href="EntityClassMethods.html#generate_new_name-instance_method" title="EntityClassMethods#generate_new_name (method)">generate_new_name</a></span>, <span class='object_link'><a href="EntityClassMethods.html#menu_entities-instance_method" title="EntityClassMethods#menu_entities (method)">menu_entities</a></span>, <span class='object_link'><a href="EntityClassMethods.html#register_events-instance_method" title="EntityClassMethods#register_events (method)">register_events</a></span>, <span class='object_link'><a href="EntityClassMethods.html#require_drivers-instance_method" title="EntityClassMethods#require_drivers (method)">require_drivers</a></span>, <span class='object_link'><a href="EntityClassMethods.html#require_entity_classes-instance_method" title="EntityClassMethods#require_entity_classes (method)">require_entity_classes</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="ChangeBehavior.html" title="ChangeBehavior (module)">ChangeBehavior</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="ChangeBehavior.html#included-class_method" title="ChangeBehavior.included (method)">included</a></span></p>
 
   
   
@@ -747,7 +783,7 @@
   
   
   <h3 class="inherited">Methods included from <span class='object_link'><a href="EntityVisualization.html" title="EntityVisualization (module)">EntityVisualization</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="EntityVisualization.html#human_value-instance_method" title="EntityVisualization#human_value (method)">#human_value</a></span>, <span class='object_link'><a href="EntityVisualization.html#image-instance_method" title="EntityVisualization#image (method)">#image</a></span>, <span class='object_link'><a href="EntityVisualization.html#params-instance_method" title="EntityVisualization#params (method)">#params</a></span>, <span class='object_link'><a href="EntityVisualization.html#redirect_to-instance_method" title="EntityVisualization#redirect_to (method)">#redirect_to</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="EntityVisualization.html#controller-instance_method" title="EntityVisualization#controller (method)">#controller</a></span>, <span class='object_link'><a href="EntityVisualization.html#human_value-instance_method" title="EntityVisualization#human_value (method)">#human_value</a></span>, <span class='object_link'><a href="EntityVisualization.html#image-instance_method" title="EntityVisualization#image (method)">#image</a></span>, <span class='object_link'><a href="EntityVisualization.html#input-instance_method" title="EntityVisualization#input (method)">#input</a></span>, <span class='object_link'><a href="EntityVisualization.html#params-instance_method" title="EntityVisualization#params (method)">#params</a></span>, <span class='object_link'><a href="EntityVisualization.html#redirect_to-instance_method" title="EntityVisualization#redirect_to (method)">#redirect_to</a></span></p>
 
   
   <div id="method_missing_details" class="method_details_list">
@@ -772,12 +808,12 @@
       <pre class="lines">
 
 
-353
-354
-355</pre>
+364
+365
+366</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 353</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 364</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='id identifier rubyid_method_sym'>method_sym</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_arguments'>arguments</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="" title="Entity (class)">Entity</a></span></span><span class='lbracket'>[</span><span class='id identifier rubyid_method_sym'>method_sym</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='kw'>super</span>
@@ -1028,7 +1064,7 @@
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 75</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 79</span>
 
 </pre>
     </td>
@@ -1152,13 +1188,13 @@
       <pre class="lines">
 
 
-208
-209
-210
-211</pre>
+212
+213
+214
+215</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 208</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 212</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_at_schedule'>at_schedule</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_schedule'>schedule</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span> <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span>
@@ -1226,7 +1262,7 @@
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 100</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 104</span>
 
 </pre>
     </td>
@@ -1291,7 +1327,7 @@
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 92</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 96</span>
 
 </pre>
     </td>
@@ -1356,7 +1392,7 @@
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 84</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 88</span>
 
 </pre>
     </td>
@@ -1379,23 +1415,23 @@
       <pre class="lines">
 
 
-287
-288
-289
-290
-291
-292
-293
-294
-295
-296
-297
 298
 299
-300</pre>
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 287</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 298</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_destroy_with_descendants'>destroy_with_descendants</span>
   <span class='id identifier rubyid_transaction'>transaction</span> <span class='kw'>do</span>
@@ -1453,12 +1489,12 @@
       <pre class="lines">
 
 
-255
-256
-257</pre>
+266
+267
+268</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 255</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 266</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_disabled?'>disabled?</span>
   <span class='id identifier rubyid_disabled'>disabled</span> <span class='kw'>if</span> <span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbol'>:disabled</span>
@@ -1529,12 +1565,12 @@
       <pre class="lines">
 
 
-171
-172
-173</pre>
+175
+176
+177</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 171</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 175</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_driver_value_to_value'>driver_value_to_value</span><span class='lparen'>(</span><span class='id identifier rubyid_driver_value'>driver_value</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_invert?'>invert?</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>-</span> <span class='id identifier rubyid_driver_value'>driver_value</span> <span class='op'>:</span> <span class='id identifier rubyid_driver_value'>driver_value</span> <span class='kw'>if</span> <span class='id identifier rubyid_driver_value'>driver_value</span>
@@ -1559,13 +1595,13 @@
       <pre class="lines">
 
 
-250
-251
-252
-253</pre>
+261
+262
+263
+264</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 250</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 261</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_enabled='>enabled=</span><span class='lparen'>(</span><span class='id identifier rubyid_enabled'>enabled</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_disabled'>disabled</span> <span class='op'>=</span> <span class='op'>!</span><span class='id identifier rubyid_enabled'>enabled</span>
@@ -1613,12 +1649,12 @@
       <pre class="lines">
 
 
-246
-247
-248</pre>
+257
+258
+259</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 246</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 257</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_enabled?'>enabled?</span>
   <span class='op'>!</span><span class='id identifier rubyid_disabled?'>disabled?</span>
@@ -1655,12 +1691,12 @@
       <pre class="lines">
 
 
-118
-119
-120</pre>
+122
+123
+124</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 118</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 122</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_invert'>invert</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_invert'>invert</span> <span class='op'>=</span> <span class='kw'>true</span>
@@ -1718,14 +1754,14 @@
       <pre class="lines">
 
 
-215
-216
-217
-218
-219</pre>
+219
+220
+221
+222
+223</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 215</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 219</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_last_indication'>last_indication</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_query'>query</span> <span class='op'>=</span> <span class='id identifier rubyid_indications'>indications</span><span class='period'>.</span><span class='id identifier rubyid_limit'>limit</span><span class='lparen'>(</span><span class='int'>1</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>created_at DESC</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1776,13 +1812,13 @@
       <pre class="lines">
 
 
-231
-232
-233
-234</pre>
+235
+236
+237
+238</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 231</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 235</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_last_indication_interval'>last_indication_interval</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='id identifier rubyid_last_indication_time'>last_indication_time</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
@@ -1843,13 +1879,13 @@
       <pre class="lines">
 
 
-224
-225
-226
-227</pre>
+228
+229
+230
+231</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 224</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 228</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_last_indication_time'>last_indication_time</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_indication'>indication</span> <span class='op'>=</span> <span class='id identifier rubyid_last_indication'>last_indication</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
@@ -1961,6 +1997,51 @@
 </div>
     
       <div class="method_details ">
+  <h3 class="signature " id="poll-instance_method">
+  
+    #<strong>poll</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Опрашивает датчик и сохраняет значение в <code>value</code></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+241
+242
+243
+244
+245</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 241</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_poll'>poll</span>
+  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbol'>:get_driver_value</span>
+  <span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='id identifier rubyid_get_driver_value'>get_driver_value</span>
+  <span class='id identifier rubyid_store_value'>store_value</span> <span class='id identifier rubyid_v'>v</span> <span class='kw'>if</span> <span class='id identifier rubyid_v'>v</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <h3 class="signature " id="remote_call?-instance_method">
   
     #<strong>remote_call?</strong>  &#x21d2; <tt>Boolean</tt> 
@@ -2001,12 +2082,12 @@
       <pre class="lines">
 
 
-308
-309
-310</pre>
+319
+320
+321</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 308</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 319</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_remote_call?'>remote_call?</span>
   <span class='id identifier rubyid_state'>state</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='symbol'>:remote_execute</span><span class='rparen'>)</span>
@@ -2070,12 +2151,12 @@
       <pre class="lines">
 
 
-125
-126
-127</pre>
+129
+130
+131</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 125</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 129</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_value_at'>value_at</span><span class='lparen'>(</span><span class='id identifier rubyid_dt'>dt</span><span class='rparen'>)</span>
   <span class='lparen'>(</span><span class='id identifier rubyid_indication_at'>indication_at</span><span class='lparen'>(</span><span class='id identifier rubyid_dt'>dt</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='kw'>self</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>
@@ -2152,12 +2233,12 @@
       <pre class="lines">
 
 
-178
-179
-180</pre>
+182
+183
+184</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 178</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 182</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_value_to_driver_value'>value_to_driver_value</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_invert?'>invert?</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>-</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>:</span> <span class='id identifier rubyid_value'>value</span> <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span>
@@ -2234,12 +2315,12 @@
       <pre class="lines">
 
 
-160
-161
-162</pre>
+164
+165
+166</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 160</span>
+      <pre class="code"><span class="info file"># File 'app/models/entity.rb', line 164</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_write_value'>write_value</span><span class='lparen'>(</span><span class='id identifier rubyid_new_value'>new_value</span><span class='comma'>,</span> <span class='id identifier rubyid_do_set_driver'>do_set_driver</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_store_value'>store_value</span><span class='lparen'>(</span><span class='id identifier rubyid_new_value'>new_value</span> <span class='op'>?</span> <span class='id identifier rubyid_new_value'>new_value</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span><span class='period'>.</span><span class='id identifier rubyid_restrict_by_range'>restrict_by_range</span><span class='lparen'>(</span><span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_max'>max</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='id identifier rubyid_new_value'>new_value</span><span class='comma'>,</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='comma'>,</span> <span class='id identifier rubyid_do_set_driver'>do_set_driver</span><span class='rparen'>)</span>
@@ -2254,9 +2335,9 @@
 </div>
 
       <div id="footer">
-  Generated on Sat Jan 13 13:04:57 2018 by
+  Generated on Tue Mar 27 20:47:19 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.1.8).
+  0.9.12 (ruby-2.2.6).
 </div>
 
     </div>

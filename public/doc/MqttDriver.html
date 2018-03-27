@@ -6,7 +6,7 @@
 <title>
   Module: MqttDriver
   
-    &mdash; Documentation by YARD 0.9.9
+    &mdash; Documentation by YARD 0.9.12
   
 </title>
 
@@ -388,15 +388,15 @@
       <pre class="lines">
 
 
-55
-56
-57</pre>
+61
+62
+63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/mqtt_driver.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/mqtt_driver.rb', line 61</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_devices'>devices</span>
-  <span class='const'><span class='object_link'><a href="Entity.html" title="Entity (class)">Entity</a></span></span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>driver:</span> <span class='symbol'>:mqtt</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='period'>.</span><span class='id identifier rubyid_not'>not</span><span class='lparen'>(</span><span class='label'>address:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="Entity.html" title="Entity (class)">Entity</a></span></span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>driver:</span> <span class='symbol'>:mqtt</span><span class='comma'>,</span> <span class='label'>disabled:</span> <span class='kw'>false</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='period'>.</span><span class='id identifier rubyid_not'>not</span><span class='lparen'>(</span><span class='label'>address:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -418,15 +418,15 @@
       <pre class="lines">
 
 
-59
-60
-61</pre>
+65
+66
+67</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/mqtt_driver.rb', line 59</span>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/mqtt_driver.rb', line 65</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sensors'>sensors</span>
-  <span class='const'><span class='object_link'><a href="Sensor.html" title="Sensor (class)">Sensor</a></span></span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>driver:</span> <span class='symbol'>:mqtt</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='period'>.</span><span class='id identifier rubyid_not'>not</span><span class='lparen'>(</span><span class='label'>address:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="Sensor.html" title="Sensor (class)">Sensor</a></span></span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>driver:</span> <span class='symbol'>:mqtt</span><span class='comma'>,</span> <span class='label'>disabled:</span> <span class='kw'>false</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='period'>.</span><span class='id identifier rubyid_not'>not</span><span class='lparen'>(</span><span class='label'>address:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -456,7 +456,12 @@
 33
 34
 35
-36</pre>
+36
+37
+38
+39
+40
+41</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'app/models/drivers/mqtt_driver.rb', line 28</span>
@@ -466,7 +471,12 @@
     <span class='id identifier rubyid_broker_addr'>broker_addr</span> <span class='op'>=</span> <span class='id identifier rubyid_device'>device</span><span class='period'>.</span><span class='id identifier rubyid_broker_address'>broker_address</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span>
     <span class='kw'>unless</span> <span class='id identifier rubyid_brokers'>brokers</span><span class='lbracket'>[</span><span class='id identifier rubyid_broker_addr'>broker_addr</span><span class='rbracket'>]</span>
       <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>mqtt broker will be connected: </span><span class='embexpr_beg'>#{</span> <span class='id identifier rubyid_broker_addr'>broker_addr</span> <span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
-      <span class='id identifier rubyid_brokers'>brokers</span><span class='lbracket'>[</span><span class='id identifier rubyid_broker_addr'>broker_addr</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>MQTT</span><span class='op'>::</span><span class='const'>Client</span><span class='period'>.</span><span class='id identifier rubyid_connect'>connect</span><span class='lparen'>(</span><span class='label'>host:</span> <span class='id identifier rubyid_broker_addr'>broker_addr</span><span class='comma'>,</span> <span class='label'>port:</span> <span class='id identifier rubyid_device'>device</span><span class='period'>.</span><span class='id identifier rubyid_broker_port'>broker_port</span><span class='comma'>,</span> <span class='label'>username:</span> <span class='id identifier rubyid_device'>device</span><span class='period'>.</span><span class='id identifier rubyid_broker_username'>broker_username</span> <span class='comma'>,</span> <span class='label'>password:</span> <span class='id identifier rubyid_device'>device</span><span class='period'>.</span><span class='id identifier rubyid_broker_password'>broker_password</span><span class='rparen'>)</span>
+      <span class='kw'>begin</span>
+        <span class='id identifier rubyid_brokers'>brokers</span><span class='lbracket'>[</span><span class='id identifier rubyid_broker_addr'>broker_addr</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>MQTT</span><span class='op'>::</span><span class='const'>Client</span><span class='period'>.</span><span class='id identifier rubyid_connect'>connect</span><span class='lparen'>(</span><span class='label'>host:</span> <span class='id identifier rubyid_broker_addr'>broker_addr</span><span class='comma'>,</span> <span class='label'>port:</span> <span class='id identifier rubyid_device'>device</span><span class='period'>.</span><span class='id identifier rubyid_broker_port'>broker_port</span><span class='comma'>,</span> <span class='label'>username:</span> <span class='id identifier rubyid_device'>device</span><span class='period'>.</span><span class='id identifier rubyid_broker_username'>broker_username</span> <span class='comma'>,</span> <span class='label'>password:</span> <span class='id identifier rubyid_device'>device</span><span class='period'>.</span><span class='id identifier rubyid_broker_password'>broker_password</span><span class='rparen'>)</span>
+      <span class='kw'>rescue</span> <span class='const'>Exception</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+        <span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_error'>error</span> <span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span>
+        <span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_error'>error</span> <span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_backtrace'>backtrace</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -490,11 +500,6 @@
       <pre class="lines">
 
 
-38
-39
-40
-41
-42
 43
 44
 45
@@ -505,10 +510,16 @@
 50
 51
 52
-53</pre>
+53
+54
+55
+56
+57
+58
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/mqtt_driver.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/mqtt_driver.rb', line 43</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_watch'>watch</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='ivar'>@threads</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:kill</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='lparen'>(</span><span class='ivar'>@threads</span> <span class='op'>||=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span>
@@ -520,6 +531,7 @@
           <span class='id identifier rubyid_trigger'>trigger</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_topic'>topic</span><span class='comma'>,</span> <span class='id identifier rubyid_message'>message</span><span class='rparen'>)</span>
         <span class='kw'>end</span>
       <span class='kw'>rescue</span> <span class='const'>Exception</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+        <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_e'>e</span>
         <span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_error'>error</span><span class='lparen'>(</span><span class='id identifier rubyid_e'>e</span><span class='rparen'>)</span>
       <span class='kw'>end</span>
     <span class='kw'>end</span>
@@ -552,12 +564,12 @@
       <pre class="lines">
 
 
-96
-97
-98</pre>
+102
+103
+104</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/mqtt_driver.rb', line 96</span>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/mqtt_driver.rb', line 102</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_broker'>broker</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_brokers'>brokers</span><span class='lbracket'>[</span><span class='id identifier rubyid_broker_address'>broker_address</span><span class='rbracket'>]</span>
@@ -582,12 +594,12 @@
       <pre class="lines">
 
 
-75
-76
-77</pre>
+81
+82
+83</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/mqtt_driver.rb', line 75</span>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/mqtt_driver.rb', line 81</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_broker_address'>broker_address</span>
   <span class='const'><span class='object_link'><a href="#DEFAULT_BROKER_ADDRESS-constant" title="MqttDriver::DEFAULT_BROKER_ADDRESS (constant)">DEFAULT_BROKER_ADDRESS</a></span></span>
@@ -612,12 +624,12 @@
       <pre class="lines">
 
 
-87
-88
-89</pre>
+93
+94
+95</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/mqtt_driver.rb', line 87</span>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/mqtt_driver.rb', line 93</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_broker_password'>broker_password</span>
   <span class='const'>Home</span><span class='period'>.</span><span class='id identifier rubyid_mqtt_password'>mqtt_password</span>
@@ -642,12 +654,12 @@
       <pre class="lines">
 
 
-79
-80
-81</pre>
+85
+86
+87</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/mqtt_driver.rb', line 79</span>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/mqtt_driver.rb', line 85</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_broker_port'>broker_port</span>
   <span class='const'><span class='object_link'><a href="#DEFAULT_BROKER_PORT-constant" title="MqttDriver::DEFAULT_BROKER_PORT (constant)">DEFAULT_BROKER_PORT</a></span></span>
@@ -672,12 +684,12 @@
       <pre class="lines">
 
 
-83
-84
-85</pre>
+89
+90
+91</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/mqtt_driver.rb', line 83</span>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/mqtt_driver.rb', line 89</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_broker_username'>broker_username</span>
   <span class='const'>Home</span><span class='period'>.</span><span class='id identifier rubyid_mqtt_username'>mqtt_username</span>
@@ -702,20 +714,20 @@
       <pre class="lines">
 
 
-63
-64
-65
-66
-67
-68
 69
 70
 71
 72
-73</pre>
+73
+74
+75
+76
+77
+78
+79</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/mqtt_driver.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/mqtt_driver.rb', line 69</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_driver_value_to_value'>driver_value_to_value</span><span class='lparen'>(</span><span class='id identifier rubyid_driver_value'>driver_value</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='kw'>case</span> <span class='id identifier rubyid_driver_value'>driver_value</span>
@@ -748,13 +760,13 @@
       <pre class="lines">
 
 
-91
-92
-93
-94</pre>
+97
+98
+99
+100</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/drivers/mqtt_driver.rb', line 91</span>
+      <pre class="code"><span class="info file"># File 'app/models/drivers/mqtt_driver.rb', line 97</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_driver_value'>set_driver_value</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_broker'>broker</span><span class='period'>.</span><span class='id identifier rubyid_connect'>connect</span> <span class='kw'>unless</span> <span class='id identifier rubyid_broker'>broker</span><span class='period'>.</span><span class='id identifier rubyid_connected?'>connected?</span>
@@ -770,9 +782,9 @@
 </div>
 
       <div id="footer">
-  Generated on Sat Jan 13 13:04:54 2018 by
+  Generated on Tue Mar 27 20:47:15 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.1.8).
+  0.9.12 (ruby-2.2.6).
 </div>
 
     </div>
