@@ -80,7 +80,7 @@ function refreshRequest() {
         ,method: 'POST'
 		,success: function(data) {
              progressEnd();
-			 refreshEntityes(data);
+             refreshEntityes(data);
 			}
 		,error: onAjaxError
 	});
@@ -121,21 +121,23 @@ function arrangeLayout() {
 }
 
 function act(elem, action){
-		if(isDesignMode) return;
-		
-		var ent_id = elem.id;
+    ajax(action_path(action), {id: elem.id})
+}
 
-		$.ajax({
-			 url: action_path(action)
-			,method: 'POST'
-			,data: {id: ent_id}
-			,success: function(data) {
-				refreshEntityes(data);
-				}
-			,error: onAjaxError
-		});
-	}
-	
+function ajax(path, data){
+    if(isDesignMode) return;
+    $.ajax({
+        url: path
+        ,method: 'POST'
+        ,data: data
+        ,success: function(result) {
+            if ($.isArray(result))
+                refreshEntityes(result);
+        }
+        ,error: onAjaxError
+    });
+}
+
 var ready = function(){
 
     $.ajaxSetup({

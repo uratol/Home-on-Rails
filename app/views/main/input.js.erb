@@ -1,0 +1,39 @@
+$( function() {
+    var input_container = $('#input_container');
+
+    input_container.attr('title', '<%= @entity.caption %>');
+
+    input_container.html(`<%= render(partial: 'input_form') %>`);
+
+    var input_form = input_container.find('form').first();
+    var ranges = input_form.find("input[type='range']")
+
+    var set_range_caption = function () {
+        var label = $(this).closest('tr').find('label');
+        if (label.data('caption') == undefined)
+            label.data('caption', label.text());
+        label.text(label.data('caption').replace('%value', $(this).val()));
+    }
+
+    $.each(ranges, set_range_caption);
+    ranges.on("input", set_range_caption);
+
+    input_form.submit(function( event ) {
+        event.preventDefault();
+        ajax('<%= request.env['PATH_INFO'] %>', input_form.serialize());
+        input_container.dialog("close");
+    });
+
+    input_container.dialog({
+            modal: true,
+            buttons: {
+                Ok: function () {
+                    input_form.find(':submit').click(); // allows native form validation
+                    },
+                Cancel: function () {
+                    input_container.dialog("close");
+                }
+            }
+        }
+    );
+}());

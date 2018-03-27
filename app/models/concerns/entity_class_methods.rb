@@ -20,7 +20,6 @@ module EntityClassMethods
     end
     @drivers_names = @drivers_names.uniq
 
-    #@drivers_names ||= Dir.entries(Home::Engine.root.join('app','models','drivers')).inject([]){|a,f| s=f[-10..-1]; a+(s=='_driver.rb' ? [f[0..-11]] : [])}
   end
 
   def drivers
@@ -92,12 +91,12 @@ module EntityClassMethods
     new_name
   end
 
-  def params
-    @params
+  def controller
+    @controller
   end
 
-  def params=(params)
-    @params = params
+  def controller=(controller)
+    @controller = controller
   end
 
   def everyone

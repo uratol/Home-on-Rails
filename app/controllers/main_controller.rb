@@ -2,7 +2,7 @@ class MainController < ApplicationController
   
   rescue_from Exception, with: :handle_exception
 
-  before_filter :provide_params_to_model
+  before_filter :provide_controller_to_model
   skip_before_filter :verify_authenticity_token, only: :refresh
 
   def show
@@ -93,8 +93,8 @@ class MainController < ApplicationController
     (Entity[params[:name]] if params[:name]) || Entity.menu_entities.try(:first)
   end
 
-  def provide_params_to_model
-    Entity.params = params
+  def provide_controller_to_model
+    Entity.controller = self
   end
 
   def process_event(event_name)
@@ -105,6 +105,15 @@ class MainController < ApplicationController
       e.redirect_target = nil
       render js: "window.location = '#{ target.is_a?(Entity) ? "/show/#{ target.name }" : target }'"
       #redirect_to(target.is_a?(Entity) ? "/show/#{ target.name }" : target)
+    elsif e.input_items
+      @entity = e
+      @root_entity = root_entity
+      render js: render_to_string('main/input')
+
+     # respond_to do |format|
+     #   format.js {render action: :input}
+     # end
+      # render js: "$('body').add('#{ (raw escape_javascript( render_to_string(:input, layout: false) )) }"
     else
       refresh
     end

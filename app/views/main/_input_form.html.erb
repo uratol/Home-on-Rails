@@ -1,0 +1,33 @@
+<%= form_tag({}, {method: :post, remote: true}) do %>
+  <%= hidden_field_tag :id, @entity.id %>
+  <%= hidden_field_tag :name, @root_entity.name %>
+  <table>
+  <% [*@entity.input_items].each do |item| %>
+        <%
+          name = item[:name] || item[:caption]
+          type = item[:type] || 'text'
+          options = item.except(:name, :type, :caption, :default, :select)
+          caption = item[:caption] || name
+        %>
+        <tr>
+          <td>
+            <%= label_tag name, caption %>
+          </td>
+          <td>
+            <%=
+              if type.to_s == 'checkbox'
+                check_box_tag(name, nil, item[:default], options)
+              elsif type.to_s == 'select'
+                  select_tag(name, options_for_select(item[:select], item[:default]), options)
+              else
+                public_send("#{ type }_field_tag", name, item[:default], options)
+              end
+            %>
+
+          </td>
+        </tr>
+        <%#= submit_tag %>
+  <% end %>
+  </table>
+  <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+<% end %>
