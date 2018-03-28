@@ -3,7 +3,10 @@ $( function() {
 
     input_container.attr('title', '<%= @entity.caption %>');
 
-    input_container.html(`<%= render(partial: 'input_form') %>`);
+    input_container.html('<%= render(partial: 'input_form').gsub("\n", "\\n").html_safe %>');
+
+     //   .html('<%= render(partial: 'input_form').gsub("\n", '\\') %>');
+    // render(partial: 'input_form').gsub("\n", '\n' + "\\")
 
     var input_form = input_container.find('form').first();
     var ranges = input_form.find("input[type='range']")
@@ -16,7 +19,7 @@ $( function() {
     }
 
     $.each(ranges, set_range_caption);
-    ranges.on("input", set_range_caption);
+    ranges.on("input change", set_range_caption); // change required to ie11
 
     input_form.submit(function( event ) {
         event.preventDefault();
