@@ -33,8 +33,7 @@ module MqttDriver
         begin
           brokers[broker_addr] = MQTT::Client.connect(host: broker_addr, port: device.broker_port, username: device.broker_username , password: device.broker_password)
         rescue Exception => e
-          Rails.logger.error e.message
-          Rails.logger.error e.backtrace.join("\n")
+          Rails.logger.error "Cannot connect to mqtt broker: #{ e.message }\n #{ e.backtrace.join("\n") }"
         end
       end
     end
