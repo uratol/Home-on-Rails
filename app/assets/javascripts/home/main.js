@@ -3,7 +3,13 @@ var refreshInterval = 0;
 
 
 function message(msg){
-	$('#flash_messages').text(msg);
+    $fl = $('#flash_container');
+    if (msg) {
+        $fl.find('#flash_messages').text(msg);
+        $fl.show();
+    }
+    else
+        $fl.hide();
 }
 
 var onAjaxError = function (request, ajaxOptions, thrownError) {
