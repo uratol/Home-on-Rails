@@ -4,7 +4,7 @@ module EntityVisualization
   included do
     register_attributes(:caption_class)
 
-    attr_accessor(:redirect_target)
+    attr_accessor(:javascript)
     attr_accessor(:input_items)
   end
 
@@ -46,7 +46,7 @@ module EntityVisualization
   #     redirect_to 'http://google.com'
   #   end
   def redirect_to(target)
-    self.redirect_target = target
+    execute_javascript("window.location = '#{ target.is_a?(Entity) ? "/show/#{ target.name }" : target }'")
   end
 
   # @!visibility private
@@ -91,10 +91,34 @@ module EntityVisualization
   #     end
   #   end
   def input(*input_items)
+    return InputProxy.new(params) if input_items.empty?
+
     input_items.flatten!
     is_first_call = !(params[input_items.first[:name]] || params[input_items.first[:caption]])
     @input_items = input_items if is_first_call
     !is_first_call
+  end
+
+  # Display the message in browser
+  # @param text - text message
+  def message(text)
+    execute_javascript("message(\"#{ text.gsub('"', '\"') }\");");
+  end
+
+  # Allows you to run any javascript in browser
+  def execute_javascript(script)
+    @javascript = script # will be process in MainController
+    self
+  end
+
+  class InputProxy
+    def initialize(params)
+      @params = params
+    end
+
+    def [](input_name)
+      @params[input_name]
+    end
   end
 
   module ClassMethods

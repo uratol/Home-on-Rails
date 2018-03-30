@@ -100,20 +100,13 @@ class MainController < ApplicationController
   def process_event(event_name)
     e = Entity[params[:id].to_i]
     e.do_event(event_name)
-    target = e.redirect_target
-    if target
-      e.redirect_target = nil
-      render js: "window.location = '#{ target.is_a?(Entity) ? "/show/#{ target.name }" : target }'"
-      #redirect_to(target.is_a?(Entity) ? "/show/#{ target.name }" : target)
+    if e.javascript
+      render js: e.javascript
+      e.javascript = nil
     elsif e.input_items
       @entity = e
       @root_entity = root_entity
       render js: render_to_string('main/input')
-
-     # respond_to do |format|
-     #   format.js {render action: :input}
-     # end
-      # render js: "$('body').add('#{ (raw escape_javascript( render_to_string(:input, layout: false) )) }"
     else
       refresh
     end
