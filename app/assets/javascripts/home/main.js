@@ -1,4 +1,4 @@
-var refreshInterval = 0;
+var refreshTimer = 0;
     refreshDelay = 5000;
 
 
@@ -33,7 +33,10 @@ function setBrightness(elem, brightness) {
 }
 
 function stopRefresh(){
-    if (refreshInterval !== 0){ clearInterval(refreshInterval) }
+    if (refreshTimer !== 0){
+        clearTimeout(refreshTimer);
+        refreshTimer = 0;
+    }
 }
 
 function doExit(){
@@ -41,14 +44,19 @@ function doExit(){
 }
 
 function doEnter(){
+    refreshRequest();
     setRefreshInterval(refreshDelay);
+}
+
+var refreshTimeoutCallback = function(){
+    refreshRequest();
+    refreshTimer = setTimeout(refreshTimeoutCallback, refreshDelay);
 }
 
 function setRefreshInterval(interval){
     stopRefresh();
-	refreshInterval = setInterval(function() {
-		refreshRequest();
-	}, interval);
+    refreshDelay = interval;
+	refreshTimer = setTimeout(refreshTimeoutCallback, interval);
 }
 
 function refreshEntityes(entities) {

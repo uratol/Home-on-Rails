@@ -25,6 +25,7 @@ $( function() {
         event.preventDefault();
         ajax('<%= request.env['PATH_INFO'] %>', input_form.serialize());
         input_container.dialog("close");
+        return false;
     });
 
     input_container.dialog({

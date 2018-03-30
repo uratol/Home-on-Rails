@@ -102,7 +102,6 @@ class MainController < ApplicationController
     e.do_event(event_name)
     if e.javascript
       render js: e.javascript
-      e.javascript = nil
     elsif e.input_items
       @entity = e
       @root_entity = root_entity
