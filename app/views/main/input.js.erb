@@ -12,10 +12,8 @@ $( function() {
     var ranges = input_form.find("input[type='range']")
 
     var set_range_caption = function () {
-        var label = $(this).closest('tr').find('label');
-        if (label.data('caption') == undefined)
-            label.data('caption', label.text());
-        label.text(label.data('caption').replace('%value', $(this).val()));
+        var label = $(this).closest('tr').find('.range_indicator');
+        label.text($(this).val());
     }
 
     $.each(ranges, set_range_caption);

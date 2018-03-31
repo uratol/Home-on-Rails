@@ -1,7 +1,37 @@
-.alert-alert{
-  color: red;
-}
+#flash_container{
+  position: absolute;
+  background-color: #2E2F30;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  z-index: 1000;
+  padding: 3px;
+  display: none;
+  width: auto;
+  min-width: 100px;
+  max-width: 700px;
+  max-height: 300px;
+  overflow: auto;
 
-.alert-notice{
-  color: yellow;
+  .close{
+    color: #777;
+    font: 14px/100% arial, sans-serif;
+    position: absolute;
+    right: 5px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #fff;
+    top: 5px;
+  }
+
+  #flash_messages{
+    padding-right: 17px;
+
+    .alert-alert{
+      color: red;
+    }
+
+    .alert-notice{
+      color: yellow;
+    }
+  }
+
 }

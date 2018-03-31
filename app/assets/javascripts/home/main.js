@@ -5,7 +5,7 @@ var refreshTimer = 0;
 function message(msg){
     $fl = $('#flash_container');
     if (msg) {
-        $fl.find('#flash_messages').text(msg);
+        $fl.find('#flash_messages').append('<div>' + msg + '</div>');
         $fl.show();
     }
     else
@@ -165,7 +165,15 @@ var ready = function(){
 	$(".at_touchstart").bind("touchstart mousedown", function(e){ e.preventDefault(); act(this, 'touchstart'); });
 	$(".at_click, .at_dbl_click").click(function(){ act(this, 'click'); });
 	$(".at_touchend").bind("touchend mouseup", function(e){ e.preventDefault(); act(this, 'touchend'); });
-	
+
+    $flash_container = $("#flash_container");
+    $flash_container.find(".close").click(function () {
+        $flash_container.find("#flash_messages").text('');
+        $flash_container.hide();
+        return false;
+    });
+
+
 
 	refreshRequest();
 

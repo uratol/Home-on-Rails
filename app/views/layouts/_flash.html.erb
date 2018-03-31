@@ -1,5 +1,5 @@
 <%= content_tag :div, id: 'flash_container', style: ('display: block' if flash.any?) do %>
-  <a href="#" class="close" target="_blank" onclick="$(this).parent().hide();return false">✖<!--UTF-8 symbol--></a>
+  <a href="#" class="close" target="_blank">✖<!--UTF-8 symbol--></a>
   <div id="flash_messages">
     <% flash.select{|key, value| value.present?}.each do |key, value| %>
         <%= content_tag :div, value, class: "alert alert-#{key}" unless value.blank? %>

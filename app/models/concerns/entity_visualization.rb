@@ -69,32 +69,35 @@ module EntityVisualization
   # Allows you to request additional information from the user
   # by displaying a dialog box
   # @param [Array<Hash>] input_items contains array of [Hash] represented visual controls in dialog. Each [Hash] contains the keys:
-  # @option input_items [String] :caption Caption of control, required. For :range control caption can include wildcard %value, which will be replaced by current value
-  # @option input_items [:text, :number, :range, :checkbox, :select, :time, :date, :datetime, :color] :type Type of control, default :text
+  # @option input_items [String] :caption Caption of control, required.
+  # @option input_items [:text, :number, :range, :checkbox, :select, :time, :date, :color] :type Type of control, default :text
   # @option input_items [String, Number] :default Default value of control
-  # Depending on :type, other properties can also be specified, google: html input
+  # Depending on :type, other html properties can also be specified
   #
-  # @return [true, false] Returns true at second method call, wherein {#params} contains user input data
+  # @return [true, false] Returns true at second method call, wherein #input[] contains user input data
   # @example
   #   at_click do
   #     if input(
-  #         {caption: num = "номер (%value)" , type: :range, default: data.num, min: 1, max: 15},
-  #         {caption: "цвет", type: :color, default: data.color},
+  #         {caption: num = "number (%value)" , type: :range, default: data.num, min: 1, max: 15},
+  #         {caption: "color", type: :color, default: data.color},
   #         {caption: "email", type: :email, default: data.text, size: 25, style: "background-color: #{ data.color }"},
-  #         {caption: "список", type: :select, select:  ['one','two','three'], default: 'two'},
-  #         {caption: "птичка", type: :checkbox, default: data.checked}
+  #         {caption: "select list", type: :select, select:  ['one','two','three'], default: 'two'},
+  #         {caption: "check me", type: :checkbox, default: data.checked},
+  #         {caption: how_long = "How Long?", type: :duration, default: '23:59'}
   #     )
-  #       data.text = params["email"]
-  #       data.color = params["цвет"]
-  #       data.num = params[num]
-  #       data.checked = params["птичка"]
+  #       # store input data
+  #       data.num = input[num]
+  #       data.text = input["email"]
+  #       data.color = input[color]
+  #       data.checked = input["check me"]
+  #       data.how_long = = input["how_long"]
   #     end
   #   end
   def input(*input_items)
-    return InputProxy.new(params) if input_items.empty?
+    return @input_proxy ||= InputProxy.new(params) if input_items.empty?
 
     input_items.flatten!
-    is_first_call = !(params[input_items.first[:name]] || params[input_items.first[:caption]])
+    is_first_call = !(params[:input])
     @input_items = input_items if is_first_call
     !is_first_call
   end
@@ -107,18 +110,38 @@ module EntityVisualization
 
   # Allows you to run any javascript in browser
   def execute_javascript(script)
-    @javascript = script # will be process in MainController
+    @javascript = (@javascript || '') + script + (script.last != ';' ? ';' : '') # will be process in MainController
     self
   end
 
   class InputProxy
     def initialize(params)
-      @params = params
+      @input_params = {}
+      params[:input].each do |key, value_and_type|
+        origin_value = value_and_type[:value]
+        @input_params[key] = case value_and_type[:type]
+                               when 'number', 'range'
+                                 origin_value.to_f
+                               when 'checkbox'
+                                 ['on','true','1'].include?(origin_value)
+                               when 'time','date','datetime'
+                                 origin_value.try :in_time_zone
+                               when 'duration'
+                                 origin_value[:days].to_f.days + origin_value[:hours].to_f.hours + origin_value[:minutes].to_f.minutes
+                               else
+                                 origin_value
+                               end
+      end
     end
 
     def [](input_name)
-      @params[input_name]
+      @input_params[input_name]
     end
+
+    def to_h
+      @input_params
+    end
+
   end
 
   module ClassMethods

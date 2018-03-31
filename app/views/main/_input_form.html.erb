@@ -4,26 +4,19 @@
   <table>
   <% [*@entity.input_items].each do |item| %>
         <%
-          name = item[:name] || item[:caption]
+          name_base = "input[#{ item[:name] || item[:caption] }]"
+          name = name_base + '[value]'
           type = item[:type] || 'text'
-          options = item.except(:name, :type, :caption, :default, :select)
+          options = item.except(:name, :type, :caption, :default)
           caption = item[:caption] || name
         %>
         <tr>
-          <td>
+          <td class="input_caption">
             <%= label_tag name, caption %>
           </td>
           <td>
-            <%=
-              if type.to_s == 'checkbox'
-                check_box_tag(name, nil, item[:default], options)
-              elsif type.to_s == 'select'
-                  select_tag(name, options_for_select(item[:select], item[:default]), options)
-              else
-                public_send("#{ type }_field_tag", name, item[:default], options)
-              end
-            %>
-
+            <%= public_send("#{ type }_field_tag", name, item[:default], options) %>
+            <%= hidden_field_tag(name_base + '[type]', type) %>
           </td>
         </tr>
         <%#= submit_tag %>
