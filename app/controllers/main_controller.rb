@@ -61,11 +61,14 @@ class MainController < ApplicationController
   
   def design_apply
     JSON.parse(params[:data]).each do |p|
-      Entity[ p['id'].to_i ].tap do |e|
+      e = Entity.find_by_id(p['id'].to_i)
+      if e
          e.location_x = p['left'] || p['index']
          e.location_y = p['top']
          e.save!
-      end   
+      else
+        flash[:error] = "Couldn't find Entity with 'id'=#{ p['id'] }"
+      end
     end
     redirect_to :back
   end
