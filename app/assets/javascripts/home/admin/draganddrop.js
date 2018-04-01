@@ -18,7 +18,7 @@ $(document).on('turbolinks:load', function() {
 		isDesignMode = val;
 
 		if (isDesignMode) {
-			$('#design_container').show();
+            $('#design_container').show();
 			draggableEntities.draggable({
 				start : function(event, ui) {
 					if (!$(this).data('startPosition')) {
@@ -30,7 +30,6 @@ $(document).on('turbolinks:load', function() {
 					arrangeLayout();
 				},
 				cancel: false,
-				distance: 10
 			});
             draggableEntities.resizable();
 
@@ -49,7 +48,8 @@ $(document).on('turbolinks:load', function() {
 			});
 
 			$('.design_menu_item').addClass('checked');
-			
+            $('._slider').slider('disable');
+
 			createContextMenu(".entity");
 		} else {
 			if (startMenuCache.length > 0) {
@@ -74,6 +74,7 @@ $(document).on('turbolinks:load', function() {
 			};
 
 			$('#design_container').hide();
+            $('._slider').slider('enable');
 
 			draggableEntities.draggable('destroy');
 			$('.design_menu_item').removeClass('checked');
