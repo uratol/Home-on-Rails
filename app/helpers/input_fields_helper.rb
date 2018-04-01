@@ -22,27 +22,30 @@ module InputFieldsHelper
       days:
           {
 
-              caption: 'D',
+              caption: t(:days),
               select: (0..31).to_a
           },
       hours:
           {
-              caption: 'H',
+              caption: t(:hours),
               select: (0..23).to_a,
               default: default.hour
           },
       minutes:
           {
-              caption: 'M',
+              caption: t(:minutes),
               select: (0..59).to_a,
               default: default.min
           }
     }.inject('') do |result, (key, hash)|
-      result.concat content_tag(key, hash[:caption])
-        .concat select_tag("#{ name }[#{ key }]", options_for_select(hash[:select], hash[:default]), options)
+      result.concat( content_tag(:div, (
+          content_tag(:div, hash[:caption],class: "duration_label duration_#{ key }")
+            .concat select_tag("#{ name }[#{ key }]", options_for_select(hash[:select], hash[:default]), options)
+      ), class: :duration_element)
+      )
     end
 
-    content_tag(:div, inputs.html_safe, class: :duration)
+    content_tag(:div, inputs.html_safe, class: :duration_container)
 
 =begin
     content_tag(:div,

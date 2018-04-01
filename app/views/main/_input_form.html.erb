@@ -14,7 +14,7 @@
           <td class="input_caption">
             <%= label_tag name, caption %>
           </td>
-          <td>
+          <td class="input_container">
             <%= public_send("#{ type }_field_tag", name, item[:default], options) %>
             <%= hidden_field_tag(name_base + '[type]', type) %>
           </td>

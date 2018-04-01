@@ -2,3 +2,6 @@ en:
   signin: "Log in!"
   signout: "Sign out"
   admin: "Admin"
+  days: "Days"
+  hours: "Hours"
+  minutes: "Minutes"

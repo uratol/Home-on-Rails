@@ -2,3 +2,6 @@ ua:
   signin: "Увійти"
   signout: "Вийти"
   admin: "Адмін"
+  days: "Днів"
+  hours: "Годин"
+  minutes: "Хвилин"

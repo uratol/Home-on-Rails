@@ -1,33 +1,31 @@
 #input_container{
-  table{
-    width: 100%;
+  .input_caption{
+    height: 35px;
+  }
 
-    input{
-      width: 100%;
+  .duration_container{
+    height: 30px;
+    white-space: nowrap;
+    width: 150px;
+
+    .duration_element{
+      display: inline-block;
+      margin-right: 5px;
+    }
+  }
+
+  .range_container{
+    //height: 30px;
+    //white-space: nowrap;
+    .range_indicator{
+      //width: 20px;
+      //vertical-align: middle;
     }
 
-    tr{
-      line-height: 28px;
-    }
-
-    .input_caption{
-    }
-
-
-    .range_container{
-      height: 30px;
-      .range_indicator{
-        width: 20px;
-        display: inline-block;
-        vertical-align: middle;
-      }
-
-      .range{
-        display: inline-block;
-        min-width: 130px;
-        width: auto;
-        vertical-align: middle;
-      }
+    .range{
+      min-width: 180px;
+      //width: auto;
+      //vertical-align: middle;
     }
   }
 }

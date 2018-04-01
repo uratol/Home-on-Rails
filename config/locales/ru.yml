@@ -2,3 +2,6 @@ ru:
   signin: "Войти"
   signout: "Выйти"
   admin: "Админ"
+  days: "Дней"
+  hours: "Часов"
+  minutes: "Минут"
