@@ -31,6 +31,14 @@ module EntityData
       end  
     end
 
+    def to_h
+      @hash
+    end
+
+    def to_s
+      to_h.to_s
+    end
+
     private
     
     def store_hash

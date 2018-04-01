@@ -17,27 +17,54 @@ module InputFieldsHelper
   end
 
   def duration_field_tag(name, default, options)
-    default = default.in_time_zone
+    if default.respond_to? :in_time_zone
+      def_seconds = default.in_time_zone.seconds_since_midnight.to_i
+    else
+      def_seconds = default.to_i
+    end
+
+    def_days = def_seconds / (24 * 3600)
+    def_seconds -= def_days * (24 * 3600)
+    def_hours = def_seconds / 3600
+    def_seconds -= def_hours * 3600
+    def_minutes = def_seconds / 60
+    def_seconds -= def_minutes * 60
+
+    only = options[:only]
+    only = [*only].map(&:to_sym) if only
+    options.except!(:only)
+
     inputs = {
       days:
           {
 
               caption: t(:days),
-              select: (0..31).to_a
+              select: (0..366).to_a,
+              default: def_days
           },
       hours:
           {
               caption: t(:hours),
               select: (0..23).to_a,
-              default: default.hour
+              default: def_hours
           },
       minutes:
           {
               caption: t(:minutes),
               select: (0..59).to_a,
-              default: default.min
+              default: def_minutes
+          },
+      seconds:
+          {
+              caption: t(:seconds),
+              select: (0..59).to_a,
+              default: def_seconds
           }
-    }.inject('') do |result, (key, hash)|
+    }
+
+    inputs.reject!{|key, value| (not only.include?(key.to_sym))} if only
+
+    inputs = inputs.inject('') do |result, (key, hash)|
       result.concat( content_tag(:div, (
           content_tag(:div, hash[:caption],class: "duration_label duration_#{ key }")
             .concat select_tag("#{ name }[#{ key }]", options_for_select(hash[:select], hash[:default]), options)

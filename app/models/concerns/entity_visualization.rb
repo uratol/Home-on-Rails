@@ -83,7 +83,7 @@ module EntityVisualization
   #         {caption: "email", type: :email, default: data.text, size: 25, style: "background-color: #{ data.color }"},
   #         {caption: "select list", type: :select, select:  ['one','two','three'], default: 'two'},
   #         {caption: "check me", type: :checkbox, default: data.checked},
-  #         {caption: how_long = "How Long?", type: :duration, default: '23:59'}
+  #         {caption: how_long = "How Long?", type: :duration, default: '23:59', only: [:hours,:minutes]}
   #     )
   #       # store input data
   #       data.num = input[num]
@@ -127,7 +127,10 @@ module EntityVisualization
                                when 'time','date','datetime'
                                  origin_value.try :in_time_zone
                                when 'duration'
-                                 origin_value[:days].to_f.days + origin_value[:hours].to_f.hours + origin_value[:minutes].to_f.minutes
+                                 origin_value[:days].to_f.days +
+                                     origin_value[:hours].to_f.hours +
+                                     origin_value[:minutes].to_f.minutes +
+                                     origin_value[:seconds].to_f.seconds
                                else
                                  origin_value
                                end
