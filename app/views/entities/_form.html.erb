@@ -1,3 +1,5 @@
+<%= javascript_include_tag 'ace/ace', 'ace/worker-html','ace/mode-ruby' %>
+
 <% form_url = if @entity.new_record? then
                 entities_path
               else
