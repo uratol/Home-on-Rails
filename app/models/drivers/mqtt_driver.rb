@@ -25,6 +25,11 @@ module MqttDriver
   mattr_accessor :brokers
   self.brokers = {}
 
+  def self.description
+    "MQTT (Message Queuing Telemetry Transport) is an ISO standard (ISO/IEC PRF 20922)[2] publish-subscribe-based messaging protocol.
+      It works on top of the TCP/IP protocol. By default used broker ad address #{ DEFAULT_BROKER_ADDRESS } and port #{ DEFAULT_BROKER_PORT }"
+  end
+
   def self.startup
     devices.each do |device|
       broker_addr = device.broker_address.strip
@@ -74,7 +79,7 @@ module MqttDriver
           else
             driver_value
         end
-    invert? ? 1 - v : v if v
+    invert? ? 1 - v.to_f : v if v
   end
 
   def broker_address
@@ -94,12 +99,24 @@ module MqttDriver
   end
 
   def set_driver_value(v)
+    publish(address, v, retain, qos)
+  end
+
+  def publish(topic, payload, retain, qos)
     broker.connect unless broker.connected?
-    broker.publish(address, v)
+    broker.publish(topic, payload, retain, qos)
   end
 
   def broker
     self.brokers[broker_address]
+  end
+
+  def retain
+    false
+  end
+
+  def qos
+    2
   end
 
 end
