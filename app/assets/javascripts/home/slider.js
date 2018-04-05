@@ -14,6 +14,7 @@ $(document).on('turbolinks:load', function() {
 			min : slider.data('min'),
 			max : slider.data('max'),
 			step : slider.data('step'),
+            value : slider.data('value'),
 			orientation : slider.data('orientation'),
 			slide : function(event, ui) {
 				setSliderText($(this), ui.value);

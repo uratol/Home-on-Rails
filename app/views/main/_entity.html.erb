@@ -1,4 +1,4 @@
 <% img_name = e.image %>
-<%= image_tag img_name, id:"img#{e.id}", title: e.caption, alt: nil if img_name %>
-<%= content_tag(:div, e.caption, class: "caption #{ e.caption_class }", id:"caption#{e.id}") if e.caption_class %>
+<%= image_tag img_name, id:"img#{e.id}", title: e.caption, style: default_style(e), alt: nil if img_name %>
+<%= content_tag(:div, (e.try :text) || e.caption, class: "caption #{ e.caption_class }", id:"caption#{e.id}") if e.caption_class %>
  
