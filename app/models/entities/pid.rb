@@ -25,26 +25,29 @@ class Pid < Widget
   def do_schedule
     target_value_cached = target_value
 
-    return nil unless target_value_cached
+    if target_value_cached
+      e = target_value_cached.to_f - input_value.to_f
 
-    e = target_value_cached.to_f - input_value.to_f
+      prev_indication = last_indication
+      prev_value = prev_indication.try(:value) || 0
 
-    prev_indication = last_indication
-    prev_value = prev_indication.try(:value) || 0
+      e_previous = data.e_previous || 0
+      e_previous2 = data.e_previous2 || 0
 
-    e_previous = data.e_previous || 0
-    e_previous2 = data.e_previous2 || 0
-    
-    p = kP * (e - e_previous)
-    i = kI * e
-    d = kD * (e - 2 * e_previous + e_previous2)
+      p = kP * (e - e_previous)
+      i = kI * e
+      d = kD * (e - 2 * e_previous + e_previous2)
 
-    transaction do
-      data.e_previous2 = e_previous
-      data.e_previous = e
-      write_value(prev_value + p + i + d)
+      transaction do
+        data.e_previous2 = e_previous
+        data.e_previous = e
+        write_value(prev_value + p + i + d)
+      end
+    else
+      reset
+      save!
     end
-    
+
     super
   end
 
@@ -55,7 +58,8 @@ class Pid < Widget
   private
   
   def reset
-    self.value = data.e_previous = data.e_previous2 = 0
+    self.value = min
+    data.e_previous = data.e_previous2 = 0
   end
 
 end

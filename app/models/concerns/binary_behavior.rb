@@ -103,19 +103,26 @@ module BinaryBehavior
 
   def do_schedule # @!visibility private
     if pwm_power
-      self.on = (pwm_power >= 1) || average_value(pwm_consider_time_range) < pwm_power
+      pwm_power_multiple = (pwm_power.to_f / pwm_precision).round * pwm_precision
+      self.on = (pwm_power >= 1) || average_value(pwm_consider_time_range) < pwm_power_multiple
     end
     super
   end
 
   # возвращает интервал, за который учитывается мощность ШИМ
   def pwm_consider_time_range
-    schedule.to_f * 10 if schedule
+    schedule.to_f / pwm_precision if schedule
+  end
+
+  # задаёт точность отработки ШИМ
+  # вместе с расписанием определяет интервал, для которого будет браться среднее значение
+  def pwm_precision
+    0.1
   end
 
   # возвращает мощность ШИМ, при которой с периодичностью, заданой в опции schedule элемент будет включаться/выключаться
   # таким образом, чтобы среднее значение его стремилось к pwm_power
-  # @return [Float] мощность задаётся в пределах 0..1
+  # @return [Float] мощность, задаётся в пределах 0..1
   def pwm_power
     data.pwm_power
   end
