@@ -116,7 +116,7 @@ module EntityVisualization
 
   class InputProxy
     def initialize(params)
-      @input_params = {}
+      @input_params = ActiveSupport::HashWithIndifferentAccess.new
       params[:input].each do |key, value_and_type|
         origin_value = value_and_type[:value]
         @input_params[key] = case value_and_type[:type]
