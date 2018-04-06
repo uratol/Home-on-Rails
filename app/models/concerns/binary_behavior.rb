@@ -24,7 +24,7 @@ module BinaryBehavior
   # @option options [ActiveSupport::Duration, nil] :delay (опционально) время, по прошествии которого устройство будет выключено
   def on!(options = {})
     write_value max if value != max
-    delay = options.is_a? Hash ? options[:delay] : options
+    delay = options.is_a?(Hash) ? options[:delay] : options
     wait_for(delay).off! if delay
     value
   end
@@ -40,7 +40,7 @@ module BinaryBehavior
   # @option options [ActiveSupport::Duration, nil] :delay (опционально) время, по прошествии которого устройство будет включено
   def off!(options = {})
     write_value min if value != min
-    delay = options.is_a? Hash ? options[:delay] : options
+    delay = options.is_a?(Hash) ? options[:delay] : options
     wait_for(options[:delay]).on! if delay
     value
   end
