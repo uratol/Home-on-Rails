@@ -39,10 +39,10 @@ class Entity < ActiveRecord::Base
   attr_accessor :image_name
 
   # Ширина объекта в пикселах
-  attr_accessor :width
+  #attr_accessor :width
 
   # Высота объекта в пикселах
-  attr_accessor :height
+  #attr_accessor :height
 
 
   attr_accessor :driver_address # @!visibility private
