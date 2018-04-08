@@ -116,7 +116,7 @@ module MqttDriver
   end
 
   def qos
-    2
+    0
   end
 
 end
