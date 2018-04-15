@@ -51,6 +51,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'net-ping'
   s.add_dependency 'mqtt'
+  s.add_dependency 'ice_cube'
 
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'capybara'
