@@ -7,6 +7,8 @@ describe Entity, type: :model do
   before do
     #puts "Tables: #{ActiveRecord::Base.connection.tables};"
     @e = Entity.find_or_create_by(name: 'test', caption: 'test', type: 'Widget')
+    User.find_or_create_by(name: 'Admin', email: 'admin@example.com', isadmin: true)
+    User.find_or_create_by(name: 'User', email: 'user@example.com', isadmin: false)
   end
   
   it 'Data memory store' do

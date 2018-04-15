@@ -2,5 +2,9 @@
 
 <%= render 'form' %>
 
+<%= link_to 'Copy', new_entity_path(@entity) %>
+
+<%= link_to 'Destroy', entity_path(@entity), method: :delete, data: { confirm: 'Are you sure?' } %>
+
 <%#= link_to 'Show', {url:entity_path(@entity)} %> 
 <%= link_to 'Back', url_for(:back) %>

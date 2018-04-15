@@ -10,7 +10,7 @@ describe FacadeBlind, type: :model do
     Actor.find_or_create_by(name: :fb_up, driver: :dummy, caption: 'fb_up')
     Actor.find_or_create_by(name: :fb_down, driver: :dummy, caption: 'fb_down')
 
-    self.fb = FacadeBlind.find_or_create_by(name: :fb, driver: :bidirectional_motor, caption: 'test facade blind')
+    self.fb = FacadeBlind.find_or_create_by(name: :fb, driver: :bidirectional_tilt_motor, caption: 'test facade blind')
     fb.behavior_script = <<-eos
       def up_full_time
         10.second
@@ -19,8 +19,6 @@ describe FacadeBlind, type: :model do
       def down_full_time
         10.second
       end
-
-      self.position_range = 0..100
     eos
 
     #fb.send :behavior_script_eval
@@ -66,8 +64,9 @@ describe FacadeBlind, type: :model do
   it "tilt" do
     puts "from #{ fb.position } to 40, 0, 20"
     expect(fb.position).to eq(0)
-    expect(fb.tilt).to eq(nil)
-    fb.tilt_range = -80..80
+    expect(fb.tilt).to eq(0)
+    fb.min_tilt = -80
+    fb.max_tilt = 80
     fb.tilt_up_full_time = 10.second
     fb.tilt_down_full_time = 10.second
     fb.set_tilt!(0)

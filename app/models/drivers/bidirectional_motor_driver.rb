@@ -128,7 +128,7 @@ module BidirectionalMotorDriver
   def start_steps!(steps)
 
     start_position = current_position
-    stop!(steps.last.finish_position)
+    stop!(steps.last.try :finish_position)
 
     return if steps.empty?
 
