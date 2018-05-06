@@ -7,6 +7,9 @@
 }
 
 table.entities {
+  .disabled{
+    color: #999999;
+  }
   td{white-space: nowrap;}
   tr{
     cursor: pointer;

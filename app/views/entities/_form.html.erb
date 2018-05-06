@@ -46,7 +46,7 @@
         <div class="field">
           <%= f.label :parent_id %>
           <br>
-          <%= f.select :parent_id, nested_set_options(@parents, @entity) { |i| "#{'&nbsp;'*2 * i.depth}#{i.caption}".html_safe }, {include_blank: "None"} %>
+          <%= f.select :parent_id, nested_set_options(@parents, @entity) { |i| "#{'&nbsp;'*2 * i.depth}#{ i.name} : #{ i.type }".html_safe }, {include_blank: "None"} %>
         </div>
 
 

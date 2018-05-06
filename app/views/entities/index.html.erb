@@ -24,7 +24,7 @@
   <tbody>
     <% @entities.each do |entity| %>
       <% edit_path = edit_entity_path(entity) %>
-      <tr>
+      <tr<%= ' class="disabled"'.html_safe if entity.disabled %>>
       	<td data-link="<%= edit_path %>" style="padding-left:<%= entity.depth*30 %>px">
       		<% ic = entity.image %>
       		<%= image_tag ic, width: 16, height: 16 if ic %>

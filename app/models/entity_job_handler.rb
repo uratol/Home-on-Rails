@@ -3,22 +3,22 @@ class EntityJobHandler
   
   attr_accessor :entity_id, :args, :options
 
-  def initialize obj, options = {}
+  def initialize(obj, options = {})
     return if performing?
     @entity, @options = obj, options
     if @entity && options[:source_row]
-      raise "Block not found in behavior body script. Use method call instead" unless @entity.state.include? :behavior_script_eval
-      schedule! 
+      raise 'Block not found in behavior body script. Use method call instead' unless @entity.state.include? :behavior_script_eval
+      schedule!
     end
   end
   
-  def enqueue job
+  def enqueue(job)
 #    puts "!enqueue! job=#{ job }, options=#{options}, next_run_time=#{ next_run_time }"
-    job.entity_id = entity_id     
+    job.entity_id = entity_id
     job.queue = queue_name
   end
   
-  def before job
+  def before(job)
     @entity = safe_find_entity job.entity_id
   end
   
@@ -59,18 +59,18 @@ class EntityJobHandler
   
   private
   
-  def schedule! current_job = nil
+  def schedule!(current_job = nil)
     return unless (run_time = next_run_time)
 
-      
+
 #    query = @entity.jobs.where(queue: queue_name)
 #    query = query.where.not(current_job.id) if current_job
-      
+
     self.entity_id = @entity.id
     tmp_obj = remove_instance_variable :@entity # for avoiding serialization
     begin
-      EntityJob.enqueue(self, run_at: run_time) 
-    ensure  
+      EntityJob.enqueue(self, run_at: run_time)
+    ensure
       @entity = tmp_obj #return
     end
     true
@@ -109,21 +109,21 @@ class EntityJobHandler
 
 
   def next_week_day(date, day_of_week)
-	days_shift = (parse_week_day(day_of_week) - date.wday) % 7
-	days_shift = 7 if days_shift == 0
-	date + days_shift.days
+    days_shift = (parse_week_day(day_of_week) - date.wday) % 7
+    days_shift = 7 if days_shift == 0
+    date + days_shift.days
   end
 
   def parse_week_day(wd)
-	wd.is_a?(Fixnum) && wd<=7 ? wd : Date.parse(wd.to_s).wday
+  	wd.is_a?(Fixnum) && wd<=7 ? wd : Date.parse(wd.to_s).wday
   end
 
   def next_interval(time, interval)
-	if interval.is_a?(Enumerable)
-	  interval.map{ |weekday| next_week_day(time, weekday)}.min
-	else
-      time + interval
-	end
+    if interval.is_a?(Enumerable)
+      interval.map{ |weekday| next_week_day(time, weekday)}.min
+    else
+        time + interval
+    end
   end
 
 
