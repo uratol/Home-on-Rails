@@ -1,0 +1,17 @@
+*.gem
+spec/gemfiles/Gemfile*.lock
+
+.bundle/
+tmp/*
+log/*.log
+pkg/
+
+spec/dummy/db/*.sqlite3
+spec/dummy/log/*.log
+spec/dummy/tmp/
+spec/dummy/.sass-cache
+
+.DS_Store
+*.sublime-workspace
+
+.idea

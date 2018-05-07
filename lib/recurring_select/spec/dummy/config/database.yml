@@ -1,0 +1,11 @@
+development:
+  adapter: postgresql
+  database: recurring_select_development
+  username:
+  password:
+
+test:
+  adapter: postgresql
+  database: recurring_select_test
+  username:
+  password:
