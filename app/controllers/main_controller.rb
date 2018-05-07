@@ -11,7 +11,7 @@ class MainController < ApplicationController
     flash[:warning] = 'Entities not found' unless @root_entity
     
     if @root_entity
-      @entities = @root_entity.self_and_descendants.where("disabled = ? or id = ?", false, @root_entity)
+      @entities = @root_entity.self_and_descendants.where("hidden = ? or id = ?", false, @root_entity)
     else
       @entities = []  
     end  

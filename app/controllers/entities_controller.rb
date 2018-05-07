@@ -113,7 +113,7 @@ class EntitiesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def entity_params
-     p = params.require(:entity).permit(:name, :type, :caption, :address, :location_x, :location_y, :value, :parent_id, :driver, :power, :behavior_script, :disabled)
+     p = params.require(:entity).permit(:name, :type, :caption, :address, :location_x, :location_y, :value, :parent_id, :driver, :power, :behavior_script, :disabled, :hidden)
      p[:name].strip!
      p
   end

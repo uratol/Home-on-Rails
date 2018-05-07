@@ -79,6 +79,12 @@
           <%= f.check_box :disabled %>
         </div>
 
+        <div class="field">
+          <%= f.label :hidden %>
+          <br>
+          <%= f.check_box :hidden %>
+        </div>
+
         <% if @source_entity.try(:descendants).try(:any?) %>
             <%= hidden_field_tag :source_id, @source_entity.id  %>
 
