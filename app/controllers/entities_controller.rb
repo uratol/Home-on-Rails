@@ -1,6 +1,6 @@
 class EntitiesController < ApplicationController
 
-  before_action :set_entity, only: [:show, :edit, :update, :destroy]
+  before_action :set_entity, only: [:show, :edit, :update, :destroy, :export]
   before_action :admin_user!
 
   def classes
@@ -90,6 +90,23 @@ class EntitiesController < ApplicationController
       er, notice = @entity.errors.full_messages.join, nil
     end
     redirect_to :back, notice: notice, alert: er
+  end
+
+  # GET /entities/export/1
+  def export
+    send_data @entity.export_hash.to_json, filename: "#{@entity.name}.json"
+  end
+
+  def import
+    @entity = params[:id] == 'root' ? nil : Entity.find(params[:id])
+    @parents = Entity.all
+  end
+
+  def do_import
+    @parent = params[:parent].blank? ? nil : Entity.find(params[:parent])
+    imported_entities = 0
+    imported_images = 0
+    redirect_to(entities_path, notice: "#{ imported_entities } entities was successfully imported.\n #{ imported_images } images was successfully imported")
   end
 
   private

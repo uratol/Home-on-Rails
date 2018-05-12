@@ -1,6 +1,8 @@
 module EntityVisualization
   extend ActiveSupport::Concern
-  
+  ICON_RELATIVE_LOCATION = "entities"
+
+
   included do
     register_attributes(:caption_class)
 
@@ -12,28 +14,60 @@ module EntityVisualization
     ("%g" % ("%.2f" % value) if value).to_s
   end
 
+  def image_value
+    human_value
+  end
+
+  def image_files(include_home, only_for_current_value)
+    return @files if @files
+    file_bases = [(image_name||name).to_s] + self.class.ancestors_and_self(Entity).map{|c| c.name.downcase}
+    file_values =  []
+    if only_for_current_value
+      file_values << '.' + image_value if value
+    else
+      file_values << '.*'
+    end
+    file_values << ','
+
+    search_mask = "{#{ file_bases.join(',') }}{#{ file_values.join }}.*"
+    @files = Dir.glob(Rails.root.join('app','assets','images',ICON_RELATIVE_LOCATION, search_mask))
+    @files += Dir.glob(Home::Engine.root.join('app','assets','images',ICON_RELATIVE_LOCATION, search_mask)) if include_home
+    @files
+  end
+
   def image
-    icon_relative_location = "entities"
+    image_files(true, true).first
+  end
+
+  def images_for_export
+    self_and_descendants
+        .inject([]){|acc, entity| acc + entity.image_files(false, false) }
+        .uniq
+        .map{|file_name| {File.basename(file_name) => Base64.encode64(File.open(file_name, "rb").read) }}
+  end
+
+=begin
+  def image
     file_exts = %w[png gif jpg jpeg]
-    file_bases = [(image_name||name).to_s] + self.class.ancestors_and_self(Entity.superclass).map{|c| c.name.downcase} 
+    file_bases = [(image_name||name).to_s] + self.class.ancestors_and_self(Entity.superclass).map{|c| c.name.downcase}
     file_values =  []
     file_values << '.'+human_value if value
     file_values << ''
-    files = Dir.entries Rails.root.join('app','assets','images',icon_relative_location)
-    files += Dir.entries Home::Engine.root.join('app','assets','images',icon_relative_location)
-    
-    for file_base in file_bases
-      for file_value in file_values
-        for file_ext in file_exts
+
+    files = image_files(true)
+    file_bases.each {|file_base|
+      file_values.each {|file_value|
+        file_exts.each {|file_ext|
           f = "#{ file_base+file_value }.#{ file_ext }"
-          return File.join(icon_relative_location,f) if files.include? f 
-        end
-      end
-    end
+          return File.join(ICON_RELATIVE_LOCATION, f) if files.include? f
+        }
+      }
+    }
     nil
   rescue Exception
     nil
   end
+=end
 
   # Redirects browser to object or url
   # @param target [Entity, String]

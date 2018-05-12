@@ -320,6 +320,18 @@ class Entity < ActiveRecord::Base
     state.include?(:remote_execute)
   end
 
+  def export_hash(depth = 0)
+    @result = as_json.except('id', 'parent_id', 'lft', 'rgt', 'depth', 'children_count', 'data', 'attrs')
+    @result['behavior_script'] = behavior_script if behavior_script
+    childs = children.map{|ch| ch.export_hash(depth + 1)}
+    @result['children'] = childs if childs.any?
+    if depth == 0
+      imgs = images_for_export
+      @result['images'] = imgs if imgs.any?
+    end
+    @result
+  end
+
   protected
 
   # @!visibility private
