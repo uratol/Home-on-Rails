@@ -106,7 +106,34 @@ class EntitiesController < ApplicationController
     @parent = params[:parent].blank? ? nil : Entity.find(params[:parent])
     imported_entities = 0
     imported_images = 0
-    redirect_to(entities_path, notice: "#{ imported_entities } entities was successfully imported.\n #{ imported_images } images was successfully imported")
+
+    if params[:files] && params[:files].any?
+      entities = params[:files].map{|f| JSON.parse(f.read) }
+    else
+      redirect_to :back, alert: 'Files not choosen'
+      return
+    end
+
+    import_result = {}
+    notice = nil
+    errors = nil
+    ActiveRecord::Base.transaction do
+      name_mask = params[:name_mask]
+      name_mask = '*' if name_mask.nil? || name_mask.blank?
+      caption_mask = params[:caption_mask]
+      caption_mask = '*' if caption_mask.nil? || caption_mask.blank?
+      import_result = import_from_array(entities, @parent, name_mask, caption_mask, params[:import_images],import_result)
+      if import_result[:errors]
+        errors = import_result[:errors].join(".\n")
+        raise ActiveRecord::Rollback
+      else
+        notice = "#{ import_result[:entities] || 0} entities was successfully imported.\n
+        #{ import_result[:images] || 0 } images was successfully imported\n"
+      end
+    end
+
+    redirect_to errors ? :back : entities_path, notice: notice, alert: errors
+
   end
 
   private
@@ -128,11 +155,40 @@ class EntitiesController < ApplicationController
     @entity = Entity.find(params[:id])
   end
 
+  PERMITTED_ATTRIBS = %w(name type caption address location_x location_y value parent_id driver power behavior_script disabled hidden width height)
+
   # Never trust parameters from the scary internet, only allow the white list through.
   def entity_params
-     p = params.require(:entity).permit(:name, :type, :caption, :address, :location_x, :location_y, :value, :parent_id, :driver, :power, :behavior_script, :disabled, :hidden)
+     p = params.require(:entity).permit(*PERMITTED_ATTRIBS)
      p[:name].strip!
      p
+  end
+
+  def import_from_array(entities, parent, name_mask, caption_mask, import_images, result)
+    entities.each do |hash|
+      hash['parent_id'] = parent.try :id
+      hash['name'] = name_mask.gsub('*', hash['name'])
+      hash['caption'] = caption_mask.gsub('*', hash['caption'])
+      e = Entity.new(hash.slice(* PERMITTED_ATTRIBS))
+      e.behavior_script = hash['behavior_script']
+      if e.save
+        result[:entities] = (result[:entities] || 0) + 1
+      else
+        result[:errors] = (result[:errors] || []) + ["Error: #{ e.errors.to_a.join(';') } (#{ hash.except('children','images') })"]
+      end
+      result.merge!(import_from_array(hash['children'], e, name_mask, caption_mask, import_images, result)) if hash['children']
+      if hash['images'] && import_images && result[:errors].nil?
+        hash['images'].each do |img|
+          img.each_pair do |file_name, base64|
+            File.open(Rails.root.join('app','assets','images',EntityVisualization::ICON_RELATIVE_LOCATION, file_name), 'wb') do |file|
+              file.write(Base64.decode64(base64))
+            end
+            result[:images] = (result[:images] || 0) + 1
+          end
+        end
+      end
+    end
+    result
   end
 
 

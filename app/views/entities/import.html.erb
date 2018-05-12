@@ -1,10 +1,28 @@
 <%= form_tag '', multipart: true do %>
     <p>
-      <%= label_tag :parent, 'Insert into:' %>
-      <%= select_tag :parent, options_for_select(parents_options(@parents, @entity)), include_blank: "ROOT" %>
+      Attention!
+      When importing files from external sources, malicious code may be injected. Check the behavior_script carefully before importing
     </p>
     <p>
       <%= file_field_tag 'files[]', multiple: true %>
+    </p>
+    <p>
+      <%= label_tag :parent, 'Insert into:' %>
+      <%= select_tag :parent, options_for_select(parents_options(@parents, @entity)), include_blank: "ROOT" %>
+    </p>
+<!--
+    <p>
+      <%= label_tag :name_mask, 'Name mask (* will be replaced by entity name):' %>
+      <%= text_field_tag :name_mask, "*" %>
+    </p>
+    <p>
+      <%= label_tag :name_mask, 'Caption mask (* will be replaced by entity caption):' %>
+      <%= text_field_tag :caption_mask, "*" %>
+    </p>
+-->
+    <p>
+      <%= label_tag :import_images, 'Import image files' %>
+      <%= check_box_tag :import_images, 1, true  %>
     </p>
     <%= submit_tag 'Import!' %>
 <% end %>

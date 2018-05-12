@@ -322,6 +322,7 @@ class Entity < ActiveRecord::Base
 
   def export_hash(depth = 0)
     @result = as_json.except('id', 'parent_id', 'lft', 'rgt', 'depth', 'children_count', 'data', 'attrs')
+    @result['type'] = type
     @result['behavior_script'] = behavior_script if behavior_script
     childs = children.map{|ch| ch.export_hash(depth + 1)}
     @result['children'] = childs if childs.any?

@@ -17,7 +17,7 @@
       <th>Value</th>
       <th>Events</th>
       <th>Jobs</th>
-      <th colspan="3"></th>
+      <th colspan="5"></th>
     </tr>
   </thead>
 
@@ -52,7 +52,9 @@
         	<% end %>
         </td>
         <td><%= link_to 'Copy', new_entity_path(entity) %></td>
+        <td><%= link_to 'Export to file', "/entities/export/#{ entity.id }", method: :post %></td>
         <td><%= link_to 'Destroy', entity_path(entity), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
       </tr>
     <% end %>
   </tbody>
