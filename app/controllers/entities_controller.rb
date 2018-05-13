@@ -124,7 +124,7 @@ class EntitiesController < ApplicationController
       caption_mask = '*' if caption_mask.nil? || caption_mask.blank?
       import_result = import_from_array(entities, @parent, name_mask, caption_mask, params[:import_images],import_result)
       if import_result[:errors]
-        errors = import_result[:errors].join(".\n")
+        errors = import_result[:errors].join(".\n").first(800)
         raise ActiveRecord::Rollback
       else
         notice = "#{ import_result[:entities] || 0} entities was successfully imported.\n
@@ -174,7 +174,7 @@ class EntitiesController < ApplicationController
       if e.save
         result[:entities] = (result[:entities] || 0) + 1
       else
-        result[:errors] = (result[:errors] || []) + ["Error: #{ e.errors.to_a.join(';') } (#{ hash.except('children','images') })"]
+        result[:errors] = (result[:errors] || []) + ["Error: #{ e.errors.to_a.join(';') } (#{ hash.except('children','images','behavior_script') })"]
       end
       result.merge!(import_from_array(hash['children'], e, name_mask, caption_mask, import_images, result)) if hash['children']
       if hash['images'] && import_images && result[:errors].nil?
