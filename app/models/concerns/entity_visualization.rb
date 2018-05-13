@@ -31,7 +31,7 @@ module EntityVisualization
     end
     file_values << ','
 
-    search_mask = "{#{ file_bases.join(',') }}{#{ file_values.join }}.*"
+    search_mask = "{#{ file_bases.join(',') }}{#{ file_values.join }}.{png,gif,jpeg,jpg,webp,svg}"
     @files = Dir.glob(Rails.root.join('app','assets','images',ICON_RELATIVE_LOCATION, search_mask))
     @files += Dir.glob(Home::Engine.root.join('app','assets','images',ICON_RELATIVE_LOCATION, search_mask)) unless for_export
 
