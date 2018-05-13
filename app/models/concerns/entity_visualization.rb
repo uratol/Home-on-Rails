@@ -1,3 +1,5 @@
+require 'pathname'
+
 module EntityVisualization
   extend ActiveSupport::Concern
   ICON_RELATIVE_LOCATION = "entities"
@@ -18,30 +20,31 @@ module EntityVisualization
     human_value
   end
 
-  def image_files(include_home, only_for_current_value)
+  def image_files(for_export)
     return @files if @files
     file_bases = [(image_name||name).to_s] + self.class.ancestors_and_self(Entity).map{|c| c.name.downcase}
     file_values =  []
-    if only_for_current_value
-      file_values << '.' + image_value if value
-    else
+    if for_export
       file_values << '.*'
+    else
+      file_values << '.' + image_value if value
     end
     file_values << ','
 
     search_mask = "{#{ file_bases.join(',') }}{#{ file_values.join }}.*"
     @files = Dir.glob(Rails.root.join('app','assets','images',ICON_RELATIVE_LOCATION, search_mask))
-    @files += Dir.glob(Home::Engine.root.join('app','assets','images',ICON_RELATIVE_LOCATION, search_mask)) if include_home
-    @files
+    @files += Dir.glob(Home::Engine.root.join('app','assets','images',ICON_RELATIVE_LOCATION, search_mask)) unless for_export
+
+    for_export ? @files : @files.map{|f| File.join(ICON_RELATIVE_LOCATION, File.basename(f)) }
   end
 
   def image
-    image_files(true, true).first
+    image_files(false).first
   end
 
   def images_for_export
     self_and_descendants
-        .inject([]){|acc, entity| acc + entity.image_files(false, false) }
+        .inject([]){|acc, entity| acc + entity.image_files(true) }
         .uniq
         .map{|file_name| {File.basename(file_name) => Base64.encode64(File.open(file_name, "rb").read) }}
   end
