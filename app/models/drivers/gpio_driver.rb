@@ -96,11 +96,11 @@ module GpioDriver
   end
 
   def self.devices
-    Entity.where(driver: :gpio).where.not(address: nil, disabled: false)
+    Entity.where(driver: :gpio).where.not(address: nil).where(disabled: false)
   end
 
   def self.sensors
-    Sensor.where(driver: :gpio).where.not(address: nil, disabled: false)
+    Sensor.where(driver: :gpio).where.not(address: nil).where(disabled: false)
   end
   
   def self.build_pin_map
