@@ -14,11 +14,19 @@ module GpioDriver
   end
 
   def set_driver_value(driver_value)
-    GpioDriver.io.digital_write(pin_no, driver_value.to_i) if self.gpio_installed
+    GpioDriver.digital_write(address.to_i, driver_value)
   end
 
   def get_driver_value
-    GpioDriver.io.digital_read(pin_no)
+    GpioDriver.digital_read(address.to_i)
+  end
+
+  def self.digital_write(bcm_pin, value)
+    io.digital_write(map_pin(bcm_pin), value.to_i) if gpio_installed
+  end
+
+  def self.digital_read(bcm_pin)
+    io.digital_read(map_pin(bcm_pin)) if gpio_installed
   end
 
   def self.watch(&block)
