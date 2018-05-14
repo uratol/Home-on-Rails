@@ -51,8 +51,8 @@ module BidirectionalMotorDriver
   def stop!(at_position = nil)
     parent_remote_call(:stop!) unless at_position
     @stopping = true
-    up_motor.set_driver_value(value_to_driver_value(0))
-    down_motor.set_driver_value(value_to_driver_value(0))
+    up_motor.set_driver_value(up_motor.value_to_driver_value(0))
+    down_motor.set_driver_value(down_motor.value_to_driver_value(0))
     write_value(at_position || current_position)
     if thread_active? || at_position.nil?
       fire_event(:on_stop)
@@ -161,14 +161,14 @@ module BidirectionalMotorDriver
         down_value = step.direction < 0 ? 1 : 0
 
         if up_relay_during_supported
-          up_relay.set_driver_value_during(value_to_driver_value(up_value), step.delay)
+          up_relay.set_driver_value_during(up_relay.value_to_driver_value(up_value), step.delay)
         else
-          up_relay.set_driver_value(value_to_driver_value(up_value)) if up_value != up_value_previous
+          up_relay.set_driver_value(up_relay.value_to_driver_value(up_value)) if up_value != up_value_previous
         end
         if down_relay_during_supported
-          down_relay.set_driver_value_during(value_to_driver_value(down_value), step.delay)
+          down_relay.set_driver_value_during(down_relay.value_to_driver_value(down_value), step.delay)
         else
-          down_relay.set_driver_value(value_to_driver_value(down_value)) if down_value != down_value_previous || down_relay_during_supported
+          down_relay.set_driver_value(down_relay.value_to_driver_value(down_value)) if down_value != down_value_previous || down_relay_during_supported
         end
 
         now = Time.now
@@ -179,8 +179,8 @@ module BidirectionalMotorDriver
 
         fire_event(:on_finish_step, step)
       end
-      up_relay.set_driver_value(value_to_driver_value(0))
-      down_relay.set_driver_value(value_to_driver_value(0))
+      up_relay.set_driver_value(up_relay.value_to_driver_value(0))
+      down_relay.set_driver_value(down_relay.value_to_driver_value(0))
       fire_event(:on_before_finish)
       self.relay_thread = nil
       fire_event(:on_finish)
