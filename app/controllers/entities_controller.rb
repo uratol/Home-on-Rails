@@ -122,7 +122,12 @@ class EntitiesController < ApplicationController
       name_mask = '*' if name_mask.nil? || name_mask.blank?
       caption_mask = params[:caption_mask]
       caption_mask = '*' if caption_mask.nil? || caption_mask.blank?
-      import_result = import_from_array(entities, @parent, name_mask, caption_mask, params[:import_images],import_result)
+      begin
+        import_result = import_from_array(entities, @parent, name_mask, caption_mask, params[:import_images],import_result)
+      rescue Exception => e
+        errors = e.message
+      end
+
       if import_result[:errors]
         errors = import_result[:errors].join(".\n").first(800)
         raise ActiveRecord::Rollback
