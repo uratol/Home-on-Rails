@@ -168,6 +168,8 @@ module EntityVisualization
                                      origin_value[:hours].to_f.hours +
                                      origin_value[:minutes].to_f.minutes +
                                      origin_value[:seconds].to_f.seconds
+                               when 'schedule'
+                                 TimedSchedule::Schedule.from_hash(origin_value.to_h)
                                else
                                  origin_value
                                end

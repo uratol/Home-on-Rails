@@ -73,17 +73,11 @@ module InputFieldsHelper
     end
 
     content_tag(:div, inputs.html_safe, class: :duration_container)
+  end
 
-=begin
-    content_tag(:div,
-                content_tag(:span, "D")
-                .concat(select_tag(name + '[days]', options_for_select((0..31).to_a), options))
-                .concat(content_tag(:span, "H"))
-                .concat(select_tag(name + '[hours]', options_for_select((0..23).to_a), options))
-                .concat(content_tag(:span, "M"))
-                .concat(select_tag(name + '[minutes]', options_for_select((0..59).to_a), options)),
-     class: :duration)
-=end
+
+  def schedule_field_tag(name, default, options)
+    select_recurring(name, :post, default, options, {})
   end
 
 end

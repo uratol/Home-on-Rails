@@ -5,9 +5,6 @@ $( function() {
 
     input_container.html('<%= render(partial: 'input_form').gsub("\n", "\\n").html_safe %>');
 
-     //   .html('<%= render(partial: 'input_form').gsub("\n", '\\') %>');
-    // render(partial: 'input_form').gsub("\n", '\n' + "\\")
-
     var input_form = input_container.find('form').first();
     var ranges = input_form.find("input[type='range']")
 
