@@ -33,6 +33,7 @@ Gem::Specification.new do |s|
     s.add_dependency 'win32-sound' 
     s.add_dependency 'tzinfo-data'
   end
+
   s.add_dependency 'ace-rails-ap'
 
   s.add_dependency 'devise', '3.5.1'

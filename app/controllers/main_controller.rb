@@ -121,22 +121,3 @@ class MainController < ApplicationController
   end
 
 end
-
-=begin
-//= require jquery
-//= require jquery_ujs
-
-//= require jquery-ui
-//= require jquery.contextMenu.js
-
-//= require ace/ace
-//= require ace/worker-html
-//= require ace/mode-ruby
-
-
-
-*= require jquery-ui
- *= require jquery.contextMenu.css
- * 
- 
-=end

@@ -17,7 +17,7 @@
       <th>Value</th>
       <th>Events</th>
       <th>Jobs</th>
-      <th colspan="5"></th>
+      <!--<th>Actions</th>-->
     </tr>
   </thead>
 
@@ -25,12 +25,12 @@
     <% @entities.each do |entity| %>
       <% edit_path = edit_entity_path(entity) %>
 
-      <% entity_class = entity.disabled ? 'disabled' : ''
-         entity_class += ' hidden' if entity.hidden
-         entity_class.strip!
-         entity_class = ' class="' + entity_class +'"' unless entity_class.blank?
+      <%
+        entity_class = entity.types.join(' ')
+        entity_class += ' disabled' if entity.disabled
+        entity_class += ' hidden' if entity.hidden
       %>
-      <tr<%= entity_class.html_safe %>>
+      <tr id="<%= entity.id%>" name="<%= entity.name %>" class="<%= entity_class.html_safe %>">
       	<td data-link="<%= edit_path %>" style="padding-left:<%= entity.depth*30 %>px">
       		<% ic = entity.image %>
       		<%= image_tag ic, width: 16, height: 16 if ic %>
@@ -51,9 +51,16 @@
 	        	<%= content_tag :span, j.queue, {title: "at #{j.run_at}\n#{j.last_error}", class: "job#{' error' if j.last_error}"}.compact %>
         	<% end %>
         </td>
-        <td><%= link_to 'Copy', new_entity_path(entity) %></td>
-        <td><%= link_to 'Export to file', "/entities/export/#{ entity.id }", method: :post %></td>
-        <td><%= link_to 'Destroy', entity_path(entity), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<!--
+        <td>
+          <span class="actions">
+            <span class="dropbtn"> Actions </span>
+            <%= link_to 'Copy', new_entity_path(entity) %>
+            <%= link_to 'Export to file', "/entities/export/#{ entity.id }", method: :post %>
+            <%= link_to 'Destroy', entity_path(entity), method: :delete, data: { confirm: 'Are you sure?' } %>
+          </span>
+        </td>
+-->
 
       </tr>
     <% end %>

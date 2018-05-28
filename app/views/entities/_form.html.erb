@@ -1,5 +1,3 @@
-<%= javascript_include_tag 'ace/ace', 'ace/worker-html','ace/mode-ruby' %>
-
 <% form_url = if @entity.new_record? then
                 entities_path
               else
@@ -9,9 +7,9 @@
 
     <%= render '/layouts/entity_errors', entity: @entity %>
 
-    <div style="vertical-align: top">
+    <div class="inputs">
 
-      <div style="display:inline-block">
+      <div class="main_inputs" >
 
         <div class="field">
           <%= f.label :name %>
@@ -92,22 +90,19 @@
               <%= f.label "Also copy all descendants (#{ @source_entity.descendants.length } entities)" %>
               <br>
               <%= check_box_tag 'create_descendants', "1", self.params['create_descendants'] %>
-              <%#=
-                  check_box_tag 'create_descendants', self.params['create_descendants'].to_s == '1' ? 1 : 0, self.params['create_descendants'].to_s == '1'
-              %>
             </div>
         <% end %>
 
       </div>
 
-      <div style="display:inline-block; vertical-align: top; padding-left: 50px">
+      <div class="behavior_inputs">
         <div class="field">
           <%= f.label :behavior_script %>
           <br>
 
           <%= f.hidden_field :behavior_script %>
 
-          <div id="editor" style="width:600px; height: 300px;"><%= @entity.behavior_script %></div>
+          <div id="editor"><%= @entity.behavior_script %></div>
           <div class="events">
             Insert stab at cursor:
             <ul>
@@ -131,43 +126,6 @@
           </div>
 
           <%= link_to 'Help', "/doc/#{ @entity.class.name }.html", target: :_blank %>
-
-          <script>
-              function setupEditor(){
-                  var editor = ace.edit("editor");
-                  editor.getSession().setMode("ace/mode/ruby");
-                  editor.setOptions({
-                      maxLines: 80, minLines: 15, tabSize: 2, useSoftTabs: true
-                  });
-                  editor.$blockScrolling = Infinity;
-
-                  // editor.session.setNewLineMode("unixs")
-
-                  editor.commands.addCommand({
-                      name: "submit",
-                      exec: function () {
-                          $('#new_entity,#edit_entity').submit();
-                      },
-                      bindKey: "Ctrl-S"
-                  });
-
-
-                  $('#new_entity,#edit_entity').submit(function (e) {
-                      $('#entity_behavior_script').val(editor.getValue());
-                  });
-
-                  $('.method').click(function (e) {
-                      var pos = editor.getCursorPosition();
-                      var pattern = $(this).data('pattern') + '\n\n';
-                      editor.insert(pattern);
-                      editor.gotoLine(pos.row + 2);
-                      editor.insert('  ');
-//					editor.getSession().getSelection().selectionLead.setPosition(pos);
-                      editor.focus();
-                  });
-              }
-              $(document).on('turbolinks:load', setupEditor);
-          </script>
         </div>
       </div>
 

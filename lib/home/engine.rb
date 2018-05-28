@@ -15,7 +15,7 @@ module Home
     require 'jquery_context_menu-rails'
 
     require 'ace-rails-ap'
-        
+
     require 'devise'
     
     require 'web-console'

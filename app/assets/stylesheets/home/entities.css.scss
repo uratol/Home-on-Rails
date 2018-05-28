@@ -13,7 +13,18 @@ table.entities {
     text-shadow: 1px 1px 0px #000;
   }
 
-  td{white-space: nowrap;}
+  td{
+    white-space: nowrap;
+
+    .actions {
+      display: none;
+    }
+
+    .actions:hover + span {
+      display: block;
+    }
+
+  }
 
   tr{
     cursor: pointer;
@@ -22,22 +33,46 @@ table.entities {
       background-color: #111;
     }
   }
+
+  .job{
+    color: #cfc;
+  }
+
+  .job.error{color:red}
+
 }
 
-textarea{
-  white-space: pre;
-  word-wrap: normal;
-  overflow-x: scroll;
-};
+.edit_entity, .new_entity{
+  textarea{
+    white-space: pre;
+    word-wrap: normal;
+    overflow-x: scroll;
+  };
 
-.method{
-  cursor: pointer;
-  display: inline-block;
-  color: yellow;
-};
+  .method{
+    cursor: pointer;
+    display: inline-block;
+    color: yellow;
+  };
 
-.job{
-  color: #cfc;
+  .inputs{
+    vertical-align: top;
+
+    .main_inputs{
+      display:inline-block;
+      padding-right: 50px;
+    }
+
+    .behavior_inputs{
+      display:inline-block; vertical-align: top;
+
+      #editor{
+        max-width:600px; height: 300px;
+      }
+    }
+
+  }
+
+
 }
 
-.job.error{color:red}

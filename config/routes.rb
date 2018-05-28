@@ -14,6 +14,7 @@ def uni_routes
   resources :entities
   get '/entities/:id/destroy' => 'entities#destroy'
   get '/entities/insert/:parent' => 'entities#insert'
+  get '/entities/export/:id' => 'entities#export'
   post '/entities/export/:id' => 'entities#export'
   get '/entities/import(/:id)' => 'entities#import'
   post '/entities/import(/:id)' => 'entities#do_import'

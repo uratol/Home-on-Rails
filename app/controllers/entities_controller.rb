@@ -23,6 +23,7 @@ class EntitiesController < ApplicationController
   def new
     source_id = params[:format]
     if source_id
+      params['create_descendants'] = true
       @source_entity = Entity.find source_id
       source_attribs = @source_entity.attributes_for_copy
     else
