@@ -28,7 +28,7 @@ table.entities {
 
   tr{
     cursor: pointer;
-    &:hover {
+    &:hover, &.selected {
       color: white;
       background-color: #111;
     }

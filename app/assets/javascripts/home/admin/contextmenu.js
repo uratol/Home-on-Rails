@@ -47,10 +47,17 @@ function createContextMenu(selector) {
                             }
 					}
 			};	
-		}	
+		},
 
-		// there's more, have a look at the demos and docs...
-	});
+        events: {
+            show: function(opt) {
+                this.addClass('selected');
+            },
+            hide: function(opt) {
+                this.removeClass('selected');
+            }	}
+        }
+        );
 
 }
 
