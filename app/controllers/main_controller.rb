@@ -63,14 +63,10 @@ class MainController < ApplicationController
     JSON.parse(params[:data]).each do |p|
       e = Entity.find_by_id(p['id'].to_i)
       if e
-        i = p['left'] || p['index']
-        e.location_x = i if i
-        i = p['top']
-        e.location_y = i if i
-        i = p['width']
-        e.width = p['width'] if i
-        i = p['height']
-        e.height = i if i
+        e.location_x = p['left'] || p['index'] || e.location_x
+        e.location_y = p['top'] || e.location_y
+        e.width = p['width'] || e.width
+        e.height = p['height'] || e.height
         e.save!
       else
         flash[:error] = "Couldn't find Entity with 'id'=#{ p['id'] }"

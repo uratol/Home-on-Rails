@@ -15,17 +15,17 @@
 
 
   .caption{
-      text-shadow: 1px 1px 0px #000;
+      text-shadow: 1px 1px 0 #000;
 
     &.left-top-inner{
       position: absolute;
-      top: 0px;
-      left: 0px;
+      top: 0;
+      left: 0;
     }
 
     &.center-top-inner{
       position: absolute;
-      top: 0px;
+      top: 0;
       left: 50%;
       transform: translate(-50%, 0%)
     }
@@ -43,7 +43,7 @@
 
       &.right-top-inner{
         position: absolute;
-        top: 0px;
+        top: 0;
         left: 100%;
         transform: translate(-50%, 0%)
       }
@@ -67,12 +67,12 @@
       &.bottom-left{
         position: absolute;
         top: 100%;
-        left: 0%;
+        left: 0;
       }
     
       &.top-center{
         position: absolute;
-        top: 0px;
+        top: 0;
         left: 50%;
         margin-right: -50%;
         transform: translate(-50%, -100%)
@@ -91,4 +91,3 @@
 button{
   cursor: pointer;
 }
-
