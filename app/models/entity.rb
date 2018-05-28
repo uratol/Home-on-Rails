@@ -7,7 +7,7 @@ class Entity < ActiveRecord::Base
 
   belongs_to :parent, class_name: Entity
   has_many :indications, dependent: :delete_all 
-  has_many :jobs, class_name: :EntityJob, dependent: :destroy
+  has_many :jobs, class_name: :EntityJob, dependent: :delete_all
   validates :name, presence: true, uniqueness: true, format: { with: /\A[a-z][a-z0-9_]+\Z/ }
   validates :caption, presence: true
   validates :type, presence: true
@@ -151,7 +151,7 @@ class Entity < ActiveRecord::Base
   end
   
   def inspect # @!visibility private
-    "#<#{self.class.name}: #{name}>"
+    "#<#{self.class.name}: #{name}, id: #{ id }>"
   end
   
   def do_event(event_name, params = nil) # @!visibility private
@@ -296,6 +296,7 @@ class Entity < ActiveRecord::Base
   end
 
   def destroy_with_descendants
+    result = false
     transaction do
       children.each{|c| c.destroy_with_descendants}
       if (!destroy) && parent
@@ -305,9 +306,15 @@ class Entity < ActiveRecord::Base
           raise ActiveRecord::Rollback, msg
         end
       end
-      return true
+      result = true
     end
-    false
+    result
+  end
+
+  def destroy
+    res = super
+    EntityJob.where(entity_id: id).delete_all if res # fix bug (in transaction jobs aren't deleted)
+    res
   end
 
   def attributes_for_copy # @!visibility private
