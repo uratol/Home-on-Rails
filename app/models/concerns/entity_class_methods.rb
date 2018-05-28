@@ -34,10 +34,6 @@ module EntityClassMethods
     @entity_types ||= descendants.map{ |d| d.name.to_s }
   end
 
-  def entity_types_downcase
-    entity_types.map{|t| t.downcase }
-  end
-  
   def [](ind)
     if ind.is_a? Fixnum || ind.is_number? 
       find ind
@@ -46,10 +42,6 @@ module EntityClassMethods
     end
   end
   
-  def menu_entities(root = nil)
-    where('parent_id is null and (disabled=? or id=?)', false, root).order(:location_x)
-  end
-
   def ancestors_and_self(class_limit = Entity, recurs_class = nil)
     klass = recurs_class || self
     is_limit = klass.superclass.nil? || (klass==class_limit)

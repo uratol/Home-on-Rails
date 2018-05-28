@@ -187,6 +187,9 @@ module EntityVisualization
   end
 
   module ClassMethods
-    # class methods
-  end  
+    def menu_entities(root = nil)
+      where('parent_id is null and (hidden=? or id=?)', false, root).order(:location_x)
+    end
+  end
+
 end
