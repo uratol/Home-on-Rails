@@ -4,7 +4,9 @@
 
 <%= link_to 'Copy', new_entity_path(@entity) %>
 
-<%= link_to 'Destroy', entity_path(@entity), method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Insert', "/entities/insert/#{ @entity.id }" %>
+
+<%= link_to 'Delete', entity_path(@entity), method: :delete, data: { confirm: 'Are you sure?' } %>
 
 <p>
   <%= link_to 'Export to file', "/entities/export/#{ @entity.id }", method: :post %>
