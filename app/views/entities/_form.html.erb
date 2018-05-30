@@ -11,8 +11,8 @@
 
       <div class="main_inputs" >
 
-        <div class="field entity-image">
-          <%= image_tag @entity.img %>
+        <div class="field">
+          <%= image_tag @entity.img, class: 'large-icon' %>
         </div>
 
 
@@ -37,7 +37,7 @@
         <div class="field">
           <%= f.label :driver %>
           <br>
-          <%= f.select :driver, @drivers_names, {include_blank: "None"} %>
+          <%= f.select :driver, drivers_options, {include_blank: "None"} %>
         </div>
 
         <div class="field">

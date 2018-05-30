@@ -62,13 +62,6 @@ table.entities {
       display:inline-block;
       padding-right: 50px;
 
-      .entity-image{
-        img {
-          max-width: 32px;
-          max-height: 32px;
-        }
-      }
-
       input{
         height: 24px;
       }
@@ -92,4 +85,9 @@ table.entities {
 img.icon{
   max-width: 18px;
   max-height: 18px;
+}
+
+img.large-icon{
+  max-width: 32px;
+  max-height: 32px;
 }

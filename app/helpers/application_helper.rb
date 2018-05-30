@@ -18,6 +18,12 @@ module ApplicationHelper
     result
   end
 
+  def drivers_options
+    Entity.drivers.map do |d|
+      [d.driver_name.capitalize, d.driver_name, { 'data-description' => d.try(:description) }]
+    end
+  end
+
 =begin
   def parents_options(parents, entity)
     nested_set_options(@parents, @entity) { |i| "#{'&nbsp;'*2 * i.depth}#{ i.name} : #{ i.type }".html_safe }.map do |two|
