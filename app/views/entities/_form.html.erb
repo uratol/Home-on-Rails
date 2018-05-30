@@ -31,7 +31,7 @@
         <div class="field">
           <%= f.label :type, 'Class' %>
           <br>
-          <%= f.select :type, types_options { |klass, depth| "#{'&nbsp;'* 0 * depth}#{klass.name}".html_safe } %>
+          <%= f.select :type, types_options %>
         </div>
 
         <div class="field">

@@ -9,13 +9,13 @@ module ApplicationHelper
   end
   
   
-  def types_options( start_class = Entity, start_level = 0, &block)
-    result = [ [yield(start_class, start_level), start_class.name, {'data-depth' => start_level}] ]
+  def types_options( start_class = Entity, start_level = 0)
+    result = [ [start_class.name , start_class.name, {'data-depth' => start_level, 'data-image' => start_class.img}] ]
     
     start_class.subclasses.each do |sc|
-        result += types_options(sc, start_level+1, &block)
+        result += types_options(sc, start_level+1)
     end
-    result    
+    result
   end
 
 =begin

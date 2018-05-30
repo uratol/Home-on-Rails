@@ -22,6 +22,10 @@ module EntityVisualization
 
   def image_files(for_export)
     return @files if @files
+
+    @files = self.class.image_files(for_export, self)
+
+=begin
     file_bases = [(image_name||name).to_s] + self.class.ancestors_and_self(Entity).map{|c| c.name.downcase}
     file_values =  []
     if for_export
@@ -37,6 +41,8 @@ module EntityVisualization
 
     for_export ? @files : @files.map{|f| File.join(ICON_RELATIVE_LOCATION, File.basename(f)) }
   end
+=end
+    end
 
   def image
     image_files(false).first
@@ -72,6 +78,12 @@ module EntityVisualization
   end
 =end
 
+  # returns full path to current image
+  def img
+    ActionController::Base.helpers.asset_path(image)
+  end
+
+
   # Redirects browser to object or url
   # @param target [Entity, String]
   # @example Redirect to object
@@ -84,11 +96,6 @@ module EntityVisualization
   #   end
   def redirect_to(target)
     execute_javascript("window.location = '#{ target.is_a?(Entity) ? "/show/#{ target.name }" : target }'")
-  end
-
-  # @!visibility private
-  def img
-    ActionController::Base.helpers.asset_path(image)
   end
 
   # Provide access to browser request parameters, including {#input} users data
@@ -190,6 +197,34 @@ module EntityVisualization
     def menu_entities(root = nil)
       where('parent_id is null and (hidden=? or id=?)', false, root).order(:location_x)
     end
+
+    def image_files(for_export, entity = nil)
+      file_bases = []
+      file_bases = [(entity.image_name||entity.name).to_s] if entity
+      file_bases += ancestors_and_self(Entity).map{|c| c.name.downcase}
+      file_values =  []
+      if for_export || entity.nil?
+        file_values << '.*'
+      else
+        file_values << '.' + entity.image_value if entity.value
+      end
+      file_values << ','
+
+      search_mask = "{#{ file_bases.join(',') }}{#{ file_values.join }}.{png,gif,jpeg,jpg,webp,svg}"
+      files = Dir.glob(Rails.root.join('app','assets','images',ICON_RELATIVE_LOCATION, search_mask))
+      files += Dir.glob(Home::Engine.root.join('app','assets','images',ICON_RELATIVE_LOCATION, search_mask)) unless for_export
+
+      for_export ? files : files.map{|f| File.join(ICON_RELATIVE_LOCATION, File.basename(f)) }
+    end
+
+    def image
+      image_files(false, nil).first
+    end
+
+    def img
+      ActionController::Base.helpers.asset_path(image)
+    end
+
   end
 
 end
