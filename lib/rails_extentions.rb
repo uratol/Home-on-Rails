@@ -10,8 +10,14 @@ class Numeric
   end
 
   def restrict_by_range(min, max = nil)
-    max, min = min.last, min.first unless max
-    self < min ? min : self > max ? max : self
+    max, min = min.last, min.first if max.nil? && min
+    if min && self < min
+      min
+    elsif max && self > max
+      max
+    else
+      self
+    end
   end
 end
 

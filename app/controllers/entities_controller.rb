@@ -95,7 +95,7 @@ class EntitiesController < ApplicationController
 
   # GET /entities/export/1
   def export
-    send_data @entity.export_hash.to_json, filename: "#{@entity.name}.json"
+    send_data JSON.pretty_generate(@entity.export_hash), filename: "#{@entity.name}.json"
   end
 
   def import

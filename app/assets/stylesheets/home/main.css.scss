@@ -1,76 +1,74 @@
 .layout_container {
   position: relative;
-  
-  .entity_container{
+
+  .entity_container {
     position: relative;
-    &{
-      max-width:100%;
-      max-height:100%;
+    & {
+      max-width: 100%;
+      max-height: 100%;
     }
   }
-  
+
   .entity {
     position: absolute;
 
-
-
-  .caption{
+    .caption {
       text-shadow: 1px 1px 0 #000;
 
-    &.left-top-inner{
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
+      &.left-top-inner {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
 
-    &.center-top-inner{
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translate(-50%, 0%)
-    }
+      &.center-top-inner {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, 0%)
+      }
 
-    &.none{
+      &.none {
         display: none;
       }
-      
-      &.right-center, &.right{
+
+      &.right-center, &.right {
         position: absolute;
         left: 100%;
         top: 50%;
         transform: translate(0%, -50%)
       }
 
-      &.right-top-inner{
+      &.right-top-inner {
         position: absolute;
         top: 0;
         left: 100%;
         transform: translate(-50%, 0%)
       }
-      
-      &.center{
+
+      &.center {
         position: absolute;
         top: 50%;
         left: 50%;
         margin-right: -50%;
         transform: translate(-50%, -50%)
       }
-    
-      &.bottom-center{
+
+      &.bottom-center {
         position: absolute;
         top: 100%;
         left: 50%;
         margin-right: -50%;
         transform: translate(-50%, -50%)
       }
-    
-      &.bottom-left{
+
+      &.bottom-left {
         position: absolute;
         top: 100%;
         left: 0;
       }
-    
-      &.top-center{
+
+      &.top-center {
         position: absolute;
         top: 0;
         left: 50%;
@@ -78,16 +76,17 @@
         transform: translate(-50%, -100%)
       }
     }
-};
+  }
+;
 
 }
 
-.entity.hover{
+.entity.hover {
   cursor: pointer;
   -webkit-filter: brightness(200%);
   filter: brightness(200%);
 }
 
-button{
+button {
   cursor: pointer;
 }

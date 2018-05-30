@@ -48,6 +48,26 @@ function doEnter(){
     setRefreshInterval(refreshDelay);
 }
 
+function doChange(ent_id, value) {
+    $.ajax({
+        url: action_path('change'),
+        method: 'POST',
+        data: {
+            root: $(".layout_container").attr('id'),
+            id: ent_id,
+            value: value
+        },
+        success: function (data) {
+            refreshEntityes(data);
+//            changing = false;
+        },
+        error: function (request, ajaxOptions, thrownError) {
+//            changing = false;
+            onAjaxError(request, ajaxOptions, thrownError);
+        }
+    });
+}
+
 var refreshTimeoutCallback = function(){
     refreshRequest();
     refreshTimer = setTimeout(refreshTimeoutCallback, refreshDelay);

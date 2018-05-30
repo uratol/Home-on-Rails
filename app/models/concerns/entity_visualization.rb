@@ -149,7 +149,7 @@ module EntityVisualization
   # Display the message in browser
   # @param text - text message
   def message(text)
-    execute_javascript("message(\"#{ text.gsub('"', '\"') }\");");
+    execute_javascript("message(\"#{ text.to_s.gsub('"', '\"') }\");");
   end
 
   # Allows you to run any javascript in browser

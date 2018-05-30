@@ -37,10 +37,7 @@ class MainController < ApplicationController
   end
   
   def change
-    id = params[:id].to_i
-    e = Entity[id]
-    e.write_value(params[:value].to_f)
-    refresh
+    process_event(:at_change)
   end
   
   def refresh
@@ -104,7 +101,11 @@ class MainController < ApplicationController
 
   def process_event(event_name)
     e = Entity[params[:id].to_i]
-    e.do_event(event_name)
+    if event_name == :at_change
+      e.write_value(params[:value].to_f)
+    else
+      e.do_event(event_name)
+    end
     if e.javascript
       render js: e.javascript
     elsif e.input_items

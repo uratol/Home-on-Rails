@@ -1,0 +1,8 @@
+<%= form_tag '/change' do %>
+    <%= content_tag(:div, e.caption, class: "caption #{ e.caption_class }") if e.caption_class %>
+    <%= select_tag e.name, options_for_select(e.select, e.value.to_i), onchange: "doChange(#{ e.id }, $(this).val())" %>
+    <!--$(this).find('form').submit()-->
+
+<% end %>
+
+
