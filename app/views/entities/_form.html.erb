@@ -11,6 +11,11 @@
 
       <div class="main_inputs" >
 
+        <div class="field entity-image">
+          <%= image_tag @entity.img %>
+        </div>
+
+
         <div class="field">
           <%= f.label :name %>
           <br>
@@ -26,7 +31,7 @@
         <div class="field">
           <%= f.label :type, 'Class' %>
           <br>
-          <%= f.select :type, types_options { |klass, depth| "#{'&nbsp;'*2 * depth}#{klass.name}".html_safe } %>
+          <%= f.select :type, types_options { |klass, depth| "#{'&nbsp;'* 0 * depth}#{klass.name}".html_safe } %>
         </div>
 
         <div class="field">
@@ -47,28 +52,16 @@
           <%= f.select :parent_id, parents_options(@parents, @entity), include_blank: "None" %>
         </div>
 
-
-        <% if false %>
-
-            <div class="field">
-              <%= f.label :location %>
-              <br>
-              <%= f.number_field :location_x, step: :any, style: 'width: 50px' %>
-              <%= f.number_field :location_y, step: :any %>
-            </div>
-
-        <% end %>
-
         <div class="field">
           <%= f.label :power %>
           <br>
-          <%= f.text_field :power %>
+          <%= f.number_field :power, step: :any %>
         </div>
 
         <div class="field">
           <%= f.label :value %>
           <br>
-          <%= f.text_field :value %>
+          <%= f.number_field :value, step: :any %>
         </div>
 
         <div class="field">

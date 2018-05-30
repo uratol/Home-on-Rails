@@ -10,7 +10,7 @@ table.entities {
 
   .disabled, .hidden{
     color: #999;
-    text-shadow: 1px 1px 0px #000;
+    text-shadow: 1px 1px 0 #000;
   }
 
   td{
@@ -31,6 +31,12 @@ table.entities {
     &:hover, &.selected {
       color: white;
       background-color: #111;
+    }
+    &.entity{
+      img{
+        max-width: 18px;
+        max-height: 18px;
+      }
     }
   }
 
@@ -61,6 +67,20 @@ table.entities {
     .main_inputs{
       display:inline-block;
       padding-right: 50px;
+
+      .entity-image{
+        img {
+          max-width: 32px;
+          max-height: 32px;
+        }
+      }
+
+      input{
+        height: 24px;
+      }
+      select{
+        height: 28px;
+      }
     }
 
     .behavior_inputs{

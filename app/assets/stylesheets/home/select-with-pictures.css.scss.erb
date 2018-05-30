@@ -1,0 +1,332 @@
+$row_height: 24px;
+$image_size: $row_height - 2;
+
+.borderRadius {
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.borderRadiusTp {
+  -moz-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
+}
+
+.borderRadiusBtm {
+  -moz-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px;
+}
+
+
+.borderRadiusTp ul li:last-child {
+  -moz-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px;
+  border-bottom: 0 none #c3c3c3;
+}
+
+.borderRadiusBtm ul li:first-child {
+  -moz-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
+  border-bottom: 1px solid #c3c3c3;
+}
+
+.ddcommon {
+  position: relative;
+  display: -moz-inline-stack;
+  zoom: 1;
+  display: inline-block;
+  *display: inline;
+  cursor: default;
+
+  ul {
+    padding: 0;
+    margin: 0;
+
+    li {
+      list-style-type: none;
+      min-height: $row_height;
+      white-space: nowrap;
+    }
+
+  }
+
+  .disabled {
+
+    img, span {
+      opacity: .5;
+      /* standard: ff gt 1.5, opera, safari */
+      -ms-filter: "alpha(opacity=50)";
+      /* ie 8 */
+      filter: alpha(opacity=50);
+      /* ie lt 7 */
+      -khtml-opacity: .5;
+      /* safari 1.x */
+      -moz-opacity: .5;
+      /* ff lt 1.5, netscape */
+      color: #999999;
+    }
+
+  }
+  &.disabledAll {
+    opacity: .5;
+    /* standard: ff gt 1.5, opera, safari */
+    -ms-filter: "alpha(opacity=50)";
+    /* ie 8 */
+    filter: alpha(opacity=50);
+    /* ie lt 7 */
+    -khtml-opacity: .5;
+    /* safari 1.x */
+    -moz-opacity: .5;
+    /* ff lt 1.5, netscape */
+    color: #999999;
+  }
+
+  .clear {
+    clear: both;
+  }
+
+  .shadow {
+    -moz-box-shadow: 5px 5px 5px -5px #888888;
+    -webkit-box-shadow: 5px 5px 5px -5px #888888;
+    box-shadow: 5px 5px 5px -5px #888888;
+  }
+
+  input.text {
+    color: #7e7e7e;
+    padding: 0 0 0 0;
+    position: absolute;
+    background: #fff;
+    display: block;
+    width: 98%;
+    height: 98%;
+    left: 2px;
+    top: 0;
+    border: none;
+  }
+
+}
+
+.ddOutOfVision {
+  position: relative;
+  display: -moz-inline-stack;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+}
+
+.borderRadius .shadow {
+  -moz-box-shadow: 5px 5px 5px -5px #888888;
+  -webkit-box-shadow: 5px 5px 5px -5px #888888;
+  box-shadow: 5px 5px 5px -5px #888888;
+}
+
+.borderRadiusBtm .shadow {
+  -moz-box-shadow: -5px -5px 5px -5px #888888;
+  -webkit-box-shadow: -5px -5px 5px -5px #888888;
+  box-shadow: -5px -5px 5px -5px #888888;
+}
+
+.borderRadiusTp .border, .borderRadius .border {
+  -moz-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px;
+}
+
+.borderRadiusBtm .border {
+  -moz-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
+}
+
+img.fnone {
+  float: none !important;
+}
+
+.ddcommon {
+
+  .divider {
+    width: 0;
+    height: 100%;
+    position: absolute;
+  }
+
+  .ddArrow {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 4px;
+
+    &:hover {
+      background-position: 0 100%;
+    }
+
+  }
+  .ddTitle {
+    padding: 0;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+
+    .ddTitleText {
+      display: block;
+      padding: 0;
+    }
+    .description {
+      display: block;
+    }
+
+    .ddTitleText img {
+      position: relative;
+      vertical-align: middle;
+      float: left;
+      max-width: $image_size;
+      max-height: $image_size;
+    }
+
+  }
+
+  .ddChild {
+    position: absolute;
+    display: none;
+    /*width: 100%;*/
+    overflow-y: auto;
+    overflow-x: auto;
+    zoom: 1;
+    z-index: 9999;
+
+    li {
+      clear: both;
+      white-space: nowrap;
+
+      .description {
+        display: block;
+      }
+
+      img {
+        border: 0 none;
+        position: relative;
+        vertical-align: middle;
+        max-width: $image_size;
+        max-height: $image_size;
+      }
+
+      span {
+        display: inline-block;
+      }
+
+      &.optgroup {
+        padding: 0;
+
+        .optgroupTitle {
+          padding: 0 5px;
+          font-weight: bold;
+          font-style: italic;
+        }
+
+        ul li {
+          padding: 5px 5px 5px 15px;
+        }
+
+      }
+    }
+  }
+  .noBorderTop {
+    border-top: none 0 !important;
+    padding: 0;
+    margin: 0;
+  }
+
+}
+
+/*************** default theme **********************/
+
+.dd {
+  border: 1px solid #c3c3c3;
+
+  .divider {
+    border-left: 1px solid #c3c3c3;
+    border-right: 1px solid #fff;
+    right: 24px;
+  }
+
+  .ddArrow {
+    width: 16px;
+    height: 16px;
+    margin-top: -8px;
+
+    background: url(<%= asset_path 'dd_arrow.png' %>    ) no-repeat;
+    &:hover {
+      background-position: 0 100%;
+    }
+
+  }
+  .ddTitle {
+    color: #000;
+    background: #fff;
+
+
+    /*background: #e2e2e4 url(../../images/msdropdown/skin1/title-bg.gif) repeat-x left top;*/
+    .ddTitleText {
+      padding: 5px 50px 5px 5px;
+
+      .ddTitleText {
+        padding: 0;
+      }
+
+    }
+    .description {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .ddTitleText img {
+      padding-right: 5px;
+    }
+
+  }
+  .ddChild {
+    border: 1px solid #c3c3c3;
+    background-color: #fff;
+    left: -1px;
+
+    li {
+      padding: 5px;
+      width: auto;
+      background-color: #fff;
+      border-bottom: 1px solid #c3c3c3;
+
+      .description {
+        color: #666;
+      }
+
+      .ddlabel {
+        color: #333;
+      }
+
+      &.hover {
+        background-color: #c0c0c0;
+      }
+
+      img {
+        padding: 0 6px 0 0;
+      }
+
+      &.optgroup {
+        padding: 0;
+
+        .optgroupTitle {
+          padding: 0 5px;
+          font-weight: bold;
+          font-style: italic;
+        }
+
+        ul li {
+          padding: 5px 5px 5px 15px;
+        }
+
+      }
+      &.selected {
+        background-color: #d5d5d5;
+        color: #000;
+      }
+
+    }
+  }
+}
