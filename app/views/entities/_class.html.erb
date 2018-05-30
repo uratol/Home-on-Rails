@@ -1,22 +1,23 @@
 <%= content_tag :li do %>
-	<%= link_to c.name, "/doc/#{ c.name }.html", target: :_blank %>
+    <%= image_tag c.img, class: :icon %>
+    <%= link_to c.name, "/doc/#{ c.name }.html", target: :_blank %>
 
-	<%= content_tag :span, class: :class_count do %>
-	
-	<%=
-		entity_count = @entities.count{|e| e.class==c}
-		link_to entity_count, entities_path(type: c.name) if entity_count>0
-	%>
-	
-	<% end %>
+    <%= content_tag :span, class: :class_count do %>
+
+        <%=
+          entity_count = @entities.count {|e| e.class==c}
+          link_to entity_count, entities_path(type: c.name) if entity_count>0
+        %>
+
+    <% end %>
 
 
     <% if c.subclasses.any? %>
-	<%= content_tag :ul do %>
-		<% c.subclasses.each do |s| %>
-		<%= render 'entities/class', c: s %>
-		<% end %>
-		<% end %>
+        <%= content_tag :ul do %>
+            <% c.subclasses.each do |s| %>
+                <%= render 'entities/class', c: s %>
+            <% end %>
+        <% end %>
     <% end %>
 
 <% end %>

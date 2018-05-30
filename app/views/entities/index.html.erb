@@ -33,7 +33,7 @@
       <tr id="<%= entity.id%>" name="<%= entity.name %>" class="<%= entity_class.html_safe %>">
       	<td data-link="<%= edit_path %>" style="padding-left:<%= entity.depth*30 %>px">
       		<% ic = entity.image %>
-      		<%= image_tag ic if ic %>
+      		<%= image_tag(ic, class: :icon) if ic %>
       		<%= entity.caption %>
       	</td>
         <td data-link="<%= edit_path %>"><%= entity.type %></td>

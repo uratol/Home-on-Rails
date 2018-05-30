@@ -32,12 +32,6 @@ table.entities {
       color: white;
       background-color: #111;
     }
-    &.entity{
-      img{
-        max-width: 18px;
-        max-height: 18px;
-      }
-    }
   }
 
   .job{
@@ -93,6 +87,9 @@ table.entities {
 
   }
 
-
 }
 
+img.icon{
+  max-width: 18px;
+  max-height: 18px;
+}
