@@ -43,7 +43,10 @@ Gem::Specification.new do |s|
   s.add_dependency 'web-console', '2.3.0'
   
   # drivers
-  if RUBY_PLATFORM.match(/linux/)
+
+  gpio_exists = `gpio -v` rescue
+
+  if gpio_exists # RUBY_PLATFORM.match(/linux/)
     s.add_dependency 'wiringpi' 
 #  s.add_dependency 'pi_piper' if RUBY_PLATFORM.match(/linux/)
     s.add_dependency 'dht-sensor-ffi'
