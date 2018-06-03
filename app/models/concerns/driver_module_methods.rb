@@ -1,7 +1,7 @@
 module DriverModuleMethods
 
   def driver_name
-    name[0..-7].downcase # cut "Driver" suffix (module names should be "GpioDriver", "MqttDriver" etc)
+    name[0..-7].underscore # cut "Driver" suffix (module names should be "GpioDriver", "MqttDriver" etc)
   end
 
   def do_startup
