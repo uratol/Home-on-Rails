@@ -4,6 +4,18 @@ module DriverModuleMethods
     name[0..-7].underscore # cut "Driver" suffix (module names should be "GpioDriver", "MqttDriver" etc)
   end
 
+  def title
+    name[0..-7].titleize
+  end
+
+  def description
+    ''
+  end unless respond_to? :description
+
+  def to_s
+    driver_name
+  end
+
   def do_startup
     startup if respond_to? :startup
   rescue Exception => e

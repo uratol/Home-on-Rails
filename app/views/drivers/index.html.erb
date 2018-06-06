@@ -1,14 +1,20 @@
 <%= provide(:title, "Drivers") %>
 
-<table>
-  <tr>
-  	<th>Name</th>	
-  	<th>Number of entities</th>
-  </tr>		
-  <% @drivers.each do |driver| %>
+<table class="drivers">
+  <thead>
     <tr>
-  	<td><%= link_to driver, "/drivers/"+driver %></td>
-  	<td><%= link_to @entity_counter[driver].to_s, entities_path(driver: driver) %> </td>	
-  </tr>
-  <% end %>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Number of entities</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @drivers.each do |driver| %>
+      <tr>
+        <td class="driver-name"><%= link_to driver.title, "/drivers/#{ driver }" %></td>
+        <td class="driver-description"><%= driver.description %></td>
+        <td class="driver-count"><%= link_to @entity_counter[driver.to_s].to_s, entities_path(driver: driver.to_s) %> </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
