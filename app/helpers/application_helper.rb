@@ -43,7 +43,8 @@ module ApplicationHelper
     items.each do |root|
       result += root.class.associate_parents(root.self_and_descendants).map do |i|
         if mover.nil? || mover.new_record? || mover.move_possible?(i)
-          img, depth = i.img, i.depth
+          (img = i.img) rescue Exception
+          depth = i.depth
           [i.name, i.primary_id, {'data-image' => (img if img.to_s != ''), 'data-depth' => (depth if depth > 0) , 'data-description' => i.type }]
         end
       end.compact
