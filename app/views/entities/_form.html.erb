@@ -12,7 +12,7 @@
       <div class="main_inputs" >
 
         <div class="field">
-          <%= image_tag @entity.img, class: 'large-icon' %>
+          <%= image_tag (@entity.img rescue Exception), class: 'large-icon' %>
         </div>
 
 
