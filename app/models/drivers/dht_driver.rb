@@ -7,12 +7,11 @@ module DhtDriver
   begin
     require 'dht-sensor-ffi' #if Home::LINUX_PLATFORM
     self.dht_installed = true
+    CACHE = TimedCache.new(default_timeout: 15.seconds, type: :file, filename: 'tmp/dht_driver.cache')
   rescue LoadError => e
     puts e
     self.dht_installed = false
   end
-
-  CACHE = TimedCache.new(default_timeout: 15.seconds, type: :file, filename: 'tmp/dht_driver.cache')
 
   def poll
     super
