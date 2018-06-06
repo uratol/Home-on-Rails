@@ -44,7 +44,7 @@ Gem::Specification.new do |s|
   
   # drivers
 
-  gpio_exists = `gpio -v` rescue
+  (gpio_exists = `gpio -v`) rescue Exception
 
   if gpio_exists # RUBY_PLATFORM.match(/linux/)
     s.add_dependency 'wiringpi' 
