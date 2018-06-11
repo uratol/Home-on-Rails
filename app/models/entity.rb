@@ -5,7 +5,7 @@ class Entity < ActiveRecord::Base
 
   extend EntityClassMethods
 
-  belongs_to :parent, class_name: Entity
+  belongs_to :parent, class_name: :Entity, optional: true
   has_many :indications, dependent: :delete_all 
   has_many :jobs, class_name: :EntityJob, dependent: :delete_all
   validates :name, presence: true, uniqueness: true, format: { with: /\A[a-z][a-z0-9_]+\Z/ }
@@ -15,7 +15,7 @@ class Entity < ActiveRecord::Base
   validate :driver_valid?
   # has_closure_tree
   acts_as_nested_set dependent: :restrict, counter_cache: :children_count, depth_column: :depth
-  has_many :children, class_name: Entity, foreign_key: :parent_id, dependent: :restrict_with_error
+  has_many :children, class_name: :Entity, foreign_key: :parent_id, dependent: :restrict_with_error
 
   attr_accessor :state # @!visibility private
 
@@ -325,6 +325,10 @@ class Entity < ActiveRecord::Base
   # т.е. вызванным на другом сервере с помощью объекта класса *Server*
   def remote_call?
     state.include?(:remote_execute)
+  end
+
+  def as_json(options={})
+    super(options).reject { |k, v| v.nil? }
   end
 
   def export_hash(depth = 0)

@@ -1,5 +1,7 @@
 <%= content_tag :li do %>
-    <%= image_tag c.img, class: :icon %>
+    <%= img = c.img
+        image_tag(img, class: :icon) if img
+    %>
     <%= link_to c.name, "/doc/#{ c.name }.html", target: :_blank %>
 
     <%= content_tag :span, class: :class_count do %>

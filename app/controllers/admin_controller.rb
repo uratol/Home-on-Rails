@@ -3,7 +3,7 @@ class AdminController < ApplicationController
 
   def reboot
     `sudo reboot`
-    redirect_to :back
+    redirect_to_back
   end
 
 end

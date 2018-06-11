@@ -90,7 +90,7 @@ class EntitiesController < ApplicationController
     else
       er, notice = @entity.errors.full_messages.join, nil
     end
-    redirect_to :back, notice: notice, alert: er
+    redirect_to_back notice: notice, alert: er
   end
 
   # GET /entities/export/1
@@ -111,7 +111,7 @@ class EntitiesController < ApplicationController
     if params[:files] && params[:files].any?
       entities = params[:files].map{|f| JSON.parse(f.read) }
     else
-      redirect_to :back, alert: 'Files not choosen'
+      redirect_to_back alert: 'Files not choosen'
       return
     end
 
@@ -138,7 +138,11 @@ class EntitiesController < ApplicationController
       end
     end
 
-    redirect_to errors ? :back : entities_path, notice: notice, alert: errors
+    if errors
+      redirect_to_back notice: notice, alert: errors, warning: import_result[:warnings]
+    else
+      redirect_to entities_path, notice: notice, warning: import_result[:warnings]
+    end
 
   end
 
@@ -175,6 +179,10 @@ class EntitiesController < ApplicationController
       hash['parent_id'] = parent.try :id
       hash['name'] = name_mask.gsub('*', hash['name'])
       hash['caption'] = caption_mask.gsub('*', hash['caption'])
+      unless Entity.drivers_names.include?(hash['driver'])
+        result[:warnings] = (result[:varnings] || []) + ["Driver #{ hash['driver'] } not found"]
+        hash['driver'] = nil
+      end
       e = Entity.new(hash.slice(* PERMITTED_ATTRIBS))
       e.behavior_script = hash['behavior_script']
       if e.save

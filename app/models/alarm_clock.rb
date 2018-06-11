@@ -1,10 +1,10 @@
 module AlarmClock
   
-  include Win32 if RUBY_PLATFORM.match(/mingw|mswin/)
+  #include Win32 if RUBY_PLATFORM.match(/mingw|mswin/)
   
   def play_sound(file_name)
     if RUBY_PLATFORM.match(/mingw|mswin/)
-      Sound.play Home::Engine.root.join('app', 'assets', 'audio', file_name).to_s
+      Win32::Sound.play Home::Engine.root.join('app', 'assets', 'audio', file_name).to_s
     else
       pid = fork{ exec 'mpg123','-q', file_name }
     end

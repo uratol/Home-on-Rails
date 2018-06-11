@@ -17,7 +17,7 @@ module EntityBehaviorHelpers
     EntityJobHandler.new self, opt
   end
 
-  # Устанавливает обработчик по расписанию
+  # sets at_schedule handler
   def every(run_interval, options = {}, &block)
     options[:run_interval] = run_interval
     if block
@@ -27,11 +27,11 @@ module EntityBehaviorHelpers
     EntityJobHandler.new self, options 
   end
 
-  # Удаляет задание с переданным именем или все задания
+  # Deletes all jobs with assigned name or all jobs
   def cancel(job_name = nil)
     cond = {entity_id: self.id}
     cond[:queue] = job_name if job_name
-    EntityJob.delete_all cond
+    EntityJob.where(cond).delete_all
   end
   
   # Returns sunrise time

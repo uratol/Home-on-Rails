@@ -78,37 +78,55 @@ Home on Rails представляет иерархию классов, бази
 
 ## Getting Started
 
-1. Install Ruby on Rails (currently supported version 4.2.1) at the command prompt if you haven't yet:
+Install Ruby on Rails (currently tested versions 5.1.6 and 4.2.1) at the command prompt if you haven't yet:
 
-        $ gem install rails '~> 4.2.1'
+        $ gem install rails -v 5.1.6
 
-2. At the command prompt, create a new Rails application:
+At the command prompt, create a new Rails application:
 
         $ rails new myapp
 
    where "myapp" is the application name.
 
-3. Change directory to `myapp` and add the next row into Gemfile:
+Change directory to `myapp` and add the next rows into Gemfile:
  
-       gem 'home-on-rails', git: ' https://github.com/uratol/Home-on-Rails.git'
+        gem 'home', git: ' https://github.com/uratol/Home-on-Rails.git'
+        gem 'jquery-rails'
+        gem 'rails-ujs'
+        gem 'jquery_context_menu-rails'
 
-4. Run:
+
+Run:
 
         $ bundle install
 
-5. Make and populate the database:
+Run install task. It will make and populate the database, create a default user and config file
 
-        $ rake home_engine:install:migrations
-        
-        $ rake db:migrate
-        
-        $ rake db:seed
+        $ rake home:install
 
-6. Run the server:
+Add the next line to begin of file: app/assets/javascript/application.js
+        
+        //= require home/application
+
+
+Add the next line to begin of file: app/assets/stylesheets/application.css
+        
+        *= require home/application
+
+Delete next files:
+        
+        app/views/layouts/application.html.erb
+        app/controllers/application_controller.rb
+
+Add the route to config/routes.rb 
+
+       mount Home::Engine, at: "/"
+
+Run the server:
 
      	$ rails server
 
-7. Go to `http://localhost:3000` and you have a goal!
+Go to `http://localhost:3000` and you have a goal!
 
 
 

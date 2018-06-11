@@ -13,7 +13,7 @@ module Home
   end
   
   def self.time_zone=(zone_name)
-    Log.e("Invalid time zone #{ zone_name }") unless ActiveSupport::TimeZone.zones_map[zone_name]
+    #Log.e("Invalid time zone #{ zone_name }") unless ActiveSupport::TimeZone.zones_map[zone_name]
     Rails.application.config.time_zone = Time.zone = zone_name
   end
 
@@ -28,13 +28,12 @@ module Home
  # this function maps the vars from your app into your engine
   def self.setup
     puts "Starting Home: #{ program_name } (#{ $PROGRAM_NAME })"
-    Dir.mkdir(custom_behavior_path) unless File.exists?(custom_behavior_path)
     yield self
 
     puts "setup #{ program_name }: #{ $PROGRAM_NAME }"
     startup
     watch_drivers if program_name == :jobs
-  end  
+  end
   
   private
   
@@ -62,7 +61,7 @@ module Home
   
   def self.program_name
     @program_name ||= (
-      if %w(thin unicorn nginx apache lighttpd webrick).any?{|s| $PROGRAM_NAME.include? s}
+      if %w(thin unicorn nginx apache lighttpd webrick puma).any?{|s| $PROGRAM_NAME.include? s}
         :web
       else
         :jobs  

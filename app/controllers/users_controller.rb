@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     else
       er, notice = @user.errors.full_messages.join, nil
     end
-    redirect_to :back, notice: notice, alert: er
+    redirect_to_back notice: notice, alert: er
   end
     
   def set_user

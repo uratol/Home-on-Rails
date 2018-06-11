@@ -15,6 +15,12 @@
 //= require ace/ace
 //= require ace/worker-html
 //= require ace/mode-ruby
+
+//= require jquery
+//= require jquery-ui
+//= require jquery_ujs
+//= require jquery.contextMenu.js
+
 //= require_tree .
 
 

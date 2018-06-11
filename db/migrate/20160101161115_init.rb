@@ -1,4 +1,4 @@
-class Init < ActiveRecord::Migration
+class Init < ActiveRecord::Migration.respond_to?(:[]) ? ActiveRecord::Migration[4.2] : ActiveRecord::Migration
   def change
     create_table "delayed_jobs", force: :cascade do |t|
       t.integer  "priority",   default: 0, null: false

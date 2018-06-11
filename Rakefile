@@ -33,7 +33,7 @@ RSpec::Core::RakeTask.new(spec: 'app:db:test:prepare')
 
 task default: :spec
 
-
+load 'lib/tasks/home_tasks.rake'
 =begin
 require 'rake/testtask'
 

@@ -2,7 +2,7 @@
 
 $.clock = { version: "2.0.2", locale: {} };
 
-t = new Array();
+t = [];
   
 $.fn.clock = function(options) {
   var locale = {
@@ -41,7 +41,7 @@ $.fn.clock = function(options) {
     systimestamp = new Date();
     systimestamp = systimestamp.getTime();
     options.sysdiff = options.sysdiff || 0;
-    if(options.timestamp!="systime"){
+    if(options.timestamp!=="systime"){
       mytimestamp = new Date(options.timestamp);
       options.sysdiff = options.timestamp - systimestamp;
     };
@@ -56,7 +56,7 @@ $.fn.clock = function(options) {
     },
     updateClock = function(el,myoptions) {
       var el_id = $(el).attr("id");
-      if(myoptions=="destroy"){ clearTimeout(t[el_id]); }
+      if(myoptions==="destroy"){ clearTimeout(t[el_id]); }
       else {
         mytimestamp = new Date();
         mytimestamp = mytimestamp.getTime();
@@ -73,7 +73,7 @@ $.fn.clock = function(options) {
         ap="",
         calend="";
 
-        if(myoptions.format=="12"){
+        if(myoptions.format==="12"){
           ap=" AM";
           if (h > 11) { ap = " PM"; }
           if (h > 12) { h = h - 12; }
@@ -85,15 +85,15 @@ $.fn.clock = function(options) {
         m=addleadingzero(m);
         s=addleadingzero(s);
 
-        if(myoptions.calendar!="false") {
-          if (myoptions.langSet=="en") {
+        if(myoptions.calendar!=="false") {
+          if (myoptions.langSet==="en") {
             calend = "<div class='clockdate'>"+locale[myoptions.langSet].weekdays[dy]+', '+locale[myoptions.langSet].months[mo]+' '+dt+', '+y+"</div>";
           }
           else {
             calend = "<div class='clockdate'>"+locale[myoptions.langSet].weekdays[dy]+', '+dt+' '+locale[myoptions.langSet].months[mo]+' '+y+"</div>";
           }
         }
-        $(el).html(calend+"<div class='clocktime'>"+h+":"+m+(options.seconds == "true"?":"+s:"")+ap+"</div>");
+        $(el).html(calend+"<div class='clocktime'>"+h+":"+m+(options.seconds === "true"?":"+s:"")+ap+"</div>");
         t[el_id] = setTimeout(function() { updateClock( $(el),myoptions ); }, 1000);
       };
 
@@ -109,7 +109,9 @@ $.fn.clock = function(options) {
 
 
 clock_ready = function(){
-	$("div#clock").clock( {format:"24"} );
+    $clocks = $("div#clock");
+	if ($clocks.length > 0)
+        $clocks.clock( {format:"24"} );
 };
 
 $(document).on('turbolinks:load', clock_ready);

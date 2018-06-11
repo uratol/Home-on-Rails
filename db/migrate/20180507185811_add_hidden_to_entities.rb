@@ -1,4 +1,4 @@
-class AddHiddenToEntities < ActiveRecord::Migration
+class AddHiddenToEntities < ActiveRecord::Migration.respond_to?(:[]) ? ActiveRecord::Migration[4.2] : ActiveRecord::Migration
 
   def up
     add_column :entities, :hidden, :boolean

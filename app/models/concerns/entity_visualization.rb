@@ -80,7 +80,9 @@ module EntityVisualization
 
   # returns full path to current image
   def img
-    ActionController::Base.helpers.asset_path(image)
+    if (image_path = image)
+      ActionController::Base.helpers.asset_path(image_path)
+    end
   end
 
 
@@ -158,6 +160,18 @@ module EntityVisualization
     self
   end
 
+  def brightness
+    nil
+  end
+
+  def text
+    nil
+  end
+
+  def refresh_script
+    nil
+  end
+
   class InputProxy
     def initialize(params)
       @input_params = ActiveSupport::HashWithIndifferentAccess.new
@@ -222,7 +236,9 @@ module EntityVisualization
     end
 
     def img
-      ActionController::Base.helpers.asset_path(image)
+      if (image_path = image)
+        ActionController::Base.helpers.asset_path(image_path)
+      end
     end
 
   end

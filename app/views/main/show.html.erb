@@ -9,7 +9,7 @@
       begin
         render 'main/each', e: e
       rescue Exception => error
-        render text: error.message
+        render plain: error.message
       end
     %>
 <% end %>

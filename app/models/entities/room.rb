@@ -25,15 +25,14 @@ class Room < Placement
 =end  
   
   def illumination
-    # 1 - normal
-    result = lamplight + (Clock.night? ? 0 : (daylight||100)/100)
+    lamplight + (Clock.night? ? 0 : (daylight || 100)/100)
   end
 
   def lamplight
-    lamps = descendants.where(type: [Light]+Light.descendants ) # select{|e| e.is_a? Light}
+    lamps = descendants.where(type: ([Light]+Light.descendants).map(&:to_s) ) # select{|e| e.is_a? Light}
 
     sum_power = lamps.inject(0){|s,e| s+(e.power||0) }
-    if sum_power!=0
+    if sum_power != 0
       lamps.inject(0){|s,e| s+(e.value||0)*(e.power||0) }/sum_power
     else
       0
@@ -42,9 +41,9 @@ class Room < Placement
 
   def brightness
     # for a brigthness filter in views. 100 - normal
-    result = ((illumination||1)*100)
-    result = 25+result*0.75
-    result = 130 if result>130
+    result = ((illumination || 1)*100)
+    result = 25 + result * 0.75
+    result = 130 if result > 130
     result.round
   end
   

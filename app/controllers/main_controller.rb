@@ -2,8 +2,8 @@ class MainController < ApplicationController
   
   rescue_from Exception, with: :handle_exception
 
-  before_filter :provide_controller_to_model
-  skip_before_filter :verify_authenticity_token, only: :refresh
+  before_action :provide_controller_to_model
+  skip_before_action :verify_authenticity_token, only: :refresh
 
   def show
     @root_entity = root_entity
@@ -69,7 +69,7 @@ class MainController < ApplicationController
         flash[:error] = "Couldn't find Entity with 'id'=#{ p['id'] }"
       end
     end
-    redirect_to :back
+    redirect_to_back
   end
 
   protected
@@ -80,7 +80,7 @@ class MainController < ApplicationController
       format.json do
         error_message = e.message
         error_message += '; ' + e.response.body.to_s if e.respond_to?(:response)
-        render(json: {ent: Entity.find_by_id(params[:id]).to_s, message: error_message, stack: e.backtrace.first(3)}, status: 500)
+        render(json: {ent: Entity.find_by_id(params[:id]).to_s, message: error_message, stack: e.backtrace.first(10)}, status: 500)
       end
 
       format.html do
