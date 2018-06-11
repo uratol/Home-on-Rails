@@ -11,8 +11,18 @@
 
       <div class="main_inputs" >
 
+        <% entity_img =  @entity.img rescue Exception
+          if entity_img && entity_img != @entity.class.img
+        %>
+          <div class="field icon">
+            <%= image_tag(@entity.img, class: 'large-icon') %>
+          </div>
+        <% end %>
+
         <div class="field">
-          <%= image_tag @entity.img, class: 'large-icon' rescue Exception%>
+          <%= f.label :type, 'Class' %>
+          <br>
+          <%= f.select :type, types_options %>
         </div>
 
 
@@ -26,12 +36,6 @@
           <%= f.label :caption %>
           <br>
           <%= f.text_field :caption %>
-        </div>
-
-        <div class="field">
-          <%= f.label :type, 'Class' %>
-          <br>
-          <%= f.select :type, types_options %>
         </div>
 
         <div class="field">

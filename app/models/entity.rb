@@ -5,7 +5,10 @@ class Entity < ActiveRecord::Base
 
   extend EntityClassMethods
 
-  belongs_to :parent, class_name: :Entity, optional: true
+  belongs_parent_options = {class_name: :Entity}
+  belongs_parent_options[:optional] = true if Rails::VERSION::MAJOR >= 5
+  belongs_to :parent, belongs_parent_options
+
   has_many :indications, dependent: :delete_all 
   has_many :jobs, class_name: :EntityJob, dependent: :delete_all
   validates :name, presence: true, uniqueness: true, format: { with: /\A[a-z][a-z0-9_]+\Z/ }

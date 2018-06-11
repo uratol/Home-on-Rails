@@ -62,6 +62,12 @@ table.entities tbody {
       display:inline-block;
       padding-right: 50px;
 
+      .field.icon{
+        float: left;
+        padding-right: 30px;
+        padding-top: 15px;
+      }
+
       input{
         height: 24px;
       }
