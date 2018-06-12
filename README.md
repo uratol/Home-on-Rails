@@ -86,7 +86,7 @@ At the command prompt, create a new Rails application:
 
 Change directory to `myapp` and add the next rows into Gemfile:
  
-        gem 'home', git: ' https://github.com/uratol/Home-on-Rails.git'
+        gem 'home', git: 'https://github.com/uratol/Home-on-Rails.git'
         gem 'jquery-rails'
         gem 'rails-ujs'
         gem 'jquery_context_menu-rails'
@@ -123,6 +123,10 @@ Run the server:
      	$ rails server
 
 Go to **http://localhost:3000** and you achieved the goal!
+
+To start the background jobs run:
+
+    $ rake jobs:work
 
 To authenticate use the credentials:
 
