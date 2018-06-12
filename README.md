@@ -1,13 +1,10 @@
-﻿# Welcome to Home on Rails
+﻿## What's Home on Rails
 
-## What's Home on Rails
-
-Home on Rails is a ruby-on-rails based framework that includes everything needed to create IoT web applications.
-
+**Home on Rails** is a ruby-on-rails based framework that includes everything needed to create IoT web applications.
 
 ## Model layer
 
-Home on Rails представляет иерархию классов, базирующуюся на Active Record-моделях:
+**Home on Rails** provide the class hierarchy based on Active Record-models:
 
     Entity
         Device
@@ -38,7 +35,7 @@ Home on Rails представляет иерархию классов, бази
             House
         Person
 
-Для взаимодействия с физическими объектами служит набор драйверов:
+To interact with physical objects is a set of drivers (ruby modules):
 	
        Mqtt
        Gpio
@@ -46,19 +43,20 @@ Home on Rails представляет иерархию классов, бази
        Uart
 	...
 
-Каждый объект в проекте – это экземпляр какого-либо класса с подключённым модулем драйвера. Кроме того, объекты образуют свою собственную иерархию – у каждого из них есть свойство **parent**.
-Кроме parent-а объекты также обладают следующими свойствами:
-       name : для обращения к объекту в программном коде
-	caption : для отображения на веб-сайте
-	driver : протокол для взаимодействия с физическими объектами
-	class : чем является объект (Комната, выключатель, датчик и т.д.)
-	value : (float) текущее значение
-	behavior_script : программный код, расширяющий возможности объекта
+Each object in the project is an instance of a class with a extended driver module. In addition, objects form their own hierarchy - each of them has the property **parent**.
+Except **parent** objects also have the next properties:
+       
+    name : for address in program code
+    caption : for display on UI
+    driver : protocol for interaction with physical objects
+    class : what is the object (Room, switch, sensor, etc.)
+    value : (float) current object value
+    behavior_script : program code that extends the functionality of an object
 
 
 ## DSL
 
-Для программирования логики взаимодействия объектов служит язык прикладной области, основанный на модели событий. Примеры событий:
+To program the interaction logic of objects serves the Domain Specific Language based on the event model. Examples of events:
 	at_change
 	at_on
 	at_off
@@ -66,14 +64,12 @@ Home on Rails представляет иерархию классов, бази
 	at_click
 	...
 
-Все эти события программируются через web-интерфейс и хранятся для в поле behavior_script для каждого объекта отдельно.
+All these events are programmed via the web interface and stored in the **behavior_script** field for each object separately.
+Example of response to a motion sensor:
 
-Пример реакции на датчик движения:
-
-	at_change do
-		light1.on! 5.minutes
-	end
-
+    at_change do
+        light1.on! 5.minutes
+    end
 
 
 ## Getting Started
@@ -127,6 +123,9 @@ Run the server:
      	$ rails server
 
 Go to `http://localhost:3000` and you have a goal!
+To authenticate use the credentials:
 
+Login: **demo@example.com**
+Password: **demo12345**
 
 
