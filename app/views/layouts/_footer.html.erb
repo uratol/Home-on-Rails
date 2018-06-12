@@ -1,1 +1,1 @@
-<% console if isadmin? && params[:console]%>
+<% console if isadmin? && params[:console] && respond_to?(:console) %>

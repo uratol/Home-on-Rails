@@ -27,7 +27,7 @@
                 <%= (render 'layouts/header_menu_item', title: "Design mode", url: 'javascript://', klass: 'design_menu_item') if params[:controller]=='main' && params[:action]=='show' %>
                 <%#= render 'layouts/header_menu_item', title: "Network setup", url: edit_network_path %>
                 <%= render 'layouts/header_menu_item', title: "Reboot!", url: '/admin/reboot', method: :post %>
-                <%= render 'layouts/header_menu_item', title: "Console", url: '?console=1' %>
+                <%= render 'layouts/header_menu_item', title: "Console", url: '?console=1' if respond_to?(:console) %>
             </div>
         <% end if isadmin? %>
       </div>

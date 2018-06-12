@@ -40,8 +40,6 @@ Gem::Specification.new do |s|
   
   s.add_dependency 'timedcache'
   
-  s.add_dependency 'web-console'
-  
   # drivers
 
   (gpio_exists = `gpio -v`) rescue Exception
@@ -62,6 +60,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'factory_girl_rails'
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'yard'
+  s.add_development_dependency 'web-console'
 
   s.test_files = Dir["spec/**/*"]
   
