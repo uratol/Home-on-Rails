@@ -4,7 +4,7 @@
 
 ## Model layer
 
-**Home on Rails** provide the class hierarchy based on Active Record-models:
+**Home on Rails** provides the class hierarchy based on Active Record-models:
 
     Entity
         Device
@@ -35,7 +35,7 @@
             House
         Person
 
-To interact with physical objects is a set of drivers (ruby modules):
+For interaction with physical objects serves a set of drivers (ruby modules):
 	
        Mqtt
        Gpio
@@ -43,12 +43,12 @@ To interact with physical objects is a set of drivers (ruby modules):
        Uart
 	...
 
-Each object in the project is an instance of a class with a extended driver module. In addition, objects form their own hierarchy - each of them has the property **parent**.
-Except **parent** objects also have the next properties:
+Each object in the project is an instance of a class with an extended driver module. In addition, objects form their own hierarchy - each of them has the property **parent**.
+Except for **parent** objects also have the next properties:
        
-    name : for address in program code
+    name : for address in a program code
     caption : for display on UI
-    driver : protocol for interaction with physical objects
+    driver : a protocol for interaction with physical objects
     class : what is the object (Room, switch, sensor, etc.)
     value : (float) current object value
     behavior_script : program code that extends the functionality of an object
@@ -56,7 +56,7 @@ Except **parent** objects also have the next properties:
 
 ## DSL
 
-To program the interaction logic of objects serves the Domain Specific Language based on the event model. Examples of events:
+For programming the objects interaction serves the Domain Specific Language based on the event model. Examples of events:
 	at_change
 	at_on
 	at_off
@@ -64,8 +64,8 @@ To program the interaction logic of objects serves the Domain Specific Language 
 	at_click
 	...
 
-All these events are programmed via the web interface and stored in the **behavior_script** field for each object separately.
-Example of response to a motion sensor:
+All these events are programmed via the web interface and stored in the **behavior_script** field for an each object separately.
+Example of response on a motion sensor:
 
     at_change do
         light1.on! 5.minutes
@@ -74,7 +74,7 @@ Example of response to a motion sensor:
 
 ## Getting Started
 
-Install Ruby on Rails (currently tested versions 5.1.6 and 4.2.1) at the command prompt if you haven't yet:
+Install Ruby on Rails (currently tested versions are 5.1.6 and 4.2.1) at the command prompt if you haven't yet:
 
         $ gem install rails -v 5.1.6
 
@@ -100,12 +100,12 @@ Run install task. It will make and populate the database, create a default user 
 
         $ rake home:install
 
-Add the next line to begin of file: app/assets/javascript/application.js
+Add the next line at the begin of file: app/assets/javascript/application.js
         
         //= require home/application
 
 
-Add the next line to begin of file: app/assets/stylesheets/application.css
+Add the next line at begin of file: app/assets/stylesheets/application.css
         
         *= require home/application
 
@@ -122,7 +122,8 @@ Run the server:
 
      	$ rails server
 
-Go to `http://localhost:3000` and you have a goal!
+Go to **http://localhost:3000** and you achieved the goal!
+
 To authenticate use the credentials:
 
 Login: **demo@example.com**
