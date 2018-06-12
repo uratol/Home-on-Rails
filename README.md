@@ -37,11 +37,11 @@
 
 For interaction with physical objects serves a set of drivers (ruby modules):
 	
-       Mqtt
-       Gpio
-       OneWire
-       Uart
-	...
+        Mqtt
+        Gpio
+        OneWire
+        Uart
+        ...
 
 Each object in the project is an instance of a class with an extended driver module. In addition, objects form their own hierarchy - each of them has the property **parent**.
 Except for **parent** objects also have the next properties:
