@@ -51,6 +51,8 @@ Gem::Specification.new do |s|
     s.add_dependency 'rubyserial'
   end
 
+  s.add_dependency 'i2c'
+
   s.add_dependency 'net-ping'
   s.add_dependency 'mqtt'
   s.add_dependency 'ice_cube'
@@ -60,7 +62,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'factory_girl_rails'
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'yard'
-  s.add_development_dependency 'web-console'
+  s.add_dependency 'web-console'
 
   s.test_files = Dir["spec/**/*"]
   
